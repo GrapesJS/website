@@ -2,7 +2,7 @@ import Alert from "@/app/_components/alert";
 import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostHeader } from "@/app/_components/post-header";
-import { getAllPosts, getPostBySlug } from "@/lib/api";
+import { getAllPosts, getPostBySlug } from "@/lib/blogApi";
 import { DEFAULT_TITLE } from "@/lib/constants";
 import { ContainerMDX } from "@/mdx-components";
 import { Metadata } from "next";
