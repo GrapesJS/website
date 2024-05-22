@@ -62,7 +62,7 @@ export default function HomePage() {
 
         <div className="bann-cont-c">
           <div className="bann-cont">
-            <img className="banner-img" src="img/grapesjs-front-page-m.jpg" alt="GrapesJS Webpage Demo"/>
+            <img className="banner-img" src="/assets/images/grapesjs-front-page-m.jpg" alt="GrapesJS Webpage Demo"/>
           </div>
         </div>
 
