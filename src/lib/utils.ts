@@ -1,0 +1,1 @@
+export const getPathBlog = (slug?: string) => `/blog${slug ? `/${slug}` : ''}`;

@@ -1,11 +1,9 @@
 import Alert from "@/app/_components/alert";
 import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
-import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { DEFAULT_TITLE } from "@/lib/constants";
-import markdownToHtml from "@/lib/markdownToHtml";
 import { ContainerMDX } from "@/mdx-components";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -23,8 +21,6 @@ export default async function Post({ params }: PageBlogPostProps) {
     return notFound();
   }
 
-  const content = await markdownToHtml(post.content || "");
-
   return (
     <main>
       <Alert preview={post.preview} />
@@ -37,7 +33,6 @@ export default async function Post({ params }: PageBlogPostProps) {
             date={post.date}
             author={post.author}
           />
-          <PostBody content={content} />
           <div className="max-w-2xl mx-auto">
             <ContainerMDX source={post.content}/>
           </div>
