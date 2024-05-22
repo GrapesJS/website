@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "serve": "npx serve@latest out",
     "start": "next start"
   },
   "dependencies": {
