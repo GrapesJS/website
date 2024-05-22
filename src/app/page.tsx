@@ -2,30 +2,24 @@ import Container from "@/app/_components/container";
 import { getPathBlog } from "@/lib/utils";
 import Link from "next/link";
 
+import "./home.css";
+
 export default function HomePage() {
   return (
     <main>
-      <h1>HOME!</h1>
-      <Container>
-        <Link className="px-2" href={getPathBlog()}>Blog</Link>
-      </Container>
-
       <section className="page-header">
         <div className="width-all top-header">
-          <div className="columns">
-            <div className="column col-6 col-md-12 text-left column-logo">
-              <span className="logo-cont no-sel">
-                <img className="top-logo-grapesjs" src="img/grapesjs-logo-cl.png"/>
-                GrapesJS
-              </span>
+          <div className="flex justify-between mt-5">
+            <div id="logo-cont" className="select-none flex gap-3 items-center">
+              <img className="h-[55px]" src="/assets/images/grapesjs-logo-cl.png"/>
+              <span className="text-4xl">GrapesJS</span>
             </div>
-            <div className="column col-6 col-md-12 text-right">
-              <nav className="top-nav">
+            <nav className="flex items-center gap-6">
                 <span className="nav-item">
-                  <a className="top-nav-link scroll-link" data-target="#support" href="##">Support</a>
+                  <a className="top-nav-link scroll-link" href="#support">Support</a>
                 </span>
                 <span className="nav-item">
-                  <a className="top-nav-link scroll-link" data-target=".main-content" href="##">Features</a>
+                  <a className="top-nav-link scroll-link" href="#features">Features</a>
                 </span>
                 <span className="nav-item">
                   <a className="top-nav-link" href="/docs/">Docs</a>
@@ -41,22 +35,23 @@ export default function HomePage() {
                   </a>
                 </span>
               </nav>
-            </div>
           </div>
         </div>
 
-        <h2 className="project-tagline">
-          Free and Open Source Web Builder Framework<br/>
-          <span>Next generation tool for building templates without coding</span>
+        <h1 className="mt-24 text-3xl">
+          Free and Open Source Web Builder Framework
+        </h1>
+        <h2 className="mt-5 text-lg opacity-80">
+          Next generation tool for building templates without coding
         </h2>
 
-        <div className="btns-cont">
+        <div className="mt-24 btns-cont">
           <a href="./demo.html" className="btn try btn-rnd">Webpage Demo</a>
           <a href="./demo-newsletter-editor.html" className="btn try btn-rnd">Newsletter Demo</a>
           <a href="./demo-mjml.html" className="btn try btn-rnd">MJML Demo</a>
           <div></div>
           <a href="https://studio.grapesjs.com" className="btn try btn-rnd btn-studio">
-              <img src="./img/logos/grapesjs-logo.svg" height="40"/>
+              <img src="/assets/images/logos/grapesjs-logo.svg" className="h-[40px]"/>
               Try GrapesJS Studio <small>(alpha)</small>
           </a>
           <div className="device-small">Sorry but your device is too small for the editor. See below for more information</div>
@@ -91,7 +86,7 @@ export default function HomePage() {
             GrapesJS is an open-source, multi-purpose, Web Builder Framework which combines different tools and features with the goal to help you (or users of your application) to build HTML templates
             without any knowledge of coding. It's a perfect solution to replace the common WYSIWYG editors, which are good for content editing but inappropriate for
             creating HTML structures. You can see it in action with the
-            <a  className="scroll-link" data-target=".logo-cont" href="##">official demos</a>,
+            <a  className="scroll-link" href="#logo-cont">official demos</a>,
             but using its
             <a target="_blank" href="https://github.com/artf/grapesjs/wiki/API-Reference">API</a>
             you're able to
@@ -111,7 +106,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="main-content">
+      <section className="main-content" id="features">
         <div className="body-c body1 width-all">
 
           <h1 className="main-section-title">Available end-user features</h1>
