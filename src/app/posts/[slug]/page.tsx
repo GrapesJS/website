@@ -1,15 +1,22 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { CMS_NAME } from "@/lib/constants";
-import markdownToHtml from "@/lib/markdownToHtml";
 import Alert from "@/app/_components/alert";
 import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
+import { getAllPosts, getPostBySlug } from "@/lib/api";
+import { DEFAULT_TITLE } from "@/lib/constants";
+import markdownToHtml from "@/lib/markdownToHtml";
+import { ContainerMDX } from "@/mdx-components";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-export default async function Post({ params }: Params) {
+interface PageBlogPostProps {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function Post({ params }: PageBlogPostProps) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
@@ -31,26 +38,23 @@ export default async function Post({ params }: Params) {
             author={post.author}
           />
           <PostBody content={content} />
+          <div className="max-w-2xl mx-auto">
+            <ContainerMDX source={post.content}/>
+          </div>
         </article>
       </Container>
     </main>
   );
 }
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
-
-export function generateMetadata({ params }: Params): Metadata {
+export function generateMetadata({ params }: PageBlogPostProps): Metadata {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
     return notFound();
   }
 
-  const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
+  const title = `${post.title} | ${DEFAULT_TITLE} Blog`;
 
   return {
     title,
@@ -62,9 +66,6 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  const result: PageBlogPostProps['params'][] = getAllPosts().map((post) => ({ slug: post.slug }));
+  return result;
 }
