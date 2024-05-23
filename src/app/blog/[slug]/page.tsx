@@ -15,7 +15,7 @@ interface PageBlogPostProps {
   };
 };
 
-export default async function Post({ params }: PageBlogPostProps) {
+export default async function PageBlogPost({ params }: PageBlogPostProps) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {

@@ -1,5 +1,3 @@
-import Alert from "@/app/_components/alert";
-import { Intro } from "@/app/_components/intro";
 import markdownStyles from "@/app/_components/markdown-styles.module.css";
 import type { MDXComponents } from 'mdx/types';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
@@ -11,8 +9,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 }
 
 const mdxComponents = {
-  Alert,
-  Intro,
 };
 
 export function ContainerMDX({ source }: MDXRemoteProps) {

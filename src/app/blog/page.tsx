@@ -1,11 +1,10 @@
 import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/blogApi";
 import Header from "../_components/header";
 
-export default function Index() {
+export default function PageBlogPosts() {
   const allPosts = getAllPosts();
 
   const heroPost = allPosts[0];
