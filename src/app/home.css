@@ -666,38 +666,6 @@ a {
 
 }
 
-.featured {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.featured-title {
-  color: rgba(0, 0, 0, 0.25);
-  font-family: Helvetica, sans-serif;
-  font-weight: bold;
-  letter-spacing: 5px;
-  padding: 50px 0;
-  text-align: center;
-}
-
-.featured-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding-bottom: 50px;
-}
-
-.featured-card {
-  margin: 50px 30px;
-}
-
-.featured-logo {
-  opacity: 0.7;
-}
-
-.featured-logo.wdd-logo {
-  opacity: 0.5;
-}
-
 .ddown-sharer {
   bottom: 5px;
   left: 15px;

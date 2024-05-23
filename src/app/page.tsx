@@ -13,6 +13,14 @@ const navLinks = [
   { content: 'Twitter/X', href: 'https://x.com/grapesjs', target: '_blank' },
 ];
 
+const featured = [
+  { src: '/assets/images/hn-logo.png' },
+  { src: '/assets/images/ph-logo.png' },
+  { src: '/assets/images/t3n-logo.png' },
+  { src: '/assets/images/wdd-logo.png' },
+  { src: '/assets/images/speckyboy-logo.png' },
+];
+
 export default function HomePage() {
   return (
     <main>
@@ -100,9 +108,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="even-content" id="features">
+      <section className="even-content overflow-hidden" id="features">
         <div className="body-c body1 width-all">
-
           <h1 className="section-title primary-title mb-10">Available end-user features</h1>
 
           <div className="flex items-center mb-24">
@@ -232,24 +239,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="featured py-10">
-        <div className="text-center pb-10 text-zinc-400 font-bold tracking-[5px]">FEATURED ON</div>
+      <section className="py-10 bg-zinc-100">
+        <div className="text-center pb-10 text-zinc-400 font-bold tracking-[5px]">
+          FEATURED ON
+        </div>
         <div className="flex justify-evenly">
-          <div className="featured-card">
-            <img className="featured-logo hn-logo" src="/assets/images/hn-logo.png"/>
-          </div>
-          <div className="featured-card">
-            <img className="featured-logo ph-logo" src="/assets/images/ph-logo.png"/>
-          </div>
-          <div className="featured-card">
-            <img className="featured-logo t3n-logo" src="/assets/images/t3n-logo.png"/>
-          </div>
-          <div className="featured-card">
-            <img className="featured-logo wdd-logo" src="/assets/images/wdd-logo.png"/>
-          </div>
-          <div className="featured-card">
-            <img className="featured-logo speckyboy-logo" src="/assets/images/speckyboy-logo.png"/>
-          </div>
+          {featured.map(({ src }) => (
+            <div className="my-[50px] mx-[30px]" key={src}>
+              <img className="opacity-50" src={src}/>
+            </div>
+          ))}
         </div>
       </section>
 
