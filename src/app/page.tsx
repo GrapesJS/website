@@ -3,6 +3,7 @@ import { getPathBlog } from "@/lib/utils";
 import Link from "next/link";
 
 import "./home.css";
+import CarbonAd from "./_components/carbonAd";
 
 const navLinks = [
   { content: 'Support', href: '#support' },
@@ -53,8 +54,7 @@ export default function HomePage() {
           <div className="device-small">Sorry but your device is too small for the editor. See below for more information</div>
         </div>
 
-        <div id="native-carbon"></div>
-        <script async type="text/javascript" src="./js/carbon-v2.js"></script>
+        <CarbonAd/>
 
         <div className="bann-cont-c">
           <div className="bann-cont">
