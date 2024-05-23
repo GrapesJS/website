@@ -17,8 +17,8 @@ export default function HomePage() {
   return (
     <main>
       <section className="page-header">
-        <div className="width-all top-header">
-          <div className="flex justify-between mt-5">
+        <div className="width-all top-header pt-5">
+          <div className="flex justify-between">
             <div id="logo-cont" className="select-none flex gap-3 items-center">
               <img className="h-[55px]" src="/assets/images/grapesjs-logo-cl.png"/>
               <span className="text-4xl">GrapesJS</span>
@@ -75,65 +75,64 @@ export default function HomePage() {
             </div>
         </div>
       </section>
+
       <section className="section-container what-sect">
         <div className="width-all">
-          <h1 className="section-title primary-title">What is it?</h1>
+          <h1 className="section-title primary-title mb-10">What is it?</h1>
           <div className="section-content">
             GrapesJS is an open-source, multi-purpose, Web Builder Framework which combines different tools and features with the goal to help you (or users of your application) to build HTML templates
             without any knowledge of coding. It's a perfect solution to replace the common WYSIWYG editors, which are good for content editing but inappropriate for
-            creating HTML structures. You can see it in action with the
-            <a  className="scroll-link" href="#logo-cont">official demos</a>,
-            but using its
-            <a target="_blank" href="https://github.com/artf/grapesjs/wiki/API-Reference">API</a>
-            you're able to
-            build your own editors.
+            creating HTML structures. You can see it in action with the <a  className="scroll-link" href="#logo-cont">official demos</a>,
+            but using its <a target="_blank" href="https://grapesjs.com/docs/api">API</a> you're able to build your own editors.
             <br/>
             <br/>
             If you're here just to build stuff faster, open and bookmark the official demos and use them when you need it.
 
             <div className="what-images">
               <div className="what-image-cont what-image-cont1">
-                <img className="what-image what-image1" src="img/grapesjs-front-page-m.jpg" alt="GrapesJS Webpage Demo"/>
+                <img className="what-image what-image1" src="/assets/images/grapesjs-front-page-m.jpg" alt="GrapesJS Webpage Demo"/>
               </div>
               <div className="what-image-cont what-image-cont2">
-                <img className="what-image what-image2" src="img/sc-grapesjs-newsletter-demo.jpg" alt="GrapesJS Newsletter Demo"/>
+                <img className="what-image what-image2" src="/assets/images/sc-grapesjs-newsletter-demo.jpg" alt="GrapesJS Newsletter Demo"/>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="main-content" id="features">
+
+      <section className="even-content" id="features">
         <div className="body-c body1 width-all">
 
-          <h1 className="main-section-title">Available end-user features</h1>
+          <h1 className="section-title primary-title mb-10">Available end-user features</h1>
 
-
-          <div className="info-card info-card-blocks fadeInBlock columns">
+          <div className="info-card info-card-blocks columns">
             <div className="column col-6 col-md-12">
               <div className="info-card-title">Drag&Drop Built-in Blocks</div>
-              <div className="info-card-description">GrapesJS comes with a set of built-in blocks, in this way you're able to
-                build your templates faster. If the default set is not enough you can always add your own custom blocks.</div>
+              <div className="info-card-description">
+                GrapesJS comes with a set of built-in blocks, in this way you're able to
+                build your templates faster. If the default set is not enough you can always add your own custom blocks.
+              </div>
             </div>
             <div className="column col-6 col-md-12">
               <div className="card-images card-images1">
                 <div className="card-image-cont card-image-cont1 brd-image">
-                  <img className="card-image card-image1" src="img/sc-grapesjs-blocks-prp.jpg" alt="GrapesJS Blocks"/>
+                  <img className="card-image card-image1" src="/assets/images/sc-grapesjs-blocks-prp.jpg" alt="GrapesJS Blocks"/>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="info-card info-card-blocks fadeInBlock columns">
+          <div className="info-card info-card-blocks columns">
             <div className="column col-6 col-md-12 card-column3-1">
               <div className="card-images card-images3">
                 <div className="card-image-cont card-image-cont3 brd-image">
-                  <img className="card-image card-image3" src="img/sc-grapesjs-style-3.jpg" alt="GrapesJS Style Manager"/>
+                  <img className="card-image card-image3" src="/assets/images/sc-grapesjs-style-3.jpg" alt="GrapesJS Style Manager"/>
                 </div>
                 <div className="card-image-cont card-image-cont32 brd-image">
-                  <img className="card-image card-image3" src="img/sc-grapesjs-style-2.jpg" alt="GrapesJS Style Manager"/>
+                  <img className="card-image card-image3" src="/assets/images/sc-grapesjs-style-2.jpg" alt="GrapesJS Style Manager"/>
                 </div>
                 <div className="card-image-cont card-image-cont33 brd-image">
-                  <img className="card-image card-image3" src="img/sc-grapesjs-style-1.jpg" alt="GrapesJS Style Manager"/>
+                  <img className="card-image card-image3" src="/assets/images/sc-grapesjs-style-1.jpg" alt="GrapesJS Style Manager"/>
                 </div>
               </div>
             </div>
@@ -146,7 +145,7 @@ export default function HomePage() {
           </div>
 
 
-          <div className="info-card info-card-blocks fadeInBlock columns">
+          <div className="info-card info-card-blocks columns">
             <div className="column col-6 col-md-12">
               <div className="info-card-title">Responsive design</div>
               <div className="info-card-description">GrapesJS gives you all the necessary tools you need to optimize your
@@ -156,21 +155,21 @@ export default function HomePage() {
             <div className="column col-6 col-md-12">
               <div className="card-images card-images2">
                 <div className="card-image-cont card-image-cont2 brd-image">
-                  <img className="card-image card-image2" src="img/sc-grapesjs-responsive-2.jpg" alt="GrapesJS Responsive"/>
+                  <img className="card-image card-image2" src="/assets/images/sc-grapesjs-responsive-2.jpg" alt="GrapesJS Responsive"/>
                 </div>
               </div>
             </div>
           </div>
 
 
-          <div className="info-card info-card-blocks fadeInBlock columns">
+          <div className="info-card info-card-blocks columns">
             <div className="column col-6 col-md-12 card-column4-1">
               <div className="card-images card-images3">
                 <div className="card-image-cont card-image-cont4 brd-image">
-                  <img className="card-image card-image3" src="img/sc-grapesjs-layers-1.jpg" alt="GrapesJS Style Manager"/>
+                  <img className="card-image card-image3" src="/assets/images/sc-grapesjs-layers-1.jpg" alt="GrapesJS Style Manager"/>
                 </div>
                 <div className="card-image-cont card-image-cont42 brd-image">
-                  <img className="card-image card-image3" src="img/sc-grapesjs-layers-2.jpg" alt="GrapesJS Style Manager"/>
+                  <img className="card-image card-image3" src="/assets/images/sc-grapesjs-layers-2.jpg" alt="GrapesJS Style Manager"/>
                 </div>
               </div>
             </div>
@@ -184,7 +183,7 @@ export default function HomePage() {
 
 
 
-          <div className="info-card info-card-blocks fadeInBlock columns">
+          <div className="info-card info-card-blocks columns">
             <div className="column col-6 col-md-12">
               <div className="info-card-title">The code is there when you need it</div>
               <div className="info-card-description">You don't have to care about the code, but it's always there, available for you. When
@@ -194,21 +193,21 @@ export default function HomePage() {
             <div className="column col-6 col-md-12">
               <div className="card-images card-images2">
                 <div className="card-image-cont card-image-cont6 brd-image">
-                  <img className="card-image card-image6" src="img/sc-grapesjs-code.jpg" alt="GrapesJS Code"/>
+                  <img className="card-image card-image6" src="/assets/images/sc-grapesjs-code.jpg" alt="GrapesJS Code"/>
                 </div>
               </div>
             </div>
           </div>
 
 
-          <div className="info-card info-card-blocks fadeInBlock columns">
+          <div className="info-card info-card-blocks columns">
             <div className="column col-6 col-md-12 card-column5-1">
               <div className="card-images card-images3">
                 <div className="card-image-cont card-image-cont5 brd-image">
-                  <img className="card-image card-image5" src="img/sc-grapesjs-assets-1.jpg" alt="GrapesJS Asset Manager"/>
+                  <img className="card-image card-image5" src="/assets/images/sc-grapesjs-assets-1.jpg" alt="GrapesJS Asset Manager"/>
                 </div>
                 <div className="card-image-cont card-image-cont52 brd-image">
-                  <img className="card-image card-image52" src="img/sc-grapesjs-assets-2.jpg" alt="GrapesJS Asset Manager"/>
+                  <img className="card-image card-image52" src="/assets/images/sc-grapesjs-assets-2.jpg" alt="GrapesJS Asset Manager"/>
                 </div>
               </div>
             </div>
@@ -218,9 +217,9 @@ export default function HomePage() {
                 enough to double click on the image to change it</div>
             </div>
           </div>
-
         </div>
       </section>
+
       <section className="featured">
         <div className="featured-title">FEATURED ON</div>
         <div className="featured-cards">
