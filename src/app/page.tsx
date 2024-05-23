@@ -232,96 +232,82 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="featured">
-        <div className="featured-title">FEATURED ON</div>
-        <div className="featured-cards">
+      <section className="featured py-10">
+        <div className="text-center pb-10 text-zinc-400 font-bold tracking-[5px]">FEATURED ON</div>
+        <div className="flex justify-evenly">
           <div className="featured-card">
-            <img className="featured-logo hn-logo" src="./img/hn-logo.png"/>
+            <img className="featured-logo hn-logo" src="/assets/images/hn-logo.png"/>
           </div>
           <div className="featured-card">
-            <img className="featured-logo ph-logo" src="./img/ph-logo.png"/>
+            <img className="featured-logo ph-logo" src="/assets/images/ph-logo.png"/>
           </div>
           <div className="featured-card">
-            <img className="featured-logo t3n-logo" src="./img/t3n-logo.png"/>
+            <img className="featured-logo t3n-logo" src="/assets/images/t3n-logo.png"/>
           </div>
           <div className="featured-card">
-            <img className="featured-logo wdd-logo" src="./img/wdd-logo.png"/>
+            <img className="featured-logo wdd-logo" src="/assets/images/wdd-logo.png"/>
           </div>
           <div className="featured-card">
-            <img className="featured-logo speckyboy-logo" src="./img/speckyboy-logo.png"/>
+            <img className="featured-logo speckyboy-logo" src="/assets/images/speckyboy-logo.png"/>
           </div>
         </div>
       </section>
+
       <section className="support section-container" id="support">
         <div className="width-all">
-          <h1 className="section-title primary-title">Support us</h1>
-          <div className="section-content">
+          <h1 className="section-title primary-title mb-10">Support us</h1>
+          <div>
             If you like the project you can help us get bigger. GrapesJS is an independent
             project, made by developers in their spare time with a common purpose, to make
             web development accessible to everyone. We appreciate even the smallest contribution
             as it's a huge change from many aspects, but mostly, the motivation to
             keep improving this tool.
           </div>
-          <div className="suppoer-banners text-center">
-            <br/><br/><br/>
-            <h2 className="text-center">Gold Sponsors</h2>
-            <div className="sponsors--direct">
-            </div>
-            <div className="sponsors">
-              <div className="flex flex-center gap-[25x]">
+
+          <div className="text-center pt-20 pb-36">
+            <h2 className="text-center font-semibold text-2xl">Gold Sponsors</h2>
+            <div className="mt-12">
+              <div className="flex flex-center gap-[25px]">
                 <div className="sp-gold-item">
                   <a href="https://www.phreesia.com" target="_blank" className="block">
-                    <img className="sp-logo" src="./img/phreesia_logo.png"/>
+                    <img className="w-[250px] max-w-full" src="/assets/images/phreesia_logo.png"/>
                   </a>
                 </div>
                 <div className="sp-gold-item">
                   <a href="https://www.braze.com" target="_blank" className="block">
-                    <img className="sp-logo" src="./img/braze_logo.svg"/>
+                    <img className="w-[250px] max-w-full" src="/assets/images/braze_logo.svg"/>
                   </a>
                 </div>
                 <div className="sp-gold-item">
                   <a href="https://veepn.com/vpn-apps/download-vpn-for-pc/" target="_blank" className="block">
-                    <img className="sp-logo w-[150px]" src="./img/logo_veepn.png" alt="Download the Best Windows VPN for PC"/>
+                    <img className="w-[150px] max-w-full" src="/assets/images/logo_veepn.png" alt="Download the Best Windows VPN for PC"/>
                   </a>
                 </div>
               </div>
-              <div className="sp-sup">
-                {/* https://opencollective.com/grapesjs#support
-                https://opencollective.com/grapesjs/tiers/gold-sponsors.svg
-                https://opencollective.com/grapesjs/tiers/sponsors.svg
-                https://opencollective.com/grapesjs/tiers/backers.svg */}
-              </div>
             </div>
-            <br/><br/><br/>
           </div>
-          <div className="suppoer-banners text-center">
-            <h2 className="text-center">Sponsors</h2>
-            <div className="sponsors--direct">
-            </div>
-            <div className="sponsors">
-              <div className="overflow-auto">
+
+          <div className="text-center">
+            <h2 className="text-center font-semibold text-2xl">Sponsors</h2>
+            <div className="mt-12">
+              <div className="overflow-auto flex justify-center">
                 <object type="image/svg+xml" data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64"></object>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <section className="footer-content">
           <div className="footer-c width-all">
             <div className="title">
-              The project is still under development, so
-              <a className="darker-link" href="https://twitter.com/grapesjs" target="_blank">stay tuned</a>.
+              The project is still under development, so <a className="darker-link" href="https://twitter.com/grapesjs" target="_blank">stay tuned</a>.
               <br/>
               Being a free and open source project contributors and supporters are extremely welcome.
             </div>
             <div className="btns-c">
-              <a className="btn btn-gjs" href="/docs/">Get Started</a>
+              <a className="btn btn-gjs" href="/docs">Get Started</a>
             </div>
-          </div>
-          <div className="madewith-c">
-            <span className="madewith">Site built with <br/>
-              <span className="logo-bot-c"><img className="bot-logo-made" src="img/grapesjs-logo-cl.png"/> rapesJS</span>
-            </span>
           </div>
       </section>
       <section className="copyr-content">
