@@ -1,11 +1,12 @@
-import Alert from "@/app/_components/alert";
 import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostHeader } from "@/app/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/blogApi";
 import { DEFAULT_TITLE } from "@/lib/constants";
+import { getPathBlog } from "@/lib/utils";
 import { ContainerMDX } from "@/mdx-components";
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface PageBlogPostProps {
@@ -23,8 +24,11 @@ export default async function Post({ params }: PageBlogPostProps) {
 
   return (
     <main>
-      <Header />
-      <Container>
+      <Header/>
+      <Container className="">
+        <div className="py-7 md:py-14">
+          <Link href={getPathBlog()}>‹ Back to blog</Link>
+        </div>
         <article className="mb-32">
           <PostHeader
             title={post.title}

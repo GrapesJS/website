@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({isHome, className, ...rest }) => {
 
   return (
     <header className={cx(className, 'bg-gjs')} {...rest}>
-      <div className={cx(clsContainer, clsHeadInner, 'py-3')}>
+      <div className={cx(clsContainer, clsHeadInner, 'py-4')}>
         <Link id="logo-cont" href="/" className="select-none flex gap-3 items-center">
           <img className="h-[40px]" src="/assets/images/grapesjs-logo-cl.png"/>
           <span className="text-3xl">GrapesJS</span>

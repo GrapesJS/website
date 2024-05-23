@@ -1,9 +1,7 @@
-type Props = {
-  children?: React.ReactNode;
-};
+import cx from "classnames";
 
-const Container = ({ children }: Props) => {
-  return <div className="container mx-auto px-5">{children}</div>;
+const Container = ({ children, className }: React.HTMLProps<HTMLElement>) => {
+  return <div className={cx('container mx-auto px-5', className)}>{children}</div>;
 };
 
 export default Container;
