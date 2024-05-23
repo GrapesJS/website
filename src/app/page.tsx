@@ -1,9 +1,5 @@
-import Container from "@/app/_components/container";
-import { getPathBlog } from "@/lib/utils";
-import Link from "next/link";
-
-import "./home.css";
 import CarbonAd from "./_components/carbonAd";
+import "./home.css";
 
 const navLinks = [
   { content: 'Support', href: '#support' },
@@ -45,7 +41,7 @@ const goldSponsors = [
 export default function HomePage() {
   return (
     <main>
-      <section className="page-header">
+      <section className="page-header z-0">
         <div className="width-all top-header pt-5">
           <div className="flex justify-between">
             <div id="logo-cont" className="select-none flex gap-3 items-center">
