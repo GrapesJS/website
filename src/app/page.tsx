@@ -13,13 +13,34 @@ const navLinks = [
   { content: 'Twitter/X', href: 'https://x.com/grapesjs', target: '_blank' },
 ];
 
-const featured = [
+const featuredItems = [
   { src: '/assets/images/hn-logo.png' },
   { src: '/assets/images/ph-logo.png' },
   { src: '/assets/images/t3n-logo.png' },
   { src: '/assets/images/wdd-logo.png' },
   { src: '/assets/images/speckyboy-logo.png' },
 ];
+
+const goldSponsors = [
+  {
+    href: 'https://www.phreesia.com',
+    src: '/assets/images/phreesia_logo.png',
+    alt: 'Phreesia logo',
+    className: 'w-[250px]',
+  },
+  {
+    href: 'https://www.braze.com',
+    src: '/assets/images/braze_logo.svg',
+    alt: 'Braze logo',
+    className: 'w-[250px]',
+  },
+  {
+    href: 'https://veepn.com/vpn-apps/download-vpn-for-pc/',
+    src: '/assets/images/logo_veepn.png',
+    alt: 'Download the Best Windows VPN for PC',
+    className: 'w-[150px]',
+  },
+]
 
 export default function HomePage() {
   return (
@@ -244,7 +265,7 @@ export default function HomePage() {
           FEATURED ON
         </div>
         <div className="flex justify-evenly">
-          {featured.map(({ src }) => (
+          {featuredItems.map(({ src }) => (
             <div className="my-[50px] mx-[30px]" key={src}>
               <img className="opacity-50" src={src}/>
             </div>
@@ -267,21 +288,13 @@ export default function HomePage() {
             <h2 className="text-center font-semibold text-2xl">Gold Sponsors</h2>
             <div className="mt-12">
               <div className="flex flex-center gap-[25px]">
-                <div className="sp-gold-item">
-                  <a href="https://www.phreesia.com" target="_blank" className="block">
-                    <img className="w-[250px] max-w-full" src="/assets/images/phreesia_logo.png"/>
-                  </a>
-                </div>
-                <div className="sp-gold-item">
-                  <a href="https://www.braze.com" target="_blank" className="block">
-                    <img className="w-[250px] max-w-full" src="/assets/images/braze_logo.svg"/>
-                  </a>
-                </div>
-                <div className="sp-gold-item">
-                  <a href="https://veepn.com/vpn-apps/download-vpn-for-pc/" target="_blank" className="block">
-                    <img className="w-[150px] max-w-full" src="/assets/images/logo_veepn.png" alt="Download the Best Windows VPN for PC"/>
-                  </a>
-                </div>
+                {goldSponsors.map(({ href, className, src, alt }) => (
+                  <div className="sp-gold-item" key={href}>
+                    <a href={href} target="_blank" className="block">
+                      <img className={`${className} max-w-full`} src={src} alt={alt}/>
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -300,7 +313,7 @@ export default function HomePage() {
       <section className="footer-content">
           <div className="footer-c width-all">
             <div className="title">
-              The project is still under development, so <a className="darker-link" href="https://twitter.com/grapesjs" target="_blank">stay tuned</a>.
+              The project is under development, so <a className="darker-link" href="https://twitter.com/grapesjs" target="_blank">stay tuned</a>.
               <br/>
               Being a free and open source project contributors and supporters are extremely welcome.
             </div>
