@@ -4,6 +4,14 @@ import Link from "next/link";
 
 import "./home.css";
 
+const navLinks = [
+  { content: 'Support', href: '#support' },
+  { content: 'Features', href: '#features' },
+  { content: 'Docs', href: '/docs' },
+  { content: 'GitHub', href: 'https://github.com/grapesjs/grapesjs', target: '_blank' },
+  { content: 'Twitter/X', href: 'https://x.com/grapesjs', target: '_blank' },
+];
+
 export default function HomePage() {
   return (
     <main>
@@ -15,25 +23,13 @@ export default function HomePage() {
               <span className="text-4xl">GrapesJS</span>
             </div>
             <nav className="flex items-center gap-6">
-                <span className="nav-item">
-                  <a className="top-nav-link scroll-link" href="#support">Support</a>
-                </span>
-                <span className="nav-item">
-                  <a className="top-nav-link scroll-link" href="#features">Features</a>
-                </span>
-                <span className="nav-item">
-                  <a className="top-nav-link" href="/docs/">Docs</a>
-                </span>
-                <span className="nav-item">
-                  <a className="top-nav-link" href="https://github.com/artf/grapesjs" target="_blank">
-                    <i className="fa fa-github" aria-hidden="true"></i> Github
-                  </a>
-                </span>
-                <span className="nav-item">
-                  <a className="top-nav-link tooltip tooltip-bottom" href="https://twitter.com/grapesjs" target="_blank" data-tooltip="Stay Tuned">
-                    <i className="fa fa-twitter" aria-hidden="true"></i> Twitter
-                  </a>
-                </span>
+                {navLinks.map(({ href, target, content }) => (
+                  <span className="nav-item" key={href}>
+                    <a className="top-nav-link" href={href} target={target}>
+                      {content}
+                    </a>
+                  </span>
+                ))}
               </nav>
           </div>
         </div>
