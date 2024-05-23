@@ -150,15 +150,6 @@ a {
   width: 100%;
 }
 
-.info-card-blocks {
-  align-items: center;
-  display: flex;
-}
-
-.card-images {
-  position: relative;
-}
-
 .card-image {
   display: block;
   width: 100%;
@@ -450,18 +441,6 @@ a {
   max-width: 1120px;
   width: 90%;
   margin: 0 auto;
-}
-
-.info-card {
-  font-size: 25px;
-  margin: 0 0 100px;
-  clear: both;
-}
-
-.info-card-title {
-  font-size: 2.5rem;
-  line-height: 3rem;
-  margin-bottom: 1rem;
 }
 
 .info-card-description {

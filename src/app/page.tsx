@@ -105,16 +105,16 @@ export default function HomePage() {
 
           <h1 className="section-title primary-title mb-10">Available end-user features</h1>
 
-          <div className="info-card info-card-blocks columns">
-            <div className="column col-6 col-md-12">
-              <div className="info-card-title">Drag&Drop Built-in Blocks</div>
-              <div className="info-card-description">
+          <div className="flex items-center mb-24">
+            <div className="basis-full md:basis-1/2">
+              <div className="text-5xl mb-4">Drag&Drop Built-in Blocks</div>
+              <div>
                 GrapesJS comes with a set of built-in blocks, in this way you're able to
                 build your templates faster. If the default set is not enough you can always add your own custom blocks.
               </div>
             </div>
-            <div className="column col-6 col-md-12">
-              <div className="card-images card-images1">
+            <div className="basis-full md:basis-1/2">
+              <div className="card-images">
                 <div className="card-image-cont card-image-cont1 brd-image">
                   <img className="card-image card-image1" src="/assets/images/sc-grapesjs-blocks-prp.jpg" alt="GrapesJS Blocks"/>
                 </div>
@@ -122,9 +122,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="info-card info-card-blocks columns">
-            <div className="column col-6 col-md-12 card-column3-1">
-              <div className="card-images card-images3">
+          <div className="flex items-center mb-24">
+            <div className="basis-full md:basis-1/2 card-column3-1">
+              <div className="relative z-0">
                 <div className="card-image-cont card-image-cont3 brd-image">
                   <img className="card-image card-image3" src="/assets/images/sc-grapesjs-style-3.jpg" alt="GrapesJS Style Manager"/>
                 </div>
@@ -136,24 +136,28 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="column col-6 col-md-12 text-right card-column3-2">
-              <div className="info-card-title">Limitless styling</div>
-              <div className="info-card-description">GrapesJS implements simple and powerful Style Manager module which enables
+            <div className="basis-full md:basis-1/2 text-right card-column3-2">
+              <div className="text-5xl mb-4">Limitless styling</div>
+              <div>
+                GrapesJS implements simple and powerful Style Manager module which enables
                 independent styling of any component inside the canvas. It's also possible to configure it to use any of the
-                CSS properties</div>
+                CSS properties.
+              </div>
             </div>
           </div>
 
 
-          <div className="info-card info-card-blocks columns">
-            <div className="column col-6 col-md-12">
-              <div className="info-card-title">Responsive design</div>
-              <div className="info-card-description">GrapesJS gives you all the necessary tools you need to optimize your
+          <div className="flex items-center mb-24">
+            <div className="basis-full md:basis-1/2">
+              <div className="text-5xl mb-4">Responsive design</div>
+              <div>
+                GrapesJS gives you all the necessary tools you need to optimize your
                 templates to look awesomely on any device. In this way you're able to provide various viewing experience.
-                In case more device options are required, you can easily add them to the editor.</div>
+                In case more device options are required, you can easily add them to the editor.
+              </div>
             </div>
-            <div className="column col-6 col-md-12">
-              <div className="card-images card-images2">
+            <div className="basis-full md:basis-1/2">
+              <div>
                 <div className="card-image-cont card-image-cont2 brd-image">
                   <img className="card-image card-image2" src="/assets/images/sc-grapesjs-responsive-2.jpg" alt="GrapesJS Responsive"/>
                 </div>
@@ -162,9 +166,9 @@ export default function HomePage() {
           </div>
 
 
-          <div className="info-card info-card-blocks columns">
-            <div className="column col-6 col-md-12 card-column4-1">
-              <div className="card-images card-images3">
+          <div className="flex items-center mb-24">
+            <div className="basis-full md:basis-1/2">
+              <div className="relative z-0">
                 <div className="card-image-cont card-image-cont4 brd-image">
                   <img className="card-image card-image3" src="/assets/images/sc-grapesjs-layers-1.jpg" alt="GrapesJS Style Manager"/>
                 </div>
@@ -173,25 +177,31 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="column col-6 col-md-12 card-column4-2 text-right">
-              <div className="info-card-title">The structure always under control</div>
-              <div className="info-card-description">You can nest components as much as you can but when the structure begins to grow
+            <div className="basis-full md:basis-1/2 text-right">
+              <div className="text-5xl mb-4">The structure always under control</div>
+              <div>
+                You can nest components as much as you can but when the structure begins to grow
                 the Layer Manager comes very handy. It allows you to manage and rearrange your elements extremely faster, focusing
-                always on the architecture of your structure.</div>
+                always on the architecture of your structure.
+              </div>
             </div>
           </div>
 
 
 
-          <div className="info-card info-card-blocks columns">
-            <div className="column col-6 col-md-12">
-              <div className="info-card-title">The code is there when you need it</div>
-              <div className="info-card-description">You don't have to care about the code, but it's always there, available for you. When
+          <div className="flex items-center mb-24">
+            <div className="basis-full md:basis-1/2">
+              <div className="text-5xl mb-4">
+                The code is there when you need it
+              </div>
+              <div>
+                You don't have to care about the code, but it's always there, available for you. When
                 the work is done you can grab and use it wherever you want. Developers could also implement their own storage interfaces
-                to use inside the editor.</div>
+                to use inside the editor.
+              </div>
             </div>
-            <div className="column col-6 col-md-12">
-              <div className="card-images card-images2">
+            <div className="basis-full md:basis-1/2">
+              <div>
                 <div className="card-image-cont card-image-cont6 brd-image">
                   <img className="card-image card-image6" src="/assets/images/sc-grapesjs-code.jpg" alt="GrapesJS Code"/>
                 </div>
@@ -200,9 +210,9 @@ export default function HomePage() {
           </div>
 
 
-          <div className="info-card info-card-blocks columns">
-            <div className="column col-6 col-md-12 card-column5-1">
-              <div className="card-images card-images3">
+          <div className="flex items-center mb-24">
+            <div className="basis-full md:basis-1/2">
+              <div className="relative z-0">
                 <div className="card-image-cont card-image-cont5 brd-image">
                   <img className="card-image card-image5" src="/assets/images/sc-grapesjs-assets-1.jpg" alt="GrapesJS Asset Manager"/>
                 </div>
@@ -211,10 +221,12 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="column col-6 col-md-12 card-column5-2 text-right">
-              <div className="info-card-title">Asset Manager</div>
-              <div className="info-card-description">With the Asset Manager is easier to organize your media files and it's
-                enough to double click on the image to change it</div>
+            <div className="basis-full md:basis-1/2 text-right">
+              <div className="text-5xl mb-4">Asset Manager</div>
+              <div>
+                With the Asset Manager is easier to organize your media files and it's
+                enough to double click on the image to change it.
+              </div>
             </div>
           </div>
         </div>
