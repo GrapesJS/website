@@ -36,19 +36,24 @@ const goldSponsors = [
     alt: 'Download the Best Windows VPN for PC',
     className: 'w-[150px]',
   },
-]
+];
+
+const clsSectionTitle = 'primary-title text-center mb-20 text-4xl md:text-5xl';
+const clsFeatureRow = 'flex flex-col gap-10 md:flex-row items-center mb-24';
+const clsFeatureTitle = 'text-2xl md:text-5xl mb-4';
+const clsFeatureCol = 'basis-full md:basis-1/2';
 
 export default function HomePage() {
   return (
     <main>
       <section className="page-header z-0">
         <div className="width-all top-header pt-5">
-          <div className="flex justify-between">
+          <div className="flex flex-wrap items-center md:justify-between gap-7 flex-col md:flex-row">
             <div id="logo-cont" className="select-none flex gap-3 items-center">
               <img className="h-[55px]" src="/assets/images/grapesjs-logo-cl.png"/>
               <span className="text-4xl">GrapesJS</span>
             </div>
-            <nav className="flex items-center gap-6">
+            <nav className="flex flex-wrap justify-center items-center gap-6">
                 {navLinks.map(({ href, target, content }) => (
                   <span className="nav-item" key={href}>
                     <a className="top-nav-link" href={href} target={target}>
@@ -87,12 +92,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* <div className="ddown-c" style="display:none">
-          <div className="ddown-icon-c animated fadeInDown scroll-link" data-target=".what-sect">
-            <div id="ddown-icon" style="cursor:pointer">&lang;</div>
-          </div>
-        </div> */}
-
         <div className="ddown-sharer">
             <div>
               <a className="btn-share sh-tw tooltip" data-tooltip="Tweet" target="_blank" href="https://twitter.com/intent/tweet?hashtags=grapesjs&ref_src=twsrc%5Etfw&text=GrapesJS%3A%20next%20generation%20tool%20for%20building%20templates%20without%20coding&tw_p=tweetbutton&url=http%3A%2F%2Fgrapesjs.com"><i className="fa fa-twitter" aria-hidden="true"></i></a>
@@ -103,7 +102,7 @@ export default function HomePage() {
 
       <section className="section-container what-sect">
         <div className="width-all">
-          <h1 className="section-title primary-title mb-10">What is it?</h1>
+          <h1 className={clsSectionTitle}>What is it?</h1>
           <div className="section-content">
             GrapesJS is an open-source, multi-purpose, Web Builder Framework which combines different tools and features with the goal to help you (or users of your application) to build HTML templates
             without any knowledge of coding. It's a perfect solution to replace the common WYSIWYG editors, which are good for content editing but inappropriate for
@@ -125,19 +124,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="even-content overflow-hidden" id="features">
-        <div className="body-c body1 width-all">
-          <h1 className="section-title primary-title mb-10">Available end-user features</h1>
+      <section className="section-container even-content overflow-hidden" id="features">
+        <div className="body1 width-all">
+          <h1 className={clsSectionTitle}>Available end-user features</h1>
 
-          <div className="flex items-center mb-24">
-            <div className="basis-full md:basis-1/2">
-              <div className="text-5xl mb-4">Drag&Drop Built-in Blocks</div>
+          <div className={clsFeatureRow}>
+            <div className={clsFeatureCol}>
+              <div className={clsFeatureTitle}>Drag&Drop Built-in Blocks</div>
               <div>
                 GrapesJS comes with a set of built-in blocks, in this way you're able to
                 build your templates faster. If the default set is not enough you can always add your own custom blocks.
               </div>
             </div>
-            <div className="basis-full md:basis-1/2">
+            <div className={clsFeatureCol}>
               <div className="card-images">
                 <div className="card-image-cont card-image-cont1 brd-image">
                   <img className="card-image card-image1" src="/assets/images/sc-grapesjs-blocks-prp.jpg" alt="GrapesJS Blocks"/>
@@ -146,8 +145,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="flex items-center mb-24">
-            <div className="basis-full md:basis-1/2 card-column3-1">
+          <div className={clsFeatureRow}>
+            <div className={`${clsFeatureCol} order-2 md:-order-1`}>
               <div className="relative z-0">
                 <div className="card-image-cont card-image-cont3 brd-image">
                   <img className="card-image card-image3" src="/assets/images/sc-grapesjs-style-3.jpg" alt="GrapesJS Style Manager"/>
@@ -160,8 +159,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="basis-full md:basis-1/2 text-right card-column3-2">
-              <div className="text-5xl mb-4">Limitless styling</div>
+            <div className={`${clsFeatureCol} text-right`}>
+              <div className={clsFeatureTitle}>Limitless styling</div>
               <div>
                 GrapesJS implements simple and powerful Style Manager module which enables
                 independent styling of any component inside the canvas. It's also possible to configure it to use any of the
@@ -171,16 +170,16 @@ export default function HomePage() {
           </div>
 
 
-          <div className="flex items-center mb-24">
-            <div className="basis-full md:basis-1/2">
-              <div className="text-5xl mb-4">Responsive design</div>
+          <div className={clsFeatureRow}>
+            <div className={clsFeatureCol}>
+              <div className={clsFeatureTitle}>Responsive design</div>
               <div>
                 GrapesJS gives you all the necessary tools you need to optimize your
                 templates to look awesomely on any device. In this way you're able to provide various viewing experience.
                 In case more device options are required, you can easily add them to the editor.
               </div>
             </div>
-            <div className="basis-full md:basis-1/2">
+            <div className={clsFeatureCol}>
               <div>
                 <div className="card-image-cont card-image-cont2 brd-image">
                   <img className="card-image card-image2" src="/assets/images/sc-grapesjs-responsive-2.jpg" alt="GrapesJS Responsive"/>
@@ -190,8 +189,8 @@ export default function HomePage() {
           </div>
 
 
-          <div className="flex items-center mb-24">
-            <div className="basis-full md:basis-1/2">
+          <div className={clsFeatureRow}>
+            <div className={`${clsFeatureCol} order-2 md:-order-1`}>
               <div className="relative z-0">
                 <div className="card-image-cont card-image-cont4 brd-image">
                   <img className="card-image card-image3" src="/assets/images/sc-grapesjs-layers-1.jpg" alt="GrapesJS Style Manager"/>
@@ -201,8 +200,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="basis-full md:basis-1/2 text-right">
-              <div className="text-5xl mb-4">The structure always under control</div>
+            <div className={`${clsFeatureCol} text-right`}>
+              <div className={clsFeatureTitle}>The structure always under control</div>
               <div>
                 You can nest components as much as you can but when the structure begins to grow
                 the Layer Manager comes very handy. It allows you to manage and rearrange your elements extremely faster, focusing
@@ -213,18 +212,16 @@ export default function HomePage() {
 
 
 
-          <div className="flex items-center mb-24">
-            <div className="basis-full md:basis-1/2">
-              <div className="text-5xl mb-4">
-                The code is there when you need it
-              </div>
+          <div className={clsFeatureRow}>
+            <div className={clsFeatureCol}>
+              <div className={clsFeatureTitle}>The code is there when you need it</div>
               <div>
                 You don't have to care about the code, but it's always there, available for you. When
                 the work is done you can grab and use it wherever you want. Developers could also implement their own storage interfaces
                 to use inside the editor.
               </div>
             </div>
-            <div className="basis-full md:basis-1/2">
+            <div className={clsFeatureCol}>
               <div>
                 <div className="card-image-cont card-image-cont6 brd-image">
                   <img className="card-image card-image6" src="/assets/images/sc-grapesjs-code.jpg" alt="GrapesJS Code"/>
@@ -234,8 +231,8 @@ export default function HomePage() {
           </div>
 
 
-          <div className="flex items-center mb-24">
-            <div className="basis-full md:basis-1/2">
+          <div className={clsFeatureRow}>
+            <div className={`${clsFeatureCol} order-2 md:-order-1`}>
               <div className="relative z-0">
                 <div className="card-image-cont card-image-cont5 brd-image">
                   <img className="card-image card-image5" src="/assets/images/sc-grapesjs-assets-1.jpg" alt="GrapesJS Asset Manager"/>
@@ -245,8 +242,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="basis-full md:basis-1/2 text-right">
-              <div className="text-5xl mb-4">Asset Manager</div>
+            <div className={`${clsFeatureCol} text-right`}>
+              <div className={clsFeatureTitle}>Asset Manager</div>
               <div>
                 With the Asset Manager is easier to organize your media files and it's
                 enough to double click on the image to change it.
@@ -260,7 +257,7 @@ export default function HomePage() {
         <div className="text-center pb-10 text-zinc-400 font-bold tracking-[5px]">
           FEATURED ON
         </div>
-        <div className="flex justify-evenly">
+        <div className="flex flex-wrap md:flex-nowrap justify-evenly">
           {featuredItems.map(({ src }) => (
             <div className="my-[50px] mx-[30px]" key={src}>
               <img className="opacity-50" src={src}/>
@@ -269,9 +266,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="support section-container" id="support">
+      <section className="section-container support" id="support">
         <div className="width-all">
-          <h1 className="section-title primary-title mb-10">Support us</h1>
+          <h1 className={clsSectionTitle}>Support us</h1>
           <div>
             If you like the project you can help us get bigger. GrapesJS is an independent
             project, made by developers in their spare time with a common purpose, to make
@@ -306,9 +303,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="footer-content">
+      <section className="section-container footer-content">
           <div className="footer-c width-all">
-            <div className="title">
+            <div className="text-center mb-20 text-lg">
               The project is under development, so <a className="darker-link" href="https://twitter.com/grapesjs" target="_blank">stay tuned</a>.
               <br/>
               Being a free and open source project contributors and supporters are extremely welcome.
@@ -320,19 +317,9 @@ export default function HomePage() {
       </section>
       <section className="copyr-content">
         <div className="copyr-c width-all">
-          made with <span className="animated pulse infinite inline-block">♥</span> by <a className="darker-link" href="https://github.com/artf">Artur Arseniev</a>
+          made with ♥ by <a className="darker-link" href="https://github.com/artf">Artur Arseniev</a>
         </div>
       </section>
-
-      {/* <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-74284223-1', 'auto');
-        ga('send', 'pageview');
-      </script> */}
     </main>
   );
 }
