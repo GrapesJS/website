@@ -26,11 +26,14 @@ body {
   font-weight: 300;
 }
 
-a {
+.link-gjs {
   color: #c64563;
-  text-decoration: none; }
-  a:hover {
-    text-decoration: underline; }
+  text-decoration: none;
+}
+
+.link-gjs:hover {
+  text-decoration: underline;
+}
 
 .btn {
   display: inline-block;

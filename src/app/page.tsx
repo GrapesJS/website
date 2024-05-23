@@ -106,8 +106,8 @@ export default function HomePage() {
           <div className="section-content">
             GrapesJS is an open-source, multi-purpose, Web Builder Framework which combines different tools and features with the goal to help you (or users of your application) to build HTML templates
             without any knowledge of coding. It's a perfect solution to replace the common WYSIWYG editors, which are good for content editing but inappropriate for
-            creating HTML structures. You can see it in action with the <a  className="scroll-link" href="#logo-cont">official demos</a>,
-            but using its <a target="_blank" href="https://grapesjs.com/docs/api">API</a> you're able to build your own editors.
+            creating HTML structures. You can see it in action with the <a  className="link-gjs" href="#logo-cont">official demos</a>,
+            but using its <a className="link-gjs" target="_blank" href="https://grapesjs.com/docs/api">API</a> you're able to build your own editors.
             <br/>
             <br/>
             If you're here just to build stuff faster, open and bookmark the official demos and use them when you need it.

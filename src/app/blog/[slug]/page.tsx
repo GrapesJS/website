@@ -23,9 +23,8 @@ export default async function Post({ params }: PageBlogPostProps) {
 
   return (
     <main>
-      <Alert preview={post.preview} />
+      <Header />
       <Container>
-        <Header />
         <article className="mb-32">
           <PostHeader
             title={post.title}
