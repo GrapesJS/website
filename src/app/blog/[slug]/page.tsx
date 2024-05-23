@@ -25,7 +25,7 @@ export default async function Post({ params }: PageBlogPostProps) {
   return (
     <main>
       <Header/>
-      <Container className="">
+      <Container>
         <div className="py-7 md:py-14">
           <Link href={getPathBlog()}>‹ Back to blog</Link>
         </div>
