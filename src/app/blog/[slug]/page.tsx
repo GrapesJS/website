@@ -30,12 +30,7 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
           <Link href={getPathBlog()}>‹ Back to blog</Link>
         </div>
         <article className="mb-32">
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-            author={post.author}
-          />
+          <PostHeader post={post}/>
           <div className="max-w-2xl mx-auto">
             <ContainerMDX source={post.content}/>
           </div>
