@@ -6,9 +6,10 @@ const clsHeadInner = 'flex flex-wrap items-center md:justify-between gap-7 flex-
 
 interface HeaderProps extends React.HTMLProps<HTMLElement> {
   isHome?: boolean,
+  transparent?: boolean,
 }
 
-const Header: React.FC<HeaderProps> = ({isHome, className, ...rest }) => {
+const Header: React.FC<HeaderProps> = ({isHome, className, transparent, ...rest }) => {
   const navLinks = [
     { content: 'Docs', href: '/docs' },
     { content: 'GitHub', href: 'https://github.com/grapesjs/grapesjs', target: '_blank' },
@@ -23,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({isHome, className, ...rest }) => {
   }
 
   return (
-    <header className={cx(className, 'bg-gjs')} {...rest}>
+    <header className={cx(className, !transparent && 'bg-gjs')} {...rest}>
       <div className={cx(clsContainer, clsHeadInner, 'py-4')}>
         <Link id="logo-cont" href="/" className="select-none flex gap-3 items-center">
           <img className="h-[40px]" src="/assets/images/grapesjs-logo-cl.png"/>

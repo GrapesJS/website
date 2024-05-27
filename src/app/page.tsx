@@ -1,4 +1,5 @@
 import CarbonAd from "./_components/carbonAd";
+import Header from "./_components/header";
 import "./home.css";
 
 const navLinks = [
@@ -47,23 +48,7 @@ export default function HomePage() {
   return (
     <main>
       <section className="page-header z-0">
-        <div className="width-all top-header pt-5">
-          <div className="flex flex-wrap items-center md:justify-between gap-7 flex-col md:flex-row">
-            <div id="logo-cont" className="select-none flex gap-3 items-center">
-              <img className="h-[55px]" src="/assets/images/grapesjs-logo-cl.png"/>
-              <span className="text-4xl">GrapesJS</span>
-            </div>
-            <nav className="flex flex-wrap justify-center items-center gap-6">
-                {navLinks.map(({ href, target, content }) => (
-                  <span className="nav-item" key={href}>
-                    <a className="top-nav-link" href={href} target={target}>
-                      {content}
-                    </a>
-                  </span>
-                ))}
-              </nav>
-          </div>
-        </div>
+        <Header isHome transparent/>
 
         <h1 className="mt-24 text-3xl">
           Free and Open Source Web Builder Framework
