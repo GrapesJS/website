@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 const DOMAIN_URL = 'https://grapesjs.com';
 
 export const metadata: Metadata = {
-  title: 'GrapesJS - Free Open Source Website Page Builder',
+  title: 'GrapesJS - Free and Open Source Web Template Editor Framework',
   metadataBase: new URL(DOMAIN_URL),
   description: 'Free and Open source Web Template Editor - Next generation tool for building templates without coding',
   keywords: 'site builder, web template editor, html builder, html editor',
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon/grapesjs-logo.png"/>
         <meta name="msapplication-TileColor" content="#9e5381" />

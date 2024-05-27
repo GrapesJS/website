@@ -3,6 +3,7 @@
 import CarbonAd from "@/app/_components/carbonAd";
 import { GRAPESJS_REPO } from "@/lib/constants";
 import { useEffect, useRef } from "react";
+import { GRAPESJS_SCRIPT, GRAPESJS_STYLE } from "./utils";
 
 declare global {
     interface Window {
@@ -22,15 +23,13 @@ const images = [
     `${plp}cc4360/fff`,
 ];
 
-const GRAPESJS_VERSION = 'v0.21.10';
-const GRAPESJS_SCRIPT = `/assets/scripts/grapesjs/grapes.min.js?${GRAPESJS_VERSION}`;
-const GRAPESJS_STYLE = `/assets/styles/grapesjs/grapes.min.css?${GRAPESJS_VERSION}`;
 const clsLink = 'info-panel-link gjs-four-color';
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
     components?: string,
     plugins?: (string | ((ed: any) => void))[],
     pluginsOpts?: Record<string, any>,
+    config?: Record<string, any>,
     info: {
         name: string,
         repoLink: string,
@@ -38,7 +37,7 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
     }
 }
 
-export default function GrapesEditor({ children, info, components, plugins, pluginsOpts }: Props) {
+export default function GrapesDemoEditor({ children, config, info, components, plugins, pluginsOpts }: Props) {
     const editorEl = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -300,6 +299,7 @@ export default function GrapesEditor({ children, info, components, plugins, plug
             },
             plugins,
             pluginsOpts,
+            ...config,
         });
 
         window.editor = editor;
@@ -309,8 +309,6 @@ export default function GrapesEditor({ children, info, components, plugins, plug
 
     return (
         <>
-            <link rel="stylesheet" href={GRAPESJS_STYLE}/>
-            <script src={GRAPESJS_SCRIPT}/>
             <div className="hidden">
                 <div className="gjs-logo-cont">
                     <a href="/">

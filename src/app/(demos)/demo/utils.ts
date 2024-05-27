@@ -1,3 +1,5 @@
+import { pluginDemo } from "../utils";
+
 export const componentsWebsite = `
 <header class="header-banner">
     <div class="container-width">
@@ -805,6 +807,7 @@ export const pluginsWebsite = [
     'grapesjs-typed',
     'grapesjs-style-bg',
     'grapesjs-preset-webpage',
+    pluginDemo,
     (editor: any) => {
         editor.I18n.addMessages({
             en: {
@@ -819,137 +822,14 @@ export const pluginsWebsite = [
             }
         });
 
-        const pn = editor.Panels;
-        const modal = editor.Modal;
-        const cmdm = editor.Commands;
-
-        // Update canvas-clear command
-        cmdm.add('canvas-clear', function () {
-            if (confirm('Are you sure to clean the canvas?')) {
-                editor.runCommand('core:canvas-clear')
-                setTimeout(function () {
-                    localStorage.clear()
-                }, 0)
-            }
-        });
-
-        // Add info command
-        const mdlClass = 'gjs-mdl-dialog-sm';
-        const infoContainer = document.getElementById('info-panel') !;
-
-        cmdm.add('open-info', function () {
-            const mdlDialog = document.querySelector('.gjs-mdl-dialog') !;
-            mdlDialog.className += ' ' + mdlClass;
-            infoContainer.style.display = 'block';
-            modal.setTitle('About this demo');
-            modal.setContent(infoContainer);
-            modal.open();
-            modal.getModel().once('change:open', function () {
-                mdlDialog.className = mdlDialog.className.replace(mdlClass, '');
-            })
-        });
-
-        pn.addButton('options', {
-            id: 'open-info',
-            className: 'fa fa-question-circle',
-            command: function () {
-                editor.runCommand('open-info')
-            },
-            attributes: {
-                'title': 'About',
-                'data-tooltip-pos': 'bottom',
-            },
-        });
-
-
-        // Simple warn notifier
-        //   const origWarn = console.warn;
-        //   toastr.options = {
-        //     closeButton: true,
-        //     preventDuplicates: true,
-        //     showDuration: 250,
-        //     hideDuration: 150
-        //   };
-        //   console.warn = function (msg) {
-        //     if (msg.indexOf('[undefined]') == -1) {
-        //       toastr.warning(msg);
-        //     }
-        //     origWarn(msg);
-        //   };
-
-
-        // Add and beautify tooltips
-        [
-            ['sw-visibility', 'Show Borders'],
-            ['preview', 'Preview'],
-            ['fullscreen', 'Fullscreen'],
-            ['export-template', 'Export'],
-            ['undo', 'Undo'],
-            ['redo', 'Redo'],
-            ['gjs-open-import-webpage', 'Import'],
-            ['canvas-clear', 'Clear canvas']
-        ]
-        .forEach(function (item) {
-            pn.getButton('options', item[0]).set('attributes', {
-                title: item[1],
-                'data-tooltip-pos': 'bottom'
-            });
-        });
-        [
-            ['open-sm', 'Style Manager'],
-            ['open-layers', 'Layers'],
-            ['open-blocks', 'Blocks']
-        ]
-        .forEach(function (item) {
-            pn.getButton('views', item[0]).set('attributes', {
-                title: item[1],
-                'data-tooltip-pos': 'bottom'
-            });
-        });
-        const titles = document.querySelectorAll('*[title]');
-
-        for (let i = 0; i < titles.length; i++) {
-            const el = titles[i];
-            let title = el.getAttribute('title');
-            title = title ? title.trim() : '';
-            if (!title)
-                break;
-            el.setAttribute('data-tooltip', title);
-            el.setAttribute('title', '');
-        }
-
-
-        // Store and load events
-        editor.on('storage:load', function (e: any) {
-            console.log('Loaded ', e)
-        });
-        editor.on('storage:store', function (e: any) {
-            console.log('Stored ', e)
-        });
-
-
-        // Do stuff on load
         editor.onReady(() => {
-            const grapesjs = editor.config.grapesjs;
-
-            // Show borders by default
-            pn.getButton('options', 'sw-visibility').set({
-                command: 'core:component-outline',
-                'active': true,
-            });
-
-            // Show logo with the version
-            const logoCont = document.querySelector('.gjs-logo-cont') !;
-            const logoPanel = document.querySelector('.gjs-pn-commands') !;
-            document.querySelector('.gjs-logo-version') !.innerHTML = `v${grapesjs.version}`;
-            logoPanel.appendChild(logoCont);
-
+            const pn = editor.Panels;
 
             // Load and show settings and style manager
             const openTmBtn = pn.getButton('views', 'open-tm');
             const openSm = pn.getButton('views', 'open-sm');
-            openTmBtn?.set('active', 1);
-            openSm?.set('active', 1);
+            openTmBtn?.set('active', true);
+            openSm?.set('active', true);
 
             // Remove trait view
             pn.removeButton('views', 'open-tm');
@@ -975,7 +855,7 @@ export const pluginsWebsite = [
 
             // Open block manager
             const openBlocksBtn = editor.Panels.getButton('views', 'open-blocks');
-            openBlocksBtn?.set('active', 1);
+            openBlocksBtn?.set('active', true);
         });
     }
 ];
