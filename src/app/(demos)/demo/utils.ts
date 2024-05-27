@@ -76,7 +76,7 @@ export const componentsWebsite = `
 <section class="am-sect">
     <div class="container-width">
     <div class="am-container">
-        <img class="img-phone" src="./img/phone-app.png"/>
+        <img class="img-phone" src="/assets/images/demos/phone-app.png"/>
         <div class="am-content">
         <div class="am-pre">ASSET MANAGER</div>
         <div class="am-title">Manage your images with Asset Manager</div>
@@ -137,7 +137,7 @@ export const componentsWebsite = `
     <div class="badges">
         <div class="badge">
         <div class="badge-header"></div>
-        <img class="badge-avatar" src="img/team1.jpg"/>
+        <img class="badge-avatar" src="/assets/images/demos/team1.jpg"/>
         <div class="badge-body">
             <div class="badge-name">Adam Smith</div>
             <div class="badge-role">CEO</div>
@@ -151,7 +151,7 @@ export const componentsWebsite = `
         </div>
         <div class="badge">
         <div class="badge-header"></div>
-        <img class="badge-avatar" src="img/team2.jpg"/>
+        <img class="badge-avatar" src="/assets/images/demos/team2.jpg"/>
         <div class="badge-body">
             <div class="badge-name">John Black</div>
             <div class="badge-role">Software Engineer</div>
@@ -165,7 +165,7 @@ export const componentsWebsite = `
         </div>
         <div class="badge">
         <div class="badge-header"></div>
-        <img class="badge-avatar" src="img/team3.jpg"/>
+        <img class="badge-avatar" src="/assets/images/demos/team3.jpg"/>
         <div class="badge-body">
             <div class="badge-name">Jessica White</div>
             <div class="badge-role">Web Designer</div>

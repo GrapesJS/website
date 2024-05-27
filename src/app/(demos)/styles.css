@@ -34,7 +34,7 @@ html {
 /* INFO PANEL */
 
 .gjs-mdl-dialog-sm {
-  width: 300px;
+  width: 300px !important;
 }
 
 #info-panel {

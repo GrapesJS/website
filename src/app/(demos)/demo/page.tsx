@@ -4,6 +4,12 @@ import GrapesEditor from "./GrapesEditor";
 import { componentsWebsite, pluginsOptsWebiste, pluginsWebsite } from "./utils";
 import '../styles.css';
 
+const info = {
+    name: 'GrapesJS Webpage Builder',
+    repoLink: 'https://github.com/GrapesJS/preset-webpage',
+    repoName: 'Webpage Preset',
+}
+
 export default function DemoWebsite() {
     return (
         <>
@@ -24,6 +30,7 @@ export default function DemoWebsite() {
                 components={componentsWebsite}
                 plugins={pluginsWebsite}
                 pluginsOpts={pluginsOptsWebiste}
+                info={info}
             >
                 <link rel="stylesheet" href="/assets/styles/grapesjs/grapesjs-preset-webpage.css"/>
             </GrapesEditor>

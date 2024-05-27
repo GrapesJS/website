@@ -1,6 +1,7 @@
 'use client'
 
 import CarbonAd from "@/app/_components/carbonAd";
+import { GRAPESJS_REPO } from "@/lib/constants";
 import { useEffect, useRef } from "react";
 
 declare global {
@@ -30,9 +31,14 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
     components?: string,
     plugins?: (string | ((ed: any) => void))[],
     pluginsOpts?: Record<string, any>,
+    info: {
+        name: string,
+        repoLink: string,
+        repoName: string,
+    }
 }
 
-export default function GrapesEditor({ children, components, plugins, pluginsOpts }: Props) {
+export default function GrapesEditor({ children, info, components, plugins, pluginsOpts }: Props) {
     const editorEl = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -319,22 +325,27 @@ export default function GrapesEditor({ children, components, plugins, pluginsOpt
                 <img className="block mx-auto" src="/assets/images/grapesjs-logo-cl.png"/>
                 <br/>
                 <div className="info-panel-label">
-                    <b>GrapesJS Webpage Builder</b> is a simple showcase of what is possible to achieve with
-                    the <a className={clsLink} target="_blank" href="https://github.com/artf/grapesjs">GrapesJS</a> core library.
+                    <b>{info.name}</b> is a simple showcase of what is possible to achieve with
+                    the <a className={clsLink} target="_blank" href={GRAPESJS_REPO}>GrapesJS</a> core library.
                     <br/><br/>
-                    For any hint about the demo check the <a className={clsLink} target="_blank" href="https://github.com/artf/grapesjs-preset-webpage">Webpage Preset repository</a> and
+                    For any hint about the demo check the <a className={clsLink} target="_blank" href={info.repoLink}>
+                        {info.repoName} repository
+                    </a> and
                     open an issue. For problems with the builder itself, open an issue on the
-                    main <a className={clsLink} target="_blank" href="https://github.com/artf/grapesjs">GrapesJS repository</a>.
+                    main <a className={clsLink} target="_blank" href={GRAPESJS_REPO}>GrapesJS repository</a>.
                     <br/><br/>
                     Being a free and open source project contributors and supporters are extremely welcome.
                     If you like the project support it with a donation of your choice or become a backer/sponsor
                     via <a className={clsLink} target="_blank" href="https://opencollective.com/grapesjs">Open Collective</a>.
                 </div>
             </div>
+
             <div className="ad-cont">
                 <CarbonAd/>
             </div>
+
             <div id="gjs" ref={editorEl}/>
+
             {children}
         </>
     )

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import cx from "classnames";
+import { GRAPESJS_REPO, GRAPESJS_X } from "@/lib/constants";
 
 const clsContainer = 'container mx-auto px-5';
 const clsHeadInner = 'flex flex-wrap items-center md:justify-between gap-7 flex-col md:flex-row';
@@ -12,8 +13,8 @@ interface HeaderProps extends React.HTMLProps<HTMLElement> {
 const Header: React.FC<HeaderProps> = ({isHome, className, transparent, ...rest }) => {
   const navLinks = [
     { content: 'Docs', href: '/docs' },
-    { content: 'GitHub', href: 'https://github.com/grapesjs/grapesjs', target: '_blank' },
-    { content: 'Twitter/X', href: 'https://x.com/grapesjs', target: '_blank' },
+    { content: 'GitHub', href: GRAPESJS_REPO, target: '_blank' },
+    { content: 'Twitter/X', href: GRAPESJS_X, target: '_blank' },
   ];
 
   if (isHome) {
