@@ -23,6 +23,7 @@ const images = [
 const GRAPESJS_VERSION = 'v0.21.10';
 const GRAPESJS_SCRIPT = `/assets/scripts/grapesjs/grapes.min.js?${GRAPESJS_VERSION}`;
 const GRAPESJS_STYLE = `/assets/styles/grapesjs/grapes.min.css?${GRAPESJS_VERSION}`;
+const clsLink = 'info-panel-link gjs-four-color';
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
     components?: string,
@@ -305,7 +306,7 @@ export default function GrapesEditor({ children, components, plugins, pluginsOpt
             <script src={GRAPESJS_SCRIPT}/>
             <div className="hidden">
                 <div className="gjs-logo-cont">
-                    <a href="https://grapesjs.com">
+                    <a href="/">
                         <img className="gjs-logo" src="/assets/images/grapesjs-logo-cl.png"/>
                     </a>
                     <div className="gjs-logo-version"></div>
@@ -314,29 +315,23 @@ export default function GrapesEditor({ children, components, plugins, pluginsOpt
 
             <div id="info-panel" className="hidden">
                 <br/>
-                <svg className="info-panel-logo" xmlns="https://www.w3.org/2000/svg" version="1">
-                    <g id="gjs-logo">
-                        <path d="M40 5l-12.9 7.4 -12.9 7.4c-1.4 0.8-2.7 2.3-3.7 3.9 -0.9 1.6-1.5 3.5-1.5 5.1v14.9 14.9c0 1.7 0.6 3.5 1.5 5.1 0.9 1.6 2.2 3.1 3.7 3.9l12.9 7.4 12.9 7.4c1.4 0.8 3.3 1.2 5.2 1.2 1.9 0 3.8-0.4 5.2-1.2l12.9-7.4 12.9-7.4c1.4-0.8 2.7-2.2 3.7-3.9 0.9-1.6 1.5-3.5 1.5-5.1v-14.9 -12.7c0-4.6-3.8-6-6.8-4.2l-28 16.2"
-                        // style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-width:10;stroke:#fff"
-                        />
-                    </g>
-                </svg>
+                <img className="block mx-auto" src="/assets/images/grapesjs-logo-cl.png"/>
                 <br/>
                 <div className="info-panel-label">
-                    <b>GrapesJS Webpage Builder</b> is a simple showcase of what is possible to achieve with the
-                    <a className="info-panel-link gjs-four-color" target="_blank" href="https://github.com/artf/grapesjs">GrapesJS</a> core library
+                    <b>GrapesJS Webpage Builder</b> is a simple showcase of what is possible to achieve with
+                    the <a className={clsLink} target="_blank" href="https://github.com/artf/grapesjs">GrapesJS</a> core library.
                     <br/><br/>
-                    For any hint about the demo check the
-                    <a className="info-panel-link gjs-four-color" target="_blank" href="https://github.com/artf/grapesjs-preset-webpage">Webpage Preset repository</a>
-                    and open an issue. For problems with the builder itself, open an issue on the main
-                    <a className="info-panel-link gjs-four-color" target="_blank" href="https://github.com/artf/grapesjs">GrapesJS repository</a>
+                    For any hint about the demo check the <a className={clsLink} target="_blank" href="https://github.com/artf/grapesjs-preset-webpage">Webpage Preset repository</a> and
+                    open an issue. For problems with the builder itself, open an issue on the
+                    main <a className={clsLink} target="_blank" href="https://github.com/artf/grapesjs">GrapesJS repository</a>.
                     <br/><br/>
                     Being a free and open source project contributors and supporters are extremely welcome.
-                    If you like the project support it with a donation of your choice or become a backer/sponsor via
-                    <a className="info-panel-link gjs-four-color" target="_blank" href="https://opencollective.com/grapesjs">Open Collective</a>
+                    If you like the project support it with a donation of your choice or become a backer/sponsor
+                    via <a className={clsLink} target="_blank" href="https://opencollective.com/grapesjs">Open Collective</a>.
                 </div>
                 </div>
             <div id="gjs" ref={editorEl}/>
+            {children}
         </>
     )
 }

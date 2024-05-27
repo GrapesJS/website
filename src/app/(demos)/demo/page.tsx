@@ -1,6 +1,7 @@
 'use client'
 
 import GrapesEditor from "./GrapesEditor";
+import '../styles.css';
 
 const components = `
 <header class="header-banner">
@@ -812,57 +813,61 @@ const plugins = [
     (editor: any) => {
         editor.I18n.addMessages({
             en: {
-              styleManager: {
-                properties: {
-                  'background-repeat': 'Repeat',
-                  'background-position': 'Position',
-                  'background-attachment': 'Attachment',
-                  'background-size': 'Size',
-                }
-              },
+                styleManager: {
+                    properties: {
+                        'background-repeat': 'Repeat',
+                        'background-position': 'Position',
+                        'background-attachment': 'Attachment',
+                        'background-size': 'Size',
+                    }
+                },
             }
-          });
+        });
 
-          const pn = editor.Panels;
-          const modal = editor.Modal;
-          const cmdm = editor.Commands;
+        const pn = editor.Panels;
+        const modal = editor.Modal;
+        const cmdm = editor.Commands;
 
-          // Update canvas-clear command
-          cmdm.add('canvas-clear', function() {
-            if(confirm('Are you sure to clean the canvas?')) {
-              editor.runCommand('core:canvas-clear')
-              setTimeout(function(){ localStorage.clear()}, 0)
+        // Update canvas-clear command
+        cmdm.add('canvas-clear', function () {
+            if (confirm('Are you sure to clean the canvas?')) {
+                editor.runCommand('core:canvas-clear')
+                setTimeout(function () {
+                    localStorage.clear()
+                }, 0)
             }
-          });
+        });
 
-          // Add info command
-          const mdlClass = 'gjs-mdl-dialog-sm';
-          const infoContainer = document.getElementById('info-panel')!;
+        // Add info command
+        const mdlClass = 'gjs-mdl-dialog-sm';
+        const infoContainer = document.getElementById('info-panel') !;
 
-          cmdm.add('open-info', function() {
-            const mdlDialog = document.querySelector('.gjs-mdl-dialog')!;
+        cmdm.add('open-info', function () {
+            const mdlDialog = document.querySelector('.gjs-mdl-dialog') !;
             mdlDialog.className += ' ' + mdlClass;
             infoContainer.style.display = 'block';
             modal.setTitle('About this demo');
             modal.setContent(infoContainer);
             modal.open();
-            modal.getModel().once('change:open', function() {
-              mdlDialog.className = mdlDialog.className.replace(mdlClass, '');
+            modal.getModel().once('change:open', function () {
+                mdlDialog.className = mdlDialog.className.replace(mdlClass, '');
             })
-          });
+        });
 
-          pn.addButton('options', {
+        pn.addButton('options', {
             id: 'open-info',
             className: 'fa fa-question-circle',
-            command: function() { editor.runCommand('open-info') },
-            attributes: {
-              'title': 'About',
-              'data-tooltip-pos': 'bottom',
+            command: function () {
+                editor.runCommand('open-info')
             },
-          });
+            attributes: {
+                'title': 'About',
+                'data-tooltip-pos': 'bottom',
+            },
+        });
 
 
-          // Simple warn notifier
+        // Simple warn notifier
         //   const origWarn = console.warn;
         //   toastr.options = {
         //     closeButton: true,
@@ -878,49 +883,70 @@ const plugins = [
         //   };
 
 
-          // Add and beautify tooltips
-          [['sw-visibility', 'Show Borders'], ['preview', 'Preview'], ['fullscreen', 'Fullscreen'],
-           ['export-template', 'Export'], ['undo', 'Undo'], ['redo', 'Redo'],
-           ['gjs-open-import-webpage', 'Import'], ['canvas-clear', 'Clear canvas']]
-          .forEach(function(item) {
-            pn.getButton('options', item[0]).set('attributes', {title: item[1], 'data-tooltip-pos': 'bottom'});
-          });
-          [['open-sm', 'Style Manager'], ['open-layers', 'Layers'], ['open-blocks', 'Blocks']]
-          .forEach(function(item) {
-            pn.getButton('views', item[0]).set('attributes', {title: item[1], 'data-tooltip-pos': 'bottom'});
-          });
-          const titles = document.querySelectorAll('*[title]');
+        // Add and beautify tooltips
+        [
+            ['sw-visibility', 'Show Borders'],
+            ['preview', 'Preview'],
+            ['fullscreen', 'Fullscreen'],
+            ['export-template', 'Export'],
+            ['undo', 'Undo'],
+            ['redo', 'Redo'],
+            ['gjs-open-import-webpage', 'Import'],
+            ['canvas-clear', 'Clear canvas']
+        ]
+        .forEach(function (item) {
+            pn.getButton('options', item[0]).set('attributes', {
+                title: item[1],
+                'data-tooltip-pos': 'bottom'
+            });
+        });
+        [
+            ['open-sm', 'Style Manager'],
+            ['open-layers', 'Layers'],
+            ['open-blocks', 'Blocks']
+        ]
+        .forEach(function (item) {
+            pn.getButton('views', item[0]).set('attributes', {
+                title: item[1],
+                'data-tooltip-pos': 'bottom'
+            });
+        });
+        const titles = document.querySelectorAll('*[title]');
 
-          for (let i = 0; i < titles.length; i++) {
+        for (let i = 0; i < titles.length; i++) {
             const el = titles[i];
             let title = el.getAttribute('title');
-            title = title ? title.trim(): '';
-            if(!title)
-              break;
+            title = title ? title.trim() : '';
+            if (!title)
+                break;
             el.setAttribute('data-tooltip', title);
             el.setAttribute('title', '');
-          }
+        }
 
 
-          // Store and load events
-          editor.on('storage:load', function(e: any) { console.log('Loaded ', e) });
-          editor.on('storage:store', function(e: any) { console.log('Stored ', e) });
+        // Store and load events
+        editor.on('storage:load', function (e: any) {
+            console.log('Loaded ', e)
+        });
+        editor.on('storage:store', function (e: any) {
+            console.log('Stored ', e)
+        });
 
 
-          // Do stuff on load
-          editor.onReady(() => {
+        // Do stuff on load
+        editor.onReady(() => {
             const grapesjs = editor.config.grapesjs;
 
             // Show borders by default
             pn.getButton('options', 'sw-visibility').set({
-              command: 'core:component-outline',
-              'active': true,
+                command: 'core:component-outline',
+                'active': true,
             });
 
             // Show logo with the version
-            const logoCont = document.querySelector('.gjs-logo-cont')!;
-            const logoPanel = document.querySelector('.gjs-pn-commands')!;
-            document.querySelector('.gjs-logo-version')!.innerHTML = `v${grapesjs.version}`;
+            const logoCont = document.querySelector('.gjs-logo-cont') !;
+            const logoPanel = document.querySelector('.gjs-pn-commands') !;
+            document.querySelector('.gjs-logo-version') !.innerHTML = `v${grapesjs.version}`;
             logoPanel.appendChild(logoCont);
 
 
@@ -940,10 +966,10 @@ const plugins = [
                 <div class="gjs-sm-sector-title"><span class="icon-settings fa fa-cog"></span> <span class="gjs-sm-sector-label">Settings</span></div>
                 <div class="gjs-sm-properties" style="display: none;"></div>
             `;
-            const traitsPropsEl = traitsSectorEl.querySelector<HTMLDivElement>('.gjs-sm-properties')!;
-            const traitsEl = document.querySelector('.gjs-traits-cs')!;
-            const sectorsEl = document.querySelector('.gjs-sm-sectors')!;
-            const traitsTitleEl = traitsSectorEl.querySelector<HTMLDivElement>('.gjs-sm-sector-title')!;
+            const traitsPropsEl = traitsSectorEl.querySelector < HTMLDivElement > ('.gjs-sm-properties') !;
+            const traitsEl = document.querySelector('.gjs-traits-cs') !;
+            const sectorsEl = document.querySelector('.gjs-sm-sectors') !;
+            const traitsTitleEl = traitsSectorEl.querySelector < HTMLDivElement > ('.gjs-sm-sector-title') !;
             traitsPropsEl.appendChild(traitsEl);
             sectorsEl.prepend(traitsSectorEl);
             traitsTitleEl.onclick = () => {
@@ -958,46 +984,50 @@ const plugins = [
 
             // Move Ad
             // $('#gjs').append($('.ad-cont'));
-          });
+        });
     }
 ];
 
 const pluginsOpts = {
-    'gjs-blocks-basic': { flexGrid: true },
+    'gjs-blocks-basic': {
+        flexGrid: true
+    },
     'grapesjs-tui-image-editor': {
-    script: [
-        'https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js',
-        'https://uicdn.toast.com/tui-color-picker/v2.2.7/tui-color-picker.min.js',
-        'https://uicdn.toast.com/tui-image-editor/v3.15.2/tui-image-editor.min.js'
-    ],
-    style: [
-        'https://uicdn.toast.com/tui-color-picker/v2.2.7/tui-color-picker.min.css',
-        'https://uicdn.toast.com/tui-image-editor/v3.15.2/tui-image-editor.min.css',
-    ],
+        script: [
+            'https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js',
+            'https://uicdn.toast.com/tui-color-picker/v2.2.7/tui-color-picker.min.js',
+            'https://uicdn.toast.com/tui-image-editor/v3.15.2/tui-image-editor.min.js'
+        ],
+        style: [
+            'https://uicdn.toast.com/tui-color-picker/v2.2.7/tui-color-picker.min.css',
+            'https://uicdn.toast.com/tui-image-editor/v3.15.2/tui-image-editor.min.css',
+        ],
     },
     'grapesjs-tabs': {
-    tabsBlock: { category: 'Extra' }
+        tabsBlock: {
+            category: 'Extra'
+        }
     },
     'grapesjs-typed': {
-    block: {
-        category: 'Extra',
-        content: {
-        type: 'typed',
-        'type-speed': 40,
-        strings: [
-            'Text row one',
-            'Text row two',
-            'Text row three',
-        ],
+        block: {
+            category: 'Extra',
+            content: {
+                type: 'typed',
+                'type-speed': 40,
+                strings: [
+                    'Text row one',
+                    'Text row two',
+                    'Text row three',
+                ],
+            }
         }
-    }
     },
     'grapesjs-preset-webpage': {
-    modalImportTitle: 'Import Template',
-    modalImportLabel: '<div style="margin-bottom: 10px; font-size: 13px;">Paste here your HTML/CSS and click Import</div>',
-    modalImportContent(editor: any) {
-        return editor.getHtml() + '<style>'+editor.getCss()+'</style>'
-    },
+        modalImportTitle: 'Import Template',
+        modalImportLabel: '<div style="margin-bottom: 10px; font-size: 13px;">Paste here your HTML/CSS and click Import</div>',
+        modalImportContent(editor: any) {
+            return editor.getHtml() + '<style>' + editor.getCss() + '</style>'
+        },
     },
 };
 
@@ -1021,7 +1051,9 @@ export default function Demo() {
                 components={components}
                 plugins={plugins}
                 pluginsOpts={pluginsOpts}
-            />
+            >
+                <link rel="stylesheet" href="/assets/styles/grapesjs/grapesjs-preset-webpage.css"/>
+            </GrapesEditor>
         </>
     )
 }
