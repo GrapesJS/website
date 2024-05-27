@@ -3,7 +3,6 @@
 import CarbonAd from "@/app/_components/carbonAd";
 import { GRAPESJS_REPO } from "@/lib/constants";
 import { useEffect, useRef } from "react";
-import { GRAPESJS_SCRIPT, GRAPESJS_STYLE } from "./utils";
 
 declare global {
     interface Window {
