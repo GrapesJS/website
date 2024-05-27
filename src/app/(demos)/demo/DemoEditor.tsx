@@ -25,14 +25,13 @@ export default function DemoWebsite() {
             <script src="https://unpkg.com/grapesjs-tui-image-editor@0.1.3"></script>
             <script src="https://unpkg.com/grapesjs-typed@1.0.5"></script>
             <script src="https://unpkg.com/grapesjs-style-bg@2.0.1"></script>
+            <link rel="stylesheet" href="/assets/styles/grapesjs/grapesjs-preset-webpage.css"/>
             <GrapesDemoEditor
                 components={componentsWebsite}
                 plugins={pluginsWebsite}
                 pluginsOpts={pluginsOptsWebiste}
                 info={info}
-            >
-                <link rel="stylesheet" href="/assets/styles/grapesjs/grapesjs-preset-webpage.css"/>
-            </GrapesDemoEditor>
+            />
         </>
     )
 }
