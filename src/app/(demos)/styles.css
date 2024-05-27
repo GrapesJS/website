@@ -25,9 +25,9 @@ html {
 .gjs-logo-version {
   position: absolute;
   font-size: 10px;
-  padding: 1px 7px;
+  padding: 0 7px;
   border-radius: 15px;
-  bottom: 2px;
+  bottom: -1px;
   right: -43px;
 }
 
@@ -127,6 +127,11 @@ html {
 .gjs-block-label svg,
 .gjs-block__media svg {
   width: 54px;
+}
+
+.gjs-block__media {
+  display: flex;
+  justify-content: center;
 }
 
 /* Temporary fix #2490 */
