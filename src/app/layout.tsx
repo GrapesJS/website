@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 const DOMAIN_URL = 'https://grapesjs.com';
 
 export const metadata: Metadata = {
-  title: 'GrapesJS',
+  title: 'GrapesJS - Free Open Source Website Page Builder',
   metadataBase: new URL(DOMAIN_URL),
   description: 'Free and Open source Web Template Editor - Next generation tool for building templates without coding',
   keywords: 'site builder, web template editor, html builder, html editor',

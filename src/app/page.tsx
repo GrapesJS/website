@@ -2,14 +2,6 @@ import CarbonAd from "./_components/carbonAd";
 import Header from "./_components/header";
 import "./home.css";
 
-const navLinks = [
-  { content: 'Support', href: '#support' },
-  { content: 'Features', href: '#features' },
-  { content: 'Docs', href: '/docs' },
-  { content: 'GitHub', href: 'https://github.com/grapesjs/grapesjs', target: '_blank' },
-  { content: 'Twitter/X', href: 'https://x.com/grapesjs', target: '_blank' },
-];
-
 const featuredItems = [
   { src: '/assets/images/hn-logo.png' },
   { src: '/assets/images/ph-logo.png' },
@@ -58,9 +50,9 @@ export default function HomePage() {
         </h2>
 
         <div className="mt-24 btns-cont">
-          <a href="./demo.html" className="btn try btn-rnd">Webpage Demo</a>
-          <a href="./demo-newsletter-editor.html" className="btn try btn-rnd">Newsletter Demo</a>
-          <a href="./demo-mjml.html" className="btn try btn-rnd">MJML Demo</a>
+          <a href="./demo" className="btn try btn-rnd">Webpage Demo</a>
+          <a href="./demo-newsletter-editor" className="btn try btn-rnd">Newsletter Demo</a>
+          <a href="./demo-mjml" className="btn try btn-rnd">MJML Demo</a>
           <div></div>
           <a href="https://studio.grapesjs.com" className="btn try btn-rnd btn-studio">
               <img src="/assets/images/logos/grapesjs-logo.svg" className="h-[40px]"/>
