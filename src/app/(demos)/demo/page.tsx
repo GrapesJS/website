@@ -4,7 +4,7 @@ import GrapesEditor from "./GrapesEditor";
 import { componentsWebsite, pluginsOptsWebiste, pluginsWebsite } from "./utils";
 import '../styles.css';
 
-export default function Demo() {
+export default function DemoWebsite() {
     return (
         <>
             <script src="https://unpkg.com/grapesjs-preset-webpage@1.0.2"></script>

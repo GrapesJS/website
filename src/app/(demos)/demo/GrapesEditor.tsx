@@ -1,5 +1,6 @@
 'use client'
 
+import CarbonAd from "@/app/_components/carbonAd";
 import { useEffect, useRef } from "react";
 
 declare global {
@@ -298,7 +299,7 @@ export default function GrapesEditor({ children, components, plugins, pluginsOpt
         window.editor = editor;
 
         return () => editor.destroy();
-    }, [editorEl.current])
+    }, [editorEl.current]);
 
     return (
         <>
@@ -329,7 +330,10 @@ export default function GrapesEditor({ children, components, plugins, pluginsOpt
                     If you like the project support it with a donation of your choice or become a backer/sponsor
                     via <a className={clsLink} target="_blank" href="https://opencollective.com/grapesjs">Open Collective</a>.
                 </div>
-                </div>
+            </div>
+            <div className="ad-cont">
+                <CarbonAd/>
+            </div>
             <div id="gjs" ref={editorEl}/>
             {children}
         </>

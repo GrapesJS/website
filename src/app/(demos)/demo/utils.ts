@@ -976,9 +976,6 @@ export const pluginsWebsite = [
             // Open block manager
             const openBlocksBtn = editor.Panels.getButton('views', 'open-blocks');
             openBlocksBtn?.set('active', 1);
-
-            // Move Ad
-            // $('#gjs').append($('.ad-cont'));
         });
     }
 ];
