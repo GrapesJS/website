@@ -2,8 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-weight: 300;
+}
+
+.link-gjs {
+    color: #c64563;
+    text-decoration: none;
+}
+
+.link-gjs:hover {
+    text-decoration: underline;
+}
+
 .bg-gjs {
     background-color: #b5658f;
     background-image: linear-gradient(120deg, #d983a6, #842d73);
     color: #fff;
+}
+
+.primary-title {
+    color: #c64563;
 }

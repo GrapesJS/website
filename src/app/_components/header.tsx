@@ -15,7 +15,7 @@ interface HeaderProps extends React.HTMLProps<HTMLElement> {
 const Header: React.FC<HeaderProps> = ({isHome, className, transparent, ...rest }) => {
   const navLinks = [
     { content: 'Docs', href: '/docs' },
-    { content: 'Blog', href: '/blog' },
+    // { content: 'Blog', href: '/blog' },
     { content: <Icon path={mdiGithub} size={1}/>, href: GRAPESJS_REPO, target: '_blank' },
     { content: <span className="text-xl">𝕏</span>, href: GRAPESJS_X, target: '_blank' },
   ];
