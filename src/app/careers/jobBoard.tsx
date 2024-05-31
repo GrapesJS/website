@@ -20,7 +20,7 @@ const JobBoard: React.FC<JobBoardProps> = ({ className, ...rest }) => {
       try {
         const jobsRsp = await fetch('https://boards-api.greenhouse.io/v1/boards/grapesstudio/jobs');
         const jobsRes = await jobsRsp.json();
-        setJobs(Array.isArray(jobsRes.jobs) ? [...jobsRes.jobs, ...jobsRes.jobs, ...jobsRes.jobs] : null);
+        setJobs(Array.isArray(jobsRes.jobs) ? jobsRes.jobs : null);
       } catch (error) {
         console.error(error);
         setJobs(null);

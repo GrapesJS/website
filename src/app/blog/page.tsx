@@ -3,6 +3,7 @@ import { HeroPost } from "@/app/_components/hero-post";
 import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/blogApi";
 import Header from "../_components/header";
+import Footer from "../_components/footer";
 
 export default function PageBlogPosts() {
   const allPosts = getAllPosts();
@@ -16,6 +17,7 @@ export default function PageBlogPosts() {
         <HeroPost post={heroPost}/>
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
+      <Footer/>
     </main>
   );
 }

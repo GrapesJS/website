@@ -1,4 +1,5 @@
 import Container from "@/app/_components/container";
+import Footer from "@/app/_components/footer";
 import Header from "@/app/_components/header";
 import { PostHeader } from "@/app/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/blogApi";
@@ -36,6 +37,7 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
           </div>
         </article>
       </Container>
+      <Footer/>
     </main>
   );
 }
