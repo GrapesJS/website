@@ -1,6 +1,7 @@
 import Container from "@/app/_components/container";
 import Hero from "../_components/hero";
 import JobBoard from "./jobBoard";
+import Footer from "../_components/footer";
 
 export default function PageBlogPosts() {
   return (
@@ -12,6 +13,7 @@ export default function PageBlogPosts() {
         <hr className="border-neutral-200 my-5" />
         <JobBoard/>
       </Container>
+      <Footer/>
     </main>
   );
 }

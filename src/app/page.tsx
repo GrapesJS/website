@@ -1,4 +1,5 @@
 import CarbonAd from "./_components/carbonAd";
+import Footer from "./_components/footer";
 import Header from "./_components/header";
 import "./home.css";
 
@@ -280,23 +281,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-container footer-content">
-          <div className="footer-c width-all">
-            <div className="text-center mb-20 text-lg">
-              The project is under development, so <a className="darker-link" href="https://twitter.com/grapesjs" target="_blank">stay tuned</a>.
-              <br/>
-              Being a free and open source project contributors and supporters are extremely welcome.
-            </div>
-            <div className="btns-c">
-              <a className="btn btn-gjs" href="/docs">Get Started</a>
-            </div>
-          </div>
-      </section>
-      <section className="copyr-content">
-        <div className="copyr-c width-all">
-          made with ♥ by <a className="darker-link" href="https://github.com/artf">Artur Arseniev</a>
-        </div>
-      </section>
+      <Footer/>
     </main>
   );
 }

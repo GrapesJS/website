@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 interface JobBoardProps extends React.HTMLProps<HTMLElement> {}
 
+// https://developers.greenhouse.io/job-board.html#list-jobs
 interface Job {
   id: number,
   absolute_url: string;
@@ -46,7 +47,7 @@ const JobBoard: React.FC<JobBoardProps> = ({ className, ...rest }) => {
             :
               <div className="flex flex-col gap-5">
                 {jobs.map(job => (
-                  <a href={job.absolute_url} className="hover:border-[#c64563] transition-colors border rounded-md p-5">
+                  <a target="_blank" href={job.absolute_url} className="hover:border-[#c64563] transition-colors border rounded-md p-5">
                     <h3 className="link-gjs">{job.title}</h3>
                     <h4 className="opacity-60">{job.location?.name}</h4>
                   </a>
