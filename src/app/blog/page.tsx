@@ -14,7 +14,7 @@ export default function PageBlogPosts() {
     <main>
       <Header/>
       <Container className="pt-10 md:pt-20">
-        <HeroPost post={heroPost}/>
+        {heroPost && <HeroPost post={heroPost}/>}
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
       <Footer/>
