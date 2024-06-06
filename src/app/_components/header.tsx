@@ -14,6 +14,7 @@ interface HeaderProps extends React.HTMLProps<HTMLElement> {
 
 const Header: React.FC<HeaderProps> = ({isHome, className, transparent, ...rest }) => {
   const navLinks = [
+    { content: 'Careers', href: '/careers' },
     { content: 'Docs', href: '/docs' },
     // { content: 'Blog', href: '/blog' },
     { content: <Icon path={mdiGithub} size={1}/>, href: GRAPESJS_REPO, target: '_blank' },
@@ -30,10 +31,12 @@ const Header: React.FC<HeaderProps> = ({isHome, className, transparent, ...rest 
   return (
     <header className={cx(className, !transparent && 'bg-gjs')} {...rest}>
       <div className={cx(clsContainer, clsHeadInner, 'py-4')}>
-        <Link id="logo-cont" href="/" className="select-none flex gap-3 items-center">
-          <img className="h-[40px]" src="/assets/images/grapesjs-logo-cl.png"/>
-          <span className="text-3xl">GrapesJS</span>
-        </Link>
+        <div className="relative">
+          <Link id="logo-cont" href="/" className="select-none flex gap-3 items-center">
+            <img className="h-[40px]" src="/assets/images/grapesjs-logo-cl.png"/>
+            <span className="text-3xl">GrapesJS</span>
+          </Link>
+        </div>
         <nav className="flex flex-wrap justify-center items-center gap-6">
           {navLinks.map(({ href, target, content }) => (
             <Link href={href} target={target} key={href}>
