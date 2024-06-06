@@ -18,7 +18,7 @@ export const components = `
             <table class="c1766">
               <tr>
                 <td class="cell c1769">
-                  <img class="c926" src="https://grapesjs.com/img/grapesjs-logo.png" alt="GrapesJS."/>
+                  <img class="c926" src="/assets/images/logos/grapesjs-logo.svg" alt="GrapesJS."/>
                 </td>
                 <td class="cell c1776">
                   <div class="c1144">GrapesJS Newsletter Builder
@@ -30,7 +30,7 @@ export const components = `
             <table class="card">
               <tr>
                 <td class="card-cell">
-                  <img class="c1271" src="https://grapesjs.com/img/tmp-header-txt.jpg" alt="Big image here"/>
+                  <img class="c1271" src="/assets/images/demos/tmp-header-txt.jpg" alt="Big image here"/>
                   <table class="table100 c1357">
                     <tr>
                       <td class="card-content">
@@ -59,7 +59,7 @@ export const components = `
                   <table class="list-item-content">
                     <tr class="list-item-row">
                       <td class="list-cell-left">
-                        <img class="list-item-image" src="https://grapesjs.com/img/tmp-blocks.jpg" alt="Image1"/>
+                        <img class="list-item-image" src="/assets/images/demos/tmp-blocks.jpg" alt="Image1"/>
                       </td>
                       <td class="list-cell-right">
                         <h1 class="card-title">Built-in Blocks
@@ -78,7 +78,7 @@ export const components = `
                   <table class="list-item-content">
                     <tr class="list-item-row">
                       <td class="list-cell-left">
-                        <img class="list-item-image" src="https://grapesjs.com/img/tmp-tgl-images.jpg" alt="Image2"/>
+                        <img class="list-item-image" src="/assets/images/demos/tmp-tgl-images.jpg" alt="Image2"/>
                       </td>
                       <td class="list-cell-right">
                         <h1 class="card-title">Toggle images
@@ -97,7 +97,7 @@ export const components = `
                   <table class="grid-item-card">
                     <tr>
                       <td class="grid-item-card-cell">
-                        <img class="grid-item-image" src="https://grapesjs.com/img/tmp-send-test.jpg" alt="Image1"/>
+                        <img class="grid-item-image" src="/assets/images/demos/tmp-send-test.jpg" alt="Image1"/>
                         <table class="grid-item-card-body">
                           <tr>
                             <td class="grid-item-card-content">
@@ -116,7 +116,7 @@ export const components = `
                   <table class="grid-item-card">
                     <tr>
                       <td class="grid-item-card-cell">
-                        <img class="grid-item-image" src="https://grapesjs.com/img/tmp-devices.jpg" alt="Image2"/>
+                        <img class="grid-item-image" src="/assets/images/demos/tmp-devices.jpg" alt="Image2"/>
                         <table class="grid-item-card-body">
                           <tr>
                             <td class="grid-item-card-content">

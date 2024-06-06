@@ -236,7 +236,7 @@ export const componentsWebsite = `
     color: #ffffff;
     font-family: Helvetica, serif;
     font-weight: 100;
-    background-image:url("https://grapesjs.com/img/bg-gr-v.png"), url("https://grapesjs.com/img/work-desk.jpg");
+    background-image:url("/assets/images/demos/bg-gr-v.png"), url("/assets/images/demos/work-desk.jpg");
     background-attachment:scroll, scroll;
     background-position:left top, center center;
     background-repeat:repeat-y, no-repeat;
@@ -715,7 +715,7 @@ export const componentsWebsite = `
     }
     .badge-header{
     height: 115px;
-    background-image:url("https://grapesjs.com/img/bg-gr-v.png"), url("https://grapesjs.com/img/work-desk.jpg");
+    background-image:url("/assets/images/demos/bg-gr-v.png"), url("/assets/images/demos/work-desk.jpg");
     background-position:left top, center center;
     background-attachment:scroll, fixed;
     overflow: hidden;
