@@ -43,14 +43,15 @@ export default function HomePage() {
       <section className="page-header z-0">
         <Header isHome transparent/>
 
-        <h1 className="mt-24 text-3xl">
+        <h1 className="mt-6 md:mt-24 text-3xl">
           Free and Open Source Web Builder Framework
         </h1>
         <h2 className="mt-5 text-lg opacity-80">
           Next generation tool for building templates without coding
         </h2>
 
-        <div className="mt-24 btns-cont">
+        <div className="mt-6 md:mt-24 btns-cont">
+          <div className="device-small">Sorry but your device is too small for the editor. See below for more information</div>
           <a href="./demo" className="btn try btn-rnd">Webpage Demo</a>
           <a href="./demo-newsletter-editor" className="btn try btn-rnd">Newsletter Demo</a>
           <a href="./demo-mjml" className="btn try btn-rnd">MJML Demo</a>
@@ -59,7 +60,9 @@ export default function HomePage() {
               <img src="/assets/images/logos/grapesjs-logo.svg" className="h-[40px]"/>
               Try GrapesJS Studio <small>(alpha)</small>
           </a>
-          <div className="device-small">Sorry but your device is too small for the editor. See below for more information</div>
+          <a href="https://forms.gle/VUycp3rc8iCpbh9k8" target="_blank" className="block underline mt-5 md:mt-0">
+            Need to embed the Studio as a white-label editor in your application?
+          </a>
         </div>
 
         <CarbonAd/>
