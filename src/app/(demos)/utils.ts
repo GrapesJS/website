@@ -1,4 +1,4 @@
-export const GRAPESJS_VERSION = 'v0.21.10';
+export const GRAPESJS_VERSION = 'v0.21.11';
 export const GRAPESJS_SCRIPT = `/assets/scripts/grapesjs/grapes.min.js?${GRAPESJS_VERSION}`;
 export const GRAPESJS_STYLE = `/assets/styles/grapesjs/grapes.min.css?${GRAPESJS_VERSION}`;
 

@@ -436,7 +436,7 @@ export const plugins = [
                 if (CKEDITOR) {
                     CKEDITOR.dtd.$editable.a = 1;
                 }
-            }, 200);
+            }, 300);
         });
     }
 ];
