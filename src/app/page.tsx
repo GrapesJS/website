@@ -75,20 +75,25 @@ export default function HomePage() {
             />
             Try GrapesJS Studio <small>(alpha)</small>
           </a>
-          <a
-            href="https://forms.gle/VUycp3rc8iCpbh9k8"
-            target="_blank"
-            className="block underline mt-5 md:mt-0"
-          >
+          <div className="block mt-5 md:mt-0">
             Need to embed the Studio as a white-label editor in your
             application?
-          </a>
-          <a
-            href="https://app.grapesjs.com/dashboard/sdk/licenses"
-            className="btn btn-rnd !py-1 !px-3 mt-3"
-          >
-            Try Studio SDK
-          </a>
+          </div>
+          <div>
+            <a
+              target="_blank"
+              href="https://forms.gle/VUycp3rc8iCpbh9k8"
+              className="btn btn-rnd !py-1 !px-3 mt-3"
+            >
+              Tell us about your project
+            </a>
+            <a
+              href="https://app.grapesjs.com/dashboard/sdk/licenses"
+              className="btn btn-rnd !py-1 !px-3 mt-3"
+            >
+              Try Studio SDK
+            </a>
+          </div>
         </div>
 
         <CarbonAd />
