@@ -1,0 +1,123 @@
+---
+title: "Meet Studio SDK: The Future of Embeddable Visual Builders"
+excerpt: "We recently released an alpha version of the GrapesJS Studio SDK to the public and have started to gather initial feedback and questions. In this blog post, I want to explain in more detail what the Studio SDK is all about and share our future plans."
+coverImage: "/assets/blog/meet-studio-sdk/studio-sdk-alpha.jpg"
+date: "2024-08-06T14:00:00Z"
+author:
+  name: Artur Arseniev
+ogImage:
+  url: "/assets/blog/meet-studio-sdk/studio-sdk-alpha.jpg"
+---
+
+We recently [released an alpha version of the GrapesJS Studio SDK](https://x.com/grapesjs/status/1815468668408758695) to the public and have started to gather initial feedback and questions. In this blog post, I want to explain in more detail what the Studio SDK is all about and share our future plans.
+
+Before diving into the Studio SDK introduction, I'd like to provide a brief overview of our current products and how they relate to each other:
+
+* [GrapesJS Framework](#whats-grapesjs-framework)
+* [GrapesJS Studio](#whats-grapesjs-studio)
+* [GrapesJS Studio SDK](#whats-grapesjs-studio-sdk)
+
+
+# What's GrapesJS Framework?
+
+![GrapesJS](/assets/blog/meet-studio-sdk/grapesjs-card.png)
+
+As many of you know, [GrapesJS](https://github.com/GrapesJS/grapesjs) is a free and open-source framework for building project-agnostic visual builders (websites, landing pages, newsletters, documents, etc.). The [goal of GrapesJS](https://github.com/GrapesJS/grapesjs/discussions/5291) is to provide unopinionated APIs to manage different aspects of building a complex application like a visual builder. We aim to make it more headless, unopinionated and extendable, allowing developers the freedom to build their own visual builder based on their needs.
+
+
+# What's GrapesJS Studio?
+
+![GrapesJS Studio](/assets/images/blog/grapesjs-studio-alpha.jpeg)
+
+[GrapesJS Studio](https://app.grapesjs.com/studio) (Studio for short) is an application built on top of the GrapesJS framework. All the UI components of the editor are custom, and we rely on the GrapesJS API as the engine for rendering and managing other complex aspects of the editor (components, exporting code, etc.). The Studio application is highly opinionated, allowing us to drive it in different directions based on current trends and market demands (e.g., adding a built-in CSS framework, integrating AI tools, etc.). With the open nature of the GrapesJS framework, we can do this much faster and safely, and also leverage contributions from the GrapesJS community due to its extendable nature.
+
+We offer Studio as a completely free and standalone application that allows everyone to create their projects, export them, and publish them wherever they want, without any attribution or cost. In the future, we may introduce a traditional Cloud/SaaS offering where you can save and publish your projects on our servers, collaborate with teammates in real-time, and integrate with other external tools. However, we are committed to maintaining a standalone Studio version that works everywhere and anytime without any cost. As long as we add a feature that doesn't incur any cost to us (e.g., cloud storage, server usage), we believe it makes sense to make it publicly available without any charge or subscription.
+
+
+# What's GrapesJS Studio SDK?
+
+Now that you know what Studio is, let's talk about the GrapesJS Studio SDK (SDK for short). The SDK is an embeddable, drag-and-drop, white-label version of the standalone Studio app. This means you can easily embed our ready-to-use visual builder into any external web application or platform. The goal of the SDK is to provide companies with a powerful editing experience for their users, while being highly customizable and extendable via the GrapesJS core API.
+
+The Studio application itself is a thin wrapper around the SDK, meaning that every feature you see in the standalone Studio (from UI to logic) is potentially a configurable option for SDK consumers.
+
+
+# How to try the Studio SDK?
+
+You can start exploring the integration of our SDK by signing up from [this page](https://app.grapesjs.com/dashboard/sdk/licenses).
+
+After signing up you'll be able to create a new license.
+
+![SDK Licenses Page](/assets/blog/meet-studio-sdk/sdk-licenses-page.png)
+
+You'll then be redirected to the license page, where you can specify the domain where you want to embed the visual editor and follow the instructions for downloading and initializing the SDK editor.
+
+![SDK License Page](/assets/blog/meet-studio-sdk/sdk-license-page.png)
+
+If you need examples of implementation, we've prepared a few live demos with common use cases and frameworks that you can try and play with:
+
+* [SDK example Next.js](https://stackblitz.com/edit/nextjs-xcense)
+* [SDK example Nuxt](https://stackblitz.com/edit/nuxt-starter-ci5e4u)
+* [SDK example TypeScript](https://stackblitz.com/edit/vitejs-vite-lusonj)
+* [SDK example HTML](https://stackblitz.com/edit/stackblitz-starters-asnw8l)
+
+If you have any questions or need help with the integration, please fill out [this form](https://forms.gle/VUycp3rc8iCpbh9k8) with your use case, and we'll get back to you as soon as possible.
+
+
+# How Studio SDK compares to GrapesJS framework?
+
+Simply put, the Studio wraps around the SDK, and the SDK uses the GrapesJS framework under the hood. Think of the SDK as the GrapesJS framework with batteries included. This comes with notable advantages compared to the pure GrapesJS framework:
+
+- Includes additional features (Page Manager, Symbols, Style Catalog, etc.).
+- Packaged with a built-in set of polished and accessible components for the editor UI and a better UX for end-users.
+- Includes a more opinionated layer on top of the framework based on the project type (e.g., configurations, components, plugins), saving time and avoiding the need for deep knowledge of the GrapesJS APIs.
+
+It's worth mentioning that since the SDK is based on GrapesJS, it's still possible to rely on the framework API for customization and extensions.
+
+
+# Key advantages of Studio SDK
+
+- **Complete Customization**: The SDK is released as a fully bundled npm package, allowing seamless integration and customization.
+- **Control Over Data**: The SDK allows you to self-host your users' data and assets, ensuring privacy and eliminating vendor lock-in.
+- **Ease of Integration**: With built-in features and components, the SDK provides a powerful and extendable visual builder, drastically reducing the time required to build a complex and user-friendly editor.
+- **Scalable and Extendable**: The SDK is designed to be highly customizable and extendable via the GrapesJS core API, offering the flexibility to meet diverse project requirements.
+
+## How it compares to other embeddable builders?
+
+Our SDK product is not the first of its kind; there are already solutions trying to solve similar problems. However, we've noticed some common patterns in these solutions that could put you and your users in a bad spot.
+
+Most other embeddable builders force you to embed their platform inside yours (e.g., the editor is served via an `iframe`). This approach prevents seamless integration and makes it difficult to apply your own styling and branding customization to the editor UI. Besides, it might introduce performance and reliability risks. If the provider deploys an unintentional breaking change or misconfigures the domain/server, it could break the integration, and you won't be in control. That's why we decided to release the SDK as a fully bundled npm package. No cross-origin iframes; everything is customizable by default, and you're in control of when to upgrade to a new version.
+
+Often, you're not in control of the data generated by your users on the editor. If the provider stores all the assets and projects, it raises privacy concerns and creates a huge lock-in of your users' data. Migrating or self-hosting user data might require significant effort and money.
+
+While offering cloud services is a valid solution that enables faster and hassle-free integration, our SDK allows for self-hosting user data from the start, which we also recommend.
+
+
+# Next features
+
+Our current Studio/SDK versions are still in alpha but already provide significant value for companies and individuals. We have a ton of features planned for the future and Here are a few we're aiming to offer soon:
+
+- **Multi-projects**: Currently, only web projects are available (e.g., websites, landing pages). Next, we'll enable creating emails/newsletters and later other types like documents and mobile applications.
+- **Template Manager**: Allow SDK consumers to manage project templates, similar to the standalone Studio.
+- **Plugin Manager**: Enable SDK consumers to customize and provide their own set of plugins.
+- **Publish Manager**: This will enable Studio users to publish to their favorite hosting providers (Netlify, GitHub Pages, Vercel, etc.) and let SDK users configure how the project export (HTML/CSS) is distributed (eg. production/test environments).
+- **Data Source Manager**: Enable visual building on external data.
+- **Team Collaboration**: Allow multiple users to work on the same project simultaneously, both in Studio and the SDK.
+
+If you have any feedback or are interested in other features, please let us know by submitting your suggestions to GitHub Discussions [here](https://github.com/GrapesJS/studio/discussions).
+
+
+# What's the Studio SDK pricing?
+
+We're still working on the pricing plans, but our goal is to make the product affordable for companies of all sizes. Our mission is to help people avoid spending time and resources on creating visual builders from scratch or setting up basic functionalities with GrapesJS APIs. The current SDK license includes a free plan by default, which will always be available. We want people to try it before committing to any plan.
+
+
+# Conclusion
+
+The release of the SDK marks an exciting milestone in our journey to revolutionize the way web projects are built. With its powerful features, complete customization, and seamless integration capabilities, the SDK empowers developers and companies to create exceptional visual building experiences. We're committed to continually improving and expanding our products based on your feedback and needs.
+
+We invite you to explore the Studio and the SDK, try it out, and see how it can transform your development process. Your feedback is invaluable to us, so please don't hesitate to share your thoughts and suggestions.
+
+Stay tuned for more updates, and thank you for being part of the GrapesJS community!
+
+Happy building!
+
