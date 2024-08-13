@@ -1,0 +1,149 @@
+---
+title: "How a slow website is costing you 200% conversion rate and how to fix it"
+excerpt: "Having a website is essential for anyone running or starting a company. While many popular platforms and website builders make it easy to get a site up and running, many still don't realize how much their choice, and other factors, can impact their website's speed and ultimately, their conversion rates."
+description: "Having a website is essential for anyone running or starting a company. While many popular platforms and website builders make it easy to get a site up and running, many still don't realize how much their choice, and other factors, can impact their website's speed and ultimately, their conversion rates."
+coverImage: "/assets/blog/slow-website/fast-website-means-money-cover.jpg"
+date: "2024-08-13T17:00:00Z"
+author:
+  name: Artur Arseniev
+ogImage:
+  url: "/assets/blog/slow-website/fast-website-means-money-cover.jpg"
+---
+
+Having a website is essential for anyone running or starting a company. It's your virtual space to showcase your values and products, and many companies, especially new ones, aim to resolve this need as quickly as possible by using popular CMSs (Content Management Systems) and website builders. While platforms like WordPress and other website builders make it easy to get a site up and running, many still don't realize how much their choice, and other factors, can impact their website's speed and ultimately, their conversion rates. In this article, besides exploring the core issues of the slow-performing websites, we'll explore key opportunities to boost your website's performance, to help you avoid missing out on valuable conversions.
+
+
+# How does webpage performance affect revenue?
+
+While average [internet speeds have increased exponentially since the '90s](https://futuretimeline.net/data-trends/2050-future-internet-speed-predictions.htm), your website's speed depends on several factors—many of which aren't always within your control. However, there is still plenty you can do to ensure a smooth browsing experience for your visitors.
+
+According to [Tooltester](https://www.tooltester.com/en/blog/website-loading-time-statistics/#Analyzing_The_World%E2%80%99s_Top_100_Websites), the average web page load time is 2.5 seconds on desktop and 8.6 seconds on mobile, but meeting industry standards isn't enough when your competitors are faster.
+
+Page load times have a direct impact on conversion rates, which, in turn, affects revenue. For example, a report by Portent found that:
+
+* [A B2B site that loads in 1 second](https://www.portent.com/blog/analytics/research-site-speed-hurting-everyones-revenue.htm) has a conversion rate 3x higher (200%) than a site that loads in 5 seconds.
+* [A B2B site that loads in 1 second](https://www.portent.com/blog/analytics/research-site-speed-hurting-everyones-revenue.htm) has a conversion rate 5x higher than a site that loads in 10 seconds.
+
+Additionally, businesses [lose roughly $80 billion in unrealized sales every year due to slow-loading websites](https://www.techradar.com/news/ecommerce-firms-are-losing-billions-due-to-slow-loading-sites). Even a small delay can create friction for visitors, significantly impacting your revenue.
+
+
+# Why does webpage performance affect revenue?
+
+There are two main ways that poor (or even slightly worse) website performance can impact revenue:
+
+* **Customer Abandonment**: Slow loading times or timeouts can make customers think something is wrong or cause them to become impatient. This can lead to abandoned shopping carts and potential customers turning to competitors instead.
+
+![Graph showing impact of website speed on overall goal conversion rate](/assets/blog/slow-website/website-speed-impact-conversion-rate.png)
+
+* **Search Engine Ranking**: Your site's speed affects search engine rankings. A competitor with a faster website might be prioritized by Google due to providing a better user experience, resulting in higher placement and more traffic.
+
+This is particularly critical for e-commerce sites, but even if your business isn't centered around online transactions, a consistently slower experience will negatively impact your bottom line. So, what can you do to address these issues?
+
+
+# Figure out where you have performance issues
+
+Whether you suspect slow load times or simply want to benchmark your site against competitors, Google's [PageSpeed Insights](https://pagespeed.web.dev/) tool is a great starting point.
+
+By entering your website URL, you'll receive a score based on factors like:
+
+* **Page Load Time**: How quickly the entire page loads.
+* **Largest Asset Load Time**: The time it takes for the largest asset (like an image or video) to load.
+* **Render-Blocking Resources**: Whether any resources are blocking the rendering of content.
+
+![PageSpeed Insights result example](/assets/blog/slow-website/pagespeed.png)
+
+The tool provides recommendations for speed improvements, such as "_Eliminate render-blocking resources_" or "_Reduce unused CSS_" offering actionable steps to enhance performance. It also highlights SEO performance and suggests areas for improvement.
+
+Once you've pinpointed issues, focus on prioritizing improvements, starting with high-value pages like checkout and login, where performance impacts are most critical.
+
+
+# Your website builder can have a big impact
+
+A study analyzing 400 websites built with the top 12 website builders [found nearly a 2-second difference](https://www.tooltester.com/en/blog/website-loading-time-statistics/#Analyzing_The_World%E2%80%99s_Top_100_Websites) in average page load times between the top and worst-performing platforms.
+
+![Website builders mobile score comparison](/assets/blog/slow-website/website-builders-comparison.png)
+
+While many factors influence website performance (which we'll explore further in this post), a significant element is whether your platform uses server-side rendering or a static site generator.
+
+## Server-side rendering
+
+A server-side rendered (SSR) website, sometimes referred to as a dynamic site, generates pages in response to user requests.
+
+You might have encountered SSR when visiting a WordPress blog. In such a blog, the homepage and individual blog posts are generated from a dynamic template. When a user clicks on a blog post, the WordPress server retrieves the post's data from the database, generates the HTML for the page, and sends it back to the browser, which then displays the page with all the blog post data.
+
+While this approach is totally valid, the overall time to render a full page can be slower. This is because the page is generated dynamically in response to user requests, rather than being fully built and ready ahead of time.
+
+Servers can also be unpredictable, and SSR websites are vulnerable to issues affecting your infrastructure. For example, if a core element like the database stops responding, it can cause pages to hang indefinitely or return an error page.
+
+![Nginx 500 error page](/assets/blog/slow-website/server-error.webp)
+
+
+## Static site generation
+
+With static site generation (SSG), all steps to generate a webpage occur during the build process: every blog post, landing page, or product page is pre-generated from the database. Instead of relying on a single dynamic page, you have individual files for every possible page a user might want to load. This results in significantly faster load times since all pages are already built and ready to be served when a user visits your site.
+
+Static sites eliminate many server-related bottlenecks that can affect dynamic sites: there's no on-the-fly processing, no database queries, and no need for complex connections, content is retrieved directly from the web server and displayed immediately. (Note: While the web server could still go down, this risk is considerably lower compared to dynamic sites.)
+
+If you're concerned about site speed and reliability, it's worth checking whether your website builder uses SSR or SSG.
+
+
+## When would you need a dynamic website?
+
+Dynamic websites are ideal for scenarios where content is highly interactive and frequently updated. For example, if you're building a social media platform where users generate and interact with a vast amount of content in real time, a dynamic approach is more suitable.
+
+On the other hand, for marketing sites or blogs that don't require frequent updates, static sites are often sufficient. In these cases, you can simply trigger a new build and publish the updated site whenever new content is added.
+
+Ecommerce sites fall somewhere in between. While they aren't as dynamic as social media platforms, they still need to handle frequent updates, such as displaying product availability. For such sites, relying on a fresh build and republishing every time isn't practical. Instead, you might need to invest in engineering efforts to support caching mechanisms or prioritize static content while dynamically loading other elements in the background to ensure fast performance.
+
+
+# Don't let your assets be a burden
+
+Website assets, such as images and media, enhance the visual appeal of your site but can negatively impact performance if not optimized properly.
+
+[Dan Luu shared an experience](https://danluu.com/web-bloat/) where visiting a webpage resulted in broken or slow-loading assets due to a poor connection, rendering the site nearly unusable:
+
+![Dan Luu experience](/assets/blog/slow-website/web-bloat.png)
+
+While you can't control the type of connection your users have, there are best practices you can follow to ensure your assets don't obstruct their experience. By optimizing your assets, you can improve load times and maintain a smooth browsing experience for all visitors.
+
+## Optimize your images
+
+One of the biggest culprits of slow page load times is uploading images that are too large, often above the 2-3MB range. Every time a user visits your page, they have to download these large files, which can significantly slow down loading, especially on slower connections.
+
+To mitigate this, many website builders offer automatic image compression features that reduce file size without compromising quality. Ensure that your website builder has this capability and that it is enabled, as this can make a significant difference in your site's performance.
+
+
+## Use a content delivery network
+
+Even with optimized images, loading times can still suffer if users are accessing your website content from regions far from your server's location. For example, a user in Europe might experience delays if your assets are hosted on a server in North America.
+
+This is where a Content Delivery Network (CDN) becomes invaluable. A CDN, such as Cloudflare or Akamai, caches your website's assets in data centers around the world. This means that users will be served content from the nearest data center ("at the edge"), reducing latency and speeding up load times.
+
+Many website builders include built-in CDN services, so check if yours offers this feature or if you need to set up a CDN separately.
+
+
+## Make sure your assets aren't blocking other content from loading
+
+Websites often rely on external resources such as scripts, images, fonts, and CSS files that are not included directly in the HTML. Since these assets are external, their performance can be unpredictable and affect your website's load times.
+
+For instance, if your page relies on an external script and that server experiences downtime, the script could block the browser from fully rendering the page if it is not asynchronous. If you're new to the concept of synchronous vs. asynchronous, heres a helpful way to think about it:
+
+![async vs sync](/assets/blog/slow-website/example-async.png)
+
+Browsers allow developers to specify how an external resource could be loaded to avoid blocking rendering for non critical resources:
+
+* [Prefer asynchronous scripts](https://web.dev/articles/third-party-javascript)
+* [Defer non-critical CSS](https://web.dev/defer-non-critical-css)
+* [Lazy load images](https://web.dev/articles/lazy-loading)
+* [Optimize fonts loading](https://web.dev/articles/optimize-webfont-loading)
+
+These principles apply to both SSR and SSG pages because the issue occurs on the client-side. By managing how and when external resources load, you can minimize disruptions and improve user experience.
+
+
+# Wrapping up
+
+Improving your website's performance will depend on your specific business needs and how your site is currently configured. Some optimizations may be straightforward, like compressing images or implementing a CDN, while others might require more significant changes, such as transitioning from server-side rendering to static site generation.
+
+When I started [GrapesJS](https://grapesjs.com), it was a simple application designed to assist with basic website layouts, offering an alternative to the WYSIWYG editors that weren't ideal for full-page layouts. Since then, GrapesJS has grown into a [robust framework and open-source community](https://github.com/GrapesJS/grapesjs), used by individuals and companies to create web contents, and by developers to build custom web builders. Now, we're building a [company](https://www.linkedin.com/company/grapes-studio) on the foundation of GrapesJS, with a mission to create static-first visual web builders.
+
+If you're curious to see what we're working on, you can try out an early version of [Grapes Studio](https://app.grapesjs.com/studio).
