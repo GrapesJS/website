@@ -420,59 +420,32 @@ export const components = `
 `;
 
 export const plugins = [
-    'grapesjs-preset-newsletter',
-    'grapesjs-plugin-ckeditor',
-    pluginDemo,
-    (editor: any) => {
-        editor.onReady(() => {
-            const pnm = editor.Panels;
+  "grapesjs-preset-newsletter",
+  pluginDemo,
+  (editor: any) => {
+    editor.onReady(() => {
+      const pnm = editor.Panels;
 
-            // Show borders by default
-            pnm.getButton('options', 'sw-visibility').set('active', true);
-
-            // Wait for CKEDITOR load
-            setTimeout(() => {
-                const { CKEDITOR } = window as any;
-                if (CKEDITOR) {
-                    CKEDITOR.dtd.$editable.a = 1;
-                }
-            }, 300);
-        });
-    }
+      // Show borders by default
+      pnm.getButton("options", "sw-visibility").set("active", true);
+    });
+  },
 ];
 
 export const pluginsOpts = {
-    'grapesjs-preset-newsletter': {
-      modalLabelImport: 'Paste all your code here below and click import',
-      modalLabelExport: 'Copy the code and use it wherever you want',
-      codeViewerTheme: 'material',
-      importPlaceholder: '<table class="table"><tr><td class="cell">Hello world!</td></tr></table>',
-      cellStyle: {
-        'font-size': '12px',
-        'font-weight': 300,
-        'vertical-align': 'top',
-        color: 'rgb(111, 119, 125)',
-        margin: 0,
-        padding: 0,
-      }
+  "grapesjs-preset-newsletter": {
+    modalLabelImport: "Paste all your code here below and click import",
+    modalLabelExport: "Copy the code and use it wherever you want",
+    codeViewerTheme: "material",
+    importPlaceholder:
+      '<table class="table"><tr><td class="cell">Hello world!</td></tr></table>',
+    cellStyle: {
+      "font-size": "12px",
+      "font-weight": 300,
+      "vertical-align": "top",
+      color: "rgb(111, 119, 125)",
+      margin: 0,
+      padding: 0,
     },
-    'grapesjs-plugin-ckeditor': {
-      onToolbar: (el: any) => {
-        el.style.minWidth = '350px';
-      },
-      options: {
-        startupFocus: true,
-        extraAllowedContent: '*(*);*{*}', // Allows any class and any inline style
-        allowedContent: true, // Disable auto-formatting, class removing, etc.
-        enterMode: 2, // CKEDITOR.ENTER_BR,
-        extraPlugins: 'sharedspace,justify,colorbutton,panelbutton,font',
-        toolbar: [
-          { name: 'styles', items: ['Font', 'FontSize' ] },
-          ['Bold', 'Italic', 'Underline', 'Strike'],
-          {name: 'paragraph', items : [ 'NumberedList', 'BulletedList']},
-          {name: 'links', items: ['Link', 'Unlink']},
-          {name: 'colors', items: [ 'TextColor', 'BGColor' ]},
-        ],
-      }
-    }
-  };
+  },
+};

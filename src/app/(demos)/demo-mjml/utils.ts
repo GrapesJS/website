@@ -75,45 +75,16 @@ export const components = `
 `;
 
 export const plugins = [
-    'grapesjs-mjml',
-    'grapesjs-plugin-ckeditor',
-    pluginDemo,
-    (editor: any) => {
-        editor.onReady(() => {
-            const pnm = editor.Panels;
+  "grapesjs-mjml",
+  pluginDemo,
+  (editor: any) => {
+    editor.onReady(() => {
+      const pnm = editor.Panels;
 
-            // Show borders by default
-            pnm.getButton('options', 'sw-visibility').set('active', true);
-
-            // Wait for CKEDITOR load
-            setTimeout(() => {
-                const { CKEDITOR } = window as any;
-                if (CKEDITOR) {
-                    CKEDITOR.dtd.$editable.a = 1;
-                }
-            }, 300);
-        });
-    }
+      // Show borders by default
+      pnm.getButton("options", "sw-visibility").set("active", true);
+    });
+  },
 ];
 
-export const pluginsOpts = {
-  'grapesjs-plugin-ckeditor': {
-    onToolbar: (el: any) => {
-      el.style.minWidth = '350px';
-    },
-    options: {
-      startupFocus: true,
-      extraAllowedContent: '*(*);*{*}', // Allows any class and any inline style
-      allowedContent: true, // Disable auto-formatting, class removing, etc.
-      enterMode: 2, // CKEDITOR.ENTER_BR,
-      extraPlugins: 'sharedspace,justify,colorbutton,panelbutton,font',
-      toolbar: [
-        { name: 'styles', items: ['Font', 'FontSize' ] },
-        ['Bold', 'Italic', 'Underline', 'Strike'],
-        {name: 'paragraph', items : [ 'NumberedList', 'BulletedList']},
-        {name: 'links', items: ['Link', 'Unlink']},
-        {name: 'colors', items: [ 'TextColor', 'BGColor' ]},
-      ],
-    }
-  }
-};
+export const pluginsOpts = {};
