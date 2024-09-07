@@ -3,7 +3,7 @@ import Hero from "../_components/hero";
 import JobBoard from "./jobBoard";
 import Footer from "../_components/footer";
 
-export default function PageBlogPosts() {
+export default function PageCareers() {
   return (
     <main>
       <Hero title="Careers" clsTitle="text-5xl" className="bg-gjs min-h-[300px]"/>

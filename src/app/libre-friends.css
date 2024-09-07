@@ -1,0 +1,11 @@
+.text-primary {
+  color: #9e5381; /* Your primary color */
+}
+
+.text-primary-dark {
+  color: #6f2943; /* A darker shade for hover */
+}
+
+.transition-colors {
+  transition: color 0.3s ease;
+}

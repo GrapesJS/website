@@ -25,7 +25,8 @@ const Header: React.FC<HeaderProps> = ({isHome, className, transparent, ...rest 
   if (isHome) {
     navLinks.unshift(
       { content: 'Support', href: '#support' },
-      { content: 'Features', href: '#features' }
+      { content: 'Features', href: '#features' },
+      { content: 'Libre Friends', href: '/libre-friends/' }
     )
   }
 
