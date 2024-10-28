@@ -55,6 +55,17 @@ export default function HomePage() {
             Sorry but your device is too small for the editor. See below for
             more information
           </div>
+          <a
+            href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button"
+            className="btn try btn-rnd btn-studio"
+          >
+            <img
+              src="/assets/images/logos/grapesjs-logo.svg"
+              className="h-[40px]"
+            />
+            Try GrapesJS Studio <small>(alpha)</small>
+          </a>
+          <div></div>
           <a href="./demo" className="btn try btn-rnd">
             Webpage Demo
           </a>
@@ -64,17 +75,8 @@ export default function HomePage() {
           <a href="./demo-mjml" className="btn try btn-rnd">
             MJML Demo
           </a>
-          <div></div>
-          <a
-            href="https://app.grapesjs.com/studio"
-            className="btn try btn-rnd btn-studio"
-          >
-            <img
-              src="/assets/images/logos/grapesjs-logo.svg"
-              className="h-[40px]"
-            />
-            Try GrapesJS Studio <small>(alpha)</small>
-          </a>
+          
+          
           <div className="block mt-5 md:mt-0">
             Need to embed the Studio as a white-label editor in your
             application?
@@ -88,7 +90,7 @@ export default function HomePage() {
               Tell us about your project
             </a>
             <a
-              href="https://app.grapesjs.com/dashboard/sdk/licenses"
+              href="https://app.grapesjs.com/dashboard/sdk/licenses?utm_source=sdk&utm_medium=button"
               className="btn btn-rnd !py-1 !px-3 mt-3"
             >
               Try Studio SDK
