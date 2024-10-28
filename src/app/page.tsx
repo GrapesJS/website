@@ -50,7 +50,7 @@ export default function HomePage() {
           Next generation tool for building templates without coding
         </h2>
 
-        <div className="mt-6 md:mt-24 btns-cont">
+        <div className="mt-6 md:mt-12 btns-cont">
           <div className="device-small">
             Sorry but your device is too small for the editor. See below for
             more information
@@ -63,25 +63,14 @@ export default function HomePage() {
               src="/assets/images/logos/grapesjs-logo.svg"
               className="h-[40px]"
             />
-            Try GrapesJS Studio <small>(alpha)</small>
+            Try GrapesJS Studio
           </a>
-          <div></div>
-          <a href="./demo" className="btn try btn-rnd">
-            Webpage Demo
-          </a>
-          <a href="./demo-newsletter-editor" className="btn try btn-rnd">
-            Newsletter Demo
-          </a>
-          <a href="./demo-mjml" className="btn try btn-rnd">
-            MJML Demo
-          </a>
-          
-          
+
           <div className="block mt-5 md:mt-0">
             Need to embed the Studio as a white-label editor in your
             application?
           </div>
-          <div>
+          <div className="mb-10">
             <a
               target="_blank"
               href="https://forms.gle/VUycp3rc8iCpbh9k8"
@@ -96,6 +85,17 @@ export default function HomePage() {
               Try Studio SDK
             </a>
           </div>
+
+          <div></div>
+          <a href="./demo" className="btn try btn-rnd">
+            Webpage Demo
+          </a>
+          <a href="./demo-newsletter-editor" className="btn try btn-rnd">
+            Newsletter Demo
+          </a>
+          <a href="./demo-mjml" className="btn try btn-rnd">
+            MJML Demo
+          </a>
         </div>
 
         <CarbonAd />
