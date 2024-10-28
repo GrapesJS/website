@@ -50,11 +50,43 @@ export default function HomePage() {
           Next generation tool for building templates without coding
         </h2>
 
-        <div className="mt-6 md:mt-24 btns-cont">
+        <div className="mt-6 md:mt-12 btns-cont">
           <div className="device-small">
             Sorry but your device is too small for the editor. See below for
             more information
           </div>
+          <a
+            href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button"
+            className="btn try btn-rnd btn-studio"
+          >
+            <img
+              src="/assets/images/logos/grapesjs-logo.svg"
+              className="h-[40px]"
+            />
+            Try GrapesJS Studio
+          </a>
+
+          <div className="block mt-5 md:mt-0">
+            Need to embed the Studio as a white-label editor in your
+            application?
+          </div>
+          <div className="mb-10">
+            <a
+              target="_blank"
+              href="https://forms.gle/VUycp3rc8iCpbh9k8"
+              className="btn btn-rnd !py-1 !px-3 mt-3"
+            >
+              Tell us about your project
+            </a>
+            <a
+              href="https://app.grapesjs.com/dashboard/sdk/licenses?utm_source=sdk&utm_medium=button"
+              className="btn btn-rnd !py-1 !px-3 mt-3"
+            >
+              Try Studio SDK
+            </a>
+          </div>
+
+          <div></div>
           <a href="./demo" className="btn try btn-rnd">
             Webpage Demo
           </a>
@@ -64,36 +96,6 @@ export default function HomePage() {
           <a href="./demo-mjml" className="btn try btn-rnd">
             MJML Demo
           </a>
-          <div></div>
-          <a
-            href="https://app.grapesjs.com/studio"
-            className="btn try btn-rnd btn-studio"
-          >
-            <img
-              src="/assets/images/logos/grapesjs-logo.svg"
-              className="h-[40px]"
-            />
-            Try GrapesJS Studio <small>(alpha)</small>
-          </a>
-          <div className="block mt-5 md:mt-0">
-            Need to embed the Studio as a white-label editor in your
-            application?
-          </div>
-          <div>
-            <a
-              target="_blank"
-              href="https://forms.gle/VUycp3rc8iCpbh9k8"
-              className="btn btn-rnd !py-1 !px-3 mt-3"
-            >
-              Tell us about your project
-            </a>
-            <a
-              href="https://app.grapesjs.com/dashboard/sdk/licenses"
-              className="btn btn-rnd !py-1 !px-3 mt-3"
-            >
-              Try Studio SDK
-            </a>
-          </div>
         </div>
 
         <CarbonAd />
