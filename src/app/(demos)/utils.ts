@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV !== "production";
-export const GRAPESJS_VERSION = "0.22.1";
+export const GRAPESJS_VERSION = "0.22.2";
 const gjsTag = isDev ? "rc" : GRAPESJS_VERSION;
 export const GRAPESJS_SCRIPT = `https://unpkg.com/grapesjs@${gjsTag}`;
 export const GRAPESJS_STYLE = `https://unpkg.com/grapesjs@${gjsTag}/dist/css/grapes.min.css`;
