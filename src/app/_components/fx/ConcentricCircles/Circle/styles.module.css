@@ -1,0 +1,45 @@
+.circle {
+  z-index: 1;
+  background: black;
+  /* background: linear-gradient(
+    0deg,
+    rgba(151, 58, 168, 0.2) 0%,
+    rgba(151, 58, 168, 0) 50%,
+    rgba(151, 58, 168, 0.2) 100%
+  ); */
+  border: 1px solid;
+
+  border-radius: 10000px;
+
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  background-clip: padding-box;
+  border: solid 2px transparent;
+}
+
+.circle::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+
+  /* border: 0.87px solid; */
+
+  background: linear-gradient(
+    0deg,
+    rgba(82, 31, 91, 0.7) 0%,
+    rgba(151, 58, 168, 0) 50%,
+    rgba(82, 31, 91, 0.7) 100%
+  );
+}
