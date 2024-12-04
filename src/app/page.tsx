@@ -3,7 +3,6 @@ import Header from "./_components/Header";
 import StarOnGH from "./_components/StarOnGH";
 import "./home.css";
 
-// TODO: improve semantics of html
 export default function HomePage() {
   return (
     <>
@@ -12,10 +11,10 @@ export default function HomePage() {
         <Header isHome transparent />
         <section>
           <h1>Design Without Code</h1>
-          <h2>
+          <p>
             The customizable website and email builder that grows with your
             business.
-          </h2>
+          </p>
 
           <CTALink href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button">
             Start Building
@@ -39,7 +38,7 @@ export default function HomePage() {
 
         <section>
           <div className="flex flex-col items-center">
-            <h3>POWERING SOLUTIONS FOR</h3>
+            <h2>POWERING SOLUTIONS FOR</h2>
             <hr />
           </div>
           <div className="flex gap-[32px] overflow-auto max-w-full h-[54px] items-stretch self-center">
@@ -63,15 +62,15 @@ export default function HomePage() {
         </section>
         <section>
           <div className="flex flex-col items-center">
-            <h3>FEATURES</h3>
+            <h2>FEATURES</h2>
             <hr />
           </div>
-          <h1>Create Your Perfect Visual Editor</h1>
-          <h2>
+          <h3>Create Your Perfect Visual Editor</h3>
+          <p>
             Build powerful, customizable visual editors with GrapesJS. Our
             versatile framework provides everything you need, from drag-and-drop
             editing to responsive design.
-          </h2>
+          </p>
           <CTALink href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button">
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>

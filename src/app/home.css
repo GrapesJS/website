@@ -70,7 +70,8 @@ section:nth-of-type(2)::before {
   z-index: 1;
 }
 
-h1 {
+h1,
+h3 {
   font-family: var(--font-manrope);
   font-size: 54px;
   font-weight: 700;
@@ -81,11 +82,12 @@ h1 {
   color: #ffffff;
 }
 
-h1 strong {
+h1 strong,
+h3 strong {
   color: #ef8ba5;
 }
 
-h2 {
+p {
   font-family: var(--font-manrope);
   font-size: 24px;
   font-weight: 400;
@@ -96,7 +98,7 @@ h2 {
   color: #d0d5dd;
 }
 
-h3 {
+h2 {
   font-family: var(--font-manrope);
   font-size: 20px;
   font-weight: 700;
