@@ -1,6 +1,6 @@
 import Container from "@/app/_components/container";
 import Footer from "@/app/_components/footer";
-import Header from "@/app/_components/header";
+import Header from "@/app/_components/Header";
 import { PostHeader } from "@/app/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/blogApi";
 import { DEFAULT_TITLE } from "@/lib/constants";
@@ -14,7 +14,7 @@ interface PageBlogPostProps {
   params: {
     slug: string;
   };
-};
+}
 
 export default async function PageBlogPost({ params }: PageBlogPostProps) {
   const post = getPostBySlug(params.slug);
@@ -25,19 +25,19 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
 
   return (
     <main>
-      <Header/>
+      <Header />
       <Container>
         <div className="py-7 md:py-14">
           <Link href={getPathBlog()}>‹ Back to blog</Link>
         </div>
         <article className="mb-32">
-          <PostHeader post={post}/>
+          <PostHeader post={post} />
           <div className="max-w-2xl mx-auto">
-            <ContainerMDX source={post.content}/>
+            <ContainerMDX source={post.content} />
           </div>
         </article>
       </Container>
-      <Footer/>
+      <Footer />
     </main>
   );
 }
@@ -61,6 +61,8 @@ export function generateMetadata({ params }: PageBlogPostProps): Metadata {
 }
 
 export async function generateStaticParams() {
-  const result: PageBlogPostProps['params'][] = getAllPosts().map((post) => ({ slug: post.slug }));
+  const result: PageBlogPostProps["params"][] = getAllPosts().map((post) => ({
+    slug: post.slug,
+  }));
   return result;
 }

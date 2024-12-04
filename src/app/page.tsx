@@ -1,6 +1,6 @@
-import CarbonAd from "./_components/carbonAd";
-import Footer from "./_components/footer";
-import Header from "./_components/header";
+import CTALink from "./_components/CTALink";
+import Header from "./_components/Header";
+import StarOnGH from "./_components/StarOnGH";
 import "./home.css";
 
 const featuredItems = [
@@ -39,78 +39,83 @@ const clsFeatureCol = "basis-full md:basis-1/2";
 
 export default function HomePage() {
   return (
-    <main>
-      <section className="page-header z-0">
+    <>
+      <div className="bg"></div>
+      <main>
         <Header isHome transparent />
+        <section>
+          <h1>Design Without Code</h1>
+          <h2>
+            The customizable website and email builder that grows with your
+            business.
+          </h2>
 
-        <h1 className="mt-6 md:mt-24 text-3xl">
-          Free and Open Source Web Builder Framework
-        </h1>
-        <h2 className="mt-5 text-lg opacity-80">
-          Next generation tool for building templates without coding
-        </h2>
-
-        <div className="mt-6 md:mt-12 btns-cont">
-          <div className="device-small">
-            Sorry but your device is too small for the editor. See below for
-            more information
-          </div>
-          <a
+          <CTALink
             href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button"
             className="btn try btn-rnd btn-studio"
           >
+            Start Building
+          </CTALink>
+
+          <StarOnGH />
+
+          <div className="flex flex-col rounded-t-[24px] outline outline-8 outline-[#ffffff33]  bg-[#252527] pt-[40px]">
+            <div className="flex gap-[8px] m-[12px] mt-[-28px]">
+              <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
+              <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
+              <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
+            </div>
             <img
-              src="/assets/images/logos/grapesjs-logo.svg"
-              className="h-[40px]"
-            />
-            Try GrapesJS Studio
-          </a>
-
-          <div className="block mt-5 md:mt-0">
-            Need to embed the Studio as a white-label editor in your
-            application?
-          </div>
-          <div className="mb-10">
-            <a
-              target="_blank"
-              href="https://forms.gle/VUycp3rc8iCpbh9k8"
-              className="btn btn-rnd !py-1 !px-3 mt-3"
-            >
-              Tell us about your project
-            </a>
-            <a
-              href="https://app.grapesjs.com/dashboard/sdk/licenses?utm_source=sdk&utm_medium=button"
-              className="btn btn-rnd !py-1 !px-3 mt-3"
-            >
-              Try Studio SDK
-            </a>
-          </div>
-
-          <div></div>
-          <a href="./demo" className="btn try btn-rnd">
-            Webpage Demo
-          </a>
-          <a href="./demo-newsletter-editor" className="btn try btn-rnd">
-            Newsletter Demo
-          </a>
-          <a href="./demo-mjml" className="btn try btn-rnd">
-            MJML Demo
-          </a>
-        </div>
-
-        <CarbonAd />
-
-        <div className="bann-cont-c">
-          <div className="bann-cont">
-            <img
-              className="banner-img"
-              src="/assets/images/grapesjs-front-page-m.jpg"
+              className="w-[1086px]"
+              src="/assets/images/studio-editor.jpg"
               alt="GrapesJS Webpage Demo"
             />
           </div>
-        </div>
+        </section>
 
-        <div className="ddown-sharer">
+        <section>
+          <div className="flex flex-col items-center">
+            <h3>POWERING SOLUTIONS FOR</h3>
+            <hr />
+          </div>
+          <div className="flex gap-[32px] overflow-auto max-w-full h-[54px] items-stretch self-center">
+            <img src="assets/images/external-logos/braze.png" alt="Braze" />
+            <img
+              src="assets/images/external-logos/france-gov.png"
+              alt="Government of France"
+            />
+            <img src="assets/images/external-logos/pfizer.png" alt="Pfizer" />
+            <img
+              src="assets/images/external-logos/microsoft.png"
+              alt="Microsoft"
+            />
+            <img
+              src="assets/images/external-logos/volkswagen.png"
+              alt="Volkswagen"
+            />
+            <img src="assets/images/external-logos/toyota.png" alt="Toyota" />
+            <img src="assets/images/external-logos/phresia.png" alt="Phresia" />
+          </div>
+
+          <div className="flex flex-col items-center">
+            <h3>FEATURES</h3>
+            <hr />
+          </div>
+          <h1>Create Your Perfect Visual Editor</h1>
+          <h2>
+            Build powerful, customizable visual editors with GrapesJS. Our
+            versatile framework provides everything you need, from drag-and-drop
+            editing to responsive design.
+          </h2>
+          <CTALink
+            href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button"
+            className="btn try btn-rnd btn-studio"
+          >
+            Start Now<span className="font-[400]"> - It's free</span>
+          </CTALink>
+        </section>
+
+        {/* <div className="ddown-sharer">
           <div>
             <a
               className="btn-share sh-tw tooltip"
@@ -129,10 +134,9 @@ export default function HomePage() {
               <i className="fa fa-facebook-official" aria-hidden="true"></i>
             </a>
           </div>
-        </div>
-      </section>
+        </div> */}
 
-      <section className="section-container what-sect">
+        {/* <section className="section-container what-sect">
         <div className="width-all">
           <h1 className={clsSectionTitle}>What is it?</h1>
           <div className="section-content">
@@ -177,9 +181,9 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section
+        {/* <section
         className="section-container even-content overflow-hidden"
         id="features"
       >
@@ -354,9 +358,9 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="py-10 bg-zinc-100">
+        {/* <section className="py-10 bg-zinc-100">
         <div className="text-center pb-10 text-zinc-400 font-bold tracking-[5px]">
           FEATURED ON
         </div>
@@ -367,9 +371,9 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section className="section-container support" id="support">
+        {/* <section className="section-container support" id="support">
         <div className="width-all">
           <h1 className={clsSectionTitle}>Support us</h1>
           <div>
@@ -414,9 +418,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <Footer />
-    </main>
+        {/* <Footer /> */}
+      </main>
+    </>
   );
 }
