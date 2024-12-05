@@ -22,14 +22,14 @@ export default function HomePage() {
 
           <StarOnGH />
 
-          <div className="flex flex-col rounded-t-[24px] outline outline-8 outline-[#ffffff33]  bg-[#252527] pt-[40px]">
+          <div className="flex flex-col w-full rounded-t-[24px] outline outline-8 outline-[#ffffff33]  bg-[#252527] pt-[40px]">
             <div className="flex gap-[8px] m-[12px] mt-[-28px]">
               <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
               <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
               <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
             </div>
             <img
-              className="w-[1086px]"
+              className="w-full"
               src="/assets/images/studio-editor.jpg"
               alt="GrapesJS Webpage Demo"
             />
@@ -74,6 +74,32 @@ export default function HomePage() {
           <CTALink href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button">
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>
+
+          <section>
+            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+              <h4>Built-in and Customizable UI</h4>
+              <p>Accessible and enhanced UX for seamless user experience.</p>
+            </div>
+            <img src="assets/images/sdk/1.png" alt="SDK UI" />
+          </section>
+          <section>
+            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+              <h4>Multi-Format Support</h4>
+              <p>Create landing pages, multipage websites, and newsletters.</p>
+            </div>
+            <img src="assets/images/sdk/2.png" alt="SDK UI" />
+          </section>
+          <section>
+            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+              <h4>White Label Solution</h4>
+              <p>Style and customize your editor as you see fit.</p>
+            </div>
+            <img
+              src="assets/images/sdk/3.png"
+              alt="SDK UI"
+              className="pt-[36px]"
+            />
+          </section>
         </section>
       </main>
     </>
