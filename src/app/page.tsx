@@ -100,6 +100,48 @@ export default function HomePage() {
               className="pt-[36px]"
             />
           </section>
+          <div className="flex items-stretch justify-stretch gap-[8px] flex-1">
+            <section className="items-start">
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4>Additional Panels</h4>
+                <p>Includes Style Catalog and Template Manager.</p>
+              </div>
+              <img src="assets/images/sdk/4.png" alt="SDK UI" />
+            </section>
+            <section className="items-start">
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4>Full Team Support</h4>
+                <p>GrapesJS team provides dedicated assistance.</p>
+              </div>
+              <img src="assets/images/sdk/5.png" alt="SDK support chat" />
+            </section>
+          </div>
+          <section className="flex !flex-col items-stretch">
+            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+              <div className="flex items-center gap-[8px]">
+                <h4>Ready to use elements</h4>
+                <span className="comingSoonTag">Coming Soon</span>
+              </div>
+              <p>Access pro components, templates, and prebuilt blocks.</p>
+            </div>
+            <img
+              src="assets/images/sdk/6.png"
+              alt="SDK UI"
+              className="h-[360px] object-cover  w-auto"
+            />
+          </section>
+        </section>
+        <section>
+          <div className="flex flex-col items-center">
+            <h2>PRICING</h2>
+            <hr />
+          </div>
+
+          <h3>Plans that fit your scale</h3>
+          <p>
+            Simple, transparent pricing that grows with you. Try any plan free
+            for 30 days.
+          </p>
         </section>
       </main>
     </>

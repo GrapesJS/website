@@ -152,6 +152,7 @@ h4 {
 section section {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
 
   border-radius: 16px;
@@ -178,10 +179,6 @@ section section::before {
   z-index: 1;
 }
 
-section section:first-child {
-  margin-top: 54px;
-}
-
 section section:nth-child(odd) {
   flex-direction: row-reverse;
 }
@@ -198,4 +195,19 @@ section section p {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #ffffff;
+}
+
+.comingSoonTag {
+  padding: 4px 10px;
+  color: #ffffff;
+  background: #411149;
+  border: 1px solid #e685f6;
+  border-radius: 6px;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
