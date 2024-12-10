@@ -4,9 +4,13 @@ import styles from "./styles.module.css";
 
 interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: "primary" | "secondary" | "tertiary";
+  full?: boolean;
 }
 
-const CTALink = ({ children, variant, ...rest }: Props) => {
+/**
+ * Call To Action Link
+ */
+const CTALink = ({ className, children, variant, full, ...rest }: Props) => {
   let variantClass;
   if (variant === "secondary") {
     variantClass = styles.secondary;
@@ -17,7 +21,12 @@ const CTALink = ({ children, variant, ...rest }: Props) => {
     variantClass = styles.primary;
   }
   return (
-    <a {...rest} className={`${styles.ctaLink} ${variantClass}`}>
+    <a
+      {...rest}
+      className={`${styles.ctaLink} ${variantClass} ${
+        full ? styles.full : ""
+      } ${className ?? ""}`}
+    >
       {children}
     </a>
   );

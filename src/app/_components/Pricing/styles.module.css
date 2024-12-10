@@ -7,7 +7,10 @@
 
 .plans {
   display: grid;
-  grid-template-columns: repeat(3, minmax(auto-fit, 1fr));
+  /* grid-template-columns: repeat(3, minmax(auto-fit, 1fr)); */
+  /* grid-auto-flow: row; */
+  grid-auto-columns: 1fr 1fr 1fr;
+  /* grid-auto-rows: 1fr 1fr 1fr; */
   gap: 32px;
   row-gap: 24px;
 }
@@ -29,11 +32,33 @@
 
   flex: 1 1;
 
-  gap: 24px;
+  /* gap: 24px; */
 }
 
 .plan > div {
-  padding: 32px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.plan .cta {
+  margin-top: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.plan img {
+  height: 62px;
+  margin-left: 14px;
+  margin-bottom: 8px;
 }
 
 .plan h4 {

@@ -21,7 +21,7 @@
   /* Text */
   font-family: var(--font-manrope);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 18px;
   line-height: 28px;
 
@@ -97,7 +97,7 @@
   /* Text */
   font-family: var(--font-manrope);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 18px;
   line-height: 28px;
 
@@ -155,7 +155,7 @@
   /* Text */
   font-family: var(--font-manrope);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 18px;
   line-height: 28px;
 
@@ -188,4 +188,8 @@
 .ctaLink.tertiary:hover::before {
   --toColor: rgb(255 255 255 / 0.4);
   --angle: 180deg;
+}
+
+.ctaLink.full {
+  width: 100%;
 }

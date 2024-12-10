@@ -15,6 +15,7 @@ interface Plan {
   cta: {
     label: string;
     variant: "primary" | "secondary" | "tertiary";
+    href: string;
   };
   includes?: string;
   features: string[];
@@ -32,6 +33,7 @@ const plans: Plan[] = [
     cta: {
       label: "Try Now",
       variant: "tertiary",
+      href: "#",
     },
     features: [
       "Access to basic features",
@@ -48,6 +50,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
+      href: "#",
     },
     includes: "free",
     features: [
@@ -65,6 +68,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
+      href: "#",
     },
     includes: "startup",
     features: [
@@ -83,6 +87,7 @@ const plans: Plan[] = [
     cta: {
       label: "Contact sales",
       variant: "secondary",
+      href: "#",
     },
     includes: "business",
     features: [
@@ -120,7 +125,14 @@ const Pricing = ({ ...rest }: Props) => {
                 <h4>{plan.name}</h4>
                 <p className={styles.price}>{plan.price[selectedPeriod]}</p>
                 <p className={styles.description}>{plan.description}</p>
-                <CTALink variant={plan.cta.variant}>{plan.cta.label}</CTALink>
+                <CTALink
+                  className={styles.cta}
+                  full
+                  variant={plan.cta.variant}
+                  href={plan.cta.href}
+                >
+                  {plan.cta.label}
+                </CTALink>
               </div>
               <hr />
               <div>
