@@ -1,5 +1,6 @@
 import CTALink from "./_components/CTALink";
 import Header from "./_components/Header";
+import Pricing from "./_components/Pricing";
 import StarOnGH from "./_components/StarOnGH";
 import "./home.css";
 
@@ -142,6 +143,8 @@ export default function HomePage() {
             Simple, transparent pricing that grows with you. Try any plan free
             for 30 days.
           </p>
+
+          <Pricing />
         </section>
       </main>
     </>

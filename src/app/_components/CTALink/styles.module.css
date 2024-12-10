@@ -1,4 +1,4 @@
-.ctaLink {
+.ctaLink.primary {
   box-sizing: border-box;
 
   background: radial-gradient(50% 50% at 50% 50%, #c277d0 0%, #973aa8 100%);
@@ -46,7 +46,7 @@
   inherits: false;
 }
 
-.ctaLink::before {
+.ctaLink.primary::before {
   content: "";
 
   position: absolute;
@@ -69,7 +69,123 @@
     --toColor var(--animation-duration) ease-in-out;
 }
 
-.ctaLink:hover::before {
+.ctaLink.primary:hover::before {
+  --toColor: rgb(255 255 255 / 0.4);
+  --angle: 180deg;
+}
+
+.ctaLink.secondary {
+  box-sizing: border-box;
+
+  background: #973aa8;
+
+  position: relative;
+  background-clip: padding-box;
+  border: solid 2px transparent;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 22px;
+  gap: 10px;
+
+  width: fit-content;
+
+  border-radius: 1000px;
+
+  /* Text */
+  font-family: var(--font-manrope);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+
+  color: #ffffff;
+}
+
+.ctaLink.secondary::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+
+  --animation-duration: 0.25s;
+
+  background: linear-gradient(var(--angle), var(--fromColor), var(--toColor)),
+    #973aa8;
+
+  transition: --angle 0.25s ease-in-out 0.2s,
+    --fromColor var(--animation-duration) ease-in-out,
+    --toColor var(--animation-duration) ease-in-out;
+}
+
+.ctaLink.secondary:hover::before {
+  --toColor: rgb(255 255 255 / 0.4);
+  --angle: 180deg;
+}
+
+.ctaLink.tertiary {
+  box-sizing: border-box;
+
+  background: #272727cc;
+
+  position: relative;
+  background-clip: padding-box;
+  border: solid 2px transparent;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 22px;
+  gap: 10px;
+
+  width: fit-content;
+
+  border-radius: 1000px;
+
+  /* Text */
+  font-family: var(--font-manrope);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+
+  color: #ffffff;
+}
+
+.ctaLink.tertiary::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+
+  --animation-duration: 0.25s;
+
+  background: linear-gradient(var(--angle), var(--fromColor), var(--toColor)),
+    #272727cc;
+
+  transition: --angle 0.25s ease-in-out 0.2s,
+    --fromColor var(--animation-duration) ease-in-out,
+    --toColor var(--animation-duration) ease-in-out;
+}
+
+.ctaLink.tertiary:hover::before {
   --toColor: rgb(255 255 255 / 0.4);
   --angle: 180deg;
 }
