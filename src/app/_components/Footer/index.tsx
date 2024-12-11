@@ -12,111 +12,128 @@ const linkCategories: {
       {
         id: "Overview",
         label: "Overview",
-        href: "https://www.grapesjs.com/#overview",
+        href: "/",
       },
       {
         id: "Features",
         label: "Features",
-        href: "https://www.grapesjs.com/#features",
+        href: "/#features",
       },
+      // TODO: page
       {
         id: "Tutorials",
         label: "Tutorials",
-        href: "https://www.grapesjs.com/#tutorials",
+        href: "/tutorials",
       },
       {
         id: "Pricing",
         label: "Pricing",
-        href: "https://www.grapesjs.com/#pricing",
+        href: "/#pricing",
       },
+      // TODO: page
       {
         id: "Releases",
         label: "Releases",
-        href: "https://www.grapesjs.com/#releases",
+        href: "/releases",
       },
     ],
   },
   {
     category: "Company",
     links: [
+      // TODO: page
       {
         id: "About us",
         label: "About us",
-        href: "https://www.grapesjs.com/#about-us",
+        href: "/about",
       },
       {
         id: "Careers",
         label: "Careers",
-        href: "https://www.grapesjs.com/#careers",
+        href: "/careers",
       },
-      { id: "Press", label: "Press", href: "https://www.grapesjs.com/#press" },
-      { id: "News", label: "News", href: "https://www.grapesjs.com/#news" },
+      // TODO: page
+      { id: "Press", label: "Press", href: "/press" },
+      // TODO: page
+      { id: "News", label: "News", href: "/news" },
+      // TODO: page
       {
         id: "Contact",
         label: "Contact",
-        href: "https://www.grapesjs.com/#contact",
+        href: "/contact",
       },
     ],
   },
   {
     category: "Resources",
     links: [
-      { id: "Blog", label: "Blog", href: "https://www.grapesjs.com/#blog" },
+      { id: "Blog", label: "Blog", href: "/blog" },
+      // TODO: page
       {
         id: "Newsletter",
         label: "Newsletter",
-        href: "https://www.grapesjs.com/#newsletter",
+        href: "/newsletter",
       },
+      // TODO: page
       {
         id: "Events",
         label: "Events",
-        href: "https://www.grapesjs.com/#events",
+        href: "/events",
       },
+      // TODO: page
       {
         id: "Help centre",
         label: "Help centre",
-        href: "https://www.grapesjs.com/#help-centre",
+        href: "/help-centre",
       },
+      // TODO: page
       {
         id: "Tutorials",
         label: "Tutorials",
-        href: "https://www.grapesjs.com/#tutorials",
+        href: "/tutorials",
       },
+      // TODO: page
       {
         id: "Support",
         label: "Support",
-        href: "https://www.grapesjs.com/#support",
+        href: "/support",
       },
     ],
   },
   {
     category: "Legal",
     links: [
-      { id: "Terms", label: "Terms", href: "https://www.grapesjs.com/#terms" },
+      // TODO: page
+      { id: "Terms", label: "Terms", href: "/terms" },
+      // TODO: page
       {
         id: "Privacy",
         label: "Privacy",
-        href: "https://www.grapesjs.com/#privacy",
+        href: "/privacy",
       },
+      // TODO: page
       {
         id: "Cookies",
         label: "Cookies",
-        href: "https://www.grapesjs.com/#cookies",
+        href: "/cookies",
       },
+      // TODO: page
       {
         id: "Licenses",
         label: "Licenses",
-        href: "https://www.grapesjs.com/#licenses",
+        href: "/licenses",
       },
+      // TODO: page
       {
         id: "Settings",
         label: "Settings",
-        href: "https://www.grapesjs.com/#settings",
+        href: "/settings",
       },
+      // TODO: page
       {
         id: "Contact",
         label: "Contact",
-        href: "https://www.grapesjs.com/#contact",
+        href: "/contact",
       },
     ],
   },

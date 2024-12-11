@@ -64,7 +64,7 @@ export default function HomePage() {
         </section>
         <section>
           <div className="flex flex-col items-center">
-            <h2>FEATURES</h2>
+            <h2 id="features">FEATURES</h2>
             <hr />
           </div>
           <h3>Create Your Perfect Visual Editor</h3>
@@ -135,7 +135,7 @@ export default function HomePage() {
         </section>
         <section>
           <div className="flex flex-col items-center">
-            <h2>PRICING</h2>
+            <h2 id="pricing">PRICING</h2>
             <hr />
           </div>
 

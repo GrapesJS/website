@@ -41,8 +41,9 @@ const Header: React.FC<HeaderProps> = ({
 
   if (isHome) {
     navLinks.unshift(
-      { content: "About", href: "#about" },
-      { content: "Features", href: "#features" }
+      // TODO: page
+      { content: "About", href: "/about" },
+      { content: "Features", href: "/#features" }
     );
   }
 
@@ -93,6 +94,9 @@ const Header: React.FC<HeaderProps> = ({
               href={href}
               target={target}
               key={href}
+              onClick={() => {
+                setOpen(false);
+              }}
             >
               {content}
             </Link>
