@@ -150,7 +150,9 @@ export default function HomePage() {
         <section>
           <h3>Get started for free</h3>
           <p>Join the thousands of companies & developers using Grapes today</p>
-          <CTALink href="#">Get Started for Free</CTALink>
+          <CTALink href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button">
+            Get Started for Free
+          </CTALink>
         </section>
         <Footer />
       </main>

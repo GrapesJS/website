@@ -46,8 +46,6 @@ const Header: React.FC<HeaderProps> = ({
     );
   }
 
-  // TODO: convert into drawer on small screens
-
   return (
     <header className={styles.container} {...rest}>
       <div className={styles.navbar}>
