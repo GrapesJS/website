@@ -1,5 +1,5 @@
 import Container from "@/app/_components/container";
-import Footer from "@/app/_components/footer";
+import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
 import { PostHeader } from "@/app/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/blogApi";

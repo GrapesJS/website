@@ -1,4 +1,9 @@
+"use client";
+import { cx } from "@/lib/makeCls";
+import { mdiClose, mdiMenu } from "@mdi/js";
+import Icon from "@mdi/react";
 import Link from "next/link";
+import { useState } from "react";
 import styles from "./styles.module.css";
 
 const clsContainer = "container mx-auto px-5";
@@ -16,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({
   transparent,
   ...rest
 }) => {
+  const [open, setOpen] = useState(false);
   const navLinks: { content: string; href: string; target?: string }[] = [
     { content: "Careers", href: "/careers" },
     { content: "Blog", href: "/blog" },
@@ -69,7 +75,31 @@ const Header: React.FC<HeaderProps> = ({
               </Link>
             ))}
           </nav>
+          <button
+            className={styles.drawerButton}
+            onClick={() => setOpen((open) => !open)}
+          >
+            {open ? (
+              <Icon path={mdiClose} size={1} />
+            ) : (
+              <Icon path={mdiMenu} size={1} />
+            )}
+          </button>
         </div>
+      </div>
+      <div className={cx(styles.drawer, open && styles.open)}>
+        <nav className={styles.links}>
+          {navLinks.map(({ href, target, content }) => (
+            <Link
+              className={styles.link}
+              href={href}
+              target={target}
+              key={href}
+            >
+              {content}
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );

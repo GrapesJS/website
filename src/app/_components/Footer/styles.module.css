@@ -1,0 +1,144 @@
+.footer {
+  width: 100%;
+  background: #060406;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer > div {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.footer section {
+  display: flex;
+  flex-direction: row;
+  padding: 64px 32px 48px 32px;
+
+  gap: 64px;
+}
+
+.logoAndDescription {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo img {
+  height: 32px;
+}
+
+.logo h2 {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+
+  color: #ffffff;
+
+  padding: 0;
+}
+
+.description {
+  text-align: start;
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #ddd0d1;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 64px;
+  gap: 24px;
+}
+
+.categories > .category {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 160px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categoryName {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+
+  color: #c277d0;
+}
+
+.link {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #ddd0d1;
+}
+
+.link:hover {
+  color: white;
+}
+
+.footer section:last-child {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 48px 32px;
+}
+
+.footer section:last-child p {
+  flex: 1 1;
+  text-align: left;
+
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #c277d0;
+}
+
+.footer section:last-child img {
+  transition: 0.25s opacity ease-in-out;
+}
+.footer section:last-child img:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 640px) {
+  .footer section {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .categories {
+    padding-left: 0;
+    justify-content: center;
+  }
+}

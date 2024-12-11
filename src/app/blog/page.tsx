@@ -2,8 +2,8 @@ import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
 import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/blogApi";
+import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import Footer from "../_components/footer";
 
 export default function PageBlogPosts() {
   const allPosts = getAllPosts();

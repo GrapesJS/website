@@ -1,4 +1,5 @@
 import CTALink from "./_components/CTALink";
+import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import Pricing from "./_components/Pricing";
 import StarOnGH from "./_components/StarOnGH";
@@ -146,6 +147,12 @@ export default function HomePage() {
 
           <Pricing />
         </section>
+        <section>
+          <h3>Get started for free</h3>
+          <p>Join the thousands of companies & developers using Grapes today</p>
+          <CTALink href="#">Get Started for Free</CTALink>
+        </section>
+        <Footer />
       </main>
     </>
   );

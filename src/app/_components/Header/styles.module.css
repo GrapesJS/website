@@ -29,9 +29,45 @@
   pointer-events: all;
 }
 
+.drawerButton {
+  display: none;
+}
+
+.drawer {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .navbar .links {
     display: none;
+  }
+  .navbar .drawerButton {
+    display: block;
+  }
+  .drawer {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    padding-top: calc(36px + 68px + 16px);
+    padding-bottom: 16px;
+    top: -36px;
+    left: 0%;
+    padding-right: 48px;
+    width: 100%;
+    color: #d0d5dd;
+    background: #060406;
+    transform: translateX(100%);
+    transition: 0.25s transform ease-in-out;
+    pointer-events: all;
+  }
+  .drawer.open {
+    transform: translateX(0%);
+  }
+  .drawer .links {
+    flex-direction: column;
+  }
+  .drawer .links .link {
+    text-align: right;
   }
 }
 
