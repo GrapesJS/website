@@ -1,3 +1,6 @@
+.ctaLink {
+  text-wrap: nowrap;
+}
 .ctaLink.primary {
   box-sizing: border-box;
 

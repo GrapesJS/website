@@ -15,6 +15,11 @@ body {
   font-weight: 300;
 }
 
+body * {
+  scrollbar-color: #9e7ea3 #00000030;
+  scrollbar-width: thin;
+}
+
 main {
   position: absolute;
   display: flex;
@@ -36,6 +41,21 @@ main header {
   width: 100dvw;
   position: fixed;
   z-index: -1;
+}
+
+.logos-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1;
+  gap: 32px;
+  width: 100%;
+  align-items: stretch;
+  align-self: center;
+  justify-content: center;
+}
+
+.logos-container img {
+  height: 54px;
 }
 
 main > section > * {

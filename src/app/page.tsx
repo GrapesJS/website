@@ -42,7 +42,7 @@ export default function HomePage() {
             <h2>POWERING SOLUTIONS FOR</h2>
             <hr />
           </div>
-          <div className="flex gap-[32px] overflow-auto max-w-full h-[54px] items-stretch self-center">
+          <div className="logos-container">
             <img src="assets/images/external-logos/braze.png" alt="Braze" />
             <img
               src="assets/images/external-logos/france-gov.png"

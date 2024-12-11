@@ -1,4 +1,5 @@
 .container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,13 +7,25 @@
 }
 
 .plans {
-  display: grid;
-  /* grid-template-columns: repeat(3, minmax(auto-fit, 1fr)); */
-  /* grid-auto-flow: row; */
-  grid-auto-columns: 1fr 1fr 1fr;
-  /* grid-auto-rows: 1fr 1fr 1fr; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
   gap: 32px;
-  row-gap: 24px;
+}
+
+.normalPlans {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 32px;
+}
+
+.normalPlans > * {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 .plan {
@@ -31,8 +44,8 @@
   border-radius: 16px;
 
   flex: 1 1;
-
-  /* gap: 24px; */
+  width: 300px;
+  flex-basis: 300px;
 }
 
 .plan > div {
@@ -44,24 +57,30 @@
   gap: 8px;
 }
 
-.plan .cta {
-  margin-top: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
+.plan .planTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 32px;
 }
 
-.plan img {
+.plan .planTitle .icon {
+  overflow: visible;
+  position: relative;
+  height: 48px;
+  width: 48px;
+}
+.plan .planTitle .icon img {
+  position: absolute;
   height: 62px;
-  margin-left: 14px;
-  margin-bottom: 8px;
+  width: 62px;
+  max-width: 62px;
+  top: -14px;
+  right: -14px;
 }
 
-.plan h4 {
+.plan .planTitle h4 {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -72,6 +91,17 @@
 
   align-self: stretch;
   flex-grow: 0;
+}
+
+.plan .cta {
+  margin-top: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .price {
@@ -94,6 +124,7 @@
   font-size: 16px;
   line-height: 24px;
   text-align: center;
+  text-wrap: nowrap;
 
   color: #d0d5dd;
 
@@ -107,7 +138,12 @@
   height: 2px;
 }
 
-.plan h5 {
+.plan .features {
+  align-items: start;
+  overflow-x: auto;
+}
+
+.plan .features h5 {
   font-family: var(--font-inter);
   font-style: normal;
   font-weight: 600;
@@ -121,22 +157,138 @@
   color: #d39cdd;
 }
 
-.plan ul {
+.plan .features p {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 
   color: #d0d5dd;
-  list-style: url("/assets/images/icons/check.svg");
 }
 
-.plan li {
-  align-items: center;
-  padding-left: 12px;
+.plan .features strong {
+  text-transform: capitalize;
+}
+
+.plan .features ul {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #d0d5dd;
+  list-style-type: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+  height: 200px;
+  flex: 1 1;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .specialPlan .features ul {
+    height: auto;
+    width: 100%;
+  }
+}
+
+.plan .features li {
+  background: url("/assets/images/icons/check.svg") no-repeat 0 0 transparent;
+  padding-left: 36px;
 
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  flex: 1 1;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.specialPlan {
+  width: 100%;
+  backdrop-filter: initial;
+
+  background: radial-gradient(
+      134.57% 100% at 50.05% 0%,
+      rgba(0, 0, 0, 0) 54.78%,
+      rgba(7, 3, 8, 0.0711043) 65.9%,
+      rgba(82, 31, 91, 0.8) 82.09%,
+      rgba(155, 58, 168, 0.64) 90.3%,
+      rgba(239, 139, 165, 0.8) 100%
+    ),
+    #111111;
+
+  box-sizing: border-box;
+
+  position: relative;
+  background-clip: padding-box;
+  border: solid 2px transparent;
+}
+
+.specialPlan::before {
+  backdrop-filter: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+
+  background: linear-gradient(174.68deg, #b151c3 4.26%, #ea698b 95.75%),
+    linear-gradient(0deg, rgba(228, 231, 236, 0.5), rgba(228, 231, 236, 0.5)),
+    radial-gradient(
+      134.57% 100% at 50.05% 0%,
+      rgba(0, 0, 0, 0) 54.78%,
+      rgba(7, 3, 8, 0.0711043) 65.9%,
+      rgba(82, 31, 91, 0.8) 82.09%,
+      rgba(155, 58, 168, 0.64) 90.3%,
+      rgba(239, 139, 165, 0.8) 100%
+    ),
+    #111111;
+}
+
+.specialPlan > div {
+  padding-bottom: 64px;
+}
+
+@media (min-width: 640px) {
+  .specialPlan {
+    align-items: start;
+    flex-direction: row;
+  }
+  .specialPlan > div {
+    align-items: start;
+  }
+  .specialPlan > div:first-child {
+    width: 500px;
+  }
+  .specialPlan p,
+  .specialPlan h4 {
+    text-align: left;
+  }
+  .specialPlan .planTitle h4 {
+    align-self: initial;
+  }
+  .specialPlan .planTitle {
+    flex-direction: row;
+    align-items: center;
+  }
+  .specialPlan hr {
+    height: 100%;
+    width: 2px;
+    flex-shrink: 0;
+  }
 }

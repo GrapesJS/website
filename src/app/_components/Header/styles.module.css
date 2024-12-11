@@ -29,6 +29,12 @@
   pointer-events: all;
 }
 
+@media (max-width: 640px) {
+  .navbar .links {
+    display: none;
+  }
+}
+
 .content {
   display: flex;
   align-items: center;
