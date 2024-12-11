@@ -140,8 +140,8 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
             </p>
           </div>
           <div className={styles.categories}>
-            {linkCategories.map((cat) => (
-              <div className={styles.category}>
+            {linkCategories.map((cat, i) => (
+              <div key={i} className={styles.category}>
                 <h3 className={styles.categoryName}>{cat.category}</h3>
                 <div className={styles.links}>
                   {cat.links.map((link) => (

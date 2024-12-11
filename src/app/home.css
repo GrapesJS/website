@@ -146,7 +146,7 @@ h2 {
   font-weight: 700;
   line-height: 27.32px;
   letter-spacing: 0.11em;
-  text-align: left;
+  text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #c277d0;
@@ -252,4 +252,5 @@ section .home-responsive-columns section {
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  white-space: nowrap;
 }
