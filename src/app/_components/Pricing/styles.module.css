@@ -278,7 +278,7 @@
   .pricing .specialPlan > div:first-child {
     width: 500px;
   }
-  .specialPlan p,
+  .pricing .specialPlan p,
   .pricing .specialPlan h4 {
     text-align: left;
   }

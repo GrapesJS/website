@@ -1,4 +1,4 @@
-main.home {
+.home {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@ main.home {
   width: 100%;
 }
 
-main.home header {
+.home header {
   width: 100%;
   padding-left: 16px;
   padding-right: 16px;
@@ -40,11 +40,11 @@ main.home header {
   height: 54px;
 }
 
-main.home > section > * {
+.home > section > * {
   max-width: 1100px;
 }
 
-main.home > section {
+.home > section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +54,7 @@ main.home > section {
   width: 100%;
 }
 
-main.home > section:nth-of-type(1) {
+.home > section:nth-of-type(1) {
   padding-top: calc(74px + 72px + 36px);
   position: relative;
   padding-bottom: 0;
@@ -63,7 +63,7 @@ main.home > section:nth-of-type(1) {
   overflow: hidden;
 }
 
-main.home > section:nth-of-type(1)::before {
+.home > section:nth-of-type(1)::before {
   content: "";
   position: absolute;
   top: 0;
@@ -79,12 +79,12 @@ main.home > section:nth-of-type(1)::before {
   z-index: -1;
 }
 
-main.home > section:nth-of-type(2) {
+.home > section:nth-of-type(2) {
   position: relative;
   width: 100%;
 }
 
-main.home > section:nth-of-type(2)::before {
+.home > section:nth-of-type(2)::before {
   content: "";
   position: absolute;
   bottom: 100%;
@@ -102,8 +102,6 @@ main.home > section:nth-of-type(2)::before {
   font-weight: 700;
   line-height: 72px;
   text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #ffffff;
 }
 
@@ -117,8 +115,6 @@ main.home > section:nth-of-type(2)::before {
   font-weight: 400;
   line-height: 32px;
   text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #d0d5dd;
 }
 
@@ -128,8 +124,6 @@ main.home > section:nth-of-type(2)::before {
   line-height: 27.32px;
   letter-spacing: 0.11em;
   text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #c277d0;
   padding: 12px 24px;
 }
@@ -146,8 +140,6 @@ main.home > section:nth-of-type(2)::before {
   font-weight: 700;
   line-height: 38.25px;
   text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #ffffff;
 }
 
@@ -194,8 +186,6 @@ main.home > section:nth-of-type(2)::before {
   font-weight: 400;
   line-height: 24px;
   text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #ffffff;
 }
 
@@ -231,7 +221,5 @@ main.home > section:nth-of-type(2)::before {
   font-weight: 500;
   line-height: 20px;
   text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   white-space: nowrap;
 }
