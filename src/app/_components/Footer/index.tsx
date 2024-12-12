@@ -4,7 +4,7 @@ interface FooterProps extends React.HTMLProps<HTMLElement> {}
 
 const linkCategories: {
   category: string;
-  links: { id: string; label: string; href: string }[];
+  links: { id: string; label: string; href: string; target?: string }[];
 }[] = [
   {
     category: "Product",
@@ -19,22 +19,10 @@ const linkCategories: {
         label: "Features",
         href: "/#features",
       },
-      // TODO: page
-      {
-        id: "Tutorials",
-        label: "Tutorials",
-        href: "/tutorials",
-      },
       {
         id: "Pricing",
         label: "Pricing",
         href: "/#pricing",
-      },
-      // TODO: page
-      {
-        id: "Releases",
-        label: "Releases",
-        href: "/releases",
       },
     ],
   },
@@ -46,17 +34,24 @@ const linkCategories: {
         label: "Careers",
         href: "/careers",
       },
-      // TODO: page
       {
         id: "Contact",
         label: "Contact",
-        href: "/contact",
+        href: "mailto:sales@grapesjs.com",
       },
     ],
   },
   {
     category: "Resources",
-    links: [{ id: "Blog", label: "Blog", href: "/blog" }],
+    links: [
+      { id: "Blog", label: "Blog", href: "/blog" },
+      {
+        id: "Docs",
+        label: "Docs",
+        href: "https://app.grapesjs.com/docs-sdk/overview/getting-started",
+        target: "_blank",
+      },
+    ],
   },
   {
     category: "Legal",
@@ -96,7 +91,12 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
                 <h3 className={styles.categoryName}>{cat.category}</h3>
                 <div className={styles.links}>
                   {cat.links.map((link) => (
-                    <a key={link.id} className={styles.link} href={link.href}>
+                    <a
+                      key={link.id}
+                      className={styles.link}
+                      href={link.href}
+                      target={link.target}
+                    >
                       {link.label}
                     </a>
                   ))}

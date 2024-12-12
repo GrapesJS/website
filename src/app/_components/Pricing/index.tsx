@@ -86,7 +86,7 @@ const plans: Plan[] = [
     cta: {
       label: "Contact sales",
       variant: "secondary",
-      href: "#",
+      href: "mailto:sales@grapesjs.com",
     },
     includes: "business",
     features: [
