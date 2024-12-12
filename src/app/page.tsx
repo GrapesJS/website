@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <div className="bg"></div>
       <main>
-        <Header isHome transparent />
+        <Header isHome />
         <section>
           <h1>Design Without Code</h1>
           <p>

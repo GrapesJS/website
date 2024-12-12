@@ -41,21 +41,11 @@ const linkCategories: {
   {
     category: "Company",
     links: [
-      // TODO: page
-      {
-        id: "About us",
-        label: "About us",
-        href: "/about",
-      },
       {
         id: "Careers",
         label: "Careers",
         href: "/careers",
       },
-      // TODO: page
-      { id: "Press", label: "Press", href: "/press" },
-      // TODO: page
-      { id: "News", label: "News", href: "/news" },
       // TODO: page
       {
         id: "Contact",
@@ -66,39 +56,7 @@ const linkCategories: {
   },
   {
     category: "Resources",
-    links: [
-      { id: "Blog", label: "Blog", href: "/blog" },
-      // TODO: page
-      {
-        id: "Newsletter",
-        label: "Newsletter",
-        href: "/newsletter",
-      },
-      // TODO: page
-      {
-        id: "Events",
-        label: "Events",
-        href: "/events",
-      },
-      // TODO: page
-      {
-        id: "Help centre",
-        label: "Help centre",
-        href: "/help-centre",
-      },
-      // TODO: page
-      {
-        id: "Tutorials",
-        label: "Tutorials",
-        href: "/tutorials",
-      },
-      // TODO: page
-      {
-        id: "Support",
-        label: "Support",
-        href: "/support",
-      },
-    ],
+    links: [{ id: "Blog", label: "Blog", href: "/blog" }],
   },
   {
     category: "Legal",
@@ -110,30 +68,6 @@ const linkCategories: {
         id: "Privacy",
         label: "Privacy",
         href: "/privacy",
-      },
-      // TODO: page
-      {
-        id: "Cookies",
-        label: "Cookies",
-        href: "/cookies",
-      },
-      // TODO: page
-      {
-        id: "Licenses",
-        label: "Licenses",
-        href: "/licenses",
-      },
-      // TODO: page
-      {
-        id: "Settings",
-        label: "Settings",
-        href: "/settings",
-      },
-      // TODO: page
-      {
-        id: "Contact",
-        label: "Contact",
-        href: "/contact",
       },
     ],
   },

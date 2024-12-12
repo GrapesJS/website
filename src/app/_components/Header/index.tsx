@@ -12,17 +12,13 @@ const clsHeadInner =
 
 interface HeaderProps extends React.HTMLProps<HTMLElement> {
   isHome?: boolean;
-  transparent?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  isHome,
-  className,
-  transparent,
-  ...rest
-}) => {
+const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
   const [open, setOpen] = useState(false);
   const navLinks: { content: string; href: string; target?: string }[] = [
+    { content: "Features", href: "/#features" },
+    { content: "Pricing", href: "/#pricing" },
     { content: "Careers", href: "/careers" },
     { content: "Blog", href: "/blog" },
     { content: "Docs", href: "/docs" },
@@ -39,16 +35,8 @@ const Header: React.FC<HeaderProps> = ({
     // },
   ];
 
-  if (isHome) {
-    navLinks.unshift(
-      // TODO: page
-      { content: "About", href: "/about" },
-      { content: "Features", href: "/#features" }
-    );
-  }
-
   return (
-    <header className={styles.container} {...rest}>
+    <header className={cx(styles.container, isHome && styles.home)} {...rest}>
       <div className={styles.navbar}>
         <div className={styles.content}>
           <div className={styles.logo}>

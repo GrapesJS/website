@@ -2,31 +2,47 @@
   display: flex;
   justify-content: center;
   position: sticky;
+  /* height: 0; */
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.container.home {
+  display: flex;
+  justify-content: center;
+  position: sticky;
   height: 0;
   top: 36px;
   z-index: 10;
   pointer-events: none;
   margin: 0px 16px;
+  margin-top: 36px;
 }
 
 .navbar {
   height: fit-content;
-  color: #d0d5dd;
 
   padding: 16px 36px;
 
-  border-radius: 1000px;
+  color: #fff;
+  background: linear-gradient(120deg, #d983a6, #842d73);
 
   box-sizing: border-box;
 
   position: relative;
+  width: 100%;
+  pointer-events: all;
+}
+
+.container.home .navbar {
+  border-radius: 1000px;
+  border: solid 2px rgba(255, 255, 255, 0.2);
+  color: #d0d5dd;
   background: #38303780;
   background-clip: padding-box;
   backdrop-filter: blur(100px);
-  border: solid 2px rgba(255, 255, 255, 0.2);
-  width: 100%;
   max-width: 890px;
-  pointer-events: all;
 }
 
 .drawerButton {
