@@ -61,22 +61,29 @@
     display: block;
   }
   .drawer {
+    color: #fff;
+    background: linear-gradient(120deg, #d983a6, #842d73);
     touch-action: none;
     display: block;
     position: fixed;
     z-index: -1;
-    padding-top: calc(36px + 68px + 16px);
     padding-bottom: 16px;
     top: 0px;
     left: 0%;
-    padding-right: 48px;
+    padding-top: calc(68px + 16px);
+    padding-right: 32px;
     width: 100%;
     height: 100dvh;
-    color: #d0d5dd;
-    background: #060406;
     transform: translateX(100%);
     transition: 0.25s transform ease-in-out;
     pointer-events: all;
+  }
+
+  .container.home .drawer {
+    color: #d0d5dd;
+    background: #060406;
+    padding-top: calc(36px + 68px + 16px);
+    padding-right: 48px;
   }
   .drawer.open {
     transform: translateX(0%);
