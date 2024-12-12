@@ -165,7 +165,7 @@ const Pricing = ({ ...rest }: Props) => {
   ] as const;
   const selectedPeriod = tabs[selectedIndex].id as "monthly" | "annual";
   return (
-    <div {...rest} className={styles.container}>
+    <div {...rest} className={styles.pricing}>
       <PillTabs tabs={tabs} selectedIndex={selectedIndex}></PillTabs>
       <div className={styles.plans}>
         <div className={styles.normalPlans}>
