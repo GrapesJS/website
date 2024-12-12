@@ -19,24 +19,24 @@
   gap: 64px;
 }
 
-.logoAndDescription {
+.footer .logoAndDescription {
   width: 240px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.logo {
+.footer .logo {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.logo img {
+.footer .logo img {
   height: 48px;
 }
 
-.logo h2 {
+.footer .logo h2 {
   font-family: var(--font-inter);
   font-style: normal;
   font-weight: 600;
@@ -48,7 +48,7 @@
   padding: 0;
 }
 
-.description {
+.footer .description {
   text-align: start;
   font-family: var(--font-inter);
   font-style: normal;
@@ -59,7 +59,7 @@
   color: #ddd0d1;
 }
 
-.categories {
+.footer .categories {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -67,20 +67,20 @@
   gap: 24px;
 }
 
-.categories > .category {
+.footer .categories > .category {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 160px;
 }
 
-.links {
+.footer .links {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.categoryName {
+.footer .categoryName {
   font-family: var(--font-inter);
   font-style: normal;
   font-weight: 600;
@@ -91,7 +91,7 @@
   color: #c277d0;
 }
 
-.link {
+.footer .link {
   font-family: var(--font-inter);
   font-style: normal;
   font-weight: 600;
@@ -138,7 +138,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  .categories {
+  .footer .categories {
     padding-left: 0;
     justify-content: center;
   }

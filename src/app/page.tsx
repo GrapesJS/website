@@ -4,12 +4,13 @@ import Header from "./_components/Header";
 import Pricing from "./_components/Pricing";
 import StarOnGH from "./_components/StarOnGH";
 import "./home.css";
+import styles from "./styles.module.css";
 
 export default function HomePage() {
   return (
     <>
-      <div className="bg"></div>
-      <main>
+      <div className={styles.bg}></div>
+      <main className={styles.home}>
         <Header isHome />
         <section>
           <h1>Design Without Code</h1>
@@ -43,7 +44,7 @@ export default function HomePage() {
             <h2>POWERING SOLUTIONS FOR</h2>
             <hr />
           </div>
-          <div className="logos-container">
+          <div className={styles.logosContainer}>
             <img src="assets/images/external-logos/braze.png" alt="Braze" />
             <img
               src="assets/images/external-logos/france-gov.png"
@@ -102,7 +103,7 @@ export default function HomePage() {
               className="pt-[36px]"
             />
           </section>
-          <div className="home-responsive-columns">
+          <div className={styles.homeResponsiveColumns}>
             <section>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
                 <h4>Additional Panels</h4>
@@ -122,7 +123,7 @@ export default function HomePage() {
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <div className="flex items-center gap-[8px]">
                 <h4>Ready to use elements</h4>
-                <span className="comingSoonTag">Coming Soon</span>
+                <span className={styles.comingSoonTag}>Coming Soon</span>
               </div>
               <p>Access pro components, templates, and prebuilt blocks.</p>
             </div>
