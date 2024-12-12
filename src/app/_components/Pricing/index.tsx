@@ -33,7 +33,7 @@ const plans: Plan[] = [
     cta: {
       label: "Try Now",
       variant: "tertiary",
-      href: "#",
+      href: "https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree",
     },
     features: [
       "Access to basic features",
@@ -50,7 +50,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: "#",
+      href: "https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanStartup",
     },
     includes: "free",
     features: [
@@ -68,7 +68,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: "#",
+      href: "https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanBusiness",
     },
     includes: "startup",
     features: [
@@ -86,7 +86,7 @@ const plans: Plan[] = [
     cta: {
       label: "Contact sales",
       variant: "secondary",
-      href: "mailto:sales@grapesjs.com",
+      href: "https://forms.gle/VUycp3rc8iCpbh9k8",
     },
     includes: "business",
     features: [

@@ -20,7 +20,7 @@ export default function HomePage() {
             business.
           </p>
 
-          <CTALink href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button">
+          <CTALink href="https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree">
             Start Building
           </CTALink>
 
@@ -85,7 +85,7 @@ export default function HomePage() {
             versatile framework provides everything you need, from drag-and-drop
             editing to responsive design.
           </p>
-          <CTALink href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button">
+          <CTALink href="https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree">
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>
 
@@ -167,7 +167,7 @@ export default function HomePage() {
         <section>
           <h3>Get started for free</h3>
           <p>Join the thousands of companies & developers using Grapes today</p>
-          <CTALink href="https://app.grapesjs.com/studio?utm_source=studiotrial&utm_medium=button">
+          <CTALink href="https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree">
             Get Started for Free
           </CTALink>
         </section>

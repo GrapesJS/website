@@ -56,13 +56,15 @@ const linkCategories: {
   {
     category: "Legal",
     links: [
-      // TODO: page
-      { id: "Terms", label: "Terms", href: "/terms" },
-      // TODO: page
+      {
+        id: "Terms",
+        label: "Terms",
+        href: "https://app.grapesjs.com/terms",
+      },
       {
         id: "Privacy",
         label: "Privacy",
-        href: "/privacy",
+        href: "https://app.grapesjs.com/privacy",
       },
     ],
   },
