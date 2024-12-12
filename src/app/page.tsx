@@ -1,3 +1,4 @@
+import { cx } from "@/lib/makeCls";
 import CTALink from "./_components/CTALink";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
@@ -40,7 +41,12 @@ export default function HomePage() {
         </section>
 
         <section>
-          <div className="flex flex-col items-center">
+          <div
+            className={cx(
+              "flex flex-col items-center",
+              styles.specialHeadingContainer
+            )}
+          >
             <h2>POWERING SOLUTIONS FOR</h2>
             <hr />
           </div>
@@ -64,7 +70,12 @@ export default function HomePage() {
           </div>
         </section>
         <section>
-          <div className="flex flex-col items-center">
+          <div
+            className={cx(
+              "flex flex-col items-center",
+              styles.specialHeadingContainer
+            )}
+          >
             <h2 id="features">FEATURES</h2>
             <hr />
           </div>
@@ -130,12 +141,17 @@ export default function HomePage() {
             <img
               src="assets/images/sdk/6.png"
               alt="SDK UI"
-              className="h-[360px] object-cover  w-auto"
+              className="h-[360px] object-cover !w-auto"
             />
           </section>
         </section>
         <section>
-          <div className="flex flex-col items-center">
+          <div
+            className={cx(
+              "flex flex-col items-center",
+              styles.specialHeadingContainer
+            )}
+          >
             <h2 id="pricing">PRICING</h2>
             <hr />
           </div>

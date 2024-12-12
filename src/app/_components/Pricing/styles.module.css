@@ -136,6 +136,7 @@
 .plan hr {
   background: #e4e7ec80;
   height: 2px;
+  width: 100%;
 }
 
 .plan .features {

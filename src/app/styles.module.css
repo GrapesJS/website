@@ -131,7 +131,7 @@ main.home > section:nth-of-type(2)::before {
   padding: 12px 24px;
 }
 
-.home hr {
+.specialHeadingContainer hr {
   border: none;
   height: 1px;
   width: 100%;
