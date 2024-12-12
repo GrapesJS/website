@@ -16,7 +16,7 @@ main.home header {
   background: url(/assets/images/background.svg) bottom -200px center no-repeat,
     url(/assets/images/background-pattern.svg) top center, #060406;
   background-size: cover;
-  height: 100dvh;
+  height: 110vh;
   width: 100dvw;
   position: fixed;
   z-index: -1;

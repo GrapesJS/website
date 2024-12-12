@@ -72,7 +72,7 @@
     padding-top: calc(68px + 16px);
     padding-right: 32px;
     width: 100%;
-    height: 100dvh;
+    height: 110vh;
     transform: translateX(100%);
     transition: 0.25s transform ease-in-out;
     pointer-events: all;
