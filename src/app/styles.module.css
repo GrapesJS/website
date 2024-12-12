@@ -16,10 +16,13 @@ main.home header {
   background: url(/assets/images/background.svg) bottom -200px center no-repeat,
     url(/assets/images/background-pattern.svg) top center, #060406;
   background-size: cover;
-  height: 110vh;
-  width: 100dvw;
+  height: 100vh;
+  width: 100vw;
   position: fixed;
   z-index: -1;
+
+  /* fixes SVG rendering glitch on scroll in iOS */
+  -webkit-transform: scale(1);
 }
 
 .logosContainer {
