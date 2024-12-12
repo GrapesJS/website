@@ -130,7 +130,7 @@ export default function HomePage() {
               <img src="assets/images/sdk/5.png" alt="SDK support chat" />
             </section>
           </div>
-          <section className="flex !flex-col items-stretch">
+          <section className="flex !flex-col !items-stretch">
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <div className="flex items-center gap-[8px]">
                 <h4>Ready to use elements</h4>
