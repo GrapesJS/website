@@ -2,6 +2,7 @@
 import { HTMLAttributes, useState } from "react";
 
 import { cx } from "@/lib/makeCls";
+import { getEnterpriseContactFormUrl, getSdkDashboardUrl } from "@/lib/urls";
 import CTALink from "../CTALink";
 import PillTabs, { Tab } from "../PillTabs";
 import styles from "./styles.module.css";
@@ -33,7 +34,7 @@ const plans: Plan[] = [
     cta: {
       label: "Try Now",
       variant: "tertiary",
-      href: "https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree",
+      href: getSdkDashboardUrl("free"),
     },
     features: [
       "Access to basic features",
@@ -50,7 +51,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: "https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanStartup",
+      href: getSdkDashboardUrl("startup"),
     },
     includes: "free",
     features: [
@@ -68,7 +69,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: "https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanBusiness",
+      href: getSdkDashboardUrl("business"),
     },
     includes: "startup",
     features: [
@@ -86,7 +87,7 @@ const plans: Plan[] = [
     cta: {
       label: "Contact sales",
       variant: "secondary",
-      href: "https://forms.gle/VUycp3rc8iCpbh9k8",
+      href: getEnterpriseContactFormUrl(),
     },
     includes: "business",
     features: [

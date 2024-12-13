@@ -1,3 +1,14 @@
+import {
+  getBlogUrl,
+  getCareersUrl,
+  getContactUrl,
+  getFeaturesUrl,
+  getGettingStartedDocsUrl,
+  getHomeUrl,
+  getPricingUrl,
+  getPrivacyUrl,
+  getTermsUrl,
+} from "@/lib/urls";
 import styles from "./styles.module.css";
 
 interface FooterProps extends React.HTMLProps<HTMLElement> {}
@@ -12,17 +23,17 @@ const linkCategories: {
       {
         id: "Overview",
         label: "Overview",
-        href: "/",
+        href: getHomeUrl(),
       },
       {
         id: "Features",
         label: "Features",
-        href: "/#features",
+        href: getFeaturesUrl(),
       },
       {
         id: "Pricing",
         label: "Pricing",
-        href: "/#pricing",
+        href: getPricingUrl(),
       },
     ],
   },
@@ -32,23 +43,23 @@ const linkCategories: {
       {
         id: "Careers",
         label: "Careers",
-        href: "/careers",
+        href: getCareersUrl(),
       },
       {
         id: "Contact",
         label: "Contact",
-        href: "mailto:sales@grapesjs.com",
+        href: getContactUrl(),
       },
     ],
   },
   {
     category: "Resources",
     links: [
-      { id: "Blog", label: "Blog", href: "/blog" },
+      { id: "Blog", label: "Blog", href: getBlogUrl() },
       {
         id: "Docs",
         label: "Docs",
-        href: "https://app.grapesjs.com/docs-sdk/overview/getting-started",
+        href: getGettingStartedDocsUrl(),
         target: "_blank",
       },
     ],
@@ -59,12 +70,12 @@ const linkCategories: {
       {
         id: "Terms",
         label: "Terms",
-        href: "https://app.grapesjs.com/terms",
+        href: getTermsUrl(),
       },
       {
         id: "Privacy",
         label: "Privacy",
-        href: "https://app.grapesjs.com/privacy",
+        href: getPrivacyUrl(),
       },
     ],
   },

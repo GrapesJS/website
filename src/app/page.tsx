@@ -1,4 +1,9 @@
 import { cx } from "@/lib/makeCls";
+import {
+  getGettingStartedDocsUrl,
+  getSdkDashboardUrl,
+  getStudioEditorUrl,
+} from "@/lib/urls";
 import CTALink from "./_components/CTALink";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
@@ -20,8 +25,10 @@ export default function HomePage() {
             business.
           </p>
 
-          <CTALink href="https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree">
-            Start Building
+          <CTALink href={getStudioEditorUrl()}>Try the Studio Editor</CTALink>
+
+          <CTALink href={getGettingStartedDocsUrl()} variant="tertiary">
+            Get Started with the Studio SDK
           </CTALink>
 
           <StarOnGH />
@@ -85,7 +92,7 @@ export default function HomePage() {
             versatile framework provides everything you need, from drag-and-drop
             editing to responsive design.
           </p>
-          <CTALink href="https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree">
+          <CTALink href={getSdkDashboardUrl("free")}>
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>
 
@@ -167,7 +174,7 @@ export default function HomePage() {
         <section>
           <h3>Get started for free</h3>
           <p>Join the thousands of companies & developers using Grapes today</p>
-          <CTALink href="https://app.grapesjs.com/dashboard/sdk/licenses?ref=ctaSdkPlanFree">
+          <CTALink href={getSdkDashboardUrl("free")}>
             Get Started for Free
           </CTALink>
         </section>
