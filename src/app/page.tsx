@@ -25,11 +25,12 @@ export default function HomePage() {
             business.
           </p>
 
-          <CTALink href={getStudioEditorUrl()}>Try the Studio Editor</CTALink>
-
-          <CTALink href={getGettingStartedDocsUrl()} variant="tertiary">
-            Get Started with the Studio SDK
-          </CTALink>
+          <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center">
+            <CTALink href={getStudioEditorUrl()}>Try the Studio Editor</CTALink>
+            <CTALink href={getGettingStartedDocsUrl()} variant="tertiary">
+              Get Started with the Studio SDK
+            </CTALink>
+          </div>
 
           <StarOnGH />
 

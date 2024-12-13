@@ -8,4 +8,5 @@
   line-height: 32px;
   text-align: center;
   color: var(--textColor);
+  flex-wrap: wrap;
 }

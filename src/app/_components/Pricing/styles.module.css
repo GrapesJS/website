@@ -15,7 +15,10 @@
 }
 
 .pricing .normalPlans {
-  width: 100%;
+  margin-left: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   overflow-x: auto;
@@ -39,9 +42,9 @@
 
   border-radius: 16px;
 
-  flex: 1 1;
+  flex: 1 0;
   width: 300px;
-  flex-basis: 300px;
+  flex-basis: 350px;
 }
 
 .pricing .plan > div {
