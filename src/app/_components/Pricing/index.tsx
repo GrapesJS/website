@@ -55,16 +55,16 @@ const plans: Plan[] = [
     },
     includes: "free",
     features: [
-      "Access to basic features",
-      "Basic reporting and analytics",
-      "Up to 10 individual users",
+      "Custom Branding",
+      "Priority Email Support",
+      "Workspace Sharing",
     ],
   },
   {
     id: "business",
     name: "Business plan",
     icon: "/assets/images/plans/business.png",
-    price: { monthly: "$2000", annual: "$20000" },
+    price: { monthly: "$2000", annual: "$20,000" },
     description: "Best for growing businesses",
     cta: {
       label: "Get This Plan",
@@ -73,9 +73,9 @@ const plans: Plan[] = [
     },
     includes: "startup",
     features: [
-      "Access to basic features",
-      "Basic reporting and analytics",
-      "Up to 10 individual users",
+      "Dedicated Slack Channel",
+      "Subdomain Support",
+      "Unlimited Plugin Access",
     ],
   },
   {
@@ -93,14 +93,14 @@ const plans: Plan[] = [
     features: [
       "Access to basic features",
       "Basic reporting and analytics",
-      "Up to 10 individual users",
-      "Access to basic features",
-      "Basic reporting and analytics",
-      "Up to 10 individual users",
-      "Access to basic features",
-      "Basic reporting and analytics",
-      "Up to 10 individual users",
-      "Access to basic features",
+      "Multi Tenant Support",
+      "On Premises Support",
+      "24x7 Phone Support",
+      "Unlimited Cloud Storage",
+      "Unlimited Sessions",
+      "Unlimited Users",
+      "Custom Development",
+      
     ],
   },
 ] as const;
