@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-  background: #060406;
+  background: var(--backgroundColor);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,12 +38,11 @@
 
 .footer .logo h2 {
   font-family: var(--font-inter);
-  font-style: normal;
   font-weight: 600;
   font-size: 24px;
   line-height: 24px;
 
-  color: #ffffff;
+  color: var(--highEmphasisTextColor);
 
   padding: 0;
 }
@@ -51,12 +50,11 @@
 .footer .description {
   text-align: start;
   font-family: var(--font-inter);
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 
-  color: #ddd0d1;
+  color: var(--lowEmphasisTextColor);
 }
 
 .footer .categories {
@@ -82,28 +80,28 @@
 
 .footer .categoryName {
   font-family: var(--font-inter);
-  font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
   text-align: left;
 
-  color: #c277d0;
+  color: var(--activeHighlightColor);
 }
 
 .footer .link {
   font-family: var(--font-inter);
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
   width: fit-content;
 
-  color: #ddd0d1;
+  color: var(--lowEmphasisTextColor);
+
+  transition: color var(--transitionDuration) var(--transitionTimingFunction);
 }
 
 .link:hover {
-  color: white;
+  color: var(--hoverTextColor);
 }
 
 .footer section:last-child {
@@ -118,16 +116,15 @@
   text-align: left;
 
   font-family: var(--font-inter);
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 
-  color: #c277d0;
+  color: var(--activeHighlightColor);
 }
 
 .footer section:last-child img {
-  transition: 0.25s opacity ease-in-out;
+  transition: opacity var(--transitionDuration) var(--transitionTimingFunction);
 }
 .footer section:last-child img:hover {
   opacity: 0.5;

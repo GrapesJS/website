@@ -34,12 +34,8 @@
   align-items: center;
   padding: 0px;
 
-  background: rgba(39, 39, 39, 0.8);
-  border: 2px solid rgba(228, 231, 236, 0.5);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    0px 12px 16px -4px rgba(16, 24, 40, 0.08),
-    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
-  backdrop-filter: blur(25px);
+  background: #272727cc;
+  border: 2px solid #e4e7ec80;
 
   border-radius: 16px;
 
@@ -81,7 +77,6 @@
 }
 
 .pricing .plan .planTitle h4 {
-  font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
@@ -98,20 +93,18 @@
   padding-top: 12px;
   padding-bottom: 12px;
 
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
 }
 
 .pricing .price {
-  font-style: normal;
   font-weight: 700;
   font-size: 54px;
   line-height: 64px;
   letter-spacing: -0.02em;
 
-  color: #ffffff;
+  color: var(--highEmphasisTextColor);
 
   flex: none;
   flex-grow: 0;
@@ -119,14 +112,13 @@
 
 .pricing .description {
   font-family: var(--font-inter);
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
   text-wrap: nowrap;
 
-  color: #d0d5dd;
+  color: var(--textColor);
 
   flex: none;
   align-self: stretch;
@@ -135,6 +127,7 @@
 
 .pricing .plan hr {
   background: #e4e7ec80;
+  border: none;
   height: 2px;
   width: 100%;
 }
@@ -146,7 +139,6 @@
 
 .pricing .plan .features h5 {
   font-family: var(--font-inter);
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
@@ -159,12 +151,11 @@
 }
 
 .pricing .plan .features p {
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 
-  color: #d0d5dd;
+  color: var(--textColor);
 }
 
 .pricing .plan .features strong {
@@ -172,12 +163,11 @@
 }
 
 .pricing .plan .features ul {
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 
-  color: #d0d5dd;
+  color: var(--textColor);
   list-style-type: none;
 
   display: flex;
@@ -205,7 +195,6 @@
   background: url("/assets/images/icons/check.svg") no-repeat 0 0 transparent;
   padding-left: 36px;
 
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -218,15 +207,14 @@
 
 .pricing .specialPlan {
   width: 100%;
-  backdrop-filter: initial;
 
   background: radial-gradient(
       134.57% 100% at 50.05% 0%,
-      rgba(0, 0, 0, 0) 54.78%,
-      rgba(7, 3, 8, 0.0711043) 65.9%,
-      rgba(82, 31, 91, 0.8) 82.09%,
-      rgba(155, 58, 168, 0.64) 90.3%,
-      rgba(239, 139, 165, 0.8) 100%
+      #00000000 54.78%,
+      #07030812 65.9%,
+      #521f5bcc 82.09%,
+      #9b3aa8a3 90.3%,
+      #ef8ba5cc 100%
     ),
     #111111;
 
@@ -238,7 +226,6 @@
 }
 
 .pricing .specialPlan::before {
-  backdrop-filter: none;
   content: "";
   position: absolute;
   top: 0;
@@ -249,18 +236,8 @@
   z-index: -1;
   margin: -2px;
   border-radius: inherit;
-
   background: linear-gradient(174.68deg, #b151c3 4.26%, #ea698b 95.75%),
-    linear-gradient(0deg, rgba(228, 231, 236, 0.5), rgba(228, 231, 236, 0.5)),
-    radial-gradient(
-      134.57% 100% at 50.05% 0%,
-      rgba(0, 0, 0, 0) 54.78%,
-      rgba(7, 3, 8, 0.0711043) 65.9%,
-      rgba(82, 31, 91, 0.8) 82.09%,
-      rgba(155, 58, 168, 0.64) 90.3%,
-      rgba(239, 139, 165, 0.8) 100%
-    ),
-    #111111;
+    linear-gradient(#e4e7ec80, #e4e7ec80);
 }
 
 .pricing .specialPlan > div {

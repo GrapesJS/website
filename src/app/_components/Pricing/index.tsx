@@ -100,7 +100,6 @@ const plans: Plan[] = [
       "Unlimited Sessions",
       "Unlimited Users",
       "Custom Development",
-      
     ],
   },
 ] as const;

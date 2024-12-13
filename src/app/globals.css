@@ -4,6 +4,23 @@
 
 body {
   font-weight: 300;
+
+  --activeBaseColor: #973aa8;
+  --activeHighlightColor: #c277d0;
+  --activeTextColor: #ffffff;
+  --activeBorderColor: #e685f6;
+  --activeOpaqueColor: #411149;
+
+  --backgroundColor: #060406;
+  --textColor: #d0d5dd;
+
+  --highEmphasisTextColor: #ffffff;
+  --hoverTextColor: #ffffff;
+
+  --lowEmphasisTextColor: #ddd0d1;
+
+  --transitionDuration: 0.25s;
+  --transitionTimingFunction: ease-in-out;
 }
 
 .link-gjs {

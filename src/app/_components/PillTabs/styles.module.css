@@ -10,7 +10,7 @@
   padding: 6px;
   gap: 8px;
 
-  background: rgba(39, 39, 39, 0.8);
+  background: #272727cc;
   border: 1px solid #b151c3;
   border-radius: 1000px;
 
@@ -19,12 +19,11 @@
 }
 
 .tab {
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
 
-  color: rgba(255, 255, 255, 0.5);
+  color: #ffffff80;
 
   display: flex;
   flex-direction: row;
@@ -38,16 +37,15 @@
 }
 
 .tab:hover {
-  color: #ffffff;
+  color: var(--hoverTextColor);
 }
 
 .selected {
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
 
-  color: #ffffff;
+  color: var(--hoverTextColor);
 
   /* _Tab button base */
 

@@ -36,8 +36,8 @@
 
 .container.home .navbar {
   border-radius: 1000px;
-  border: solid 2px rgba(255, 255, 255, 0.2);
-  color: #d0d5dd;
+  border: solid 2px #ffffff33;
+  color: var(--textColor);
   background: #38303780;
   background-clip: padding-box;
   backdrop-filter: blur(100px);
@@ -74,13 +74,14 @@
     width: 100%;
     height: 100vh;
     transform: translateX(100%);
-    transition: 0.25s transform ease-in-out;
+    transition: transform var(--transitionDuration)
+      var(--transitionTimingFunction);
     pointer-events: all;
   }
 
   .container.home .drawer {
-    color: #d0d5dd;
-    background: #060406;
+    color: var(--textColor);
+    background: var(--backgroundColor);
     padding-top: calc(36px + 68px + 16px);
     padding-right: 48px;
   }
@@ -128,9 +129,8 @@
   font-size: 16px;
   line-height: 24px;
   text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  transition: color 0.25s ease-in-out;
+
+  transition: color var(--transitionDuration) var(--transitionTimingFunction);
 }
 
 .link:hover {

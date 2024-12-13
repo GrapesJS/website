@@ -1,45 +1,12 @@
-.ctaLink {
-  text-wrap: nowrap;
-}
-.ctaLink.primary {
-  box-sizing: border-box;
-
-  background: radial-gradient(50% 50% at 50% 50%, #c277d0 0%, #973aa8 100%);
-
-  position: relative;
-  background-clip: padding-box;
-  border: solid 2px transparent;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 22px;
-  gap: 10px;
-
-  width: fit-content;
-
-  border-radius: 1000px;
-
-  /* Text */
-  font-family: var(--font-manrope);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 28px;
-
-  color: #ffffff;
-}
-
 @property --fromColor {
   syntax: "<color>";
-  initial-value: rgba(255 255 255 / 0);
+  initial-value: #ffffff00;
   inherits: false;
 }
 
 @property --toColor {
   syntax: "<color>";
-  initial-value: rgb(255 255 255 / 0.1);
+  initial-value: #ffffff1a;
   inherits: false;
 }
 
@@ -49,7 +16,52 @@
   inherits: false;
 }
 
-.ctaLink.primary::before {
+.ctaLink {
+  --ctaHighlightColor: #ffffff66;
+  --ctaHighlightHoverAngle: 180deg;
+  --ctaHighlightDelay: 0.2s;
+  text-wrap: nowrap;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+
+  padding: 16px 22px;
+  width: fit-content;
+  border-radius: 1000px;
+
+  background: var(--baseBackground);
+
+  position: relative;
+  background-clip: padding-box;
+  border: solid 2px transparent;
+  isolation: isolate;
+
+  color: var(--activeTextColor);
+}
+
+.ctaLink::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: -2;
+  margin: -2px;
+  border-radius: inherit;
+
+  background: linear-gradient(var(--angle), var(--fromColor), var(--toColor)),
+    var(--baseBackground);
+
+  transition: --angle var(--transitionDuration) var(--transitionTimingFunction)
+      var(--ctaHighlightDelay),
+    --fromColor var(--transitionDuration) var(--transitionTimingFunction),
+    --toColor var(--transitionDuration) var(--transitionTimingFunction);
+}
+.ctaLink::after {
   content: "";
 
   position: absolute;
@@ -59,138 +71,41 @@
   left: 0;
 
   z-index: -1;
-  margin: -2px;
   border-radius: inherit;
 
-  --animation-duration: 0.25s;
-
-  background: linear-gradient(var(--angle), var(--fromColor), var(--toColor)),
-    radial-gradient(50% 50% at 50% 50%, #c277d0 0%, #973aa8 100%);
-
-  transition: --angle 0.25s ease-in-out 0.2s,
-    --fromColor var(--animation-duration) ease-in-out,
-    --toColor var(--animation-duration) ease-in-out;
+  background: var(--baseBackground);
 }
 
-.ctaLink.primary:hover::before {
-  --toColor: rgb(255 255 255 / 0.4);
-  --angle: 180deg;
+.ctaLink:hover::before {
+  --toColor: var(--ctaHighlightColor);
+  --angle: var(--ctaHighlightHoverAngle);
+}
+
+.ctaLink.primary {
+  --baseBackground: radial-gradient(
+    50% 50% at 50% 50%,
+    var(--activeHighlightColor) 0%,
+    var(--activeBaseColor) 100%
+  );
 }
 
 .ctaLink.secondary {
-  box-sizing: border-box;
-
-  background: #973aa8;
-
-  position: relative;
-  background-clip: padding-box;
-  border: solid 2px transparent;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 22px;
-  gap: 10px;
-
-  width: fit-content;
-
-  border-radius: 1000px;
-
-  /* Text */
-  font-family: var(--font-manrope);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 28px;
-
-  color: #ffffff;
-}
-
-.ctaLink.secondary::before {
-  content: "";
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  z-index: -1;
-  margin: -2px;
-  border-radius: inherit;
-
-  --animation-duration: 0.25s;
-
-  background: linear-gradient(var(--angle), var(--fromColor), var(--toColor)),
-    #973aa8;
-
-  transition: --angle 0.25s ease-in-out 0.2s,
-    --fromColor var(--animation-duration) ease-in-out,
-    --toColor var(--animation-duration) ease-in-out;
-}
-
-.ctaLink.secondary:hover::before {
-  --toColor: rgb(255 255 255 / 0.4);
-  --angle: 180deg;
+  --baseBackground: linear-gradient(
+    0deg,
+    var(--activeBaseColor),
+    var(--activeBaseColor)
+  );
 }
 
 .ctaLink.tertiary {
-  box-sizing: border-box;
-
-  background: #272727cc;
-
-  position: relative;
-  background-clip: padding-box;
-  border: solid 2px transparent;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 22px;
-  gap: 10px;
-
-  width: fit-content;
-
-  border-radius: 1000px;
-
-  /* Text */
-  font-family: var(--font-manrope);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 28px;
-
-  color: #ffffff;
+  --baseBackground: #272727;
+  color: var(--activeBorderColor);
 }
 
 .ctaLink.tertiary::before {
-  content: "";
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  z-index: -1;
-  margin: -2px;
-  border-radius: inherit;
-
-  --animation-duration: 0.25s;
-
   background: linear-gradient(var(--angle), var(--fromColor), var(--toColor)),
-    #272727cc;
-
-  transition: --angle 0.25s ease-in-out 0.2s,
-    --fromColor var(--animation-duration) ease-in-out,
-    --toColor var(--animation-duration) ease-in-out;
-}
-
-.ctaLink.tertiary:hover::before {
-  --toColor: rgb(255 255 255 / 0.4);
-  --angle: 180deg;
+    linear-gradient(0deg, var(--activeBorderColor), var(--activeBorderColor)),
+    var(--baseBackground);
 }
 
 .ctaLink.full {
