@@ -89,13 +89,20 @@
 .home > section:nth-of-type(2)::before {
   content: "";
   position: absolute;
-  bottom: 100%;
+  top: 0;
+  transform: translateY(-50%);
   width: 100%;
-  height: 200px;
-  /* height: 400px; */
-  background: linear-gradient(180deg, #06040600 0%, var(--backgroundColor) 100%)
+  height: 1000px;
+  pointer-events: none;
+  background: linear-gradient(
+      180deg,
+      var(--transparentColor) 20%,
+      var(--backgroundColor) 40%,
+      var(--backgroundColor) 50%,
+      var(--transparentColor) 80%
+    )
     no-repeat;
-  z-index: 1;
+  z-index: 0;
 }
 
 .home h1,

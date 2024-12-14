@@ -55,8 +55,10 @@ export default function HomePage() {
               styles.specialHeadingContainer
             )}
           >
-            <h2>POWERING SOLUTIONS FOR</h2>
-            <hr />
+            <div className="z-[1]">
+              <h2>POWERING SOLUTIONS FOR</h2>
+              <hr />
+            </div>
           </div>
           <div className={styles.logosContainer}>
             <img src="assets/images/external-logos/braze.png" alt="Braze" />
