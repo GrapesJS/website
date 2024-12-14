@@ -107,10 +107,6 @@
   flex: 1 0;
 }
 
-.logo img {
-  height: 31.14px;
-}
-
 .logo a {
   display: block;
   width: fit-content;
