@@ -5,6 +5,7 @@
 body {
   font-weight: 300;
 
+  --transparentColor: rgba(255, 255, 255, 0);
   --activeBaseColor: #973aa8;
   --activeHighlightColor: #c277d0;
   --activeTextColor: #ffffff;

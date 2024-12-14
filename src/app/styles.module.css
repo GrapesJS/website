@@ -39,6 +39,7 @@
 
 .logosContainer img {
   height: 54px;
+  filter: grayscale(1);
 }
 
 .home > section > * {
@@ -130,9 +131,9 @@
   width: 100%;
   background: linear-gradient(
     90deg,
-    var(--backgroundColor) 0%,
+    var(--transparentColor) 0%,
     #caa4ea 49.5%,
-    var(--backgroundColor) 100%
+    var(--transparentColor) 100%
   );
 }
 
