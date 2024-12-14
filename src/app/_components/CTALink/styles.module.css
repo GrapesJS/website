@@ -84,7 +84,7 @@
 .ctaLink.primary {
   --baseBackground: radial-gradient(
     50% 50% at 50% 50%,
-    var(--activeHighlightColor) 0%,
+    var(--activeBaseColor) 0%,
     var(--activeBaseColor) 100%
   );
 }
