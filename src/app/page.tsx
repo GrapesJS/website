@@ -174,7 +174,7 @@ export default function HomePage() {
 
           <Pricing />
         </section>
-        <section>
+        <section className="!py-20">
           <h3>Get started for free</h3>
           <p>Join the thousands of companies & developers using Grapes today</p>
           <CTALink href={getSdkDashboardUrl("free")}>
