@@ -2,8 +2,8 @@ import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
 import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/blogApi";
-import Header from "../_components/header";
-import Footer from "../_components/footer";
+import Footer from "../_components/Footer";
+import Header from "../_components/Header";
 
 export default function PageBlogPosts() {
   const allPosts = getAllPosts();
@@ -12,12 +12,12 @@ export default function PageBlogPosts() {
 
   return (
     <main>
-      <Header/>
+      <Header />
       <Container className="pt-10 md:pt-20">
-        {heroPost && <HeroPost post={heroPost}/>}
+        {heroPost && <HeroPost post={heroPost} />}
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
-      <Footer/>
+      <Footer />
     </main>
   );
 }
