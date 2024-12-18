@@ -18,9 +18,9 @@ export default function HomePage() {
       <div className={styles.bg}></div>
       <main className={styles.home}>
         <Header isHome />
-        <section>
-          <h1>Design Without Code</h1>
-          <p>
+        <section className={cx(styles.heroSection, styles.section)}>
+          <h1 className={cx(styles.h1)}>Design Without Code</h1>
+          <p className={cx(styles.p)}>
             The customizable website and email builder that grows with your
             business.
           </p>
@@ -48,49 +48,62 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section>
-          <div
-            className={cx(
-              "flex flex-col items-center",
-              styles.specialHeadingContainer
-            )}
-          >
+        <hr className={styles.shadowSeparator} />
+
+        <section className={styles.section}>
+          <div className={styles.specialHeadingContainer}>
             <div className="z-[1]">
-              <h2>POWERING SOLUTIONS FOR</h2>
-              <hr />
+              <h2 className={styles.h2}>POWERING SOLUTIONS FOR</h2>
+              <hr className={styles.separator} />
             </div>
           </div>
           <div className={styles.logosContainer}>
-            <img src="assets/images/external-logos/braze.png" alt="Braze" />
             <img
+              className={styles.userLogo}
+              src="assets/images/external-logos/braze.png"
+              alt="Braze"
+            />
+            <img
+              className={styles.userLogo}
               src="assets/images/external-logos/france-gov.png"
               alt="Government of France"
             />
-            <img src="assets/images/external-logos/pfizer.png" alt="Pfizer" />
             <img
+              className={styles.userLogo}
+              src="assets/images/external-logos/pfizer.png"
+              alt="Pfizer"
+            />
+            <img
+              className={styles.userLogo}
               src="assets/images/external-logos/microsoft.png"
               alt="Microsoft"
             />
             <img
+              className={styles.userLogo}
               src="assets/images/external-logos/volkswagen.png"
               alt="Volkswagen"
             />
-            <img src="assets/images/external-logos/toyota.png" alt="Toyota" />
-            <img src="assets/images/external-logos/phresia.png" alt="Phresia" />
+            <img
+              className={styles.userLogo}
+              src="assets/images/external-logos/toyota.png"
+              alt="Toyota"
+            />
+            <img
+              className={styles.userLogo}
+              src="assets/images/external-logos/phresia.png"
+              alt="Phresia"
+            />
           </div>
         </section>
-        <section>
-          <div
-            className={cx(
-              "flex flex-col items-center",
-              styles.specialHeadingContainer
-            )}
-          >
-            <h2 id="features">FEATURES</h2>
-            <hr />
+        <section className={styles.section}>
+          <div className={styles.specialHeadingContainer}>
+            <h2 className={styles.h2} id="features">
+              FEATURES
+            </h2>
+            <hr className={styles.separator} />
           </div>
-          <h3>Create Your Perfect Visual Editor</h3>
-          <p>
+          <h3 className={cx(styles.h1)}>Create Your Perfect Visual Editor</h3>
+          <p className={cx(styles.p)}>
             Build powerful, customizable visual editors with GrapesJS. Our
             versatile framework provides everything you need, from drag-and-drop
             editing to responsive design.
@@ -99,24 +112,30 @@ export default function HomePage() {
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>
 
-          <section>
+          <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <h4>Built-in and Customizable UI</h4>
-              <p>Accessible and enhanced UX for seamless user experience.</p>
+              <h4 className={styles.h4}>Built-in and Customizable UI</h4>
+              <p className={cx(styles.p)}>
+                Accessible and enhanced UX for seamless user experience.
+              </p>
             </div>
             <img src="assets/images/sdk/1.png" alt="SDK UI" />
           </section>
-          <section>
+          <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <h4>Multi-Format Support</h4>
-              <p>Create landing pages, multipage websites, and newsletters.</p>
+              <h4 className={styles.h4}>Multi-Format Support</h4>
+              <p className={cx(styles.p)}>
+                Create landing pages, multipage websites, and newsletters.
+              </p>
             </div>
             <img src="assets/images/sdk/2.png" alt="SDK UI" />
           </section>
-          <section>
+          <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <h4>White Label Solution</h4>
-              <p>Style and customize your editor as you see fit.</p>
+              <h4 className={styles.h4}>White Label Solution</h4>
+              <p className={cx(styles.p)}>
+                Style and customize your editor as you see fit.
+              </p>
             </div>
             <img
               src="assets/images/sdk/3.png"
@@ -125,28 +144,34 @@ export default function HomePage() {
             />
           </section>
           <div className={styles.homeResponsiveColumns}>
-            <section>
+            <section className={cx(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4>Additional Panels</h4>
-                <p>Includes Style Catalog and Template Manager.</p>
+                <h4 className={styles.h4}>Additional Panels</h4>
+                <p className={cx(styles.p)}>
+                  Includes Style Catalog and Template Manager.
+                </p>
               </div>
               <img src="assets/images/sdk/4.png" alt="SDK UI" />
             </section>
-            <section>
+            <section className={cx(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4>Full Team Support</h4>
-                <p>GrapesJS team provides dedicated assistance.</p>
+                <h4 className={styles.h4}>Full Team Support</h4>
+                <p className={cx(styles.p)}>
+                  GrapesJS team provides dedicated assistance.
+                </p>
               </div>
               <img src="assets/images/sdk/5.png" alt="SDK support chat" />
             </section>
           </div>
-          <section className="flex !flex-col !items-stretch">
+          <section className={cx("flex !flex-col !items-stretch", styles.card)}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <div className="flex items-center gap-[8px]">
-                <h4>Ready to use elements</h4>
+                <h4 className={styles.h4}>Ready to use elements</h4>
                 <span className={styles.comingSoonTag}>Coming Soon</span>
               </div>
-              <p>Access pro components, templates, and prebuilt blocks.</p>
+              <p className={cx(styles.p)}>
+                Access pro components, templates, and prebuilt blocks.
+              </p>
             </div>
             <img
               src="assets/images/sdk/6.png"
@@ -155,28 +180,27 @@ export default function HomePage() {
             />
           </section>
         </section>
-        <section>
-          <div
-            className={cx(
-              "flex flex-col items-center",
-              styles.specialHeadingContainer
-            )}
-          >
-            <h2 id="pricing">PRICING</h2>
-            <hr />
+        <section className={cx(styles.section, "!px-0")}>
+          <div className={styles.specialHeadingContainer}>
+            <h2 className={styles.h2} id="pricing">
+              PRICING
+            </h2>
+            <hr className={styles.separator} />
           </div>
 
-          <h3>Plans that fit your scale</h3>
-          <p>
+          <h3 className={cx(styles.h1)}>Plans that fit your scale</h3>
+          <p className={cx(styles.p)}>
             Simple, transparent pricing that grows with you. Try any plan free
             for 30 days.
           </p>
 
           <Pricing />
         </section>
-        <section className="!py-20">
-          <h3>Get started for free</h3>
-          <p>Join the thousands of companies & developers using Grapes today</p>
+        <section className={cx("!py-20", styles.section)}>
+          <h3 className={cx(styles.h1)}>Get started for free</h3>
+          <p className={cx(styles.p)}>
+            Join the thousands of companies & developers using Grapes today
+          </p>
           <CTALink href={getSdkDashboardUrl("free")}>
             Get Started for Free
           </CTALink>

@@ -6,7 +6,7 @@
   gap: 64px;
 }
 
-.pricing .plans {
+.plans {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -14,24 +14,24 @@
   gap: 32px;
 }
 
-.pricing .normalPlans {
-  margin-left: -16px;
+.normalPlans {
+  width: 100%;
   padding-left: 16px;
   padding-right: 16px;
-  width: 100vw;
+  /* max-width: calc(1100px + 32px); */
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   gap: 32px;
 }
 
-.pricing .normalPlans > * {
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+@media only screen and (hover: none) {
+  .normalPlans {
+    scroll-snap-type: x mandatory;
+  }
 }
 
-.pricing .plan {
+.plan {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,11 +43,15 @@
   border-radius: 16px;
 
   flex: 1 0;
-  width: 300px;
-  flex-basis: 350px;
+  /* (1100px-2 * 32px) / 3 */
+  width: 360px;
+  flex-basis: 300px;
+  /* max-width: calc(100vw + 80px); */
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
-.pricing .plan > div {
+.plan > div {
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -56,7 +60,7 @@
   gap: 8px;
 }
 
-.pricing .plan .planTitle {
+.planTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,13 +68,13 @@
   padding-top: 32px;
 }
 
-.pricing .plan .planTitle .icon {
+.icon {
   overflow: visible;
   position: relative;
   height: 48px;
   width: 48px;
 }
-.pricing .plan .planTitle .icon img {
+.icon img {
   position: absolute;
   height: 62px;
   width: 62px;
@@ -79,7 +83,7 @@
   right: -14px;
 }
 
-.pricing .plan .planTitle h4 {
+.planTitle h4 {
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
@@ -91,7 +95,7 @@
   flex-grow: 0;
 }
 
-.pricing .plan .cta {
+.cta {
   margin-top: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -101,7 +105,7 @@
   line-height: 24px;
 }
 
-.pricing .price {
+.price {
   font-weight: 700;
   font-size: 54px;
   line-height: 64px;
@@ -113,7 +117,7 @@
   flex-grow: 0;
 }
 
-.pricing .description {
+.description {
   font-family: var(--font-inter);
   font-weight: 400;
   font-size: 16px;
@@ -128,19 +132,19 @@
   flex-grow: 0;
 }
 
-.pricing .plan hr {
+.plan hr {
   background: #e4e7ec80;
   border: none;
   height: 2px;
   width: 100%;
 }
 
-.pricing .plan .features {
+.features {
   align-items: start;
   overflow-x: auto;
 }
 
-.pricing .plan .features h5 {
+.features h5 {
   font-family: var(--font-inter);
   font-weight: 600;
   font-size: 16px;
@@ -153,7 +157,7 @@
   color: #d39cdd;
 }
 
-.pricing .plan .features p {
+.features p {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -161,11 +165,11 @@
   color: var(--textColor);
 }
 
-.pricing .plan .features strong {
+.features strong {
   text-transform: capitalize;
 }
 
-.pricing .plan .features ul {
+.features ul {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -183,18 +187,18 @@
   min-width: 0;
   max-width: 100%;
 }
-.pricing .specialPlan .features ul {
+.features ul {
   height: 200px;
 }
 
 @media (max-width: 640px) {
-  .pricing .specialPlan .features ul {
+  .features ul {
     height: auto;
     width: 100%;
   }
 }
 
-.pricing .plan .features li {
+.features li {
   background: url("/assets/images/icons/check.svg") no-repeat 0 0 transparent;
   padding-left: 36px;
 
@@ -208,7 +212,12 @@
   min-width: 0;
 }
 
-.pricing .specialPlan {
+.specialPlanContainer {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.specialPlan {
   width: 100%;
 
   background: radial-gradient(
@@ -228,7 +237,7 @@
   border: solid 2px transparent;
 }
 
-.pricing .specialPlan::before {
+.specialPlan::before {
   content: "";
   position: absolute;
   top: 0;
@@ -243,33 +252,33 @@
     linear-gradient(#e4e7ec80, #e4e7ec80);
 }
 
-.pricing .specialPlan > div {
+.specialPlan > div {
   padding-bottom: 64px;
 }
 
 @media (min-width: 640px) {
-  .pricing .specialPlan {
+  .specialPlan {
     align-items: start;
     flex-direction: row;
   }
-  .pricing .specialPlan > div {
+  .specialPlan > div {
     align-items: start;
   }
-  .pricing .specialPlan > div:first-child {
+  .specialPlan > div:first-child {
     width: 500px;
   }
-  .pricing .specialPlan p,
-  .pricing .specialPlan h4 {
+  .specialPlan p,
+  .specialPlan h4 {
     text-align: left;
   }
-  .pricing .specialPlan .planTitle h4 {
+  .planTitle h4 {
     align-self: initial;
   }
-  .pricing .specialPlan .planTitle {
+  .planTitle {
     flex-direction: row;
     align-items: center;
   }
-  .pricing .specialPlan hr {
+  .specialPlan hr {
     height: 100%;
     width: 2px;
     flex-shrink: 0;

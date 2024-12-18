@@ -8,7 +8,7 @@ const StarOnGH = (props: Props) => {
   return (
     <div className={styles.container}>
       Join the thousands of happy developers
-      <div className={styles.githubButton}>
+      <div>
         <GitHubButton
           href="https://github.com/GrapesJS/grapesjs"
           data-color-scheme="no-preference: light; light: light; dark: dark;"

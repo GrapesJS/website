@@ -173,11 +173,13 @@ const Pricing = ({ ...rest }: Props) => {
             <PlanCard key={i} plan={plan} selectedPeriod={selectedPeriod} />
           ))}
         </div>
-        <PlanCard
-          className={styles.specialPlan}
-          plan={plans[plans.length - 1]}
-          selectedPeriod={selectedPeriod}
-        />
+        <div className={styles.specialPlanContainer}>
+          <PlanCard
+            className={styles.specialPlan}
+            plan={plans[plans.length - 1]}
+            selectedPeriod={selectedPeriod}
+          />
+        </div>
       </div>
     </div>
   );
