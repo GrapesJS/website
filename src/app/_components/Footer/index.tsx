@@ -1,14 +1,4 @@
-import {
-  getBlogUrl,
-  getCareersUrl,
-  getContactUrl,
-  getFeaturesUrl,
-  getGettingStartedDocsUrl,
-  getHomeUrl,
-  getPricingUrl,
-  getPrivacyUrl,
-  getTermsUrl,
-} from "@/lib/urls";
+import urls from "@/lib/urls";
 import styles from "./styles.module.css";
 
 interface FooterProps extends React.HTMLProps<HTMLElement> {}
@@ -23,17 +13,17 @@ const linkCategories: {
       {
         id: "Overview",
         label: "Overview",
-        href: getHomeUrl(),
+        href: urls.getHomeUrl(),
       },
       {
         id: "Features",
         label: "Features",
-        href: getFeaturesUrl(),
+        href: urls.getFeaturesUrl(),
       },
       {
         id: "Pricing",
         label: "Pricing",
-        href: getPricingUrl(),
+        href: urls.getPricingUrl(),
       },
     ],
   },
@@ -43,23 +33,23 @@ const linkCategories: {
       {
         id: "Careers",
         label: "Careers",
-        href: getCareersUrl(),
+        href: urls.getCareersUrl(),
       },
       {
         id: "Contact",
         label: "Contact",
-        href: getContactUrl(),
+        href: urls.getContactUrl(),
       },
     ],
   },
   {
     category: "Resources",
     links: [
-      { id: "Blog", label: "Blog", href: getBlogUrl() },
+      { id: "Blog", label: "Blog", href: urls.getBlogUrl() },
       {
         id: "Docs",
         label: "Docs",
-        href: getGettingStartedDocsUrl(),
+        href: urls.getGettingStartedDocsUrl(),
         target: "_blank",
       },
     ],
@@ -70,12 +60,12 @@ const linkCategories: {
       {
         id: "Terms",
         label: "Terms",
-        href: getTermsUrl(),
+        href: urls.getTermsUrl(),
       },
       {
         id: "Privacy",
         label: "Privacy",
-        href: getPrivacyUrl(),
+        href: urls.getPrivacyUrl(),
       },
     ],
   },
@@ -120,14 +110,17 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
         </section>
         <section>
           <p>© 2024 GrapesJS. All rights reserved.</p>
-          <a href="https://x.com/grapesjs" target="_blank">
+          <a href={urls.getXUrl()} target="_blank">
             <img src="/assets/images/icons/x.svg" />
           </a>
-          <a
-            href="https://www.linkedin.com/company/grapes-studio/"
-            target="_blank"
-          >
+          <a href={urls.getLinkedInUrl()} target="_blank">
             <img src="/assets/images/icons/linkedin.svg" />
+          </a>
+          <a href={urls.getDiscordUrl()} target="_blank">
+            <img src="/assets/images/icons/discord.svg" />
+          </a>
+          <a href={urls.getGithubUrl()} target="_blank">
+            <img src="/assets/images/icons/github.svg" />
           </a>
         </section>
       </div>

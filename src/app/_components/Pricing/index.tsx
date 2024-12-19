@@ -2,7 +2,7 @@
 import { HTMLAttributes, useState } from "react";
 
 import { cx } from "@/lib/makeCls";
-import { getEnterpriseContactFormUrl, getSdkDashboardUrl } from "@/lib/urls";
+import urls from "@/lib/urls";
 import CTALink from "../CTALink";
 import PillTabs, { Tab } from "../PillTabs";
 import styles from "./styles.module.css";
@@ -34,7 +34,7 @@ const plans: Plan[] = [
     cta: {
       label: "Try Now",
       variant: "tertiary",
-      href: getSdkDashboardUrl("free"),
+      href: urls.getSdkDashboardUrl("free"),
     },
     features: [
       "Access to basic features",
@@ -51,7 +51,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: getSdkDashboardUrl("startup"),
+      href: urls.getSdkDashboardUrl("startup"),
     },
     includes: "free",
     features: [
@@ -69,7 +69,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: getSdkDashboardUrl("business"),
+      href: urls.getSdkDashboardUrl("business"),
     },
     includes: "startup",
     features: [
@@ -87,7 +87,7 @@ const plans: Plan[] = [
     cta: {
       label: "Contact sales",
       variant: "secondary",
-      href: getEnterpriseContactFormUrl(),
+      href: urls.getEnterpriseContactFormUrl(),
     },
     includes: "business",
     features: [

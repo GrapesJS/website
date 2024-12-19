@@ -1,13 +1,6 @@
 "use client";
 import { cx } from "@/lib/makeCls";
-import {
-  getBlogUrl,
-  getCareersUrl,
-  getFeaturesUrl,
-  getGettingStartedDocsUrl,
-  getHomeUrl,
-  getPricingUrl,
-} from "@/lib/urls";
+import urls from "@/lib/urls";
 import { mdiClose, mdiMenu } from "@mdi/js";
 import Icon from "@mdi/react";
 import Link from "next/link";
@@ -21,13 +14,13 @@ interface HeaderProps extends React.HTMLProps<HTMLElement> {
 const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
   const [open, setOpen] = useState(false);
   const navLinks: { content: string; href: string; target?: string }[] = [
-    { content: "Features", href: getFeaturesUrl() },
-    { content: "Pricing", href: getPricingUrl() },
-    { content: "Careers", href: getCareersUrl() },
-    { content: "Blog", href: getBlogUrl() },
+    { content: "Features", href: urls.getFeaturesUrl() },
+    { content: "Pricing", href: urls.getPricingUrl() },
+    { content: "Careers", href: urls.getCareersUrl() },
+    { content: "Blog", href: urls.getBlogUrl() },
     {
       content: "Docs",
-      href: getGettingStartedDocsUrl(),
+      href: urls.getGettingStartedDocsUrl(),
       target: "_blank",
     },
   ];
@@ -37,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       <div className={styles.navbar}>
         <div className={styles.content}>
           <div className={styles.logo}>
-            <Link href={getHomeUrl()}>
+            <Link href={urls.getHomeUrl()}>
               <img
                 className="h-[40px]"
                 src="/assets/images/logos/grapesjs-logo-combination-white.svg"

@@ -1,9 +1,5 @@
 import { cx } from "@/lib/makeCls";
-import {
-  getGettingStartedDocsUrl,
-  getSdkDashboardUrl,
-  getStudioEditorUrl,
-} from "@/lib/urls";
+import urls from "@/lib/urls";
 import CTALink from "./_components/CTALink";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
@@ -26,8 +22,10 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center">
-            <CTALink href={getStudioEditorUrl()}>Try the Studio Editor</CTALink>
-            <CTALink href={getGettingStartedDocsUrl()} variant="tertiary">
+            <CTALink href={urls.getStudioEditorUrl()}>
+              Try the Studio Editor
+            </CTALink>
+            <CTALink href={urls.getGettingStartedDocsUrl()} variant="tertiary">
               Get Started with the Studio SDK
             </CTALink>
           </div>
@@ -108,7 +106,7 @@ export default function HomePage() {
             versatile framework provides everything you need, from drag-and-drop
             editing to responsive design.
           </p>
-          <CTALink href={getSdkDashboardUrl("free")}>
+          <CTALink href={urls.getSdkDashboardUrl("free")}>
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>
 
@@ -201,7 +199,7 @@ export default function HomePage() {
           <p className={cx(styles.p)}>
             Join the thousands of companies & developers using Grapes today
           </p>
-          <CTALink href={getSdkDashboardUrl("free")}>
+          <CTALink href={urls.getSdkDashboardUrl("free")}>
             Get Started for Free
           </CTALink>
         </section>
