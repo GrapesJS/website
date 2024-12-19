@@ -109,7 +109,7 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
           </div>
         </section>
         <section>
-          <p>© 2024 GrapesJS. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GrapesJS. All rights reserved.</p>
           <a href={urls.getXUrl()} target="_blank">
             <img src="/assets/images/icons/x.svg" />
           </a>
