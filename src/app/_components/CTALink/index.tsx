@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes } from "react";
 
-import { cx } from "@/lib/makeCls";
+import cx from "classnames";
 import styles from "./styles.module.css";
 
 interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {

@@ -1,8 +1,8 @@
 "use client";
 import { HTMLAttributes, useState } from "react";
 
-import { cx } from "@/lib/makeCls";
 import urls from "@/lib/urls";
+import cx from "classnames";
 import CTALink from "../CTALink";
 import PillTabs, { Tab } from "../PillTabs";
 import styles from "./styles.module.css";

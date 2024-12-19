@@ -1,5 +1,5 @@
-import { cx } from "@/lib/makeCls";
 import urls from "@/lib/urls";
+import cx from "classnames";
 import CTALink from "./_components/CTALink";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";

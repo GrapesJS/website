@@ -1,8 +1,8 @@
 "use client";
-import { cx } from "@/lib/makeCls";
 import urls from "@/lib/urls";
 import { mdiClose, mdiMenu } from "@mdi/js";
 import Icon from "@mdi/react";
+import cx from "classnames";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";

@@ -1,7 +1,7 @@
 "use client";
 import { HTMLAttributes } from "react";
 
-import { cx } from "@/lib/makeCls";
+import cx from "classnames";
 import styles from "./styles.module.css";
 
 export interface Tab {
