@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 body {
-  font-weight: 300;
-
   --transparentColor: rgba(255, 255, 255, 0);
   --activeBaseColor: #973aa8;
   --activeHighlightColor: #c277d0;
@@ -22,6 +20,10 @@ body {
 
   --transitionDuration: 0.25s;
   --transitionTimingFunction: ease-in-out;
+
+  font-weight: 300;
+  overflow-x: hidden;
+  background: var(--backgroundColor);
 }
 
 .link-gjs {

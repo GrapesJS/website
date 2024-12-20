@@ -1,6 +1,6 @@
 import cx from "classnames";
-import Header from "./Header";
-
+import Header from "../Header";
+import styles from "./styles.module.css";
 interface HeroProps extends React.HTMLProps<HTMLElement> {
   title?: string;
   subTitle?: string;
@@ -18,18 +18,17 @@ const Hero: React.FC<HeroProps> = ({
   return (
     <>
       <Header />
-      <section
-        className={cx(
-          "flex flex-col relative overflow-hidden pt-5 z-0 [text-shadow:_0_2px_2px_rgb(0_0_0_/_35%)]",
-          className
-        )}
-        {...rest}
-      >
-        <div className="container flex-grow mx-auto px-5 drop-shadow-lg flex flex-col items-center justify-center">
-          {!!title && <h1 className={cx(clsTitle ?? "text-3xl")}>{title}</h1>}
-          {!!subTitle && (
-            <h2 className="mt-5 text-lg opacity-80">{subTitle}</h2>
+      <section className={cx(styles.hero, className)} {...rest}>
+        <div className={styles.title}>
+          {!!title && (
+            <div className={styles.specialHeadingContainer}>
+              <div className="z-[1]">
+                <h1 className={styles.h1}>{title}</h1>
+                <hr className={styles.separator} />
+              </div>
+            </div>
           )}
+          {!!subTitle && <h2 className={cx(styles.h2)}>{subTitle}</h2>}
 
           {children}
         </div>
@@ -43,6 +42,7 @@ const Hero: React.FC<HeroProps> = ({
           </div>
         </div>
       </section>
+      <hr className={styles.shadowSeparator} />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import urls from "@/lib/urls";
 import cx from "classnames";
+import Background from "./_components/Background";
 import CTALink from "./_components/CTALink";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
@@ -11,7 +12,7 @@ import styles from "./styles.module.css";
 export default function HomePage() {
   return (
     <>
-      <div className={styles.bg}></div>
+      <Background />
       <main className={styles.home}>
         <Header isHome />
 

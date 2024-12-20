@@ -6,20 +6,6 @@
   width: 100%;
 }
 
-.bg {
-  background: url(/assets/images/background.svg) bottom -200px center no-repeat,
-    url(/assets/images/background-pattern.svg) top center,
-    var(--backgroundColor);
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  z-index: -1;
-
-  /* fixes SVG rendering glitch on scroll in iOS */
-  -webkit-transform: scale(1);
-}
-
 .logosContainer {
   display: flex;
   flex-wrap: wrap;
@@ -50,15 +36,15 @@
 }
 
 .brazeLogo {
-  filter: brightness(1.2) contrast(1);
+  filter: grayscale(1) brightness(1.2) contrast(1);
 }
 
 .phreesiaLogo {
-  filter: brightness(3) contrast(0.5);
+  filter: grayscale(1) brightness(3) contrast(0.25);
 }
 
 .veepnLogo {
-  filter: brightness(0.75) contrast(1);
+  filter: grayscale(1) brightness(0.75) contrast(1);
   height: 138px;
 }
 
@@ -73,7 +59,7 @@
 
 /* TODO: fix scroll on mobile */
 .openCollectiveLogo.openCollectiveLogo {
-  filter: brightness(0.75) contrast(1);
+  filter: grayscale(1) brightness(0.75) contrast(1);
   height: 74px;
   width: 1035px !important;
   object-fit: initial;

@@ -6,9 +6,9 @@
   top: 0;
   z-index: 10;
   pointer-events: none;
-}
+  /* }
 
-.container.home {
+.container.home { */
   display: flex;
   justify-content: center;
   position: sticky;
@@ -16,7 +16,7 @@
   top: 36px;
   z-index: 10;
   pointer-events: none;
-  margin: 0px 16px;
+  margin: 0px;
 
   width: 100%;
   padding-left: 16px;
@@ -36,9 +36,9 @@
   position: relative;
   width: 100%;
   pointer-events: all;
-}
+  /* }
 
-.container.home .navbar {
+.container.home .navbar { */
   border-radius: 1000px;
   border: solid 2px #ffffff33;
   color: var(--textColor);
@@ -81,9 +81,9 @@
     transition: transform var(--transitionDuration)
       var(--transitionTimingFunction);
     pointer-events: all;
-  }
+    /* }
 
-  .container.home .drawer {
+  .container.home .drawer { */
     color: var(--textColor);
     background: var(--backgroundColor);
     padding-top: calc(36px + 68px + 16px);

@@ -1,4 +1,4 @@
-import Container from "@/app/_components/container";
+import Container from "@/app/_components/Container";
 import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
 import { PostHeader } from "@/app/_components/post-header";
@@ -24,21 +24,23 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
   }
 
   return (
-    <main>
-      <Header />
-      <Container>
-        <div className="py-7 md:py-14">
-          <Link href={getPathBlog()}>‹ Back to blog</Link>
-        </div>
-        <article className="mb-32">
-          <PostHeader post={post} />
-          <div className="max-w-2xl mx-auto">
-            <ContainerMDX source={post.content} />
+    <>
+      <main>
+        <Header />
+        <Container>
+          <div className="py-7 md:py-14">
+            <Link href={getPathBlog()}>‹ Back to blog</Link>
           </div>
-        </article>
-      </Container>
-      <Footer />
-    </main>
+          <article className="mb-32">
+            <PostHeader post={post} />
+            <div className="max-w-2xl mx-auto">
+              <ContainerMDX source={post.content} />
+            </div>
+          </article>
+        </Container>
+        <Footer />
+      </main>
+    </>
   );
 }
 

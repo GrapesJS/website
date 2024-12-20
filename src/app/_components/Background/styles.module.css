@@ -1,0 +1,17 @@
+.bg {
+  background: url(/assets/images/background.svg) bottom -200px center no-repeat,
+    url(/assets/images/background-pattern.svg) top center,
+    var(--backgroundColor);
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+
+  /* fixes SVG rendering glitch on scroll in iOS */
+  -webkit-transform: scale(1);
+}
+
+.sticky {
+  position: fixed;
+}
