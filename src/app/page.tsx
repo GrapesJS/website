@@ -14,6 +14,7 @@ export default function HomePage() {
       <div className={styles.bg}></div>
       <main className={styles.home}>
         <Header isHome />
+
         <section className={cx(styles.heroSection, styles.section)}>
           <h1 className={cx(styles.h1)}>Design Without Code</h1>
           <p className={cx(styles.p)}>
@@ -93,6 +94,7 @@ export default function HomePage() {
             />
           </div>
         </section>
+
         <section className={styles.section}>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="features">
@@ -178,6 +180,7 @@ export default function HomePage() {
             />
           </section>
         </section>
+
         <section className={cx(styles.section, "!px-0")}>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="pricing">
@@ -194,7 +197,8 @@ export default function HomePage() {
 
           <Pricing />
         </section>
-        <section className={cx("!py-20", styles.section)}>
+
+        <section className={styles.section}>
           <h3 className={cx(styles.h1)}>Get started for free</h3>
           <p className={cx(styles.p)}>
             Join the thousands of companies & developers using Grapes today
@@ -203,6 +207,59 @@ export default function HomePage() {
             Get Started for Free
           </CTALink>
         </section>
+
+        <section className={cx("!py-20", styles.section)}>
+          <div className={styles.specialHeadingContainer}>
+            <h2 className={styles.h2} id="gold-sponsors">
+              OUR GOLD SPONSORS
+            </h2>
+            <hr className={styles.separator} />
+          </div>
+          <div className={styles.logosContainer}>
+            <a className={styles.sponsorLink} href="https://www.braze.com">
+              <img
+                className={cx(styles.sponsorLogo, styles.brazeLogo)}
+                src="/assets/images/braze_logo.svg"
+                alt="Braze logo"
+              />
+            </a>
+            <a className={styles.sponsorLink} href="https://www.phreesia.com">
+              <img
+                className={cx(styles.sponsorLogo, styles.phreesiaLogo)}
+                src="/assets/images/phreesia_logo.png"
+                alt="Phreesia logo"
+              />
+            </a>
+            <a
+              className={styles.sponsorLink}
+              href="https://veepn.com/vpn-apps/download-vpn-for-pc/"
+            >
+              <img
+                className={cx(styles.sponsorLogo, styles.veepnLogo)}
+                src="/assets/images/logo_veepn.png"
+                alt="Download the Best Windows VPN for PC"
+              />
+            </a>
+          </div>
+          <div className={styles.specialHeadingContainer}>
+            <h2 className={styles.h2} id="sponsors">
+              OTHER SPONSORS
+            </h2>
+            <hr className={styles.separator} />
+          </div>
+          <div className={styles.scrollableContainer}>
+            <object
+              className={cx(styles.sponsorLogo, styles.openCollectiveLogo)}
+              width="1035px"
+              height="74px"
+              type="image/svg+xml"
+              data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64"
+            >
+              Open Collective
+            </object>
+          </div>
+        </section>
+
         <Footer />
       </main>
     </>
