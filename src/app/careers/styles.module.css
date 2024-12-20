@@ -1,0 +1,41 @@
+.careers {
+  font-family: var(--font-manrope);
+  color: var(--textColor);
+}
+
+.h2 {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 52px;
+  text-align: left;
+  color: var(--lowEmphasisTextColor);
+}
+
+.h3 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28.25px;
+  text-align: left;
+  color: var(--highEmphasisTextColor);
+}
+
+.h4 {
+  color: var(--textColor);
+}
+
+.hr {
+  border: none;
+  border-bottom: 2px solid #e4e7ec80;
+}
+
+.jobCard {
+  background: var(--backgroundColor);
+  transition: opacity var(--transitionDuration) var(--transitionTimingFunction);
+  border: none;
+  outline: 2px solid #e4e7ec80;
+  border-radius: 16px;
+}
+
+.jobCard:hover {
+  opacity: 0.5;
+}

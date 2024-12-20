@@ -1,0 +1,67 @@
+.postPreview {
+  color: var(--textColor);
+  font-family: var(--font-manrope);
+  width: 492px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  border-top: 1px solid #ffffff4d;
+  background: #0000004d;
+  backdrop-filter: blur(25px);
+  width: 100%;
+}
+
+.author {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #ffffff;
+}
+
+.dateAndReatTime {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #ffffff;
+}
+
+.titleAndExcerpt {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+
+  color: var(--highEmphasisTextColor);
+  padding: none;
+}
+
+.excerpt {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--lowEmphasisTextColor);
+  padding: none;
+}

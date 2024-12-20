@@ -1,0 +1,81 @@
+.hero {
+  padding-top: calc(74px + 72px + 36px);
+  overflow: hidden;
+
+  background: url(/assets/images/background.svg) bottom -100px center no-repeat,
+    url(/assets/images/background-pattern.svg) top center,
+    var(--backgroundColor);
+  background-size: cover;
+  width: 100%;
+  height: 600px;
+
+  /* fixes SVG rendering glitch on scroll in iOS */
+  -webkit-transform: scale(1);
+}
+
+.title {
+  margin-top: 100px;
+}
+
+.h1 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27.32px;
+  letter-spacing: 0.11em;
+  text-align: center;
+  color: var(--activeHighlightColor);
+  padding: 12px 24px;
+}
+
+.h2 {
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 72px;
+  text-align: center;
+  color: var(--highEmphasisTextColor);
+}
+
+.separator {
+  border: none;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--transparentColor) 0%,
+    #caa4ea 49.5%,
+    var(--transparentColor) 100%
+  );
+}
+
+.specialHeadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shadowSeparator {
+  position: relative;
+  background: none;
+  border: none;
+  height: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.shadowSeparator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1000px;
+  pointer-events: none;
+  background: linear-gradient(
+      180deg,
+      var(--transparentColor) 45%,
+      var(--backgroundColor) 50%,
+      var(--transparentColor) 55%
+    )
+    no-repeat;
+  z-index: 0;
+}
