@@ -1,5 +1,5 @@
 import Container from "@/app/_components/Container";
-import cx from "classnames";
+import cn from "classnames";
 import Footer from "../_components/Footer";
 import Hero from "../_components/Hero";
 import JobBoard from "./jobBoard";
@@ -13,7 +13,7 @@ export default function PageCareers() {
         <Hero title="CAREERS" subTitle="Current Job Openings" />
         <Container className="pt-10 md:pt-20">
           <div>Check below our current open positions</div>
-          <hr className={cx(styles.hr, "my-5")} />
+          <hr className={cn(styles.hr, "my-5")} />
           <JobBoard />
         </Container>
         <Footer />

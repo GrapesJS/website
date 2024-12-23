@@ -1,7 +1,7 @@
 "use client";
 import { HTMLAttributes } from "react";
 
-import cx from "classnames";
+import cn from "classnames";
 import styles from "./styles.module.css";
 
 export interface Tab {
@@ -21,7 +21,7 @@ const PillTabs = ({ tabs, selectedIndex, ...rest }: Props) => {
       {tabs.map((tab, i) => (
         <button
           key={tab.id}
-          className={cx(styles.tab, selectedIndex === i && styles.selected)}
+          className={cn(styles.tab, selectedIndex === i && styles.selected)}
           onClick={(e) => tab.onClick(tab, i)}
         >
           {tab.label}

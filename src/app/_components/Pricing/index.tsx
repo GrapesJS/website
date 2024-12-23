@@ -2,7 +2,7 @@
 import { HTMLAttributes, useState } from "react";
 
 import urls from "@/lib/urls";
-import cx from "classnames";
+import cn from "classnames";
 import CTALink from "../CTALink";
 import PillTabs, { Tab } from "../PillTabs";
 import styles from "./styles.module.css";
@@ -113,7 +113,7 @@ const PlanCard = ({
   plan: Plan;
   selectedPeriod: "monthly" | "annual";
 }) => (
-  <div className={cx(styles.plan, className)}>
+  <div className={cn(styles.plan, className)}>
     <div>
       <div className={styles.planTitle}>
         <div className={styles.icon}>

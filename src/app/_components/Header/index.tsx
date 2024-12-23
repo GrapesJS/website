@@ -2,7 +2,7 @@
 import urls from "@/lib/urls";
 import { mdiClose, mdiMenu } from "@mdi/js";
 import Icon from "@mdi/react";
-import cx from "classnames";
+import cn from "classnames";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";
@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
   ];
 
   return (
-    <header className={cx(styles.container, isHome && styles.home)} {...rest}>
+    <header className={cn(styles.container, isHome && styles.home)} {...rest}>
       <div className={styles.navbar}>
         <div className={styles.content}>
           <div className={styles.logo}>
@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
           </button>
         </div>
       </div>
-      <div className={cx(styles.drawer, open && styles.open)}>
+      <div className={cn(styles.drawer, open && styles.open)}>
         <nav className={styles.links}>
           {navLinks.map(({ href, target, content }) => (
             <Link

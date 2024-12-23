@@ -1,5 +1,5 @@
 import urls from "@/lib/urls";
-import cx from "classnames";
+import cn from "classnames";
 import Background from "./_components/Background";
 import CTALink from "./_components/CTALink";
 import Footer from "./_components/Footer";
@@ -16,9 +16,9 @@ export default function HomePage() {
       <main className={styles.home}>
         <Header isHome />
 
-        <section className={cx(styles.heroSection, styles.section)}>
-          <h1 className={cx(styles.h1)}>Design Without Code</h1>
-          <p className={cx(styles.p)}>
+        <section className={cn(styles.heroSection, styles.section)}>
+          <h1 className={cn(styles.h1)}>Design Without Code</h1>
+          <p className={cn(styles.p)}>
             The customizable website and email builder that grows with your
             business.
           </p>
@@ -103,8 +103,8 @@ export default function HomePage() {
             </h2>
             <hr className={styles.separator} />
           </div>
-          <h3 className={cx(styles.h1)}>Create Your Perfect Visual Editor</h3>
-          <p className={cx(styles.p)}>
+          <h3 className={cn(styles.h1)}>Create Your Perfect Visual Editor</h3>
+          <p className={cn(styles.p)}>
             Build powerful, customizable visual editors with GrapesJS. Our
             versatile framework provides everything you need, from drag-and-drop
             editing to responsive design.
@@ -116,7 +116,7 @@ export default function HomePage() {
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <h4 className={styles.h4}>Built-in and Customizable UI</h4>
-              <p className={cx(styles.p)}>
+              <p className={cn(styles.p)}>
                 Accessible and enhanced UX for seamless user experience.
               </p>
             </div>
@@ -125,7 +125,7 @@ export default function HomePage() {
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <h4 className={styles.h4}>Multi-Format Support</h4>
-              <p className={cx(styles.p)}>
+              <p className={cn(styles.p)}>
                 Create landing pages, multipage websites, and newsletters.
               </p>
             </div>
@@ -134,7 +134,7 @@ export default function HomePage() {
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <h4 className={styles.h4}>White Label Solution</h4>
-              <p className={cx(styles.p)}>
+              <p className={cn(styles.p)}>
                 Style and customize your editor as you see fit.
               </p>
             </div>
@@ -145,32 +145,32 @@ export default function HomePage() {
             />
           </section>
           <div className={styles.homeResponsiveColumns}>
-            <section className={cx(styles.card, styles.verticalCard)}>
+            <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
                 <h4 className={styles.h4}>Additional Panels</h4>
-                <p className={cx(styles.p)}>
+                <p className={cn(styles.p)}>
                   Includes Style Catalog and Template Manager.
                 </p>
               </div>
               <img src="assets/images/sdk/4.png" alt="SDK UI" />
             </section>
-            <section className={cx(styles.card, styles.verticalCard)}>
+            <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
                 <h4 className={styles.h4}>Full Team Support</h4>
-                <p className={cx(styles.p)}>
+                <p className={cn(styles.p)}>
                   GrapesJS team provides dedicated assistance.
                 </p>
               </div>
               <img src="assets/images/sdk/5.png" alt="SDK support chat" />
             </section>
           </div>
-          <section className={cx("flex !flex-col !items-stretch", styles.card)}>
+          <section className={cn("flex !flex-col !items-stretch", styles.card)}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <div className="flex items-center gap-[8px]">
                 <h4 className={styles.h4}>Ready to use elements</h4>
                 <span className={styles.comingSoonTag}>Coming Soon</span>
               </div>
-              <p className={cx(styles.p)}>
+              <p className={cn(styles.p)}>
                 Access pro components, templates, and prebuilt blocks.
               </p>
             </div>
@@ -182,7 +182,7 @@ export default function HomePage() {
           </section>
         </section>
 
-        <section className={cx(styles.section, "!px-0")}>
+        <section className={cn(styles.section, "!px-0")}>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="pricing">
               PRICING
@@ -190,8 +190,8 @@ export default function HomePage() {
             <hr className={styles.separator} />
           </div>
 
-          <h3 className={cx(styles.h1)}>Plans that fit your scale</h3>
-          <p className={cx(styles.p)}>
+          <h3 className={cn(styles.h1)}>Plans that fit your scale</h3>
+          <p className={cn(styles.p)}>
             Simple, transparent pricing that grows with you. Try any plan free
             for 30 days.
           </p>
@@ -200,8 +200,8 @@ export default function HomePage() {
         </section>
 
         <section className={styles.section}>
-          <h3 className={cx(styles.h1)}>Get started for free</h3>
-          <p className={cx(styles.p)}>
+          <h3 className={cn(styles.h1)}>Get started for free</h3>
+          <p className={cn(styles.p)}>
             Join the thousands of companies & developers using Grapes today
           </p>
           <CTALink href={urls.getSdkDashboardUrl("free")}>
@@ -209,7 +209,7 @@ export default function HomePage() {
           </CTALink>
         </section>
 
-        <section className={cx("!py-20", styles.section)}>
+        <section className={cn("!py-20", styles.section)}>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="gold-sponsors">
               OUR GOLD SPONSORS
@@ -219,14 +219,14 @@ export default function HomePage() {
           <div className={styles.logosContainer}>
             <a className={styles.sponsorLink} href="https://www.braze.com">
               <img
-                className={cx(styles.sponsorLogo, styles.brazeLogo)}
+                className={cn(styles.sponsorLogo, styles.brazeLogo)}
                 src="/assets/images/braze_logo.svg"
                 alt="Braze logo"
               />
             </a>
             <a className={styles.sponsorLink} href="https://www.phreesia.com">
               <img
-                className={cx(styles.sponsorLogo, styles.phreesiaLogo)}
+                className={cn(styles.sponsorLogo, styles.phreesiaLogo)}
                 src="/assets/images/phreesia_logo.png"
                 alt="Phreesia logo"
               />
@@ -236,7 +236,7 @@ export default function HomePage() {
               href="https://veepn.com/vpn-apps/download-vpn-for-pc/"
             >
               <img
-                className={cx(styles.sponsorLogo, styles.veepnLogo)}
+                className={cn(styles.sponsorLogo, styles.veepnLogo)}
                 src="/assets/images/logo_veepn.png"
                 alt="Download the Best Windows VPN for PC"
               />
@@ -250,7 +250,7 @@ export default function HomePage() {
           </div>
           <div className={styles.scrollableContainer}>
             <object
-              className={cx(styles.sponsorLogo, styles.openCollectiveLogo)}
+              className={cn(styles.sponsorLogo, styles.openCollectiveLogo)}
               width="1035px"
               height="74px"
               type="image/svg+xml"

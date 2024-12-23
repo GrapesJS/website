@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 
-import cx from "classnames";
+import cn from "classnames";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -58,7 +58,7 @@ export default function RootLayout({
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         */}
       </head>
-      <body className={cx(inter.className, manrope.className)}>
+      <body className={cn(inter.className, manrope.className)}>
         <div className="min-h-screen">{children}</div>
       </body>
     </html>

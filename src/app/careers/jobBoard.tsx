@@ -1,5 +1,5 @@
 "use client";
-import cx from "classnames";
+import cn from "classnames";
 import { useEffect, useState } from "react";
 import Spinner from "../_components/spinner";
 import styles from "./styles.module.css";
@@ -47,7 +47,7 @@ const JobBoard: React.FC<JobBoardProps> = ({ className, ...rest }) => {
   }, []);
 
   return (
-    <section className={cx(className)} {...rest}>
+    <section className={cn(className)} {...rest}>
       {jobs === undefined ? (
         <Spinner />
       ) : jobs === null ? (
@@ -73,13 +73,13 @@ const JobBoard: React.FC<JobBoardProps> = ({ className, ...rest }) => {
               key={job.id}
               target="_blank"
               href={job.absolute_url}
-              className={cx(
+              className={cn(
                 styles.jobCard,
                 "transition-colors border rounded-md p-5"
               )}
             >
               <h3 className={styles.h3}>{job.title}</h3>
-              <h4 className={cx(styles.h4, "opacity-60")}>
+              <h4 className={cn(styles.h4, "opacity-60")}>
                 {job.location?.name}
               </h4>
             </a>

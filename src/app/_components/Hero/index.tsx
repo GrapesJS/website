@@ -1,4 +1,4 @@
-import cx from "classnames";
+import cn from "classnames";
 import Header from "../Header";
 import styles from "./styles.module.css";
 interface HeroProps extends React.HTMLProps<HTMLElement> {
@@ -18,7 +18,7 @@ const Hero: React.FC<HeroProps> = ({
   return (
     <>
       <Header />
-      <section className={cx(styles.hero, className)} {...rest}>
+      <section className={cn(styles.hero, className)} {...rest}>
         <div className={styles.title}>
           {!!title && (
             <div className={styles.specialHeadingContainer}>
@@ -28,7 +28,7 @@ const Hero: React.FC<HeroProps> = ({
               </div>
             </div>
           )}
-          {!!subTitle && <h2 className={cx(styles.h2)}>{subTitle}</h2>}
+          {!!subTitle && <h2 className={cn(styles.h2)}>{subTitle}</h2>}
 
           {children}
         </div>

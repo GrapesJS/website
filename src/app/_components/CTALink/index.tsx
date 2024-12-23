@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes } from "react";
 
-import cx from "classnames";
+import cn from "classnames";
 import styles from "./styles.module.css";
 
 interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -24,7 +24,7 @@ const CTALink = ({ className, children, variant, full, ...rest }: Props) => {
   return (
     <a
       {...rest}
-      className={cx(
+      className={cn(
         styles.ctaLink,
         variantClass,
         full && styles.full,
