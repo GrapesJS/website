@@ -9,6 +9,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/blogApi";
 import { DEFAULT_TITLE } from "@/lib/constants";
 import urls from "@/lib/urls";
 import { ContainerMDX } from "@/mdx-components";
+import cn from "classnames";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -36,24 +37,25 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
           <div className={styles.postHeader}>
             <Container>
               <div className={"max-w-2xl mx-auto"}>
-                <div className="pt-40 pb-7">
-                  <Link href={urls.getPathBlog()}>‹ Back to blog</Link>
+                <div className={"pb-[64px]"}>
+                  <Link className={styles.backLink} href={urls.getPathBlog()}>
+                    ‹ Back to blog
+                  </Link>
                 </div>
-                <h1
-                  className={
-                    "text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 text-center md:text-left"
-                  }
-                >
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 text-center md:text-left">
                   {title}
                 </h1>
                 <div className="flex gap-5 items-center mb-7 md:mb-12 flex-wrap">
                   <Avatar
                     name={author.name}
                     picture={author.picture}
-                    className="basis-full md:basis-auto"
+                    className={cn(styles.metadata, "basis-full md:basis-auto")}
                   />
-                  <DateFormatter dateString={date} />
-                  <PostReadTime post={post} />
+                  <DateFormatter
+                    className={styles.metadata}
+                    dateString={date}
+                  />
+                  <PostReadTime className={styles.metadata} post={post} />
                 </div>
                 <div className="sm:mx-0">
                   <CoverImage title={title} src={coverImage} />

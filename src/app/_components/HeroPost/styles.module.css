@@ -25,13 +25,13 @@
   position: relative;
   overflow: hidden;
   border-radius: 16px;
-  /* transition: opacity var(--transitionDuration) var(--transitionTimingFunction);
-  opacity: 1; */
+  transition: opacity var(--transitionDuration) var(--transitionTimingFunction);
+  opacity: 1;
 }
 
-/* .imageContainer:hover {
+.imageContainer:has(.coverImage:hover) {
   opacity: 0.75;
-} */
+}
 
 .imageCaption {
   padding: 24px;

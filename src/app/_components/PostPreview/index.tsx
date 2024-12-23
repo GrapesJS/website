@@ -20,17 +20,19 @@ export function PostPreview({ post }: { post: Post }) {
           src={post.coverImage}
         />
         <CoverImage title={title} src={post.coverImage} slug={slug} />
-        <div className={styles.imageCaption}>
-          <Avatar
-            className={styles.author}
-            name={author.name}
-            picture={author.picture}
-          />
-          <p className={styles.dateAndReadTime}>
-            <DateFormatter dateString={post.date} /> •{" "}
-            <PostReadTime post={post} />
-          </p>
-        </div>
+        <a href={urls.getPathBlog(slug)}>
+          <div className={styles.imageCaption}>
+            <Avatar
+              className={styles.author}
+              name={author.name}
+              picture={author.picture}
+            />
+            <p className={styles.dateAndReadTime}>
+              <DateFormatter dateString={post.date} /> •{" "}
+              <PostReadTime post={post} />
+            </p>
+          </div>
+        </a>
       </div>
       <div className={styles.titleAndExcerpt}>
         <h3 className={styles.title}>

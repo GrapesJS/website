@@ -12,6 +12,28 @@
   -webkit-transform: scale(1);
 }
 
+.backLink {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--highEmphasisTextColor);
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.metadata {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--highEmphasisTextColor);
+}
+
 .shadowSeparator {
   position: relative;
   background: none;
