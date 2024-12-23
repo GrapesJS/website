@@ -17,31 +17,16 @@ const JobBoard: React.FC<JobBoardProps> = ({ className, ...rest }) => {
   const [jobs, setJobs] = useState<null | undefined | Job[]>();
   useEffect(() => {
     const fetchJobs = async () => {
-      setJobs([
-        {
-          id: 1,
-          absolute_url: "https://www.google.com",
-          title: "New Job",
-          location: { name: "Honolulu" },
-        },
-        {
-          id: 2,
-          absolute_url: "https://www.google.com",
-          title: "New Job",
-          location: { name: "New Zealand" },
-        },
-      ]);
-      return;
-      // try {
-      //   const jobsRsp = await fetch(
-      //     "https://boards-api.greenhouse.io/v1/boards/grapesstudio/jobs"
-      //   );
-      //   const jobsRes = await jobsRsp.json();
-      //   setJobs(Array.isArray(jobsRes.jobs) ? jobsRes.jobs : null);
-      // } catch (error) {
-      //   console.error(error);
-      //   setJobs(null);
-      // }
+      try {
+        const jobsRsp = await fetch(
+          "https://boards-api.greenhouse.io/v1/boards/grapesstudio/jobs"
+        );
+        const jobsRes = await jobsRsp.json();
+        setJobs(Array.isArray(jobsRes.jobs) ? jobsRes.jobs : null);
+      } catch (error) {
+        console.error(error);
+        setJobs(null);
+      }
     };
     fetchJobs();
   }, []);
