@@ -24,6 +24,12 @@ const JobBoard: React.FC<JobBoardProps> = ({ className, ...rest }) => {
           title: "New Job",
           location: { name: "Honolulu" },
         },
+        {
+          id: 2,
+          absolute_url: "https://www.google.com",
+          title: "New Job",
+          location: { name: "New Zealand" },
+        },
       ]);
       return;
       // try {

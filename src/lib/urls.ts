@@ -25,6 +25,7 @@ const urls = {
   getXUrl: () => "https://x.com/grapesjs",
   getDiscordUrl: () => "https://discord.gg/QAbgGXq",
   getGithubUrl: () => "https://github.com/GrapesJS/grapesjs",
+  getPathBlog: (slug?: string) => `/blog${slug ? `/${slug}` : ""}`,
 } as const;
 
 export default urls;

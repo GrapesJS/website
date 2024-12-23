@@ -124,6 +124,7 @@
   display: block;
   padding: 8px 12px;
 
+  color: var(--textColor);
   font-family: var(--font-inter);
   font-weight: 600;
   font-size: 16px;

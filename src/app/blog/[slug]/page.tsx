@@ -4,7 +4,7 @@ import Header from "@/app/_components/Header";
 import { PostHeader } from "@/app/_components/post-header";
 import { getAllPosts, getPostBySlug } from "@/lib/blogApi";
 import { DEFAULT_TITLE } from "@/lib/constants";
-import { getPathBlog } from "@/lib/utils";
+import urls from "@/lib/urls";
 import { ContainerMDX } from "@/mdx-components";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -28,8 +28,8 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
       <main>
         <Header />
         <Container>
-          <div className="py-7 md:py-14">
-            <Link href={getPathBlog()}>‹ Back to blog</Link>
+          <div className="pt-40 pb-7">
+            <Link href={urls.getPathBlog()}>‹ Back to blog</Link>
           </div>
           <article className="mb-32">
             <PostHeader post={post} />

@@ -11,9 +11,15 @@
   position: relative;
   overflow: hidden;
   border-radius: 12px;
+  transition: opacity var(--transitionDuration) var(--transitionTimingFunction);
+  opacity: 1;
 }
 
-.imageOverlay {
+.imageContainer:hover {
+  opacity: 0.75;
+}
+
+.imageCaption {
   position: absolute;
   bottom: 0;
   padding: 24px;
@@ -24,6 +30,7 @@
   background: #0000004d;
   backdrop-filter: blur(25px);
   width: 100%;
+  pointer-events: none;
 }
 
 .author {
@@ -34,7 +41,7 @@
   color: #ffffff;
 }
 
-.dateAndReatTime {
+.dateAndReadTime {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -57,11 +64,30 @@
   padding: none;
 }
 
+.title a:hover {
+  text-decoration: underline;
+}
+
 .excerpt {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 
-  color: var(--lowEmphasisTextColor);
+  color: var(--mediumEmphasisTextColor);
   padding: none;
+}
+
+.readPostLink {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #c277d0;
+}
+
+.readPostLink:hover {
+  text-decoration: underline;
 }

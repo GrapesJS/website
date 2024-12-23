@@ -16,6 +16,8 @@ body {
   --highEmphasisTextColor: #ffffff;
   --hoverTextColor: #ffffff;
 
+  --mediumEmphasisTextColor: #b9b9b9;
+
   --lowEmphasisTextColor: #ddd0d1;
 
   --transitionDuration: 0.25s;
@@ -24,11 +26,32 @@ body {
   font-weight: 300;
   overflow-x: hidden;
   background: var(--backgroundColor);
+  color: var(--textColor);
+  font-family: var(--font-manrope);
+}
+
+h1 {
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 72px;
+  color: var(--highEmphasisTextColor);
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27.32px;
+  /* letter-spacing: 0.11em; */
+  color: var(--highEmphasisTextColor);
 }
 
 .link-gjs {
-  color: #c64563;
-  text-decoration: none;
+  color: var(--activeHighlightColor);
+}
+
+.link-gjs {
+  /* color: #c64563;
+  text-decoration: none; */
 }
 
 .link-gjs:hover {

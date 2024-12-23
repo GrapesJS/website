@@ -1,21 +1,39 @@
-.heroPost {
+.postPreview {
   color: var(--textColor);
   font-family: var(--font-manrope);
-  width: 492px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+.backgroundImage {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.backgroundImage img {
+  object-fit: cover;
+  height: 100%;
+}
+
 .imageContainer {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 16px;
+  /* transition: opacity var(--transitionDuration) var(--transitionTimingFunction);
+  opacity: 1; */
 }
 
-.imageOverlay {
-  position: absolute;
-  bottom: 0;
+/* .imageContainer:hover {
+  opacity: 0.75;
+} */
+
+.imageCaption {
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -24,6 +42,38 @@
   background: #0000004d;
   backdrop-filter: blur(25px);
   width: 100%;
+  gap: 24px;
+  pointer-events: none;
+}
+
+.metadataContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.metadata {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--highEmphasisTextColor);
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: var(--highEmphasisTextColor);
 }
 
 .author {
@@ -34,7 +84,7 @@
   color: #ffffff;
 }
 
-.dateAndReatTime {
+.dateAndReadTime {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -57,11 +107,23 @@
   padding: none;
 }
 
+.title a {
+  pointer-events: all;
+}
+
+.title a:hover {
+  text-decoration: underline;
+}
+
+.linkIcon {
+  display: inline;
+}
+
 .excerpt {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
 
-  color: var(--lowEmphasisTextColor);
+  color: var(--highEmphasisTextColor);
   padding: none;
 }
