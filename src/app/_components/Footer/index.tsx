@@ -48,7 +48,7 @@ const linkCategories: {
       { id: "Blog", label: "Blog", href: urls.getBlogUrl() },
       {
         id: "SdkDocs",
-        label: "SDK Docs",
+        label: "Studio SDK Docs",
         href: urls.getGettingStartedDocsUrl(),
         target: "_blank",
       },
