@@ -14,6 +14,11 @@ export function PostPreview({ post }: { post: Post }) {
   return (
     <section className={styles.postPreview}>
       <div className={styles.imageContainer}>
+        <CoverImage
+          className={styles.backgroundImage}
+          title={title}
+          src={post.coverImage}
+        />
         <CoverImage title={title} src={post.coverImage} slug={slug} />
         <div className={styles.imageCaption}>
           <Avatar

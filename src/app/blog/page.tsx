@@ -1,6 +1,6 @@
 import Container from "@/app/_components/Container";
 import { HeroPost } from "@/app/_components/HeroPost";
-import { MoreStories } from "@/app/_components/more-stories";
+import { MoreStories } from "@/app/_components/MoreStories.tsx";
 import { getAllPosts } from "@/lib/blogApi";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";

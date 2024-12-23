@@ -1,10 +1,25 @@
 .postPreview {
   color: var(--textColor);
   font-family: var(--font-manrope);
-  width: 492px;
+  width: auto;
+  flex: 1 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.backgroundImage {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.backgroundImage img {
+  object-fit: cover;
+  height: 100%;
 }
 
 .imageContainer {
@@ -20,8 +35,6 @@
 }
 
 .imageCaption {
-  position: absolute;
-  bottom: 0;
   padding: 24px;
   display: flex;
   flex-direction: column;
