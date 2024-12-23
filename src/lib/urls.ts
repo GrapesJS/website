@@ -4,6 +4,7 @@ const toCapitalCase = (str: string) =>
 const urls = {
   getGettingStartedDocsUrl: () =>
     "https://app.grapesjs.com/docs-sdk/overview/getting-started",
+  getGrapesJsDocs: () => "https://grapesjs.com/docs/",
 
   getStudioEditorUrl: () => "https://app.grapesjs.com/studio",
 

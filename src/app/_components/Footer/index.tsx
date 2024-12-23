@@ -47,9 +47,15 @@ const linkCategories: {
     links: [
       { id: "Blog", label: "Blog", href: urls.getBlogUrl() },
       {
-        id: "Docs",
-        label: "Docs",
+        id: "SdkDocs",
+        label: "SDK Docs",
         href: urls.getGettingStartedDocsUrl(),
+        target: "_blank",
+      },
+      {
+        id: "GrapesJsDocs",
+        label: "GrapesJS Docs",
+        href: urls.getGrapesJsDocs(),
         target: "_blank",
       },
     ],
