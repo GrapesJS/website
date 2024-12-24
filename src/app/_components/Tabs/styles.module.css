@@ -5,3 +5,37 @@
   width: 100%;
   gap: 16px;
 }
+
+.panels {
+  position: relative;
+}
+
+.afterImage {
+  position: absolute;
+  width: 100%;
+  /* right: 0;
+  bottom: 0; */
+  left: 0;
+  top: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.panel {
+  z-index: 0;
+}
+
+.animate {
+  animation-duration: var(--transitionDuration);
+  animation-name: animate-fade;
+  animation-timing-function: var(--transitionTimingFunction);
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

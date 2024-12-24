@@ -1,5 +1,6 @@
 "use client";
-import { ReactNode, useState } from "react";
+import cn from "classnames";
+import { ReactNode, useEffect, useState } from "react";
 import TabSelect from "../TabSelect";
 import styles from "./styles.module.css";
 
@@ -16,6 +17,24 @@ export type Props = {
 export const Tabs = (props: Props) => {
   const { tabs } = props;
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(selectedIndex);
+  const inTransition = prevIndex !== selectedIndex;
+
+  useEffect(() => {
+    if (!inTransition) {
+      return;
+    }
+    const fun = () => {
+      setPrevIndex(selectedIndex);
+    };
+    const timeout = setTimeout(
+      fun,
+      250 // animation duration
+    );
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [selectedIndex]);
   return (
     <div className={styles.container}>
       <TabSelect
@@ -26,8 +45,16 @@ export const Tabs = (props: Props) => {
           onClick: () => setSelectedIndex(i),
         }))}
       />
-      {/* TODO: transition when selected panel changes */}
-      <div className={styles.panels}>{tabs[selectedIndex].content}</div>
+      <div className={styles.panels}>
+        <div className={cn(styles.panel)}>{tabs[selectedIndex].content}</div>
+        {inTransition && (
+          <div
+            className={cn(styles.afterImage, inTransition && styles.animate)}
+          >
+            {tabs[prevIndex].content}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
