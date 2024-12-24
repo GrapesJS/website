@@ -1,19 +1,23 @@
-import Container from "@/app/_components/container";
-import Hero from "../_components/hero";
+import Container from "@/app/_components/Container";
+import cn from "classnames";
+import Footer from "../_components/Footer";
+import Hero from "../_components/Hero";
 import JobBoard from "./jobBoard";
-import Footer from "../_components/footer";
+import styles from "./styles.module.css";
 
 export default function PageCareers() {
   return (
-    <main>
-      <Hero title="Careers" clsTitle="text-5xl" className="bg-gjs min-h-[300px]"/>
-      <Container className="pt-10 md:pt-20">
-        <h1 className="primary-title mb-16 text-4xl md:text-5xl">Current Job Openings</h1>
-        <div>Check below our current open positions</div>
-        <hr className="border-neutral-200 my-5" />
-        <JobBoard/>
-      </Container>
-      <Footer/>
-    </main>
+    <>
+      {/* <Background /> */}
+      <main className={styles.careers}>
+        <Hero title="CAREERS" subTitle="Current Job Openings" />
+        <Container className="pt-10 md:pt-20">
+          <div>Check below our current open positions</div>
+          <hr className={cn(styles.hr, "my-5")} />
+          <JobBoard />
+        </Container>
+        <Footer />
+      </main>
+    </>
   );
 }
