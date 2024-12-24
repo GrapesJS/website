@@ -1,4 +1,6 @@
 import urls from "@/lib/urls";
+import { mdiPaletteSwatch } from "@mdi/js";
+import Icon from "@mdi/react";
 import cn from "classnames";
 import Background from "./_components/Background";
 import CTALink from "./_components/CTALink";
@@ -6,13 +8,13 @@ import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import Pricing from "./_components/Pricing";
 import StarOnGH from "./_components/StarOnGH";
+import { Tabs } from "./_components/Tabs";
 import "./home.css";
 import styles from "./styles.module.css";
-
 export default function HomePage() {
   return (
     <>
-      <Background />
+      <Background sticky />
       <main className={styles.home}>
         <Header isHome />
 
@@ -34,18 +36,83 @@ export default function HomePage() {
 
           <StarOnGH />
 
-          <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#252527]">
-            <div className="flex gap-[8px] h-[30px] items-center px-4">
-              <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
-              <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
-              <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
-            </div>
-            <img
-              className="w-full"
-              src="/assets/images/studio-editor.jpg"
-              alt="GrapesJS Webpage Demo"
-            />
-          </div>
+          <Tabs
+            tabs={[
+              {
+                id: "editorImage",
+                label: "Editor image",
+                icon: <Icon path={mdiPaletteSwatch} />,
+                content: (
+                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#252527]">
+                    <div className="flex gap-[8px] h-[30px] items-center px-4">
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
+                    </div>
+                    <img
+                      className="w-full"
+                      src="/assets/images/studio-editor.jpg"
+                      alt="GrapesJS Webpage Demo"
+                    />
+                  </div>
+                ),
+              },
+              {
+                id: "editorImage2",
+                label: "Editor image 2",
+                content: (
+                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#b7b7b8]">
+                    <div className="flex gap-[8px] h-[30px] items-center px-4">
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
+                    </div>
+                    <img
+                      className="w-full"
+                      src="/assets/images/blog/grapesjs-studio-alpha.jpeg"
+                      alt="GrapesJS Webpage Demo"
+                    />
+                  </div>
+                ),
+              },
+              {
+                id: "editorImage3",
+                label: "Editor image 3",
+                content: (
+                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#b7b7b8]">
+                    <div className="flex gap-[8px] h-[30px] items-center px-4">
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
+                    </div>
+                    <img
+                      className="w-full"
+                      src="/assets/images/studio-editor.jpg"
+                      alt="GrapesJS Webpage Demo"
+                    />
+                  </div>
+                ),
+              },
+              {
+                id: "editorImage4",
+                label: "Editor image 4",
+                content: (
+                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#252527]">
+                    <div className="flex gap-[8px] h-[30px] items-center px-4">
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
+                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
+                    </div>
+                    <img
+                      className="w-full"
+                      src="/assets/images/blog/grapesjs-studio-alpha.jpeg"
+                      alt="GrapesJS Webpage Demo"
+                    />
+                  </div>
+                ),
+              },
+            ]}
+          />
         </section>
 
         <hr className={styles.shadowSeparator} />

@@ -1,34 +1,45 @@
 "use client";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 import cn from "classnames";
 import styles from "./styles.module.css";
 
 export interface Tab {
   id: string;
-  label: string;
+  label: ReactNode;
+  icon?: ReactNode;
   onClick: (tab: Tab, index: number) => void;
 }
 
 interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+  variant?: "underline" | "pill";
   selectedIndex: number;
   tabs: Tab[];
 }
 
-const PillTabs = ({ tabs, selectedIndex, ...rest }: Props) => {
+const TabSelect = ({ variant, tabs, selectedIndex, ...rest }: Props) => {
   return (
-    <div {...rest} className={styles.container}>
+    <div
+      {...rest}
+      className={cn(
+        styles.container,
+        variant === "underline" ? styles.underline : styles.pill
+      )}
+    >
       {tabs.map((tab, i) => (
         <button
           key={tab.id}
           className={cn(styles.tab, selectedIndex === i && styles.selected)}
           onClick={(e) => tab.onClick(tab, i)}
         >
-          {tab.label}
+          <div className={styles.label}>
+            {tab.icon && <div className={styles.icon}>{tab.icon}</div>}
+            {tab.label}
+          </div>
         </button>
       ))}
     </div>
   );
 };
 
-export default PillTabs;
+export default TabSelect;

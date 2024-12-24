@@ -4,7 +4,7 @@ import { HTMLAttributes, useState } from "react";
 import urls from "@/lib/urls";
 import cn from "classnames";
 import CTALink from "../CTALink";
-import PillTabs, { Tab } from "../PillTabs";
+import TabSelect, { Tab } from "../TabSelect";
 import styles from "./styles.module.css";
 
 interface Plan {
@@ -166,7 +166,7 @@ const Pricing = ({ ...rest }: Props) => {
   const selectedPeriod = tabs[selectedIndex].id as "monthly" | "annual";
   return (
     <div {...rest} className={styles.pricing}>
-      <PillTabs tabs={tabs} selectedIndex={selectedIndex}></PillTabs>
+      <TabSelect variant="pill" tabs={tabs} selectedIndex={selectedIndex} />
       <div className={styles.plans}>
         <div className={styles.normalPlans}>
           {plans.slice(0, -1).map((plan, i) => (
