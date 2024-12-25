@@ -37,12 +37,10 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
           <div className={styles.postHeader}>
             <Container>
               <div className={"max-w-2xl mx-auto"}>
-                <div className={"pb-[64px]"}>
-                  <Link className={styles.backLink} href={urls.getPathBlog()}>
-                    ‹ Back to blog
-                  </Link>
-                </div>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 text-center md:text-left">
+                <Link className={styles.backLink} href={urls.getPathBlog()}>
+                  ‹ Back to blog
+                </Link>
+                <h1 className="text-5xl font-bold tracking-tighter leading-tight my-6 text-center md:text-left">
                   {title}
                 </h1>
                 <div className="flex gap-5 items-center mb-7 md:mb-12 flex-wrap">
