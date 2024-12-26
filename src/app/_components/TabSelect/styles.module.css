@@ -45,7 +45,8 @@
 .icon {
   display: flex;
   width: 24px;
-  /* flex: 0 0 24px; */
+  height: 24px;
+  flex: 0 0 24px;
 }
 
 .selected.selected {
