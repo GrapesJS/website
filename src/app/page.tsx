@@ -20,7 +20,12 @@ export default function HomePage() {
         <Header isHome />
 
         <section className={cn(styles.heroSection, styles.section)}>
-          <h1 className={cn(styles.h1)}>Design Without Code</h1>
+          <h1 className={cn(styles.h1, "!text-left")}>
+            Add GrapesJS Studio editor to your{" "}
+            <TypingTextEffect
+              items={["SaaS", "Website", "Ad Builder", "CRM"]}
+            />
+          </h1>
           <p className={cn(styles.p)}>
             The customizable website and email builder that grows with your
             business.
@@ -36,13 +41,6 @@ export default function HomePage() {
           </div>
 
           <StarOnGH />
-
-          <h1 className={cn(styles.h1, "!text-left")}>
-            Add GrapesJS Studio editor to your{" "}
-            <TypingTextEffect
-              items={["SaaS", "Website", "Email Composer", "Ad Builder", "CRM"]}
-            />
-          </h1>
 
           <Tabs
             tabs={[

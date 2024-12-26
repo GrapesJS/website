@@ -4,9 +4,13 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 export type Props = {
+  /**
+   * Keep text shorter than width
+   */
   items: string[];
   /**
-   * fixed container width, required to prevent jumping as word is being typed
+   * Fixed container width, required to prevent jumping as word is being typed.
+   * This number should be less or equal to 360 to avoid text overflow on mobile. If longer text is needed, font size needs to be reduced manually.
    */
   width?: number;
   className?: string;
@@ -20,7 +24,7 @@ const clamp = (v: number, min: number, max: number) =>
 export const TypingTextEffect = (props: Props) => {
   const {
     items,
-    width = 480,
+    width = 360,
     className,
     typingDelayMs = 100,
     rotateItemDelayMs = 3000,
