@@ -9,6 +9,7 @@ import Header from "./_components/Header";
 import Pricing from "./_components/Pricing";
 import StarOnGH from "./_components/StarOnGH";
 import { Tabs } from "./_components/Tabs";
+import { TypingTextEffect } from "./_components/TypingTextEffect";
 import "./home.css";
 import styles from "./styles.module.css";
 export default function HomePage() {
@@ -35,6 +36,13 @@ export default function HomePage() {
           </div>
 
           <StarOnGH />
+
+          <h1 className={cn(styles.h1, "!text-left")}>
+            Add GrapesJS Studio editor to your{" "}
+            <TypingTextEffect
+              items={["SaaS", "Website", "Email Composer", "Ad Builder", "CRM"]}
+            />
+          </h1>
 
           <Tabs
             tabs={[
