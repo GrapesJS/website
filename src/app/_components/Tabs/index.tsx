@@ -46,14 +46,14 @@ export const Tabs = (props: Props) => {
         }))}
       />
       <div className={styles.panels}>
-        <div className={cn(styles.panel)}>{tabs[selectedIndex].content}</div>
-        {inTransition && (
+        {tabs.map((t, i) => (
           <div
-            className={cn(styles.afterImage, inTransition && styles.animate)}
+            key={t.id}
+            className={cn(styles.panel, i === selectedIndex && styles.selected)}
           >
-            {tabs[prevIndex].content}
+            {t.content}
           </div>
-        )}
+        ))}
       </div>
     </div>
   );

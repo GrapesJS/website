@@ -10,32 +10,44 @@
   position: relative;
 }
 
-.afterImage {
+.panel {
   position: absolute;
   width: 100%;
-  /* right: 0;
-  bottom: 0; */
   left: 0;
   top: 0;
   z-index: 2;
   pointer-events: none;
-}
 
-.panel {
-  z-index: 0;
-}
-
-.animate {
   animation-duration: var(--transitionDuration);
-  animation-name: animate-fade;
-  animation-timing-function: var(--transitionTimingFunction);
+  animation-fill-mode: both;
+  animation-timing-function: linear;
 }
 
-@keyframes animate-fade {
+.panel:not(.selected) {
+  animation-name: fade-out;
+}
+
+.selected {
+  position: relative;
+  z-index: 0;
+  pointer-events: all;
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
   0% {
     opacity: 1;
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
