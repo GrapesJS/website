@@ -73,6 +73,7 @@
 
 .underline {
   gap: 32px;
+  padding-bottom: 16px;
 }
 
 .underline .tab {
