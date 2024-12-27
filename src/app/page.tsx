@@ -193,7 +193,7 @@ export default function HomePage() {
                 Accessible and enhanced UX for seamless user experience.
               </p>
             </div>
-            <img src="assets/images/sdk/1.png" alt="SDK UI" />
+            <img src="assets/images/sdk-features/1.png" alt="SDK UI" />
           </section>
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -202,7 +202,7 @@ export default function HomePage() {
                 Create landing pages, multipage websites, and newsletters.
               </p>
             </div>
-            <img src="assets/images/sdk/2.png" alt="SDK UI" />
+            <img src="assets/images/sdk-features/2.png" alt="SDK UI" />
           </section>
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -212,7 +212,7 @@ export default function HomePage() {
               </p>
             </div>
             <img
-              src="assets/images/sdk/3.png"
+              src="assets/images/sdk-features/3.png"
               alt="SDK UI"
               className="pt-[36px]"
             />
@@ -225,7 +225,7 @@ export default function HomePage() {
                   Includes Style Catalog and Template Manager.
                 </p>
               </div>
-              <img src="assets/images/sdk/4.png" alt="SDK UI" />
+              <img src="assets/images/sdk-features/4.png" alt="SDK UI" />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -234,7 +234,10 @@ export default function HomePage() {
                   GrapesJS team provides dedicated assistance.
                 </p>
               </div>
-              <img src="assets/images/sdk/5.png" alt="SDK support chat" />
+              <img
+                src="assets/images/sdk-features/5.png"
+                alt="SDK support chat"
+              />
             </section>
           </div>
           <section className={cn("flex !flex-col !items-stretch", styles.card)}>
@@ -248,11 +251,131 @@ export default function HomePage() {
               </p>
             </div>
             <img
-              src="assets/images/sdk/6.png"
+              src="assets/images/sdk-features/6.png"
               alt="SDK UI"
               className="h-[360px] object-cover !w-auto"
             />
           </section>
+
+          {/* Other SDK features */}
+          <div className={styles.homeResponsiveColumns}>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Flexible Data Hosting</h4>
+                <p className={cn(styles.p)}>
+                  No lock-in, choose between cloud or self-hosted options.
+                </p>
+              </div>
+              <img src="assets/images/sdk-features/7.png" alt="SDK UI" />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Unlimited Access Features</h4>
+                <p className={cn(styles.p)}>
+                  Explore all SDK features at no cost.
+                </p>
+              </div>
+              <img src="assets/images/sdk-features/8.png" alt="SDK UI" />
+            </section>
+
+            {/* Other Studio features */}
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Your Components</h4>
+                <p className={cn(styles.p)}>
+                  Create your custom components and allow your users drag & drop
+                  them around.
+                </p>
+              </div>
+              <img src="assets/images/studio-features/1.png" alt="SDK UI" />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Limitless styling</h4>
+                <p className={cn(styles.p)}>
+                  From simple to advanced and responsive styling. Configurable
+                  for any CSS properties.
+                </p>
+              </div>
+              <img src="assets/images/studio-features/2.png" alt="SDK UI" />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Responsive design</h4>
+                <p className={cn(styles.p)}>
+                  All the tools you need to allow your uses to create content
+                  that looks great on any device.
+                </p>
+              </div>
+              <img src="assets/images/studio-features/3.png" alt="SDK UI" />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Built-in Assets Manager</h4>
+                <p className={cn(styles.p)}>
+                  Keep track of your images, fonts, and other assets within the
+                  editor.
+                </p>
+              </div>
+              <img src="assets/images/studio-features/7.png" alt="SDK UI" />
+            </section>
+            <div className={cn(styles.verticalCard, "gap-[24px]")}>
+              <section className={cn(styles.card, styles.verticalCard)}>
+                <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                  <h4 className={styles.h4}>Pages and Layers managers</h4>
+                  <p className={cn(styles.p)}>
+                    Organize your content with ease.
+                  </p>
+                </div>
+                <img src="assets/images/studio-features/4.png" alt="SDK UI" />
+              </section>
+              <section className={cn(styles.card, styles.verticalCard)}>
+                <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                  <h4 className={styles.h4}>Symbols</h4>
+                  <p className={cn(styles.p)}>
+                    Create reusable components across pages.
+                  </p>
+                </div>
+                <img src="assets/images/studio-features/5.png" alt="SDK UI" />
+              </section>
+            </div>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>
+                  The code is there when you need it
+                </h4>
+                <p className={cn(styles.p)}>
+                  GrapesJS outputs simple JSON and easily exports to any code
+                  and project (HTML/CSS/JS export built-in).
+                </p>
+              </div>
+              <img src="assets/images/studio-features/6.png" alt="SDK UI" />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>
+                  Extendable and customizable by design
+                </h4>
+                <p className={cn(styles.p)}>
+                  Create custom plugins and modify the editor's UI to match your
+                  specific requirements.
+                </p>
+              </div>
+              <img src="assets/images/studio-features/8.png" alt="SDK UI" />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>
+                  Connect to External Data for Dynamic Content
+                </h4>
+                <p className={cn(styles.p)}>
+                  Integrate your editor with external data sources to create
+                  dynamic and engaging experiences.
+                </p>
+              </div>
+              <img src="assets/images/studio-features/9.png" alt="SDK UI" />
+            </section>
+          </div>
         </section>
 
         <section className={cn(styles.section, "!px-0")}>
