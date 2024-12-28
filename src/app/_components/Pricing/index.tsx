@@ -37,7 +37,7 @@ const plans: Plan[] = [
       href: urls.getSdkDashboardUrl("free"),
     },
     features: [
-      "Access to basic features",
+      "1,000 sessions per month",
       "Basic reporting and analytics",
       "Up to 1 individual users",
     ],
@@ -55,9 +55,9 @@ const plans: Plan[] = [
     },
     includes: "free",
     features: [
+      "20,000 sessions per month",
       "Custom Branding",
       "Priority Email Support",
-      "Workspace Sharing",
     ],
   },
   {
@@ -73,8 +73,8 @@ const plans: Plan[] = [
     },
     includes: "startup",
     features: [
+      "50,000 sessions per month",
       "Dedicated Slack Channel",
-      "Subdomain Support",
       "Unlimited Plugin Access",
     ],
   },
@@ -91,8 +91,8 @@ const plans: Plan[] = [
     },
     includes: "business",
     features: [
-      "Access to basic features",
-      "Basic reporting and analytics",
+      "Access to all features",
+      "Reporting and analytics",
       "Multi Tenant Support",
       "On Premises Support",
       "24x7 Phone Support",

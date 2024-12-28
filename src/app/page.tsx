@@ -20,23 +20,30 @@ export default function HomePage() {
         <Header isHome />
 
         <section className={cn(styles.heroSection, styles.section)}>
-          <h1 className={cn(styles.h1, "!text-left")}>
+          <h1 className={cn(styles.h1)}>The embeddable drag-and-drop builder
+          </h1>
+          {/* <h1 className={cn(styles.h1, "!text-left")}>
             Add GrapesJS Studio editor to your{" "}
             <TypingTextEffect
               items={["SaaS", "Website", "Ad Builder", "CRM"]}
             />
-          </h1>
+          </h1> */}
           <p className={cn(styles.p)}>
-            The customizable website and email builder that grows with your
-            business.
+          Seamlessly integrate and create within your application.
           </p>
+          <p className={cn(styles.p)}>
+          Open source, customizable, white-label, no-code, visual editor for:</p>
+          <p className={cn(styles.p)}>
+          <u>Emails</u>, <u>Landing Pages</u>, and <u>Webpages</u> 
+          </p>
+          
 
-          <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center">
+          <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
             <CTALink href={urls.getStudioEditorUrl()}>
-              Try the Studio Editor
+              Build Now
             </CTALink>
-            <CTALink href={urls.getGettingStartedDocsUrl()} variant="tertiary">
-              Get Started with the Studio SDK
+            <CTALink href={urls.getSdkDashboardUrl("free")} variant="tertiary">
+              Sign Up
             </CTALink>
           </div>
 
@@ -46,8 +53,8 @@ export default function HomePage() {
             tabs={[
               {
                 id: "editorImage",
-                label: "Editor image",
-                icon: <Icon path={mdiPaletteSwatch} />,
+                label: "Webpages",
+                // icon: <Icon path={mdiPaletteSwatch} />,
                 content: (
                   <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#252527]">
                     <div className="flex gap-[8px] h-[30px] items-center px-4">
@@ -65,7 +72,7 @@ export default function HomePage() {
               },
               {
                 id: "editorImage2",
-                label: "Editor image 2",
+                label: "Landing Pages",
                 content: (
                   <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#b7b7b8]">
                     <div className="flex gap-[8px] h-[30px] items-center px-4">
@@ -83,7 +90,7 @@ export default function HomePage() {
               },
               {
                 id: "editorImage3",
-                label: "Editor image 3",
+                label: "Emails",
                 content: (
                   <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#b7b7b8]">
                     <div className="flex gap-[8px] h-[30px] items-center px-4">
@@ -101,7 +108,7 @@ export default function HomePage() {
               },
               {
                 id: "editorImage4",
-                label: "Editor image 4",
+                label: "PDFs & Files",
                 content: (
                   <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#252527]">
                     <div className="flex gap-[8px] h-[30px] items-center px-4">

@@ -6,6 +6,7 @@ import cn from "classnames";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";
+import CTALink from "../CTALink";
 
 interface HeaderProps extends React.HTMLProps<HTMLElement> {
   isHome?: boolean;
@@ -23,6 +24,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       href: urls.getGettingStartedDocsUrl(),
       target: "_blank",
     },
+    { content: "Sign In", href: urls.getSdkDashboardUrl("free") },
   ];
 
   return (
