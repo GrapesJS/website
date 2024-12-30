@@ -341,14 +341,14 @@ export default function HomePage() {
         <section className={styles.section}>
           <h3 className={cn(styles.h1)}>Get started for free</h3>
           <p className={cn(styles.p)}>
-            Join the thousands of companies & developers using Grapes today
+            Join the thousands of companies & developers using our editor today
           </p>
           <CTALink href={urls.getSdkLicensesUrl({ plan: "free" })}>
             Get Started for Free
           </CTALink>
         </section>
 
-        <section className={cn("!py-20", styles.section)}>
+        <section className={cn("!pt-20 !pb-44", styles.section)}>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="gold-sponsors">
               OUR GOLD SPONSORS
