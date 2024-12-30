@@ -77,11 +77,34 @@ const linkCategories: {
   },
 ] as const;
 
+const socialLinks = [
+  {
+    href: urls.getXUrl(),
+    src: "/assets/images/icons/x.svg",
+    title: "X/Twitter",
+  },
+  {
+    href: urls.getLinkedInUrl(),
+    src: "/assets/images/icons/linkedin.svg",
+    title: "LinkedIn",
+  },
+  {
+    href: urls.getDiscordUrl(),
+    src: "/assets/images/icons/discord.svg",
+    title: "Discord",
+  },
+  {
+    href: urls.getGithubUrl(),
+    src: "/assets/images/icons/github.svg",
+    title: "GitHub",
+  },
+];
+
 const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
   return (
     <footer className={styles.footer} {...rest}>
-      <div>
-        <section>
+      <div className="max-w-[1100px]">
+        <section className={styles.footerSection}>
           <div className={styles.logoAndDescription}>
             <div className={styles.logo}>
               <img
@@ -114,20 +137,21 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
             ))}
           </div>
         </section>
-        <section>
-          <p>© {new Date().getFullYear()} GrapesJS. All rights reserved.</p>
-          <a href={urls.getXUrl()} target="_blank">
-            <img src="/assets/images/icons/x.svg" />
-          </a>
-          <a href={urls.getLinkedInUrl()} target="_blank">
-            <img src="/assets/images/icons/linkedin.svg" />
-          </a>
-          <a href={urls.getDiscordUrl()} target="_blank">
-            <img src="/assets/images/icons/discord.svg" />
-          </a>
-          <a href={urls.getGithubUrl()} target="_blank">
-            <img src="/assets/images/icons/github.svg" />
-          </a>
+        <section className={styles.footerSectionSocial}>
+          <p className={styles.footerSectionSocialCopy}>
+            © {new Date().getFullYear()} Grapes Studio Inc. All rights reserved.
+          </p>
+          <div className="flex gap-5">
+            {socialLinks.map(({ href, src, title }) => (
+              <a key={href} href={href} title={title} target="_blank">
+                <img
+                  className={styles.footerSectionSocialImg}
+                  src={src}
+                  alt={title}
+                />
+              </a>
+            ))}
+          </div>
         </section>
       </div>
     </footer>

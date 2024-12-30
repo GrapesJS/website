@@ -1,6 +1,4 @@
 import urls from "@/lib/urls";
-import { mdiPaletteSwatch } from "@mdi/js";
-import Icon from "@mdi/react";
 import cn from "classnames";
 import Background from "./_components/Background";
 import CTALink from "./_components/CTALink";
