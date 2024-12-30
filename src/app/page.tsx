@@ -134,8 +134,8 @@ export default function HomePage() {
           <div className={styles.logosContainer}>
             <img
               className={styles.userLogo}
-              src="assets/images/external-logos/braze.png"
-              alt="Braze"
+              src="assets/images/external-logos/microsoft.png"
+              alt="Microsoft"
             />
             <img
               className={styles.userLogo}
@@ -149,8 +149,13 @@ export default function HomePage() {
             />
             <img
               className={styles.userLogo}
-              src="assets/images/external-logos/microsoft.png"
-              alt="Microsoft"
+              src="assets/images/external-logos/braze.png"
+              alt="Braze"
+            />
+            <img
+              className={styles.userLogo}
+              src="assets/images/external-logos/phresia.png"
+              alt="Phresia"
             />
             <img
               className={styles.userLogo}
@@ -161,11 +166,6 @@ export default function HomePage() {
               className={styles.userLogo}
               src="assets/images/external-logos/toyota.png"
               alt="Toyota"
-            />
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/phresia.png"
-              alt="Phresia"
             />
           </div>
         </section>
