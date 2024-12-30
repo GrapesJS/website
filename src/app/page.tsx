@@ -180,7 +180,7 @@ export default function HomePage() {
               />
             </section>
           </div>
-          <section className={cn("hidden !flex-col !items-stretch")}>
+          {/* <section className={cn("flex !flex-col !items-stretch")}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <div className="flex items-center gap-[8px]">
                 <h4 className={styles.h4}>Ready to use elements</h4>
@@ -195,7 +195,7 @@ export default function HomePage() {
               alt="SDK UI"
               className="h-[360px] object-cover !w-auto"
             />
-          </section>
+          </section> */}
 
           {/* Other SDK features */}
           <div className={styles.homeResponsiveColumns}>
