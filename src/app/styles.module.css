@@ -61,7 +61,7 @@
 .openCollectiveLogo.openCollectiveLogo {
   filter: grayscale(1) brightness(0.75) contrast(1);
   height: 74px;
-  width: 1035px !important;
+  width: 1135px !important;
   object-fit: initial;
 }
 
@@ -145,9 +145,8 @@
 }
 
 .h1 {
-  font-size: 54px;
+  font-size: 3.3rem;
   font-weight: 700;
-  line-height: 72px;
   text-align: center;
   color: var(--highEmphasisTextColor);
 }
@@ -242,6 +241,11 @@
 @media (max-width: 640px) {
   .homeResponsiveColumns {
     flex-direction: column;
+  }
+
+  .h1 {
+    font-size: 3rem;
+    line-height: normal;
   }
 }
 

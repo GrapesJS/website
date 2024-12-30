@@ -4,7 +4,7 @@ import GitHubButton from "react-github-btn";
 const StarOnGH = () => {
   return (
     <div className="flex gap-3 items-center font-normal">
-      <span>Join the thousands of happy developers</span>
+      <span className="text-sm">Join the thousands of happy developers</span>
       <div className="h-[27px]">
         <GitHubButton
           href="https://github.com/GrapesJS/grapesjs"

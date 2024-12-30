@@ -75,7 +75,7 @@ export default function HomePage() {
               },
               {
                 id: "editorImage3",
-                label: "Email/Newsletter Builder",
+                label: "Newsletter Builder",
                 content: (
                   <WindowShell>
                     <img
@@ -388,8 +388,6 @@ export default function HomePage() {
           <div className={styles.scrollableContainer}>
             <object
               className={cn(styles.sponsorLogo, styles.openCollectiveLogo)}
-              width="1035px"
-              height="74px"
               type="image/svg+xml"
               data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64"
             >
