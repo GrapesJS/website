@@ -1,5 +1,6 @@
 import urls from "@/lib/urls";
 import styles from "./styles.module.css";
+import Logo from "../Logo";
 
 interface FooterProps extends React.HTMLProps<HTMLElement> {}
 
@@ -106,12 +107,7 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
       <div className="max-w-[1100px]">
         <section className={styles.footerSection}>
           <div className={styles.logoAndDescription}>
-            <div className={styles.logo}>
-              <img
-                src="/assets/images/logos/grapesjs-logo-combination-white.svg"
-                alt="GrapesJS"
-              />
-            </div>
+            <Logo height={35} />
             <p className={styles.description}>
               The leading open-source framework for building your visual web
               builders.

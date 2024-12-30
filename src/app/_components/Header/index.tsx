@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";
 import { getCtaClassName } from "../CTALink";
+import Logo from "../Logo";
 
 interface HeaderProps extends React.HTMLProps<HTMLElement> {
   isHome?: boolean;
@@ -43,10 +44,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
         <div className={styles.content}>
           <div className={styles.logo}>
             <Link href={urls.getHomeUrl()}>
-              <img
-                className="h-[40px]"
-                src="/assets/images/logos/grapesjs-logo-combination-white.svg"
-              />
+              <Logo />
             </Link>
           </div>
           <nav className={styles.links}>

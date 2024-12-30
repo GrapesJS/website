@@ -20,27 +20,6 @@
   gap: 24px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo img {
-  height: 48px;
-}
-
-.logo h2 {
-  font-family: var(--font-inter);
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 24px;
-
-  color: var(--highEmphasisTextColor);
-
-  padding: 0;
-}
-
 .description {
   text-align: start;
   font-family: var(--font-inter);
