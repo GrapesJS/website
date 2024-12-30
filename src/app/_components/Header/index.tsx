@@ -6,7 +6,7 @@ import cn from "classnames";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";
-import CTALink from "../CTALink";
+import { getCtaClassName } from "../CTALink";
 
 interface HeaderProps extends React.HTMLProps<HTMLElement> {
   isHome?: boolean;
@@ -14,7 +14,7 @@ interface HeaderProps extends React.HTMLProps<HTMLElement> {
 
 const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
   const [open, setOpen] = useState(false);
-  const navLinks: { content: string; href: string; target?: string }[] = [
+  const navLinks = [
     { content: "Features", href: urls.getFeaturesUrl() },
     { content: "Pricing", href: urls.getPricingUrl() },
     { content: "Blog", href: urls.getBlogUrl() },
@@ -24,10 +24,17 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       target: "_blank",
     },
     {
-      content: "Sign In",
+      content: "Dashboard",
+      className: "rounded-full border-2 !px-4",
       href: urls.getSdkLicensesUrl({ ref: "mainTopNav" }),
+      target: "_blank",
     },
-    { content: "Contact Us", href: urls.getContactUsUrl() },
+    {
+      content: "Contact Us",
+      className: getCtaClassName({ variant: "primary", className: "!px-4" }),
+      href: urls.getContactUsUrl(),
+      target: "_blank",
+    },
   ];
 
   return (
@@ -43,9 +50,9 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
             </Link>
           </div>
           <nav className={styles.links}>
-            {navLinks.map(({ href, target, content }) => (
+            {navLinks.map(({ href, target, content, className }) => (
               <Link
-                className={styles.link}
+                className={cn(styles.link, className)}
                 href={href}
                 target={target}
                 key={href}
@@ -68,9 +75,9 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       </div>
       <div className={cn(styles.drawer, open && styles.open)}>
         <nav className={styles.links}>
-          {navLinks.map(({ href, target, content }) => (
+          {navLinks.map(({ href, target, content, className }) => (
             <Link
-              className={styles.link}
+              className={cn(styles.link, className)}
               href={href}
               target={target}
               key={href}
