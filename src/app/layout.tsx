@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: DOMAIN_URL,
-    images: ["/assets/images/grapesjs-og-image.png"],
+    images: ["/assets/images/grapesjs-og-image-2.jpg"],
   },
 };
 
