@@ -1,0 +1,29 @@
+.container {
+  display: inline-block;
+  text-align: left;
+}
+
+.text {
+  color: var(--lowEmphasisTextColor);
+  border-right: 4px solid var(--highEmphasisTextColor);
+  animation: blink;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: step-start;
+}
+
+.finished {
+  color: var(--activeBorderColor);
+}
+
+@keyframes blink {
+  0% {
+    border-right-width: 0;
+  }
+  50% {
+    border-right-width: 4px;
+  }
+  100% {
+    border-right-width: 0;
+  }
+}

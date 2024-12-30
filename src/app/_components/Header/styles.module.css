@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  height: 0;
+  top: 36px;
+  z-index: 10;
+  pointer-events: none;
+  margin: 0px;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.navbar {
+  height: fit-content;
+  padding: 11px 20px;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  pointer-events: all;
+  border-radius: 1000px;
+  border: solid 2px #ffffff33;
+  background: #38303780;
+  background-clip: padding-box;
+  backdrop-filter: blur(100px);
+  max-width: 1150px;
+}
+
+.drawerButton {
+  display: none;
+}
+
+.drawer {
+  display: none;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  flex: 1 0;
+}
+
+.logo a {
+  display: block;
+  width: fit-content;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.link {
+  display: block;
+  padding: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+  border-color: var(--textColor);
+  transition: var(--transitionDuration) var(--transitionTimingFunction);
+  transition-property: color, border-color;
+}
+
+.link:hover {
+  color: white;
+  border-color: white;
+}
+
+@media (max-width: 640px) {
+  .navbar .links {
+    display: none;
+  }
+  .drawerButton {
+    display: block;
+  }
+  .drawer {
+    color: #fff;
+    background: linear-gradient(120deg, #d983a6, #842d73);
+    touch-action: none;
+    display: block;
+    position: fixed;
+    z-index: -1;
+    padding-bottom: 16px;
+    top: 0px;
+    left: 0%;
+    padding-top: calc(68px + 16px);
+    padding-right: 32px;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+    transition: transform var(--transitionDuration)
+      var(--transitionTimingFunction);
+    pointer-events: all;
+    /* }
+
+  .container.home .drawer { */
+    color: var(--textColor);
+    background: var(--backgroundColor);
+    padding-top: calc(36px + 68px + 16px);
+    padding-right: 48px;
+  }
+  .drawer.open {
+    transform: translateX(0%);
+  }
+  .drawer .links {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .drawer .link {
+    width: fit-content;
+  }
+}

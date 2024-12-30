@@ -3,39 +3,90 @@
 @tailwind utilities;
 
 body {
-    font-weight: 300;
+  --transparentColor: transparent;
+  --activeBaseColor: #973aa8;
+  --activeHighlightColor: #c277d0;
+  --activeTextColor: #ffffff;
+  --activeBorderColor: #e685f6;
+  --activeOpaqueColor: #411149;
+
+  --backgroundColor: #060406;
+  --textColor: #d0d5dd;
+
+  --highEmphasisTextColor: #ffffff;
+  --hoverTextColor: #ffffff;
+
+  --mediumEmphasisTextColor: #b9b9b9;
+
+  --lowEmphasisTextColor: #ddd0d1;
+
+  --transitionDuration: 0.25s;
+  --transitionTimingFunction: ease-in-out;
+
+  font-weight: 300;
+  overflow-x: hidden;
+  background: var(--backgroundColor);
+  color: var(--textColor);
+  font-family: var(--font-manrope);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--activeBorderColor);
+}
+
+h1 {
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 72px;
+  color: var(--highEmphasisTextColor);
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27.32px;
+  /* letter-spacing: 0.11em; */
+  color: var(--highEmphasisTextColor);
 }
 
 .link-gjs {
-    color: #c64563;
-    text-decoration: none;
+  color: var(--activeHighlightColor);
+}
+
+.link-gjs {
+  /* color: #c64563;
+  text-decoration: none; */
 }
 
 .link-gjs:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .darker-link {
-    color: #9e5381;
+  color: #9e5381;
 }
 
 .btn.btn-gjs {
-    background-color: #9e5381;
-    border: medium none;
-    font-size: 20px;
-    font-weight: 300;
-    padding: 0.75rem 3rem;
-    text-align: center;
-    color: #eee;
-    border-radius: 0.3rem;
+  background-color: #9e5381;
+  border: medium none;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 0.75rem 3rem;
+  text-align: center;
+  color: #eee;
+  border-radius: 0.3rem;
 }
 
 .bg-gjs {
-    background-color: #b5658f;
-    background-image: linear-gradient(120deg, #d983a6, #842d73);
-    color: #fff;
+  background-color: #b5658f;
+  background-image: linear-gradient(120deg, #d983a6, #842d73);
+  color: #fff;
 }
 
 .primary-title {
-    color: #c64563;
+  color: #c64563;
 }

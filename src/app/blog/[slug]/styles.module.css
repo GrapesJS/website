@@ -1,0 +1,63 @@
+.postHeader {
+  padding-top: calc(74px + 72px + 36px);
+  overflow: hidden;
+
+  background: url(/assets/images/background.svg) bottom 100px center no-repeat,
+    url(/assets/images/background-pattern.svg) top center,
+    var(--backgroundColor);
+  background-size: cover;
+  width: 100%;
+
+  /* fixes SVG rendering glitch on scroll in iOS */
+  -webkit-transform: scale(1);
+}
+
+.backLink {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--highEmphasisTextColor);
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.metadata {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--highEmphasisTextColor);
+}
+
+.shadowSeparator {
+  position: relative;
+  background: none;
+  border: none;
+  height: 0;
+  width: 100%;
+  overflow: visible;
+  margin-bottom: 32px;
+}
+
+.shadowSeparator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1000px;
+  pointer-events: none;
+  background: linear-gradient(
+      180deg,
+      var(--transparentColor) 45%,
+      var(--backgroundColor) 50%,
+      var(--transparentColor) 55%
+    )
+    no-repeat;
+  z-index: 0;
+}
