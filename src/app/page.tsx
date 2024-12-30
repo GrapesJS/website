@@ -67,7 +67,7 @@ export default function HomePage() {
                   <WindowShell>
                     <img
                       className="w-full"
-                      src="/assets/images/studio-editor.jpg"
+                      src="/assets/images/website-landing-page-html-builder-editor.png"
                       alt="GrapesJS Webpage Demo"
                     />
                   </WindowShell>
@@ -80,7 +80,7 @@ export default function HomePage() {
                   <WindowShell>
                     <img
                       className="w-full"
-                      src="/assets/images/studio-editor.jpg"
+                      src="/assets/images/email-newsletter-builder-editor.png"
                       alt="GrapesJS Webpage Demo"
                     />
                   </WindowShell>
