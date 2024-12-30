@@ -101,7 +101,7 @@ export default function HomePage() {
           </div>
           <div className={styles.logosContainer}>
             {customers.map(({ src, alt }) => (
-              <img className={styles.userLogo} src={src} alt={alt} />
+              <img key={src} className={styles.userLogo} src={src} alt={alt} />
             ))}
           </div>
         </section>
