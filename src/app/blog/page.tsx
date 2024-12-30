@@ -3,7 +3,6 @@ import { HeroPost } from "@/app/_components/HeroPost";
 import { MoreStories } from "@/app/_components/MoreStories.tsx";
 import { getAllPosts } from "@/lib/blogApi";
 import Footer from "../_components/Footer";
-import Header from "../_components/Header";
 import Hero from "../_components/Hero";
 
 export default function PageBlogPosts() {
@@ -14,7 +13,6 @@ export default function PageBlogPosts() {
   return (
     <>
       <main>
-        <Header />
         <Hero title="BLOG" subTitle="GrapesJS Resources & Articles" />
         <Container className="pt-10 md:pt-20">
           {heroPost && <HeroPost post={heroPost} />}

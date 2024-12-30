@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  --transparentColor: rgba(255, 255, 255, 0);
+  --transparentColor: transparent;
   --activeBaseColor: #973aa8;
   --activeHighlightColor: #c277d0;
   --activeTextColor: #ffffff;
