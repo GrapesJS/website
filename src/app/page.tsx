@@ -11,6 +11,23 @@ import StarOnGH from "./_components/StarOnGH";
 import { Tabs } from "./_components/Tabs";
 import "./home.css";
 import styles from "./styles.module.css";
+import WindowShell from "./_components/WindowShell";
+
+const customers = [
+  {
+    src: "assets/images/external-logos/microsoft.png",
+    alt: "Microsoft",
+  },
+  {
+    src: "assets/images/external-logos/france-gov.png",
+    alt: "Government of France",
+  },
+  { src: "assets/images/external-logos/pfizer.png", alt: "Pfizer" },
+  { src: "assets/images/external-logos/braze.png", alt: "Braze" },
+  { src: "assets/images/external-logos/phresia.png", alt: "Phresia" },
+  { src: "assets/images/external-logos/volkswagen.png", alt: "Volkswagen" },
+  { src: "assets/images/external-logos/toyota.png", alt: "Toyota" },
+];
 
 export default function HomePage() {
   return (
@@ -47,75 +64,28 @@ export default function HomePage() {
             tabs={[
               {
                 id: "editorImage",
-                label: "Webpages",
-                // icon: <Icon path={mdiPaletteSwatch} />,
+                label: "HTML/Website Builder",
                 content: (
-                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#252527]">
-                    <div className="flex gap-[8px] h-[30px] items-center px-4">
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
-                    </div>
+                  <WindowShell>
                     <img
                       className="w-full"
                       src="/assets/images/studio-editor.jpg"
                       alt="GrapesJS Webpage Demo"
                     />
-                  </div>
-                ),
-              },
-              {
-                id: "editorImage2",
-                label: "Landing Pages",
-                content: (
-                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#b7b7b8]">
-                    <div className="flex gap-[8px] h-[30px] items-center px-4">
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
-                    </div>
-                    <img
-                      className="w-full"
-                      src="/assets/images/blog/grapesjs-studio-alpha.jpeg"
-                      alt="GrapesJS Webpage Demo"
-                    />
-                  </div>
+                  </WindowShell>
                 ),
               },
               {
                 id: "editorImage3",
-                label: "Emails",
+                label: "Email/Newsletter Builder",
                 content: (
-                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#b7b7b8]">
-                    <div className="flex gap-[8px] h-[30px] items-center px-4">
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
-                    </div>
+                  <WindowShell>
                     <img
                       className="w-full"
                       src="/assets/images/studio-editor.jpg"
                       alt="GrapesJS Webpage Demo"
                     />
-                  </div>
-                ),
-              },
-              {
-                id: "editorImage4",
-                label: "PDFs & Files",
-                content: (
-                  <div className="flex flex-col w-full rounded-t-[16px] outline outline-4 outline-[#ffffff33] bg-[#252527]">
-                    <div className="flex gap-[8px] h-[30px] items-center px-4">
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#ED6D60]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#F6BF52]"></div>
-                      <div className="w-[12px] h-[12px] rounded-full bg-[#64C556]"></div>
-                    </div>
-                    <img
-                      className="w-full"
-                      src="/assets/images/blog/grapesjs-studio-alpha.jpeg"
-                      alt="GrapesJS Webpage Demo"
-                    />
-                  </div>
+                  </WindowShell>
                 ),
               },
             ]}
@@ -132,41 +102,9 @@ export default function HomePage() {
             </div>
           </div>
           <div className={styles.logosContainer}>
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/microsoft.png"
-              alt="Microsoft"
-            />
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/france-gov.png"
-              alt="Government of France"
-            />
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/pfizer.png"
-              alt="Pfizer"
-            />
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/braze.png"
-              alt="Braze"
-            />
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/phresia.png"
-              alt="Phresia"
-            />
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/volkswagen.png"
-              alt="Volkswagen"
-            />
-            <img
-              className={styles.userLogo}
-              src="assets/images/external-logos/toyota.png"
-              alt="Toyota"
-            />
+            {customers.map(({ src, alt }) => (
+              <img className={styles.userLogo} src={src} alt={alt} />
+            ))}
           </div>
         </section>
 
@@ -179,11 +117,14 @@ export default function HomePage() {
           </div>
           <h3 className={cn(styles.h1)}>Create Your Perfect Visual Editor</h3>
           <p className={cn(styles.p)}>
-            Build powerful, customizable visual editors with GrapesJS. Our
-            versatile framework provides everything you need, from drag-and-drop
-            editing to responsive design.
+            Build powerful, customizable visual editors with Studio SDK and
+            GrapesJS. Our versatile framework provides everything you need, from
+            drag-and-drop editing to responsive design.
           </p>
-          <CTALink href={urls.getSdkLicensesUrl({ plan: "free" })}>
+          <CTALink
+            href={urls.getSdkLicensesUrl({ plan: "free" })}
+            className="my-10"
+          >
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>
 
@@ -241,7 +182,7 @@ export default function HomePage() {
               />
             </section>
           </div>
-          <section className={cn("flex !flex-col !items-stretch", styles.card)}>
+          <section className={cn("hidden !flex-col !items-stretch")}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <div className="flex items-center gap-[8px]">
                 <h4 className={styles.h4}>Ready to use elements</h4>
@@ -314,8 +255,7 @@ export default function HomePage() {
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
                 <h4 className={styles.h4}>Built-in Assets Manager</h4>
                 <p className={cn(styles.p)}>
-                  Keep track of your images, fonts, and other assets within the
-                  editor.
+                  Keep track of your assets within the editor.
                 </p>
               </div>
               <img src="assets/images/studio-features/7.png" alt="SDK UI" />
@@ -366,9 +306,12 @@ export default function HomePage() {
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>
-                  Connect to External Data for Dynamic Content
-                </h4>
+                <div className="flex items-center gap-[8px]">
+                  <h4 className={styles.h4}>
+                    Connect to External Data for Dynamic Content
+                  </h4>
+                  <span className={styles.comingSoonTag}>Coming Soon</span>
+                </div>
                 <p className={cn(styles.p)}>
                   Integrate your editor with external data sources to create
                   dynamic and engaging experiences.
@@ -388,9 +331,8 @@ export default function HomePage() {
           </div>
 
           <h3 className={cn(styles.h1)}>Plans that fit your scale</h3>
-          <p className={cn(styles.p)}>
-            Simple, transparent pricing that grows with you. Try any plan free
-            for 30 days.
+          <p className={cn(styles.p, "mb-10")}>
+            Simple, transparent pricing that grows with you.
           </p>
 
           <Pricing />

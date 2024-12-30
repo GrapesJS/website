@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 64px;
+  gap: 32px;
 }
 
 .plans {
@@ -51,7 +51,7 @@
   scroll-snap-stop: always;
 }
 
-.plan > div {
+.planContainer {
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -169,7 +169,7 @@
   text-transform: capitalize;
 }
 
-.features ul {
+.featuresList {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -187,25 +187,23 @@
   min-width: 0;
   max-width: 100%;
 }
-.features ul {
+.featuresList {
   height: 200px;
 }
 
 @media (max-width: 640px) {
-  .features ul {
+  .featuresList {
     height: auto;
     width: 100%;
   }
 }
 
-.features li {
+.featuresListItem {
   background: url("/assets/images/icons/check.svg") no-repeat 0 0 transparent;
   padding-left: 36px;
-
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  flex: 1 1;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -248,7 +246,7 @@
   z-index: -1;
   margin: -2px;
   border-radius: inherit;
-  background: linear-gradient(174.68deg, #b151c3 4.26%, #ea698b 95.75%),
+  background: linear-gradient(174.68deg, #b151c3 4.26%, #c37287 95.75%),
     linear-gradient(#e4e7ec80, #e4e7ec80);
 }
 

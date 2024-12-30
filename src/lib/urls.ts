@@ -16,8 +16,9 @@ const urls = {
     plan?: "free" | "startup" | "business" | "enterprise";
     ref?: string;
   }) =>
-    `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}
-    ${ref ? `&ref=${ref}` : plan ? `&ref=ctaSdkPlan${toCapitalCase(plan)}` : ""}
+    `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${
+      ref ? `&ref=${ref}` : plan ? `&ref=ctaSdkPlan${toCapitalCase(plan)}` : ""
+    }
     `,
 
   getHomeUrl: () => "/",

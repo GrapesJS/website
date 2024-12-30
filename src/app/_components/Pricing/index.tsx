@@ -19,6 +19,7 @@ interface Plan {
     href: string;
   };
   includes?: string;
+  preList?: string;
   features: string[];
 }
 
@@ -31,6 +32,7 @@ const plans: Plan[] = [
     icon: "/assets/images/plans/free.png",
     price: { monthly: "$0", annual: "$0" },
     description: "Free access. Forever",
+    preList: "All basic features",
     cta: {
       label: "Try Now",
       variant: "tertiary",
@@ -46,7 +48,7 @@ const plans: Plan[] = [
     id: "startup",
     name: "Startup plan",
     icon: "/assets/images/plans/startup.png",
-    price: { monthly: "$200", annual: "$2000" },
+    price: { monthly: "$200", annual: "$2,000" },
     description: "Best for small team",
     cta: {
       label: "Get This Plan",
@@ -64,7 +66,7 @@ const plans: Plan[] = [
     id: "business",
     name: "Business plan",
     icon: "/assets/images/plans/business.png",
-    price: { monthly: "$2000", annual: "$20,000" },
+    price: { monthly: "$2,000", annual: "$20,000" },
     description: "Best for growing businesses",
     cta: {
       label: "Get This Plan",
@@ -92,11 +94,10 @@ const plans: Plan[] = [
     includes: "business",
     features: [
       "24x7 Phone Support",
-      "Unlimited Cloud Storage",
       "Unlimited Sessions",
       "Unlimited Cloud Storage",
       "Custom Plugin Support",
-      "Multiple domains Support",
+      "Multiple Domains Support",
       "Custom Branding",
       "Custom Development",
     ],
@@ -113,7 +114,7 @@ const PlanCard = ({
   selectedPeriod: "monthly" | "annual";
 }) => (
   <div className={cn(styles.plan, className)}>
-    <div>
+    <div className={cn(styles.planContainer)}>
       <div className={styles.planTitle}>
         <div className={styles.icon}>
           <img src={plan.icon} />
@@ -132,17 +133,20 @@ const PlanCard = ({
       </CTALink>
     </div>
     <hr />
-    <div className={styles.features}>
+    <div className={cn(styles.planContainer, styles.features)}>
       <h5>FEATURES</h5>
       {plan.includes && (
         <p>
           Everything in <strong>{plan.includes}</strong> plus...
         </p>
       )}
-      <ul>
-        {plan.features.map((f, i) => {
-          return <li key={i}>{f}</li>;
-        })}
+      {plan.preList && <p>{plan.preList}</p>}
+      <ul className={styles.featuresList}>
+        {plan.features.map((f, i) => (
+          <li key={i} className={styles.featuresListItem}>
+            {f}
+          </li>
+        ))}
       </ul>
     </div>
   </div>
