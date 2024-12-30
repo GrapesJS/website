@@ -49,7 +49,7 @@ export default function HomePage() {
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
             <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
             <CTALink
-              href={urls.getSdkLicensesUrl({ plan: "free" })}
+              href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
               variant="tertiary"
             >
               Create Account
@@ -120,7 +120,7 @@ export default function HomePage() {
             drag-and-drop editing to responsive design.
           </p>
           <CTALink
-            href={urls.getSdkLicensesUrl({ plan: "free" })}
+            href={urls.getSdkLicensesUrl({ ref: "featuresCta" })}
             className="my-10"
           >
             Start Now<span className="font-[400]"> - It's free</span>
@@ -341,7 +341,7 @@ export default function HomePage() {
           <p className={cn(styles.p)}>
             Join the thousands of companies & developers using our editor today
           </p>
-          <CTALink href={urls.getSdkLicensesUrl({ plan: "free" })}>
+          <CTALink href={urls.getSdkLicensesUrl({ ref: "preSponsorCta" })}>
             Get Started for Free
           </CTALink>
         </section>
