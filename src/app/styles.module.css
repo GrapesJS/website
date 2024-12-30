@@ -160,14 +160,6 @@
   color: var(--textColor);
 }
 
-.maintext {
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 20px;
-  text-align: center;
-  color: var(--textColor);
-}
-
 .h2 {
   font-size: 20px;
   font-weight: 700;

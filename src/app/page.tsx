@@ -9,9 +9,9 @@ import Header from "./_components/Header";
 import Pricing from "./_components/Pricing";
 import StarOnGH from "./_components/StarOnGH";
 import { Tabs } from "./_components/Tabs";
-import { TypingTextEffect } from "./_components/TypingTextEffect";
 import "./home.css";
 import styles from "./styles.module.css";
+
 export default function HomePage() {
   return (
     <>
@@ -20,30 +20,21 @@ export default function HomePage() {
         <Header isHome />
 
         <section className={cn(styles.heroSection, styles.section)}>
-          <h1 className={cn(styles.h1)}>The embeddable drag-and-drop builder
+          <h1 className={cn(styles.h1)}>
+            The embeddable drag-and-drop builder
           </h1>
-          {/* <h1 className={cn(styles.h1, "!text-left")}>
-            Add GrapesJS Studio editor to your{" "}
-            <TypingTextEffect
-              items={["SaaS", "Website", "Ad Builder", "CRM"]}
-            />
-          </h1> */}
-          <p className={cn(styles.maintext)}>
-          Seamlessly integrate and create within your application.
+          <p className={cn(styles.p)}>
+            Seamlessly integrate and create within your application.
+            <br />
+            Open-source, customizable, white-label, no-code, visual editor for:
+            <br />
+            <b>Emails</b>, <b>Landing Pages</b>, and <b>Webpages</b>
           </p>
-          <p className={cn(styles.maintext )}>
-          Open source, customizable, white-label, no-code, visual editor for:</p>
-          <p className={cn(styles.maintext)}>
-          <b>Emails</b>, <b>Landing Pages</b>, and <b>Webpages</b> 
-          </p>
-          
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>
-              Build Now
-            </CTALink>
+            <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
             <CTALink href={urls.getSdkDashboardUrl("free")} variant="tertiary">
-              Sign Up
+              Create Account
             </CTALink>
           </div>
 

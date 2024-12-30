@@ -1,17 +1,14 @@
 "use client";
 import GitHubButton from "react-github-btn";
-import styles from "./styles.module.css";
 
-type Props = {};
-
-const StarOnGH = (props: Props) => {
+const StarOnGH = () => {
   return (
-    <div className={styles.container}>
-      Join the thousands of happy developers
-      <div>
+    <div className="flex gap-3 items-center font-normal">
+      <span>Join the thousands of happy developers</span>
+      <div className="h-[27px]">
         <GitHubButton
           href="https://github.com/GrapesJS/grapesjs"
-          data-color-scheme="no-preference: light; light: light; dark: dark;"
+          data-color-scheme="dark"
           data-size="large"
           data-show-count="true"
           aria-label="Star GrapesJS/grapesjs on GitHub"
