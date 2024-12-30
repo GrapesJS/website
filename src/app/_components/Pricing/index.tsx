@@ -34,7 +34,7 @@ const plans: Plan[] = [
     cta: {
       label: "Try Now",
       variant: "tertiary",
-      href: urls.getSdkDashboardUrl("free"),
+      href: urls.getSdkLicensesUrl({ plan: "free" }),
     },
     features: [
       "1,000 sessions per month",
@@ -51,7 +51,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: urls.getSdkDashboardUrl("startup"),
+      href: urls.getSdkLicensesUrl({ plan: "startup" }),
     },
     includes: "free",
     features: [
@@ -69,7 +69,7 @@ const plans: Plan[] = [
     cta: {
       label: "Get This Plan",
       variant: "secondary",
-      href: urls.getSdkDashboardUrl("business"),
+      href: urls.getSdkLicensesUrl({ plan: "business" }),
     },
     includes: "startup",
     features: [
@@ -99,8 +99,6 @@ const plans: Plan[] = [
       "Multiple domains Support",
       "Custom Branding",
       "Custom Development",
-
-
     ],
   },
 ] as const;

@@ -1,17 +1,24 @@
 const toCapitalCase = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
+const APP_URL = "https://app.grapesjs.com";
+const WEBSITE_URL = "https://grapesjs.com";
+const UTM_PARAMS = `utm_source=grapesjs&utm_medium=button`;
+
 const urls = {
-  getGettingStartedDocsUrl: () =>
-    "https://app.grapesjs.com/docs-sdk?utm_source=grapesjs&utm_medium=button",
-  getGrapesJsDocs: () => "https://grapesjs.com/docs/?utm_source=grapesjs&utm_medium=button",
-
-  getStudioEditorUrl: () => "https://app.grapesjs.com/studio?utm_source=grapesjs&utm_medium=button",
-
-  getSdkDashboardUrl: (plan?: "free" | "startup" | "business" | "enterprise") =>
-    `https://app.grapesjs.com/dashboard/sdk/licenses${
-      plan && `?utm_source=grapesjs&utm_medium=button?ref=ctaSdkPlan${toCapitalCase(plan)}`
-    }`,
+  getGettingStartedDocsUrl: () => `${APP_URL}/docs-sdk?${UTM_PARAMS}`,
+  getGrapesJsDocs: () => `${WEBSITE_URL}/docs/?${UTM_PARAMS}`,
+  getStudioEditorUrl: () => `${APP_URL}/studio?${UTM_PARAMS}`,
+  getSdkLicensesUrl: ({
+    plan,
+    ref,
+  }: {
+    plan?: "free" | "startup" | "business" | "enterprise";
+    ref?: string;
+  }) =>
+    `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}
+    ${ref ? `&ref=${ref}` : plan ? `&ref=ctaSdkPlan${toCapitalCase(plan)}` : ""}
+    `,
 
   getHomeUrl: () => "/",
   getFeaturesUrl: () => "/#features",
@@ -20,8 +27,8 @@ const urls = {
   getContactUrl: () => "mailto:sales@grapesjs.com",
   getBlogUrl: () => "/blog",
   getContactUsUrl: () => "https://forms.gle/VUycp3rc8iCpbh9k8",
-  getTermsUrl: () => "https://app.grapesjs.com/terms",
-  getPrivacyUrl: () => "https://app.grapesjs.com/privacy",
+  getTermsUrl: () => `${APP_URL}/terms`,
+  getPrivacyUrl: () => `${APP_URL}/privacy`,
   getEnterpriseContactFormUrl: () => "https://forms.gle/VUycp3rc8iCpbh9k8",
   getLinkedInUrl: () => "https://www.linkedin.com/company/grapes-studio/",
   getXUrl: () => "https://x.com/grapesjs",

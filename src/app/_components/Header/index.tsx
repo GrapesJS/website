@@ -23,7 +23,10 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       href: urls.getGettingStartedDocsUrl(),
       target: "_blank",
     },
-    { content: "Sign In", href: urls.getSdkDashboardUrl("free") },
+    {
+      content: "Sign In",
+      href: urls.getSdkLicensesUrl({ ref: "mainTopNav" }),
+    },
     { content: "Contact Us", href: urls.getContactUsUrl() },
   ];
 

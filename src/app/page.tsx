@@ -33,7 +33,10 @@ export default function HomePage() {
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
             <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
-            <CTALink href={urls.getSdkDashboardUrl("free")} variant="tertiary">
+            <CTALink
+              href={urls.getSdkLicensesUrl({ plan: "free" })}
+              variant="tertiary"
+            >
               Create Account
             </CTALink>
           </div>
@@ -180,7 +183,7 @@ export default function HomePage() {
             versatile framework provides everything you need, from drag-and-drop
             editing to responsive design.
           </p>
-          <CTALink href={urls.getSdkDashboardUrl("free")}>
+          <CTALink href={urls.getSdkLicensesUrl({ plan: "free" })}>
             Start Now<span className="font-[400]"> - It's free</span>
           </CTALink>
 
@@ -398,7 +401,7 @@ export default function HomePage() {
           <p className={cn(styles.p)}>
             Join the thousands of companies & developers using Grapes today
           </p>
-          <CTALink href={urls.getSdkDashboardUrl("free")}>
+          <CTALink href={urls.getSdkLicensesUrl({ plan: "free" })}>
             Get Started for Free
           </CTALink>
         </section>
