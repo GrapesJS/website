@@ -38,8 +38,8 @@ const plans: Plan[] = [
     },
     features: [
       "1,000 sessions per month",
-      "Basic reporting and analytics",
-      "Up to 1 individual users",
+      "Support for one domain",
+      "Standard Email Support",
     ],
   },
   {
@@ -75,7 +75,7 @@ const plans: Plan[] = [
     features: [
       "50,000 sessions per month",
       "Dedicated Slack Channel",
-      "Unlimited Plugin Access",
+      "Multiple sub-domains support",
     ],
   },
   {
@@ -91,15 +91,16 @@ const plans: Plan[] = [
     },
     includes: "business",
     features: [
-      "Access to all features",
-      "Reporting and analytics",
-      "Multi Tenant Support",
-      "On Premises Support",
       "24x7 Phone Support",
       "Unlimited Cloud Storage",
       "Unlimited Sessions",
-      "Unlimited Users",
+      "Unlimited Cloud Storage",
+      "Custom Plugin Support",
+      "Multiple domains Support",
+      "Custom Branding",
       "Custom Development",
+
+
     ],
   },
 ] as const;

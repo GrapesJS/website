@@ -28,13 +28,13 @@ export default function HomePage() {
               items={["SaaS", "Website", "Ad Builder", "CRM"]}
             />
           </h1> */}
-          <p className={cn(styles.p)}>
+          <p className={cn(styles.maintext)}>
           Seamlessly integrate and create within your application.
           </p>
-          <p className={cn(styles.p)}>
+          <p className={cn(styles.maintext )}>
           Open source, customizable, white-label, no-code, visual editor for:</p>
-          <p className={cn(styles.p)}>
-          <u>Emails</u>, <u>Landing Pages</u>, and <u>Webpages</u> 
+          <p className={cn(styles.maintext)}>
+          <b>Emails</b>, <b>Landing Pages</b>, and <b>Webpages</b> 
           </p>
           
 

@@ -3,14 +3,14 @@ const toCapitalCase = (str: string) =>
 
 const urls = {
   getGettingStartedDocsUrl: () =>
-    "https://app.grapesjs.com/docs-sdk/overview/getting-started",
-  getGrapesJsDocs: () => "https://grapesjs.com/docs/",
+    "https://app.grapesjs.com/docs-sdk?utm_source=grapesjs&utm_medium=button",
+  getGrapesJsDocs: () => "https://grapesjs.com/docs/?utm_source=grapesjs&utm_medium=button",
 
-  getStudioEditorUrl: () => "https://app.grapesjs.com/studio",
+  getStudioEditorUrl: () => "https://app.grapesjs.com/studio?utm_source=grapesjs&utm_medium=button",
 
   getSdkDashboardUrl: (plan?: "free" | "startup" | "business" | "enterprise") =>
     `https://app.grapesjs.com/dashboard/sdk/licenses${
-      plan && `?ref=ctaSdkPlan${toCapitalCase(plan)}`
+      plan && `?utm_source=grapesjs&utm_medium=button?ref=ctaSdkPlan${toCapitalCase(plan)}`
     }`,
 
   getHomeUrl: () => "/",
@@ -19,6 +19,7 @@ const urls = {
   getCareersUrl: () => "/careers",
   getContactUrl: () => "mailto:sales@grapesjs.com",
   getBlogUrl: () => "/blog",
+  getContactUsUrl: () => "https://forms.gle/VUycp3rc8iCpbh9k8",
   getTermsUrl: () => "https://app.grapesjs.com/terms",
   getPrivacyUrl: () => "https://app.grapesjs.com/privacy",
   getEnterpriseContactFormUrl: () => "https://forms.gle/VUycp3rc8iCpbh9k8",

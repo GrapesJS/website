@@ -17,7 +17,6 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
   const navLinks: { content: string; href: string; target?: string }[] = [
     { content: "Features", href: urls.getFeaturesUrl() },
     { content: "Pricing", href: urls.getPricingUrl() },
-    { content: "Careers", href: urls.getCareersUrl() },
     { content: "Blog", href: urls.getBlogUrl() },
     {
       content: "Docs",
@@ -25,6 +24,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       target: "_blank",
     },
     { content: "Sign In", href: urls.getSdkDashboardUrl("free") },
+    { content: "Contact Us", href: urls.getContactUsUrl() },
   ];
 
   return (
