@@ -117,7 +117,7 @@ const PlanCard = ({
     <div className={cn(styles.planContainer)}>
       <div className={styles.planTitle}>
         <div className={styles.icon}>
-          <img src={plan.icon} alt={`${plan.name} plan icon`} />
+          <img loading="lazy" src={plan.icon} alt={`${plan.name} plan icon`} />
         </div>
         <h4>{plan.name}</h4>
       </div>
