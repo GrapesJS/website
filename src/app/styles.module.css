@@ -238,17 +238,6 @@
   gap: 24px;
 }
 
-@media (max-width: 640px) {
-  .homeResponsiveColumns {
-    flex-direction: column;
-  }
-
-  .h1 {
-    font-size: 3rem;
-    line-height: normal;
-  }
-}
-
 .verticalCard.verticalCard {
   flex: 1 1;
   display: flex;
@@ -275,4 +264,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 640px) {
+  .homeResponsiveColumns {
+    flex-direction: column;
+  }
+
+  .h1 {
+    font-size: 3rem;
+    line-height: normal;
+  }
+
+  .verticalCard.verticalCard {
+    min-width: 325px;
+  }
+}
+
+@media (max-width: 480px) {
+  .h1 {
+    font-size: 2rem;
+  }
+  .p {
+    font-size: 1.2rem;
+  }
 }

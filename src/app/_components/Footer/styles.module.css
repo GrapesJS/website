@@ -21,7 +21,6 @@
 }
 
 .description {
-  text-align: start;
   font-family: var(--font-inter);
   font-weight: 400;
   font-size: 16px;
@@ -38,7 +37,7 @@
   gap: 24px;
 }
 
-.categories > .category {
+.category {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -108,5 +107,10 @@
 
   .footerSectionSocial {
     flex-direction: column-reverse;
+  }
+
+  .logoAndDescription {
+    align-items: center;
+    text-align: center;
   }
 }
