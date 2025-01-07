@@ -388,6 +388,7 @@ export default function HomePage() {
           <div className={styles.scrollableContainer}>
             <object
               className={cn(styles.sponsorLogo, styles.openCollectiveLogo)}
+              aria-label="Backers"
               type="image/svg+xml"
               data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64"
             >

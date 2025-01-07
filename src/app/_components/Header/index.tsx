@@ -61,6 +61,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
           </nav>
           <button
             className={styles.drawerButton}
+            aria-label="Toggle menu"
             onClick={() => setOpen((open) => !open)}
           >
             {open ? (
