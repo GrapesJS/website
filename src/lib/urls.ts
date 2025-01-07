@@ -6,7 +6,8 @@ const WEBSITE_URL = "https://grapesjs.com";
 const UTM_PARAMS = `utm_source=grapesjs&utm_medium=button`;
 
 const urls = {
-  getGettingStartedDocsUrl: () => `${APP_URL}/docs-sdk?${UTM_PARAMS}`,
+  getGettingStartedDocsUrl: () =>
+    `${APP_URL}/docs-sdk/overview/getting-started?${UTM_PARAMS}`,
   getGrapesJsDocs: () => `${WEBSITE_URL}/docs/?${UTM_PARAMS}`,
   getStudioEditorUrl: () => `${APP_URL}/studio?${UTM_PARAMS}`,
   getSdkLicensesUrl: ({
