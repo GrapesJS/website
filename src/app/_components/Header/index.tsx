@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       target: "_blank",
     },
     {
-      content: "Dashboard",
+      content: "Sign In",
       className: "rounded-full border-2 !px-4",
       href: urls.getSdkLicensesUrl({ ref: "mainTopNav" }),
       target: "_blank",

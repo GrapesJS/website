@@ -47,7 +47,7 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
+            <CTALink href={urls.getStudioEditorUrl()}>See a Demo</CTALink>
             <CTALink
               href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
               variant="tertiary"
