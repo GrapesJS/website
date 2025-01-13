@@ -41,19 +41,18 @@ export default function HomePage() {
           <p className={cn(styles.p)}>
             Seamlessly integrate and create within your application.
             <br />
-            Open-source, customizable, white-label, no-code, visual editor for:
+            The open-source, no-code, visual editor.
             <br />
-            <b>Emails</b>, <b>Landing Pages</b>, and <b>Webpages</b>
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>See a Demo</CTALink>
-            <CTALink
+            <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
+            {/* <CTALink
               href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
               variant="tertiary"
             >
               Create Account
-            </CTALink>
+            </CTALink> */}
           </div>
 
           <StarOnGH />
