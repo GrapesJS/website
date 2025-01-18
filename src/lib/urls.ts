@@ -1,27 +1,27 @@
 const toCapitalCase = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
+interface UrlProps {
+  plan?: "free" | "startup" | "business" | "enterprise";
+  ref?: string;
+}
+
 const APP_URL = "https://app.grapesjs.com";
 const WEBSITE_URL = "https://grapesjs.com";
 const UTM_PARAMS = `utm_source=grapesjs&utm_medium=button`;
+
+const getRef = ({ ref, plan }: UrlProps) =>
+  ref ? `&ref=${ref}` : plan ? `&ref=ctaSdkPlan${toCapitalCase(plan)}` : "";
 
 const urls = {
   getGettingStartedDocsUrl: () =>
     `${APP_URL}/docs-sdk/overview/getting-started?${UTM_PARAMS}`,
   getGrapesJsDocs: () => `${WEBSITE_URL}/docs/?${UTM_PARAMS}`,
   getStudioEditorUrl: () => `${APP_URL}/studio?${UTM_PARAMS}`,
-  getSdkLicensesUrl: ({
-    plan,
-    ref,
-  }: {
-    plan?: "free" | "startup" | "business" | "enterprise";
-    ref?: string;
-  }) =>
-    `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${
-      ref ? `&ref=${ref}` : plan ? `&ref=ctaSdkPlan${toCapitalCase(plan)}` : ""
-    }
-    `,
-
+  getSignInUrl: (props: UrlProps) =>
+    `${APP_URL}/signin?${UTM_PARAMS}${getRef(props)}`,
+  getSdkLicensesUrl: (props: UrlProps) =>
+    `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${getRef(props)}`,
   getHomeUrl: () => "/",
   getFeaturesUrl: () => "/#features",
   getPricingUrl: () => "/#pricing",
