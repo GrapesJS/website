@@ -1,15 +1,16 @@
+import urls from "@/lib/urls";
 import cn from "classnames";
-import Link from "next/link";
 import Image from "next/image";
-import { getPathBlog } from "@/lib/utils";
+import Link from "next/link";
 
 type Props = {
   title: string;
   src: string;
   slug?: string;
+  className?: string;
 };
 
-const CoverImage = ({ title, src, slug }: Props) => {
+const CoverImage = ({ title, src, slug, className }: Props) => {
   const image = (
     <Image
       src={src}
@@ -22,9 +23,9 @@ const CoverImage = ({ title, src, slug }: Props) => {
     />
   );
   return (
-    <div className="sm:mx-0">
+    <div className={cn("sm:mx-0", className)}>
       {slug ? (
-        <Link href={getPathBlog(slug)} aria-label={title}>
+        <Link href={urls.getPathBlog(slug)} aria-label={title}>
           {image}
         </Link>
       ) : (
