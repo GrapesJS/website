@@ -9,7 +9,7 @@ ogImage:
   url: "/assets/blog/flashframe/header.png"
 ---
 
-In this post, I’ll walk you through the journey of <a href='https://www.flashframe.io'>Flashframe</a>, a photography hosting platform, moving from the open-source version of GrapesJS implementation to the robust Grapes Studio SDK. They had been using the open source version of GrapesJS for an internal email tool for over five years, and made the transition after seeing the new functionality offered by the studio SDK. This transition allowed me to streamline asset management, enhance the editor’s functionality, and simplify integrations. Below are the old and new code snippets to help you compare and contrast the differences between the two versions. 
+In this post, I’ll walk you through the journey of [Flashframe](https://www.flashframe.io), a photography hosting platform, moving from the [open-source version of GrapesJS](https://github.com/GrapesJS/grapesjs) implementation to the robust [Grapes Studio SDK](https://app.grapesjs.com/docs-sdk/overview/getting-started?utm_source=grapesjsblog&utm_medium=link). They had been using the open source version of GrapesJS for an internal email tool for over five years, and made the transition after seeing the new functionality offered by the studio SDK. This transition allowed me to streamline asset management, enhance the editor’s functionality, and simplify integrations. Below are the old and new code snippets to help you compare and contrast the differences between the two versions. 
 
 ---
 
@@ -17,7 +17,7 @@ In this post, I’ll walk you through the journey of <a href='https://www.flashf
 
 ![Grapes Editor built into Flashframe](/assets/blog/flashframe/flashframe.png)
 
-The most notable thing about the initialization was that Flashframe was using the web editor for email editing. <u>For email, we highly recommend specific email version that creates templates in MJML.</u> However, it would be difficult for Flashframe to change this because they were saving the templates as HTML, and they needed backward compatability. They also needed to inline all the CSS directly back into the HTML. They were able to do so by using the grapesjs-preset-newsletter plugin. <u>This is again not recommended, and its best to save the JSON of the HTML and CSS, rather than inlining as it preserves editing functionality that will be lost when inlining the HTML. </u>
+The most notable thing about the [initialization](https://app.grapesjs.com/docs-sdk/configuration/projects) was that Flashframe was using the web editor for email editing. <u>For email, we highly recommend specific email version that creates templates in MJML.</u> However, it would be difficult for Flashframe to change this because they were saving the templates as HTML, and they needed backward compatability. They also needed to inline all the CSS directly back into the HTML. They were able to do so by using the grapesjs-preset-newsletter plugin. <u>This is again not recommended, and its best to save the JSON of the HTML and CSS, rather than inlining as it preserves editing functionality that will be lost when inlining the HTML. </u>
 
 #### Old Code:
 ```javascript
@@ -74,7 +74,7 @@ GrapesJsStudioSDK.createStudioEditor({
 
 ![Grapes Asset Manager configured for Flashframe](/assets/blog/flashframe/asset.png)
 
-Flashframe was able to leverage the same endpoints they had for asset management, the SDK editor breaks out upload, onLoad and onDelete into separate functions, which allows you to take specific actions. This was overall a simple switch for their team. 
+Flashframe was able to leverage the same endpoints they had for asset management, the SDK editor breaks out upload, onLoad and onDelete into separate functions, which allows you to take specific actions. This was overall a simple switch for their team. They were able to utilize the built in [asset manager](https://app.grapesjs.com/docs-sdk/configuration/assets#asset-storage) and storage functions and point to their respective endpoints to make this conversion quickly.
 
 #### Old Code:
 
@@ -120,7 +120,7 @@ assets: {
 
 ![Custom Button Created By Flashframe to send email preview](/assets/blog/flashframe/buttons.png)
 
-Flashframe had a custom button in their open source version which allowed the user to send a draft test email to themselves. It would take the current HTML send it to a custom endpoint, fill in any custom variables, and then email it to the user. This was formerly done by the editor, its now done by editing the layout and defining an onClick function. 
+Flashframe had a custom button in their open source version which allowed the user to send a draft test email to themselves. It would take the current HTML send it to a custom endpoint, fill in any custom variables, and then email it to the user. This was formerly done by the editor, its now done by editing the layout via the [layout system](https://app.grapesjs.com/docs-sdk/configuration/layout/overview) and defining an onClick function. 
 
 #### Old Code:
 
@@ -213,7 +213,7 @@ layout: {
 
 ![Custom Blocks Used By Flashframe](/assets/blog/flashframe/blocks.png)
 
-Flashframe had two custom blocks they needed to port over to the open source version. This was another simple switch as they were able to copy the their old code into the proper place within the SDK. 
+Flashframe had two custom blocks they needed to port over to the open source version. This was another simple switch as they were able to copy the their old code into the proper place within the SDK, they were able to leverage the [layout system](https://app.grapesjs.com/docs-sdk/configuration/layout/overview) and [panel blocks](https://app.grapesjs.com/docs-sdk/configuration/layout/components#panelblocks) to make this happen.
 
 #### Old Code:
 
@@ -246,4 +246,4 @@ gjsOptions: {
 
 ```
 
-Overall it was relatively simple switch for the Flashframe team that allowed them to make huge jumps in the UI and UX of their website, but also bring all of their custom functionality over as well. It took the Flashframe team about one day of development time with one developer to make the transition. I want to thank the Flashframe team for allowing us to see their code and understand how their transition went. 
+Overall it was relatively simple switch for the [Flashframe](https://www.flashframe.io/) team that allowed them to make huge jumps in the UI and UX of their website, but also bring all of their custom functionality over as well. It took the Flashframe team about one day of development time with one developer to make the transition. I want to thank the Flashframe team for allowing us to see their code and understand how their transition went. 
