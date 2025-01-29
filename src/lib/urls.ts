@@ -8,10 +8,10 @@ interface UrlProps {
 
 const APP_URL = "https://app.grapesjs.com";
 const WEBSITE_URL = "https://grapesjs.com";
-const UTM_PARAMS = `utm_source=grapesjs&utm_medium=button`;
+const UTM_PARAMS = `utm_source=grapesjs`;
 
 const getRef = ({ ref, plan }: UrlProps) =>
-  ref ? `&ref=${ref}` : plan ? `&ref=ctaSdkPlan${toCapitalCase(plan)}` : "";
+  ref ? `&utm_medium=${ref}` : plan ? `&utm_medium=ctaSdkPlan${toCapitalCase(plan)}` : "";
 
 const urls = {
   getGettingStartedDocsUrl: () =>
