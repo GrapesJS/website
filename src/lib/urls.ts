@@ -8,16 +8,16 @@ interface UrlProps {
 
 const APP_URL = "https://app.grapesjs.com";
 const WEBSITE_URL = "https://grapesjs.com";
-const UTM_PARAMS = `utm_source=grapesjs&utm_medium=button`;
+const UTM_PARAMS = `utm_source=grapesjs`;
 
 const getRef = ({ ref, plan }: UrlProps) =>
-  ref ? `&ref=${ref}` : plan ? `&ref=ctaSdkPlan${toCapitalCase(plan)}` : "";
+  ref ? `&utm_medium=${ref}` : plan ? `&utm_medium=ctaSdkPlan${toCapitalCase(plan)}` : "";
 
 const urls = {
   getGettingStartedDocsUrl: () =>
     `${APP_URL}/docs-sdk/overview/getting-started?${UTM_PARAMS}`,
   getGrapesJsDocs: () => `${WEBSITE_URL}/docs/?${UTM_PARAMS}`,
-  getStudioEditorUrl: () => `${APP_URL}/studio?${UTM_PARAMS}`,
+  getStudioEditorUrl: () => `${APP_URL}/studio?${UTM_PARAMS}&utm_medium=tryEditor`,
   getSignInUrl: (props: UrlProps) =>
     `${APP_URL}/signin?${UTM_PARAMS}${getRef(props)}`,
   getSdkLicensesUrl: (props: UrlProps) =>
