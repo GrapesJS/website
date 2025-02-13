@@ -64,7 +64,7 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
           <hr className={styles.shadowSeparator} />
           <Container>
             <div className="mb-32">
-              <div className="max-w-2xl mx-auto">
+              <div className={cn(styles.postContent, "max-w-2xl mx-auto")}>
                 <ContainerMDX source={post.content} />
               </div>
             </div>

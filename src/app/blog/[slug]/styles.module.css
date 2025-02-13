@@ -61,3 +61,11 @@
     no-repeat;
   z-index: 0;
 }
+
+.postContent h2 {
+  margin: 2rem 0 1rem;
+}
+
+.postContent h3 {
+  font-size: 1.2rem;
+}
