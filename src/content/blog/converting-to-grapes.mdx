@@ -1,26 +1,26 @@
 ---
-title: "Flashframe's Transition from GrapesJS Open Source to Studio SDK: A Step-by-Step Guide"
+title: "Flashframe's Transition from the GrapesJS Open Source to Studio SDK: A Step-by-Step Guide"
 excerpt: "Learn how Flashframe migrated from the open-source GrapesJS framework to the Studio SDK. This guide includes old and new code snippets, with a detailed breakdown of the improvements and customizations."
 coverImage: "/assets/blog/flashframe/header.png"
-date: "2025-01-06T14:00:00Z"
+date: "2025-02-13T14:00:00Z"
 author:
   name: Griffin
 ogImage:
   url: "/assets/blog/flashframe/header.png"
 ---
 
-In this post, I’ll walk you through the journey of [Flashframe](https://www.flashframe.io), a photography hosting platform, moving from the [open-source version of GrapesJS](https://github.com/GrapesJS/grapesjs) implementation to the robust [Grapes Studio SDK](https://app.grapesjs.com/docs-sdk/overview/getting-started?utm_source=grapesjsblog&utm_medium=link). They had been using the open source version of GrapesJS for an internal email tool for over five years, and made the transition after seeing the new functionality offered by the studio SDK. This transition allowed me to streamline asset management, enhance the editor’s functionality, and simplify integrations. Below are the old and new code snippets to help you compare and contrast the differences between the two versions. 
+In this post, I'll walk you through the journey of [Flashframe](https://www.flashframe.io), a photography hosting platform, moving from the [open-source version of GrapesJS](https://github.com/GrapesJS/grapesjs) implementation to the robust [Grapes Studio SDK](https://app.grapesjs.com/docs-sdk/overview/getting-started?utm_source=grapesjsblog&utm_medium=link). They had been using the open source version of GrapesJS for an internal email tool for over five years, and made the transition after seeing the new functionality offered by the studio SDK. This transition allowed me to streamline asset management, enhance the editor's functionality, and simplify integrations. Below are the old and new code snippets to help you compare and contrast the differences between the two versions.
 
----
 
-### **Step 1: Initializing the Editor**
+## Step 1: Initializing the Editor
 
 ![Grapes Editor built into Flashframe](/assets/blog/flashframe/flashframe.png)
 
-The most notable thing about the [initialization](https://app.grapesjs.com/docs-sdk/configuration/projects) was that Flashframe was using the web editor for email editing. <u>For email, we highly recommend specific email version that creates templates in MJML.</u> However, it would be difficult for Flashframe to change this because they were saving the templates as HTML, and they needed backward compatability. They also needed to inline all the CSS directly back into the HTML. They were able to do so by using the grapesjs-preset-newsletter plugin. <u>This is again not recommended, and its best to save the JSON of the HTML and CSS, rather than inlining as it preserves editing functionality that will be lost when inlining the HTML. </u>
+The most notable thing about the [initialization](https://app.grapesjs.com/docs-sdk/configuration/projects) was that Flashframe was using the web editor for email editing. <u>For email, we highly recommend specific email version that creates templates in MJML.</u> However, it would be difficult for Flashframe to change this because they were saving the templates as HTML, and they needed backward compatability. They also needed to inline all the CSS directly back into the HTML. They were able to do so by using the grapesjs-preset-newsletter plugin. <u>This is again not recommended, and its best to save the JSON of the HTML and CSS, rather than inlining as it preserves editing functionality that will be lost when inlining the HTML.</u>
 
-#### Old Code:
-```javascript
+### Old Code:
+
+```js
 var editor = grapesjs.init({
   container: '#gjs',
   clearOnRender: true,
@@ -44,16 +44,15 @@ var editor = grapesjs.init({
   },
 });
 ```
-#### New Code:
-```javascript
+
+### New Code:
+
+```js
 GrapesJsStudioSDK.createStudioEditor({
-  root: '#studio-editor',
-  licenseKey: 'your-license-key',
-  project: {
-    type: 'web',
-  },
+  root: '#gjs',
+  licenseKey: 'license-key',
+  project: { type: 'web' },
   gjsOptions: {
-    plugins: ['grapesjs-preset-newsletter'],
     pluginsOpts: {
       'grapesjs-preset-newsletter': {
         modalTitleImport: 'Import template',
@@ -64,21 +63,22 @@ GrapesJsStudioSDK.createStudioEditor({
   plugins: [
     'grapesjs-preset-newsletter',
     (editor) => {
-    editor.Panels.getPanels().reset([]);
+      editor.Panels.getPanels().reset([]);
     }
   ]
 });
 ```
 
-### Step 2: Handling Asset Management
+
+## Step 2: Handling Asset Management
 
 ![Grapes Asset Manager configured for Flashframe](/assets/blog/flashframe/asset.png)
 
 Flashframe was able to leverage the same endpoints they had for asset management, the SDK editor breaks out upload, onLoad and onDelete into separate functions, which allows you to take specific actions. This was overall a simple switch for their team. They were able to utilize the built in [asset manager](https://app.grapesjs.com/docs-sdk/configuration/assets#asset-storage) and storage functions and point to their respective endpoints to make this conversion quickly.
 
-#### Old Code:
+### Old Code:
 
-```javascript 
+```js
 
 assetManager: {
   upload: '/api/asset/' ,
@@ -87,9 +87,9 @@ assetManager: {
 
 ```
 
-#### New Code:
+### New Code:
 
-```javascript
+```js
 assets: {
   storageType: 'self',
   onUpload: async ({ files }) => {
@@ -116,15 +116,15 @@ assets: {
 
 ```
 
-### Step 3: Custom Buttons and Functions
+## Step 3: Custom Buttons and Functions
 
 ![Custom Button Created By Flashframe to send email preview](/assets/blog/flashframe/buttons.png)
 
-Flashframe had a custom button in their open source version which allowed the user to send a draft test email to themselves. It would take the current HTML send it to a custom endpoint, fill in any custom variables, and then email it to the user. This was formerly done by the editor, its now done by editing the layout via the [layout system](https://app.grapesjs.com/docs-sdk/configuration/layout/overview) and defining an onClick function. 
+Flashframe had a custom button in their open source version which allowed the user to send a draft test email to themselves. It would take the current HTML send it to a custom endpoint, fill in any custom variables, and then email it to the user. This was formerly done by the editor, its now done by editing the layout via the [layout system](https://app.grapesjs.com/docs-sdk/configuration/layout/overview) and defining an onClick function.
 
-#### Old Code:
+### Old Code:
 
-```javascript 
+```js
 
 editor.Panels.addButton('options', {
   id: 'send-test',
@@ -156,22 +156,20 @@ editor.Commands.add
 
 ```
 
-#### New Code:
+### New Code:
 
-```javascript
+```js
 layout: {
   default: {
     type: 'row',
     height: '100%',
     children: [
-              {
-        type: 'column',
+      {
+        type: 'sidebarLeft',
         children: {
           type: 'panelLayers',
           resizable: { right: true, width: 300, height: '100%', minWidth: 200, maxWidth: 300 },
-          header: {
-            label: 'Layers',
-          }
+          header: { label: 'Layers' }
         }
       },
       {
@@ -181,7 +179,6 @@ layout: {
             buttons: ({ items }) => [
               ...items,
               {
-                id: 'gs',
                 size: 's',
                 icon: 'emailOutline',
                 onClick: ({ editor }) => {
@@ -200,7 +197,7 @@ layout: {
         },
         grow: true,
       },
-      { type: 'sidebarRight' }, 
+      { type: 'sidebarRight' },
     ],
   },
 },
@@ -209,15 +206,15 @@ layout: {
 ```
 
 
-### Step 4: Custom Blocks
+## Step 4: Custom Blocks
 
 ![Custom Blocks Used By Flashframe](/assets/blog/flashframe/blocks.png)
 
 Flashframe had two custom blocks they needed to port over to the open source version. This was another simple switch as they were able to copy the their old code into the proper place within the SDK, they were able to leverage the [layout system](https://app.grapesjs.com/docs-sdk/configuration/layout/overview) and [panel blocks](https://app.grapesjs.com/docs-sdk/configuration/layout/components#panelblocks) to make this happen.
 
-#### Old Code:
+### Old Code:
 
-```javascript 
+```js
 
 var blockManager = editor.BlockManager;
 
@@ -229,9 +226,9 @@ blockManager.add('Photo-Image', {
 
 ```
 
-#### New Code:
+### New Code:
 
-```javascript
+```js
 gjsOptions: {
   blockManager: {
     blocks: [
@@ -246,4 +243,4 @@ gjsOptions: {
 
 ```
 
-Overall it was relatively simple switch for the [Flashframe](https://www.flashframe.io/) team that allowed them to make huge jumps in the UI and UX of their website, but also bring all of their custom functionality over as well. It took the Flashframe team about one day of development time with one developer to make the transition. I want to thank the Flashframe team for allowing us to see their code and understand how their transition went. 
+Overall it was relatively simple switch for the [Flashframe](https://www.flashframe.io/) team that allowed them to make huge jumps in the UI and UX of their website, but also bring all of their custom functionality over as well. It took the Flashframe team about one day of development time with one developer to make the transition. I want to thank the Flashframe team for allowing us to see their code and understand how their transition went.
