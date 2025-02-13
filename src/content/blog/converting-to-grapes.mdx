@@ -62,9 +62,7 @@ GrapesJsStudioSDK.createStudioEditor({
   },
   plugins: [
     'grapesjs-preset-newsletter',
-    (editor) => {
-      editor.Panels.getPanels().reset([]);
-    }
+    editor => editor.Panels.getPanels().reset([]),
   ]
 });
 ```
@@ -76,29 +74,13 @@ GrapesJsStudioSDK.createStudioEditor({
 
 Flashframe was able to leverage the same endpoints they had for asset management, the SDK editor breaks out upload, onLoad and onDelete into separate functions, which allows you to take specific actions. This was overall a simple switch for their team. They were able to utilize the built in [asset manager](https://app.grapesjs.com/docs-sdk/configuration/assets#asset-storage) and storage functions and point to their respective endpoints to make this conversion quickly.
 
-### Old Code:
-
-```js
-
-assetManager: {
-  upload: '/api/asset/' ,
-  uploadName: 'xyz',
-},
-
-```
-
-### New Code:
-
 ```js
 assets: {
   storageType: 'self',
   onUpload: async ({ files }) => {
     const body = new FormData();
     files.forEach(file => body.append('image', file));
-    const response = await fetch('/api/asset/', {
-      method: 'POST',
-      body,
-    });
+    const response = await fetch('/api/asset/', { method: 'POST', body });
     return await response.json();
   },
   onLoad: async () => {
@@ -108,9 +90,7 @@ assets: {
   },
   onDelete: async ({ assets }) => {
     const assetId = assets[0]?.attributes?.id;
-    await fetch(`/api/asset/${assetId}/`, {
-      method: 'DELETE',
-    });
+    await fetch(`/api/asset/${assetId}/`, { method: 'DELETE' });
   },
 },
 
@@ -125,7 +105,6 @@ Flashframe had a custom button in their open source version which allowed the us
 ### Old Code:
 
 ```js
-
 editor.Panels.addButton('options', {
   id: 'send-test',
   className: 'fa fa-paper-plane',
@@ -136,24 +115,19 @@ editor.Panels.addButton('options', {
   },
 });
 
-editor.Commands.add
-  ('send-test',
-  {
-      run: function(editor, sender)
-      {
-        console.log(editor.runCommand('gjs-get-inlined-html'));
-        sender && sender.set('active'); // turn off the button
-        $.ajax({
-          url: "/api/testemail/?access_token="+localStorage.access_token,
-          method: "POST",
-          data: {'gjs-html':editor.runCommand('gjs-get-inlined-html'), 'title':$('#etitle').val()}, }).done(function() {
-          console.log('done');
-        })  .fail(function() {
-          alert( "error" );
-        });
-      }
-  });
-
+editor.Commands.add('send-test', {
+  run: function(editor, sender) {
+    console.log(editor.runCommand('gjs-get-inlined-html'));
+    sender && sender.set('active'); // turn off the button
+    $.ajax({
+      url: "/api/testemail/?access_token="+localStorage.access_token,
+      method: "POST",
+      data: {'gjs-html':editor.runCommand('gjs-get-inlined-html'), 'title':$('#etitle').val()},
+    })
+    .done(function() { console.log('done') })
+    .fail(function() { alert( "error" ) });
+  }
+});
 ```
 
 ### New Code:
@@ -166,36 +140,27 @@ layout: {
     children: [
       {
         type: 'sidebarLeft',
-        children: {
-          type: 'panelLayers',
-          resizable: { right: true, width: 300, height: '100%', minWidth: 200, maxWidth: 300 },
-          header: { label: 'Layers' }
-        }
+        children: { type: 'panelLayers', header: { label: 'Layers' } }
       },
       {
         type: 'canvasSidebarTop',
+        grow: true,
         sidebarTop: {
           rightContainer: {
-            buttons: ({ items }) => [
-              ...items,
-              {
-                size: 's',
-                icon: 'emailOutline',
-                onClick: ({ editor }) => {
-                  $.ajax({
-                    url: "/api/testemail/",
-                    method: "POST",
-                    data: {'gjs-html':editor.runCommand('gjs-get-inlined-html'), 'title':$('#etitle').val()}, }).done(function() {
-                      editor.Modal.open({ title: 'Success', content: 'Email Successfully Sent' });
-                  })  .fail(function() {
-                    console.error('error');
-                  });
-                },
+            buttons: ({ items }) => [ ...items, {
+              icon: 'emailOutline',
+              onClick: ({ editor }) => {
+                $.ajax({
+                  url: "/api/testemail/?access_token="+localStorage.access_token,
+                  method: "POST",
+                  data: {'gjs-html':editor.runCommand('gjs-get-inlined-html'), 'title':$('#etitle').val()},
+                })
+                .done(function() { console.log('done') })
+                .fail(function() { alert( "error" ) });
               },
-            ],
+            }],
           },
         },
-        grow: true,
       },
       { type: 'sidebarRight' },
     ],
@@ -215,15 +180,12 @@ Flashframe had two custom blocks they needed to port over to the open source ver
 ### Old Code:
 
 ```js
-
 var blockManager = editor.BlockManager;
 
 blockManager.add('Photo-Image', {
   label: 'Insert Participant Photo',
   content: '<img src="%%image_link%%">',
 });
-
-
 ```
 
 ### New Code:
@@ -240,7 +202,6 @@ gjsOptions: {
     ],
   },
 },
-
 ```
 
 Overall it was relatively simple switch for the [Flashframe](https://www.flashframe.io/) team that allowed them to make huge jumps in the UI and UX of their website, but also bring all of their custom functionality over as well. It took the Flashframe team about one day of development time with one developer to make the transition. I want to thank the Flashframe team for allowing us to see their code and understand how their transition went.

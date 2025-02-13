@@ -3,6 +3,9 @@ import type { MDXComponents } from "mdx/types";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { slugify } from "./lib/utils";
+import rehypeHighlight from "rehype-highlight";
+
+import "./app/hjs-dracula.css";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -38,9 +41,20 @@ const mdxComponents = {
   ),
 };
 
-export function ContainerMDX({ source }: MDXRemoteProps) {
-  // @ts-ignore
-  const result = <MDXRemote components={mdxComponents} source={source} />;
+const options: MDXRemoteProps["options"] = {
+  mdxOptions: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      // @ts-expect-error
+      rehypeHighlight,
+    ],
+  },
+};
 
-  return <div className={markdownStyles["markdown"]}>{result}</div>;
+export function ContainerMDX({ source }: MDXRemoteProps) {
+  return (
+    <div className={markdownStyles.markdown}>
+      <MDXRemote components={mdxComponents} source={source} options={options} />
+    </div>
+  );
 }
