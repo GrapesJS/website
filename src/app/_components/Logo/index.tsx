@@ -3,7 +3,7 @@ import cn from "classnames";
 
 const Logo = ({
   className,
-  height = 30,
+  height = 25,
   width,
   ...rest
 }: React.HTMLProps<HTMLDivElement>) => {

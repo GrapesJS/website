@@ -25,9 +25,9 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       target: "_blank",
     },
     {
-      content: "Dashboard",
+      content: "Sign In",
       className: "rounded-full border-2 !px-4",
-      href: urls.getSdkLicensesUrl({ ref: "mainTopNav" }),
+      href: urls.getSignInUrl({ ref: "mainTopNav" }),
       target: "_blank",
     },
     {
@@ -61,6 +61,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
           </nav>
           <button
             className={styles.drawerButton}
+            aria-label="Toggle menu"
             onClick={() => setOpen((open) => !open)}
           >
             {open ? (

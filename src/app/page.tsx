@@ -49,7 +49,7 @@ export default function HomePage() {
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
             <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
             <CTALink
-              href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
+              href={urls.getSignInUrl({ ref: "heroAccount" })}
               variant="tertiary"
             >
               Create Account
@@ -67,7 +67,7 @@ export default function HomePage() {
                   <WindowShell>
                     <img
                       className="w-full"
-                      src="/assets/images/website-landing-page-html-builder-editor.png"
+                      src="/assets/images/website-landing-page-html-builder-editor.webp"
                       alt="GrapesJS Webpage Demo"
                     />
                   </WindowShell>
@@ -80,7 +80,7 @@ export default function HomePage() {
                   <WindowShell>
                     <img
                       className="w-full"
-                      src="/assets/images/email-newsletter-builder-editor.png"
+                      src="/assets/images/email-newsletter-builder-editor.webp"
                       alt="GrapesJS Webpage Demo"
                     />
                   </WindowShell>
@@ -133,7 +133,11 @@ export default function HomePage() {
                 Accessible and enhanced UX for seamless user experience.
               </p>
             </div>
-            <img src="assets/images/sdk-features/1.png" alt="SDK UI" />
+            <img
+              loading="lazy"
+              src="assets/images/sdk-features/1.png"
+              alt="SDK UI"
+            />
           </section>
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -142,7 +146,11 @@ export default function HomePage() {
                 Create landing pages, multipage websites, and newsletters.
               </p>
             </div>
-            <img src="assets/images/sdk-features/2.png" alt="SDK UI" />
+            <img
+              loading="lazy"
+              src="assets/images/sdk-features/2.png"
+              alt="SDK UI"
+            />
           </section>
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -152,6 +160,7 @@ export default function HomePage() {
               </p>
             </div>
             <img
+              loading="lazy"
               src="assets/images/sdk-features/3.png"
               alt="SDK UI"
               className="pt-[36px]"
@@ -165,7 +174,11 @@ export default function HomePage() {
                   Includes Style Catalog and Template Manager.
                 </p>
               </div>
-              <img src="assets/images/sdk-features/4.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/sdk-features/4.png"
+                alt="SDK UI"
+              />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -175,6 +188,7 @@ export default function HomePage() {
                 </p>
               </div>
               <img
+                loading="lazy"
                 src="assets/images/sdk-features/5.png"
                 alt="SDK support chat"
               />
@@ -206,7 +220,11 @@ export default function HomePage() {
                   No lock-in, choose between cloud or self-hosted options.
                 </p>
               </div>
-              <img src="assets/images/sdk-features/7.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/sdk-features/7.png"
+                alt="SDK UI"
+              />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -215,7 +233,11 @@ export default function HomePage() {
                   Explore all SDK features at no cost.
                 </p>
               </div>
-              <img src="assets/images/sdk-features/8.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/sdk-features/8.png"
+                alt="SDK UI"
+              />
             </section>
 
             {/* Other Studio features */}
@@ -227,7 +249,11 @@ export default function HomePage() {
                   them around.
                 </p>
               </div>
-              <img src="assets/images/studio-features/1.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/1.png"
+                alt="SDK UI"
+              />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -237,7 +263,11 @@ export default function HomePage() {
                   for any CSS properties.
                 </p>
               </div>
-              <img src="assets/images/studio-features/2.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/2.png"
+                alt="SDK UI"
+              />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -247,7 +277,11 @@ export default function HomePage() {
                   that looks great on any device.
                 </p>
               </div>
-              <img src="assets/images/studio-features/3.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/3.png"
+                alt="SDK UI"
+              />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -256,7 +290,11 @@ export default function HomePage() {
                   Keep track of your assets within the editor.
                 </p>
               </div>
-              <img src="assets/images/studio-features/7.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/7.png"
+                alt="SDK UI"
+              />
             </section>
             <div className={cn(styles.verticalCard, "gap-[24px]")}>
               <section className={cn(styles.card, styles.verticalCard)}>
@@ -266,7 +304,11 @@ export default function HomePage() {
                     Organize your content with ease.
                   </p>
                 </div>
-                <img src="assets/images/studio-features/4.png" alt="SDK UI" />
+                <img
+                  loading="lazy"
+                  src="assets/images/studio-features/4.png"
+                  alt="SDK UI"
+                />
               </section>
               <section className={cn(styles.card, styles.verticalCard)}>
                 <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -275,7 +317,11 @@ export default function HomePage() {
                     Create reusable components across pages.
                   </p>
                 </div>
-                <img src="assets/images/studio-features/5.png" alt="SDK UI" />
+                <img
+                  loading="lazy"
+                  src="assets/images/studio-features/5.png"
+                  alt="SDK UI"
+                />
               </section>
             </div>
             <section className={cn(styles.card, styles.verticalCard)}>
@@ -288,7 +334,11 @@ export default function HomePage() {
                   and project (HTML/CSS/JS export built-in).
                 </p>
               </div>
-              <img src="assets/images/studio-features/6.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/6.png"
+                alt="SDK UI"
+              />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -300,7 +350,11 @@ export default function HomePage() {
                   specific requirements.
                 </p>
               </div>
-              <img src="assets/images/studio-features/8.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/8.png"
+                alt="SDK UI"
+              />
             </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
@@ -315,7 +369,11 @@ export default function HomePage() {
                   dynamic and engaging experiences.
                 </p>
               </div>
-              <img src="assets/images/studio-features/9.png" alt="SDK UI" />
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/9.png"
+                alt="SDK UI"
+              />
             </section>
           </div>
         </section>
@@ -356,6 +414,7 @@ export default function HomePage() {
           <div className={styles.logosContainer}>
             <a className={styles.sponsorLink} href="https://www.braze.com">
               <img
+                loading="lazy"
                 className={cn(styles.sponsorLogo, styles.brazeLogo)}
                 src="/assets/images/braze_logo.svg"
                 alt="Braze logo"
@@ -363,6 +422,7 @@ export default function HomePage() {
             </a>
             <a className={styles.sponsorLink} href="https://www.phreesia.com">
               <img
+                loading="lazy"
                 className={cn(styles.sponsorLogo, styles.phreesiaLogo)}
                 src="/assets/images/phreesia_logo.png"
                 alt="Phreesia logo"
@@ -373,6 +433,7 @@ export default function HomePage() {
               href="https://veepn.com/vpn-apps/download-vpn-for-pc/"
             >
               <img
+                loading="lazy"
                 className={cn(styles.sponsorLogo, styles.veepnLogo)}
                 src="/assets/images/logo_veepn.png"
                 alt="Download the Best Windows VPN for PC"
@@ -388,6 +449,7 @@ export default function HomePage() {
           <div className={styles.scrollableContainer}>
             <object
               className={cn(styles.sponsorLogo, styles.openCollectiveLogo)}
+              aria-label="Backers"
               type="image/svg+xml"
               data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64"
             >
