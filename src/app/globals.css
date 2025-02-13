@@ -90,3 +90,9 @@ h2 {
 .primary-title {
   color: #c64563;
 }
+
+pre {
+  background: #a9a9a9;
+  overflow: scroll;
+  border-radius: 5px;
+}

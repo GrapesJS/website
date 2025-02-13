@@ -11,6 +11,7 @@ import "./home.css";
 import styles from "./styles.module.css";
 import WindowShell from "./_components/WindowShell";
 
+const clsFullWhite = "!brightness-0 !invert";
 const customers = [
   {
     src: "assets/images/external-logos/microsoft.png",
@@ -21,10 +22,18 @@ const customers = [
     alt: "Government of France",
   },
   { src: "assets/images/external-logos/pfizer.png", alt: "Pfizer" },
+  {
+    src: "assets/images/external-logos/bbc.png",
+    alt: "BBC",
+    className: clsFullWhite,
+  },
+  {
+    src: "assets/images/external-logos/deloitte.png",
+    alt: "Deloitte",
+    className: cn(clsFullWhite, "!h-[25px]"),
+  },
   { src: "assets/images/external-logos/braze.png", alt: "Braze" },
   { src: "assets/images/external-logos/phresia.png", alt: "Phresia" },
-  { src: "assets/images/external-logos/volkswagen.png", alt: "Volkswagen" },
-  { src: "assets/images/external-logos/toyota.png", alt: "Toyota" },
 ];
 
 export default function HomePage() {
@@ -100,8 +109,13 @@ export default function HomePage() {
             </div>
           </div>
           <div className={styles.logosContainer}>
-            {customers.map(({ src, alt }) => (
-              <img key={src} className={styles.userLogo} src={src} alt={alt} />
+            {customers.map(({ src, alt, className }) => (
+              <img
+                key={src}
+                className={cn(styles.userLogo, className)}
+                src={src}
+                alt={alt}
+              />
             ))}
           </div>
         </section>

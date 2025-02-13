@@ -14,6 +14,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./styles.module.css";
+
 interface PageBlogPostProps {
   params: {
     slug: string;
@@ -64,7 +65,7 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
           <hr className={styles.shadowSeparator} />
           <Container>
             <div className="mb-32">
-              <div className="max-w-2xl mx-auto">
+              <div className={cn(styles.postContent, "max-w-2xl mx-auto")}>
                 <ContainerMDX source={post.content} />
               </div>
             </div>
