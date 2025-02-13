@@ -14,6 +14,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./styles.module.css";
+
 interface PageBlogPostProps {
   params: {
     slug: string;
