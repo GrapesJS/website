@@ -76,7 +76,7 @@ export default function HomePage() {
                   <WindowShell>
                     <img
                       className="w-full"
-                      src="/assets/images/HTML_builder.webp"
+                      src="/assets/images/html_builder.webp"
                       alt="GrapesJS Webpage Demo"
                     />
                   </WindowShell>
@@ -89,25 +89,25 @@ export default function HomePage() {
                   <WindowShell>
                     <img
                       className="w-full"
-                      src="/assets/images/email_builder.webp"
+                      src="/assets/images/newsletter.webp"
                       alt="GrapesJS Webpage Demo"
                     />
                   </WindowShell>
                 ),
               },
-              {
-                id: "editorImage2",
-                label: "Document Builder",
-                content: (
-                  <WindowShell>
-                    <img
-                      className="w-full"
-                      src="/assets/images/Document_builder.webp"
-                      alt="GrapesJS Document Demo"
-                    />
-                  </WindowShell>
-                ),
-              },
+              // {
+              //   id: "editorImage2",
+              //   label: "Document Builder",
+              //   content: (
+              //     <WindowShell>
+              //       <img
+              //         className="w-full"
+              //         src="/assets/images/document.webp"
+              //         alt="GrapesJS Document Demo"
+              //       />
+              //     </WindowShell>
+              //   ),
+              // },
             ]}
           />
         </section>
