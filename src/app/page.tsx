@@ -77,7 +77,7 @@ export default function HomePage() {
                     <img
                       className="w-full"
                       src="/assets/images/html_builder.webp"
-                      alt="GrapesJS Webpage Demo"
+                      alt="GrapesJS Studio SDK Webpage Demo"
                     />
                   </WindowShell>
                 ),
@@ -90,7 +90,7 @@ export default function HomePage() {
                     <img
                       className="w-full"
                       src="/assets/images/newsletter.webp"
-                      alt="GrapesJS Webpage Demo"
+                      alt="GrapesJS Studio SDK Email/Newsletter Demo"
                     />
                   </WindowShell>
                 ),
