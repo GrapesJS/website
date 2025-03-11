@@ -11,13 +11,13 @@ ogImage:
 
 ## SalesReady: A Salesforce Powerhouse
 
-[SalesReady](https://salesready.io/) has grown into a standout solution in the Salesforce ecosystem by combining quoting, document generation, and e-signature functionality into one seamless platform. Founded in 2019 by a team of experienced[Salesforce](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR5VrUAL) implementation specialists, SalesReady set out to simplify and streamline the sales process for businesses. 
+[SalesReady](https://salesready.io/) has grown into a standout solution in the Salesforce ecosystem by combining quoting, document generation, and e-signature functionality into one platform. Founded in 2019 by a team of experienced [Salesforce](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR5VrUAL) consultants, SalesReady set out to simplify and streamline the sales process for businesses. 
 
 The team knew from their prior job experience that companies were paying for multiple tools to handle these essential tasks—one for quoting, another for document generation, and yet another for e-signatures. With [SalesReady](https://salesready.io/), all of these functionalities are bundled into a single package at an affordable price, giving businesses a more efficient and cost-effective solution.
 
 ## Passing the Salesforce Security Review & Early Success
 
-Shortly after launching, SalesReady passed Salesforce's rigorous review processin early 2020—just weeks before the COVID-19 pandemic began disrupting businesses worldwide. This milestone validated their commitment to security and compliance and ability to get listed on the [Salesforce appexchange](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR5VrUAL), setting the stage for rapid adoption. Since then, SalesReady has been helping Salesforce customers streamline sales processes and close deals faster by eliminating the need for multiple standalone tools.
+Shortly after launching, SalesReady passed Salesforce's rigorous review process in early 2020—just weeks before the COVID-19 pandemic began disrupting businesses worldwide. They were then listed on the [Salesforce appexchange](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR5VrUAL), setting the stage for rapid adoption. Since then, SalesReady has been helping Salesforce customers streamline sales processes and close deals faster by eliminating the need for multiple standalone tools.
 
 ## The Evolution of SalesReady: From Custom Templates to GrapesJS
 
@@ -37,15 +37,13 @@ The biggest advantage of using the SDK was that it reduced reliance on pre-made 
 
 SalesReady hosts the GrapesJS SDK within their web app, and the editor communicates directly with Salesforce APIs. A key aspect of their implementation is the ability to dynamically populate quotes and contracts with Salesforce data. 
 
-One of the standout features in their GrapesJS implementation is custom attributes for line items. This functionality allows templates to automatically pull in relevant dynamic data, such as pricing details and contract terms. On the right-hand side of the editor, users can see and modify these attributes in real-time, ensuring that every document generated is accurate and up to date. 
-
-SalesReady also **stores the GrapesJS JSON data** in their database. This ensures consistency across documents, simplifies version control, and allows for easier template modifications in the future.
+One of the standout features in their GrapesJS implementation is custom attributes for line items which they enable via a the table component plugin. This functionality allows templates to automatically pull in relevant dynamic data, such as pricing details and contract terms.
 
 ## Enhancing Document Generation with Custom Table Components
 
 ![SalesReady Custom Table](/assets/blog/salesready/grapes.png)
 
-One of the most critical features SalesReady added was a **custom table component**. This was a vital addition to their document generation process, as many of their customers rely on structured tables for quotes and contracts.
+One of the most critical features SalesReady added is the custom table component. This was a vital addition to their document generation process, as many of their customers rely on structured tables for quotes and contracts.
 
 Their table implementation includes a special data attribute, `salesreadyChild`, inside the `<tbody>`, which dynamically populates line-item data. This makes it easy to create detailed, line-item-driven quotes directly within the document editor. 
 
