@@ -1,0 +1,123 @@
+---
+title: "SalesReady's Journey: Innovating Document Generation with GrapesJS Studio SDK"
+excerpt: "Explore how SalesReady evolved from a specialized quoting tool to a comprehensive document generation solution within Salesforce, leveraging the capabilities of GrapesJS Studio SDK."
+coverImage: "/assets/blog/salesready/salesready.webp"
+date: "2025-03-19T14:00:00Z"
+author:
+  name: Griffin
+ogImage:
+  url: "/assets/blog/salesready/salesready.webp"
+---
+
+## SalesReady: A Salesforce Powerhouse
+
+[SalesReady](https://salesready.io/) has grown into a standout solution in the Salesforce ecosystem by combining quoting, document generation, and e-signature functionality into one platform. Founded in 2019 by a team of experienced [Salesforce](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR5VrUAL) consultants, SalesReady set out to simplify and streamline the sales process for businesses. 
+
+The team knew from their prior job experience that companies were paying for multiple tools to handle these essential tasks—one for quoting, another for document generation, and yet another for e-signatures. With [SalesReady](https://salesready.io/), all of these functionalities are bundled into a single package at an affordable price, giving businesses a more efficient and cost-effective solution.
+
+## Passing the Salesforce Security Review & Early Success
+
+Shortly after launching, SalesReady passed Salesforce's rigorous review process in early 2020—just weeks before the COVID-19 pandemic began disrupting businesses worldwide. They were then listed on the [Salesforce appexchange](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR5VrUAL), setting the stage for rapid adoption. Since then, SalesReady has been helping Salesforce customers streamline sales processes and close deals faster by eliminating the need for multiple standalone tools.
+
+## The Evolution of SalesReady: From Custom Templates to GrapesJS
+
+Originally, SalesReady developed its own template editor in 2020, but the team quickly realized its limitations. The first version of their product only allowed for very basic edits in a rigid 1D structure. It wasn’t scalable, and maintaining their own template engine required significant ongoing development. 
+
+In 2022, SalesReady made the strategic decision to move to [GrapesJS](https://grapesjs.com/), the open-source web builder framework that provided the flexibility they needed for document generation. By embedding GrapesJS within their web app, they were able to enable dynamic document creation while keeping tight integration with Salesforce APIs. 
+
+Unlike traditional rich text editors (RTEs) and Microsoft Word-based solutions, GrapesJS allowed for more robust templating capabilities. The main competitors—DocuSign, Word, and other RTEs—didn’t provide the level of customization or flexibility needed within Salesforce. Word documents often required HTML-to-PDF conversions, and RTEs, including Salesforce’s built-in option, were too restrictive. After evaluating various alternatives, the team determined that GrapesJS was the best choice. 
+
+## Upgrading to GrapesJS Studio SDK in 2024
+
+By 2024, SalesReady took the next big step by integrating the [GrapesJS Studio SDK](https://app.grapesjs.com/docs-sdk/overview/getting-started), the white-label embeddable version of the GrapesJS visual builder. This allowed them to move away from maintaining their own custom GrapesJS version and instead leverage the latest advancements from the Studio SDK while focusing on delivering value to their customers.
+
+The biggest advantage of using the SDK was that it reduced reliance on pre-made templates. Instead of building static templates that required frequent updates, SalesReady could now offer a fully customizable experience for customers to generate documents dynamically.
+
+## How SalesReady Uses the GrapesJS Studio SDK
+
+SalesReady hosts the GrapesJS SDK within their web app, and the editor communicates directly with Salesforce APIs. A key aspect of their implementation is the ability to dynamically populate quotes and contracts with Salesforce data. 
+
+One of the standout features in their GrapesJS implementation is custom attributes for line items which they enable via a the table component plugin. This functionality allows templates to automatically pull in relevant dynamic data, such as pricing details and contract terms.
+
+## Enhancing Document Generation with Custom Table Components
+
+![SalesReady Custom Table](/assets/blog/salesready/grapes.webp)
+
+One of the most critical features SalesReady added is the custom table component. This was a vital addition to their document generation process, as many of their customers rely on structured tables for quotes and contracts.
+
+Their table implementation includes a special data attribute, `salesreadyChild`, inside the `<tbody>`, which dynamically populates line-item data. This makes it easy to create detailed, line-item-driven quotes directly within the document editor. 
+
+SalesReady's table component is powered by the **Studio SDK Table Plugin**, which allows for seamless integration and customization:
+
+```javascript
+plugins: [
+    globalThis.StudioSdkPlugins_tableComponent.init({
+        block: {
+            category: 'Basic',
+            label: 'Table',
+            content: {
+                type: 'table',
+                style: {
+                    width: '100%'
+                },
+                components: [
+                    {
+                        type: 'thead',
+                        components: [
+                            {
+                                type: 'row',
+                                components: [
+                                    { type: 'cell', tagName: 'th', components: { type: 'textnode', content: '' } },
+                                    { type: 'cell', tagName: 'th', components: { type: 'textnode', content: '' } },
+                                    { type: 'cell', tagName: 'th', components: { type: 'textnode', content: '' } }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        type: 'tbody',
+                        components: [
+                            {
+                                type: 'row',
+                                components: [
+                                    { type: 'cell', components: { type: 'textnode', content: '' } },
+                                    { type: 'cell', components: { type: 'textnode', content: '' } },
+                                    { type: 'cell', components: { type: 'textnode', content: '' } },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        type: 'tfoot',
+                        components: [
+                            {
+                                type: 'row',
+                                components: [
+                                    { type: 'cell', tagName: 'th', components: { type: 'textnode', content: '' } },
+                                    { type: 'cell', tagName: 'th', components: { type: 'textnode', content: '' } },
+                                    { type: 'cell', tagName: 'th', components: { type: 'textnode', content: '' } }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    })
+]
+```
+This plugin significantly streamlined the quoting process, allowing users to build and customize tables that dynamically adjust based on Salesforce data.
+
+## The Future of SalesReady: OCR and Beyond
+SalesReady isn’t stopping at document generation. The team is currently working on adding OCR (Optical Character Recognition) functionality to their platform, which will further enhance their document processing capabilities.
+
+Unlike standalone tools that only specialize in one area, SalesReady continues to combine multiple essential features—quoting, document generation, e-signatures, and now OCR—into a single, cost-effective solution.
+
+## Conclusion
+SalesReady’s journey from a proprietary template editor to GrapesJS open source, and now the GrapesJS Studio SDK, highlights their commitment to innovation and efficiency. By leveraging advanced document generation tools, they have positioned themselves as the all-in-one solution for sales teams within Salesforce.
+
+If you’re looking for a streamlined and powerful document generation solution, check out [SalesReady](https://salesready.io/) on the [Salesforce AppExchange](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR5VrUAL).
+
+Want to see how SalesReady can transform your sales process? Visit [salesready.io](https://salesready.io/) today.
+
+I want to thank the SalesReady team for sharing snippets of their code and helping us to understand how their transition went.
