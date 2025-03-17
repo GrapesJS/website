@@ -69,3 +69,7 @@
 .postContent h3 {
   font-size: 1.2rem;
 }
+
+.postContent hr {
+  border-color: rgba(255, 255, 255, 0.2);
+}
