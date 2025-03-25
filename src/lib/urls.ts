@@ -15,9 +15,9 @@ const getRef = ({ ref, plan }: UrlProps) =>
 
 const urls = {
   getGettingStartedDocsUrl: () =>
-    `${APP_URL}/docs-sdk/overview/getting-started?${UTM_PARAMS}`,
+    `${APP_URL}/docs-sdk/overview/getting-started?${UTM_PARAMS}&utm_medium=docsHeader`,
   getGrapesJsDocs: () => `${WEBSITE_URL}/docs/?${UTM_PARAMS}`,
-  getStudioEditorUrl: () => `${APP_URL}/studio?${UTM_PARAMS}&utm_medium=tryEditor`,
+  getStudioEditorUrl: () => `${APP_URL}/playground?${UTM_PARAMS}&utm_medium=tryEditor`,
   getSignInUrl: (props: UrlProps) =>
     `${APP_URL}/signin?${UTM_PARAMS}${getRef(props)}`,
   getSdkLicensesUrl: (props: UrlProps) =>
