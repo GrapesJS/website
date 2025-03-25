@@ -1,6 +1,7 @@
 "use client";
 
 import GrapesDemoEditor from "../GrapesEditor";
+import { CDN_BASE } from "../utils";
 import { components, plugins, pluginsOpts } from "./utils";
 
 const info = {
@@ -21,7 +22,7 @@ const config = {
 export default function DemoEditorNewsletter() {
   return (
     <>
-      <script src="https://unpkg.com/grapesjs-preset-newsletter@1.0.1"></script>
+      <script src={`${CDN_BASE}grapesjs-preset-newsletter@1.0.1`}></script>
       <link
         rel="stylesheet"
         href="/assets/styles/grapesjs/grapesjs-preset-newsletter.css"
