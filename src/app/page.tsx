@@ -95,19 +95,19 @@ export default function HomePage() {
                   </WindowShell>
                 ),
               },
-              // {
-              //   id: "editorImage2",
-              //   label: "Document Builder",
-              //   content: (
-              //     <WindowShell>
-              //       <img
-              //         className="w-full"
-              //         src="/assets/images/document.webp"
-              //         alt="GrapesJS Document Demo"
-              //       />
-              //     </WindowShell>
-              //   ),
-              // },
+              {
+                id: "editorImage2",
+                label: "Document Builder",
+                content: (
+                  <WindowShell>
+                    <img
+                      className="w-full"
+                      src="/assets/images/document.webp"
+                      alt="GrapesJS Document Demo"
+                    />
+                  </WindowShell>
+                ),
+              },
             ]}
           />
         </section>
