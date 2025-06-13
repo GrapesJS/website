@@ -1,0 +1,117 @@
+---
+title: "New in Studio SDK: Google Fonts, Custom Fonts, and Full Typography Control"
+excerpt: "Bring your brand’s typography to life across web, email, and document editors with the new Font Manager in Studio SDK."
+coverImage: "/assets/blog/fonts-release/fonts-release.webp"
+date: "2025-06-18T18:00:00Z"
+author:
+  name:
+ogImage:
+  url: "/assets/blog/fonts/fonts.webp"
+---
+
+## A New Era for Fonts in Studio ✍️
+
+Until now, Studio SDK projects shipped with a limited set of system fonts—think Arial, Times New Roman, and other safe but uninspiring choices. That changes today.
+
+We're excited to introduce **[full font management support](https://app.grapesjs.com/docs-sdk/configuration/fonts)** across all project types: **[Web](https://app.grapesjs.com/docs-sdk/project-types/web)**, **[Email](https://app.grapesjs.com/docs-sdk/project-types/email)**, and the brand-new **[Document](https://app.grapesjs.com/docs-sdk/project-types/document)** mode.
+
+Whether you're looking to preload brand fonts, offer your users access to thousands of Google Fonts, or define your own custom font provider, the new **[Font Manager]((https://app.grapesjs.com/docs-sdk/configuration/fonts))** makes it easy.
+
+---
+
+## Why It Matters
+
+Typography is core to design. It defines tone, branding, legibility—and now, Studio SDK gives you full control over it.
+
+Teams can now:
+
+- Offer a curated list of brand-approved fonts  
+- Pull in Google Fonts with zero setup  
+- Manage font visibility and defaults for different projects  
+- Extend with internal or self-hosted fonts  
+- Preview fonts visually inside the dropdown, instantly  
+
+This brings professional-grade typographic control to every design—whether it’s a landing page, a marketing email, or a print-ready invoice.
+
+---
+
+## Font Manager – At a Glance
+
+🔧 **Key features**:
+
+- **Google Fonts Support** – Plug-and-play access via built-in provider plugin  
+- **Font Preloading** – Define fonts that are always loaded into the editor via Global Page Settings  
+- **Custom Font Providers** – Bring your own system (hosted, internal, or 3rd-party)  
+- **Dropdown Customization** – Choose which fonts appear, and in what order  
+- **Font Previews** – Lightweight, in-menu previews for a better design experience  
+
+You can configure fonts globally, per project, or even dynamically depending on the user or theme.
+
+📚 [View the Font Configuration Docs →](https://app.grapesjs.com/docs-sdk/configuration/fonts)
+
+---
+
+## How It Works
+
+To enable font support, simply activate the Font Manager in your configuration:
+
+```js
+fonts: {
+  enableFontManager: true,
+}
+```
+
+From there, fonts are managed directly through the visual editor. Users can open the Typography panel, click the ➕ icon in the Font dropdown, and add fonts on the fly—whether they’re standard system fonts or imported via plugins.
+
+To support Google Fonts, use the built-in [plugin](https://app.grapesjs.com/docs-sdk/plugins/asset-providers/google-fonts):
+
+```js
+
+import { googleFontsAssetProvider } from '@grapesjs/studio-sdk-plugins';
+
+plugins: [
+  googleFontsAssetProvider.init({
+    apiKey: 'GOOGLE_FONTS_API_KEY',
+  }),
+];
+
+```
+
+Want full control? You can also create custom font providers to support internal font libraries, enterprise DAMs, or self-hosted fonts. The Font Manager system is fully extensible—so you can plug in whatever source you need.
+
+
+---
+
+## Available Everywhere
+
+Font support is fully integrated across all Studio project types:
+
+- 🌐 **Web Projects** – Apply dynamic or branded fonts to websites, landing pages, and more  
+- ✉️ **Email Projects** – Use web-safe or inline-compatible fonts in transactional and marketing emails  
+- 🖨️ **Document Projects** – Bring typography consistency to printed materials like labels, invoices, and badges  
+
+Wherever you design, your fonts go with you.
+
+---
+
+## Designed for Teams & Brand Control
+
+If you're building white-labeled editors or enterprise tooling, the Font Manager helps ensure every user creates on-brand content:
+
+- Preconfigure font sets by client or workspace  
+- Lock down default font styles per project type  
+- Dynamically inject fonts based on user role, locale, or device  
+
+And since it's all HTML + CSS under the hood, exported content stays portable and standards-compliant.
+
+---
+
+## Final Thoughts
+
+Fonts aren't just decoration—they're part of your brand’s identity. With the new Font Manager in Studio SDK, you're no longer limited to system defaults.
+
+Whether you're building a WYSIWYG editor, a branded content platform, or just want cleaner-looking output, full typography control is now at your fingertips.
+
+📖 [Explore the Docs](https://app.grapesjs.com/docs-sdk/configuration/fonts) and start designing with fonts that truly reflect your brand.
+
+🍇 **Happy Styling!**
