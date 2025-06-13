@@ -4,7 +4,7 @@ excerpt: "Design dynamic, data-powered content without writing a single line of 
 coverImage: "/assets/blog/data-sources/data-sources.webp"
 date: "2025-06-03T14:00:00Z"
 author:
-  name: Griffin
+  name: Grapes Studio Team
 ogImage:
   url: "/assets/blog/data-sources/data-sources.webp"
 ---
@@ -61,6 +61,21 @@ Depending on your workflow, Data Sources support two primary export modes:
 - **Merge Tag Templates** – Exports templates with variable placeholders for external systems like CRMs, ESPs, or document engines
 
 This flexibility allows teams to design once and deploy anywhere.
+
+---
+
+## Bring Your Own Template Engine
+
+New in Studio SDK: support for **Handlebars, EJS, and custom templating syntaxes**.
+
+You can now import dynamic templates into the visual editor and export them back in your preferred format—seamlessly:
+
+🔁 **Import** – Parse your HTML with embedded logic (like `{{name}}` or `<% if %>`) into Studio’s visual components, including variables, conditions, and loops.  
+📤 **Export** – Output Data Components back into your templating language—ready for rendering in your system of choice.
+
+Out of the box, we support **Handlebars** and **EJS** via plugins. Prefer something else? Define your own import/export logic with full control.
+
+Whether you’re rendering emails, websites, or documents, you can now blend the power of Studio’s visual editor with the flexibility of your own stack.
 
 ---
 
