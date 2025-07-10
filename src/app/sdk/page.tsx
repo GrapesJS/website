@@ -1,15 +1,15 @@
 import urls from "@/lib/urls";
 import cn from "classnames";
-import Background from "./_components/Background";
-import CTALink from "./_components/CTALink";
-import Footer from "./_components/Footer";
-import Header from "./_components/Header";
-import Pricing from "./_components/Pricing";
-import StarOnGH from "./_components/StarOnGH";
-import { Tabs } from "./_components/Tabs";
+import Background from "../_components/Background";
+import CTALink from "../_components/CTALink";
+import Footer from "../_components/Footer";
+import Header from "../_components/Header";
+import Pricing from "../_components/Pricing";
+import StarOnGH from "../_components/StarOnGH";
+import { Tabs } from "../_components/Tabs";
 import "./home.css";
-import styles from "./styles.module.css";
-import WindowShell from "./_components/WindowShell";
+import styles from "../styles.module.css";
+import WindowShell from "../_components/WindowShell";
 
 const clsFullWhite = "!brightness-0 !invert";
 const customers = [
@@ -45,15 +45,18 @@ export default function HomePage() {
 
         <section className={cn(styles.heroSection, styles.section)}>
           <h1 className={cn(styles.h1)}>
-            Build Fast, Design Freely.
+            The embeddable drag-and-drop builder
           </h1>
           <p className={cn(styles.p)}>
-            Launch beautiful websites, inspired from anywhere. Edit in a click.
-
+            Seamlessly integrate and create within your application.
+            <br />
+            Open-source, customizable, white-label, no-code, visual editor for:
+            <br />
+            <b>Emails</b>, <b>Landing Pages</b>, and <b>Webpages</b>
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>Start Building</CTALink>
+            <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
             <CTALink
               href={urls.getSignInUrl({ ref: "heroAccount" })}
               variant="tertiary"
@@ -88,6 +91,19 @@ export default function HomePage() {
                       className="w-full"
                       src="/assets/images/newsletter.webp"
                       alt="GrapesJS Studio SDK Email/Newsletter Demo"
+                    />
+                  </WindowShell>
+                ),
+              },
+              {
+                id: "editorImage2",
+                label: "Document Builder",
+                content: (
+                  <WindowShell>
+                    <img
+                      className="w-full"
+                      src="/assets/images/document.webp"
+                      alt="GrapesJS Document Demo"
                     />
                   </WindowShell>
                 ),
@@ -139,9 +155,9 @@ export default function HomePage() {
 
           <section className={styles.card}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <h4 className={styles.h4}>Quickly Customize your UI</h4>
+              <h4 className={styles.h4}>Built-in and Customizable UI</h4>
               <p className={cn(styles.p)}>
-                Simple WYSIWYG interface for seamless user experience.
+                Accessible and enhanced UX for seamless user experience.
               </p>
             </div>
             <img
@@ -163,6 +179,48 @@ export default function HomePage() {
               alt="SDK UI"
             />
           </section>
+          <section className={styles.card}>
+            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+              <h4 className={styles.h4}>White Label Solution</h4>
+              <p className={cn(styles.p)}>
+                Style and customize your editor as you see fit.
+              </p>
+            </div>
+            <img
+              loading="lazy"
+              src="assets/images/sdk-features/3.png"
+              alt="SDK UI"
+              className="pt-[36px]"
+            />
+          </section>
+          <div className={styles.homeResponsiveColumns}>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Additional Panels</h4>
+                <p className={cn(styles.p)}>
+                  Includes Style Catalog and Template Manager.
+                </p>
+              </div>
+              <img
+                loading="lazy"
+                src="assets/images/sdk-features/4.png"
+                alt="SDK UI"
+              />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Full Team Support</h4>
+                <p className={cn(styles.p)}>
+                  GrapesJS team provides dedicated assistance.
+                </p>
+              </div>
+              <img
+                loading="lazy"
+                src="assets/images/sdk-features/5.png"
+                alt="SDK support chat"
+              />
+            </section>
+          </div>
           {/* <section className={cn("flex !flex-col !items-stretch")}>
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <div className="flex items-center gap-[8px]">
@@ -195,7 +253,35 @@ export default function HomePage() {
                 alt="SDK UI"
               />
             </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Unlimited Access Features</h4>
+                <p className={cn(styles.p)}>
+                  Explore all SDK features at no cost.
+                </p>
+              </div>
+              <img
+                loading="lazy"
+                src="assets/images/sdk-features/8.png"
+                alt="SDK UI"
+              />
+            </section>
 
+            {/* Other Studio features */}
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>Your Components</h4>
+                <p className={cn(styles.p)}>
+                  Create your custom components and allow your users drag & drop
+                  them around.
+                </p>
+              </div>
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/1.png"
+                alt="SDK UI"
+              />
+            </section>
             <section className={cn(styles.card, styles.verticalCard)}>
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
                 <h4 className={styles.h4}>Limitless styling</h4>
@@ -280,7 +366,42 @@ export default function HomePage() {
                 src="assets/images/studio-features/6.png"
                 alt="SDK UI"
               />
-            </section>  
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <h4 className={styles.h4}>
+                  Extendable and customizable by design
+                </h4>
+                <p className={cn(styles.p)}>
+                  Create custom plugins and modify the editor's UI to match your
+                  specific requirements.
+                </p>
+              </div>
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/8.png"
+                alt="SDK UI"
+              />
+            </section>
+            <section className={cn(styles.card, styles.verticalCard)}>
+              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
+                <div className="flex items-center gap-[8px]">
+                  <h4 className={styles.h4}>
+                    Connect to External Data for Dynamic Content
+                  </h4>
+                  <span className={styles.comingSoonTag}>Coming Soon</span>
+                </div>
+                <p className={cn(styles.p)}>
+                  Integrate your editor with external data sources to create
+                  dynamic and engaging experiences.
+                </p>
+              </div>
+              <img
+                loading="lazy"
+                src="assets/images/studio-features/9.png"
+                alt="SDK UI"
+              />
+            </section>
           </div>
         </section>
 

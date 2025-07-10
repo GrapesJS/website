@@ -32,6 +32,7 @@ const urls = {
   getPricingUrl: () => "/#pricing",
   getCareersUrl: () => "/careers",
   getContactUrl: () => "mailto:sales@grapesjs.com",
+  getSDKHomeUrl: () => "/sdk",
   getBlogUrl: () => "/blog",
   getStudioDemoWeb: (props: UrlProps) =>
     `${APP_URL}/studio?${UTM_PARAMS}${getRef(props)}`,

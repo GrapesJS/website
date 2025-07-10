@@ -65,6 +65,7 @@ function MainNav({
   const navLinks = [
     { content: "Features", href: urls.getFeaturesUrl() },
     { content: "Pricing", href: urls.getPricingUrl() },
+    { content: "Embed", href: urls.getSDKHomeUrl() },
     { content: "Blog", href: urls.getBlogUrl() },
     {
       content: "Docs",
