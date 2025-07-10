@@ -1,0 +1,177 @@
+---
+title: "Studio SDK Now Supports React Rendering: Visual Editing with Your Own Components"
+excerpt: "Swap out the default canvas and bring React into the heart of Studio SDK with the new React Renderer plugin—ideal for SSR, component-based design systems, and modern UI workflows."
+coverImage: "/assets/blog/react/renderer-react-plugin-screen.webp"
+date: "2025-07-10T18:00:00Z"
+author:
+  name: Griffin
+ogImage:
+  url: "/assets/blog/react/renderer-react-plugin-screen.webp"
+---
+
+## React Rendering Comes to Studio SDK ⚛️
+
+We’re thrilled to announce a powerful new addition to the [Studio SDK plugin ecosystem](https://app.grapesjs.com/docs-sdk/plugins/overview): the [React Renderer plugin](https://app.grapesjs.com/docs-sdk/plugins/custom-renderer/react).
+
+This marks a major milestone for developers building component-driven applications and wanting visual editing capabilities that speak the same language as their frontends.
+
+Whether you're running Next.js or shipping a custom component library, Studio SDK now gives you **direct visual editing of React components**.
+
+---
+
+## What This Unlocks
+
+The new [react renderer plugin](https://app.grapesjs.com/docs-sdk/plugins/custom-renderer/react) allows you to:
+
+- 🔁 **Replace the default HTML canvas with a React renderer**
+- 🧱 **Use your own React components inside the editor**
+- ✍️ **Add Pages and Blocks using JSX or HTML, auto-parsed into React elements**
+- 🖥️ **Render entire saved projects with a React component—even with SSR**
+
+This isn’t just a minor enhancement. It’s a **paradigm shift** for how Grapes JS, both our studio and OS offering, integrates into modern app stacks.
+
+---
+
+## Why React Rendering?
+
+Component-based frameworks are the default for modern web UIs. Until now, visual editing platforms struggled to cleanly support those workflows.
+
+With the React Renderer plugin, your React components can now be used in Grapes Studio, but also installed as a plugin into the Open Source version of GrapesJS:
+
+- Use props, slots, and events natively  
+- Preserve styling and interactivity  
+- Maintain one codebase across design and production  
+
+This means you can finally bridge the gap between **developer-authored components** and **user-generated content**—without losing structure, performance, or flexibility.
+
+---
+
+## How It Works
+
+Here’s a quick overview of how to get started.
+
+Import the plugin: 
+
+```js
+
+import StudioEditor from '@grapesjs/studio-sdk/react';
+import '@grapesjs/studio-sdk/style';
+
+// Import React renderer plugin
+import rendererReact from '@grapesjs/studio-sdk-plugins/dist/rendererReact';
+
+```
+
+Now you can define your components: 
+
+```js
+const reactRendererConfig = {
+  components: {
+    Hero: {
+      component: Hero,
+      props: () => [
+        {
+          type: 'text',
+          name: 'title',
+          label: 'Title'
+        },
+        {
+          type: 'text',
+          name: 'subtitle',
+          label: 'Subtitle',
+          value: 'Default Subtitle'
+        }
+      ],
+    },
+  }
+};
+```
+
+Now initalize the editor:
+
+```js
+<StudioEditor
+  options={{
+    plugins: [
+      rendererReact.init(reactRendererConfig),
+      (editor) => {
+        editor.Blocks.add('feature', {
+          label: 'Feature component',
+          category: 'React',
+          full: true,
+          content: <Feature title="Feature title" description="Feature description" />
+        }, { at: 0 });
+      }
+    ],
+    project: {
+      type: 'react',
+      default: {
+        pages: [
+          {
+            name: 'Page from React',
+            component: (
+              <>
+                <Hero title="Build Visually with React" subtitle="A seamless editing experience using your components"/>
+                <Section>
+                  <h2 data-gjs-type="heading" style={{ textAlign: 'center', fontSize: '2rem' }}>Features</h2>
+                  <Feature title="Modular Components" description="Build and edit with reusable UI blocks." />
+                  <Feature title="HTML to React" description="Convert legacy HTML into structured React." />
+                  <Button label="Get Started" href="#start" />
+                </Section>
+              </>
+            )
+          },
+          {
+            name: 'Page from HTML',
+            component: `
+              <h1>React Components from HTML</h1>
+              <div data-gjs-type="Hero" title="React from HTML"></div>
+              <style>
+                body { font-family: system-ui; }
+              </style>
+            `
+          }
+        ]
+      }
+    },
+  }}
+/>
+```
+
+## Ideal Use Cases
+
+This plugin is perfect for teams that:
+
+- Are building **custom design systems** or **white-labeled page builders**  
+- Want to **re-use production React components** in a WYSIWYG context  
+- Need **server-side rendering (SSR)** for React content  
+- Are replacing legacy CMS editors with **dynamic React-based editing**  
+- Want to provide **live previews** of marketing components, modals, or dashboards  
+
+No more exporting HTML and trying to parse it back into components. Now, your content pipeline stays **React-native from start to finish**.
+
+---
+
+## SSR, Frameworks, and Flexibility
+
+The React Renderer supports both **client-side rendering** and **server-side rendering**, making it ideal for Next.js, Remix, or other SSR-first frameworks.
+
+Projects can be saved as JSON and later rendered wherever needed—landing pages, email previews, admin dashboards—using your **actual app components**.
+
+---
+
+## Final Thoughts
+
+This is a major step forward for Studio SDK, especially for teams who live in React. With this new plugin:
+
+- You get full visual editing of your **own** components  
+- You can render pages anywhere using **structured, component-safe data**  
+- You can create smarter, more maintainable editors without duplication  
+
+It's visual editing, the React way.
+
+⚛️ [Explore the React Renderer Plugin Docs](https://app.grapesjs.com/docs-sdk/plugins/custom-renderer/react)  
+
+
+🍇 **Happy Building!**
+
