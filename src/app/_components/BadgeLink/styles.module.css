@@ -1,0 +1,44 @@
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.badgeLink {
+  background-color: #272727;
+  border: 1px solid #db6bee62;
+  position: relative;
+  display: block;
+}
+
+.badgeLink::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+.badgeLink::after,
+.badgeLink::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2px;
+  background-image: conic-gradient(
+    from var(--angle),
+    transparent 0%,
+    #c859dc 5% 20%,
+    transparent 30% 45%,
+    #c859dc 55% 70%,
+    transparent 80% 95%
+  );
+  border-radius: inherit;
+  animation: rotateGradient 8s linear infinite;
+}
+
+@keyframes rotateGradient {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
