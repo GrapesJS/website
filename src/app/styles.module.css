@@ -60,9 +60,7 @@
 /* TODO: fix scroll on mobile */
 .openCollectiveLogo.openCollectiveLogo {
   filter: grayscale(1) brightness(0.75) contrast(1);
-  height: 74px;
-  width: 1135px !important;
-  object-fit: initial;
+  height: auto;
 }
 
 .section > * {

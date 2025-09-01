@@ -27,6 +27,8 @@ const urls = {
     `${APP_URL}/signin?${UTM_PARAMS}${getRef(props)}`,
   getSdkLicensesUrl: (props: UrlProps) =>
     `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${getRef(props)}`,
+  getAiLandingUrl: (ref = "") =>
+    `${APP_URL}/ai?${UTM_PARAMS}${getRef({ ref })}`,
   getHomeUrl: () => "/",
   getFeaturesUrl: () => "/#features",
   getPricingUrl: () => "/#pricing",

@@ -1,15 +1,18 @@
 import urls from "@/lib/urls";
 import cn from "classnames";
 import Background from "./_components/Background";
+import BadgeLink from "./_components/BadgeLink";
 import CTALink from "./_components/CTALink";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import Pricing from "./_components/Pricing";
 import StarOnGH from "./_components/StarOnGH";
 import { Tabs } from "./_components/Tabs";
+import WindowShell from "./_components/WindowShell";
 import "./home.css";
 import styles from "./styles.module.css";
-import WindowShell from "./_components/WindowShell";
+import Icon from "@mdi/react";
+import { mdiCreation } from "@mdi/js";
 
 const clsFullWhite = "!brightness-0 !invert";
 const customers = [
@@ -44,6 +47,19 @@ export default function HomePage() {
         <Header isHome />
 
         <section className={cn(styles.heroSection, styles.section)}>
+          <BadgeLink href={urls.getAiLandingUrl("heroBanner")}>
+            <div className="flex flex-col md:flex-row items-center text-center gap-2.5 font-medium">
+              <Icon
+                path={mdiCreation}
+                size="16px"
+                className="hidden md:block"
+              />
+              <span>
+                New AI-Powered Web Creation: Build or Clone Any Site in Seconds.
+              </span>
+              <span className="text-[#d97de9]"> Try It Now!</span>
+            </div>
+          </BadgeLink>
           <h1 className={cn(styles.h1)}>
             The embeddable drag-and-drop builder
           </h1>
@@ -478,7 +494,7 @@ export default function HomePage() {
               className={cn(styles.sponsorLogo, styles.openCollectiveLogo)}
               aria-label="Backers"
               type="image/svg+xml"
-              data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64"
+              data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64&width=800"
             >
               Open Collective
             </object>
