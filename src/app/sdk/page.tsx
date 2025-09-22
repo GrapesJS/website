@@ -1,7 +1,6 @@
 import urls from "@/lib/urls";
 import cn from "classnames";
 import Background from "../_components/Background";
-import BadgeLink from "../_components/BadgeLink";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
@@ -11,8 +10,6 @@ import { Tabs } from "../_components/Tabs";
 import WindowShell from "../_components/WindowShell";
 import "../home.css";
 import styles from "../styles.module.css";
-import Icon from "@mdi/react";
-import { mdiCreation } from "@mdi/js";
 
 const clsFullWhite = "!brightness-0 !invert";
 const customers = [
@@ -47,7 +44,7 @@ export default function SDKPage() {
         <Header isHome />
 
         <section className={cn(styles.heroSection, styles.section)}>
-          <BadgeLink href={urls.getAiLandingUrl("heroBanner")}>
+          {/* <BadgeLink href={urls.getAiLandingUrl("heroBanner")}>
             <div className="flex flex-col md:flex-row items-center text-center gap-2.5 font-medium">
               <Icon
                 path={mdiCreation}
@@ -59,7 +56,7 @@ export default function SDKPage() {
               </span>
               <span className="text-[#d97de9]"> Try It Now!</span>
             </div>
-          </BadgeLink>
+          </BadgeLink> */}
           <h1 className={cn(styles.h1)}>
             The embeddable drag-and-drop builder
           </h1>

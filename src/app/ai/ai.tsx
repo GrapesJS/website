@@ -125,7 +125,9 @@ export default function AiPage({ className }: AiPageProps) {
                   <div className="w-full">
                     <textarea
                       value={prompt}
-                      onChange={(e) => setPrompt(e.target.value)}
+                      onChange={(e) =>
+                        setPrompt((e.target.value || "").slice(0, 3500))
+                      }
                       className={cn(
                         "w-full resize-none bg-transparent border-0 outline-none",
                         "placeholder:text-neutral-500 text-gray-400",

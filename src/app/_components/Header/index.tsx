@@ -1,6 +1,6 @@
 "use client";
 import urls from "@/lib/urls";
-import { mdiClose, mdiMenu, mdiWeb, mdiEmailOutline } from "@mdi/js";
+import { mdiClose, mdiMenu } from "@mdi/js";
 import Icon from "@mdi/react";
 import cn from "classnames";
 import Link from "next/link";
@@ -55,6 +55,16 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
 
 export default Header;
 
+interface NavLink {
+  content: string;
+  href: string;
+  className?: string;
+  target?: string;
+  icon?: string;
+  description?: string;
+  items?: NavLink[];
+}
+
 function MainNav({
   isVertical,
   onLinkClick,
@@ -62,7 +72,7 @@ function MainNav({
   isVertical?: boolean;
   onLinkClick?: () => void;
 }) {
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { content: "Features", href: urls.getFeaturesUrl() },
     { content: "Pricing", href: urls.getPricingUrl() },
     { content: "Blog", href: urls.getBlogUrl() },
@@ -71,27 +81,27 @@ function MainNav({
       href: urls.getGettingStartedDocsUrl(),
       target: "_blank",
     },
-    {
-      content: "Free Tools",
-      items: [
-        {
-          content: "Studio Website Builder",
-          icon: "M4.616 19q-.691 0-1.153-.462T3 17.384V6.616q0-.691.463-1.153T4.615 5h14.77q.69 0 1.152.463T21 6.616v10.769q0 .69-.463 1.153T19.385 19zm0-1H15v-3.884H4v3.269q0 .23.192.423t.423.192M16 18h3.385q.23 0 .423-.192t.192-.424V9.231h-4zM4 13.116h11V9.23H4z",
-          target: undefined,
-          description:
-            "Design and export your websites with the free page builder.",
-          href: urls.getAiLandingUrl("topNavProjectWeb"),
-        },
-        {
-          content: "Studio Newsletter Builder",
-          icon: "M4.616 19q-.691 0-1.153-.462T3 17.384V6.616q0-.691.463-1.153T4.615 5h14.77q.69 0 1.152.463T21 6.616v10.769q0 .69-.463 1.153T19.385 19zM12 12.116L4 6.885v10.5q0 .269.173.442t.443.173h14.769q.269 0 .442-.173t.173-.443v-10.5zM12 11l7.692-5H4.308zM4 6.885V6v11.385q0 .269.173.442t.443.173H4z",
-          target: undefined,
-          description:
-            "Create and customize newsletters with the free email builder.",
-          href: urls.getAiLandingUrl("topNavProjectEmail"),
-        },
-      ],
-    },
+    // {
+    //   content: "Free Tools",
+    //   items: [
+    //     {
+    //       content: "Studio Website Builder",
+    //       icon: "M4.616 19q-.691 0-1.153-.462T3 17.384V6.616q0-.691.463-1.153T4.615 5h14.77q.69 0 1.152.463T21 6.616v10.769q0 .69-.463 1.153T19.385 19zm0-1H15v-3.884H4v3.269q0 .23.192.423t.423.192M16 18h3.385q.23 0 .423-.192t.192-.424V9.231h-4zM4 13.116h11V9.23H4z",
+    //       target: undefined,
+    //       description:
+    //         "Design and export your websites with the free page builder.",
+    //       href: urls.getAiLandingUrl("topNavProjectWeb"),
+    //     },
+    //     {
+    //       content: "Studio Newsletter Builder",
+    //       icon: "M4.616 19q-.691 0-1.153-.462T3 17.384V6.616q0-.691.463-1.153T4.615 5h14.77q.69 0 1.152.463T21 6.616v10.769q0 .69-.463 1.153T19.385 19zM12 12.116L4 6.885v10.5q0 .269.173.442t.443.173h14.769q.269 0 .442-.173t.173-.443v-10.5zM12 11l7.692-5H4.308zM4 6.885V6v11.385q0 .269.173.442t.443.173H4z",
+    //       target: undefined,
+    //       description:
+    //         "Create and customize newsletters with the free email builder.",
+    //       href: urls.getAiLandingUrl("topNavProjectEmail"),
+    //     },
+    //   ],
+    // },
     {
       content: "Sign In",
       className: "border-2 !px-4",

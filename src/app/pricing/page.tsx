@@ -1,9 +1,11 @@
 "use client";
 
-import styles from "./pricing.module.css";
 import { useEffect, useRef, useState } from "react";
 import HeaderStandalone from "../ai/header";
 import FooterStandalone from "../ai/footer";
+
+import "../ai/ai-globals.css";
+import styles from "./pricing.module.css";
 
 const PricingPageClient = () => {
   const [isVisible, setIsVisible] = useState({
@@ -159,12 +161,10 @@ const PricingPageClient = () => {
   }, []);
 
   return (
-    <div
-      className={`${styles.outerContainer} gs-utl-min-h-screen gs-utl-flex gs-utl-flex-col`}
-    >
+    <div className={`${styles.outerContainer} min-h-screen flex flex-col`}>
       <HeaderStandalone />
 
-      <main className="gs-utl-relative">
+      <main className="relative">
         {/* How it Works Section */}
         <section className={styles.howItWorksSection} ref={howItWorksRef}>
           <h2 className={styles.poweringHeading} style={{ color: "#ffffff" }}>
@@ -357,11 +357,9 @@ const PricingPageClient = () => {
               {/* Free Plan */}
               <div
                 ref={starterRef}
-                className={`gs-utl-flex gs-utl-flex-col gs-utl-justify-between ${
-                  styles.freePlan
-                } ${styles.animateOut} ${
-                  isVisible.starter ? styles.animateIn : ""
-                }`}
+                className={`flex flex-col justify-between ${styles.freePlan} ${
+                  styles.animateOut
+                } ${isVisible.starter ? styles.animateIn : ""}`}
               >
                 <h3 className={styles.freePlanTitle}>Starter</h3>
                 <p className={styles.planTagline}>Best for portfolios</p>
@@ -381,21 +379,21 @@ const PricingPageClient = () => {
                     />
                     100 AI credits per month
                   </li>
-                  <li className={styles.freeFeature2}>
+                  <li className={styles.freeFeature1}>
                     <img
                       src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                       alt="Checkmark"
                       className={styles.featureCheck}
                     />
-                    Basic templates
+                    0.1 GB cloud space
                   </li>
-                  <li className={styles.freeFeature3}>
+                  <li className={styles.proFeature2}>
                     <img
                       src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                       alt="Checkmark"
                       className={styles.featureCheck}
                     />
-                    Community support
+                    Unlimited projects
                   </li>
                   <li className={styles.freeFeature4}>
                     <img
@@ -404,6 +402,14 @@ const PricingPageClient = () => {
                       className={styles.featureCheck}
                     />
                     Export to HTML/CSS
+                  </li>
+                  <li className={styles.freeFeature3}>
+                    <img
+                      src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                      alt="Checkmark"
+                      className={styles.featureCheck}
+                    />
+                    Community support
                   </li>
                 </ul>
                 <button
@@ -417,11 +423,9 @@ const PricingPageClient = () => {
               {/* Pro Plan */}
               <div
                 ref={proRef}
-                className={`gs-utl-flex gs-utl-flex-col gs-utl-justify-between ${
-                  styles.proPlan
-                } ${styles.animateOut} ${
-                  isVisible.pro ? styles.animateIn : ""
-                }`}
+                className={`flex flex-col justify-between ${styles.proPlan} ${
+                  styles.animateOut
+                } ${isVisible.pro ? styles.animateIn : ""}`}
               >
                 <div className={styles.popularBadge}>Most Popular</div>
                 <h3 className={styles.proPlanTitle}>Pro</h3>
@@ -444,21 +448,13 @@ const PricingPageClient = () => {
                     />
                     500 AI credits per month
                   </li>
-                  <li className={styles.proFeature2}>
+                  <li className={styles.freeFeature1}>
                     <img
                       src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                       alt="Checkmark"
                       className={styles.featureCheck}
                     />
-                    Unlimited projects
-                  </li>
-                  <li className={styles.proFeature3}>
-                    <img
-                      src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                      alt="Checkmark"
-                      className={styles.featureCheck}
-                    />
-                    Priority support
+                    10 GB cloud space
                   </li>
                   <li className={styles.proFeature4}>
                     <img
@@ -474,7 +470,15 @@ const PricingPageClient = () => {
                       alt="Checkmark"
                       className={styles.featureCheck}
                     />
-                    Remove Grapes branding
+                    Remove branding
+                  </li>
+                  <li className={styles.proFeature3}>
+                    <img
+                      src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                      alt="Checkmark"
+                      className={styles.featureCheck}
+                    />
+                    Priority support
                   </li>
                 </ul>
                 <button
@@ -488,7 +492,7 @@ const PricingPageClient = () => {
               {/* Enterprise Plan */}
               <div
                 ref={enterpriseRef}
-                className={`gs-utl-flex gs-utl-flex-col gs-utl-justify-between ${
+                className={`flex flex-col justify-between ${
                   styles.enterprisePlan
                 } ${styles.animateOut} ${
                   isVisible.enterprise ? styles.animateIn : ""
