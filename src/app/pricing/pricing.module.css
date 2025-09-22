@@ -1,0 +1,1188 @@
+/* Global Page Styles - Remove borders only */
+/* html,
+body {
+  margin: 0;
+  padding: 0;
+  border: none;
+} */
+
+/* Override the gs-utl-p-5 class that's causing the grey border */
+.gs-utl-p-5 {
+  padding: 0 !important;
+}
+
+/* Remove borders from main containers */
+.gs-utl-min-h-screen,
+.gs-utl-relative {
+  border: none;
+  outline: none;
+}
+
+/* Remove borders from sections */
+.outerContainer section {
+  border: none;
+  outline: none;
+}
+
+/* How it Works Section */
+.howItWorksSection {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: rgb(0 0 0 / 1);
+  width: 100%;
+  margin: 0;
+  border: none;
+}
+
+.poweringHeading {
+  text-align: center;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  margin-bottom: 4rem;
+}
+
+.howItWorksSection p {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #9ca3af;
+  margin-bottom: 4rem;
+  font-weight: 300;
+}
+
+.howItWorksContainer {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1280px;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.stepCopy,
+.stepGenerate,
+.stepCustomize {
+  text-align: center;
+}
+
+/* Icon styling for HOW IT WORKS section */
+.affordableIcon {
+  width: 4rem;
+  height: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  border-radius: 9999px;
+  background-color: rgb(31 41 55 / 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.affordableIcon img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.stepCopyTitle,
+.stepGenerateTitle,
+.stepCustomizeTitle {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.stepCopyDescription,
+.stepGenerateDescription,
+.stepCustomizeDescription {
+  color: rgb(156 163 175 / 1);
+  font-weight: 300;
+}
+
+.ctaContainer {
+  text-align: center;
+}
+
+.tryNowButton {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #8b5cf6;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.tryNowButton:hover {
+  background-color: #8b5cf6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(167, 139, 250, 0.2);
+}
+
+/* Powering Solutions Section */
+.poweringSolutionsSection {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: rgb(0 0 0 / 1);
+  width: 100%;
+  margin: 0;
+}
+
+.poweringContainer {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1280px;
+}
+
+.logosGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.companyLogo1,
+.companyLogo2,
+.companyLogo3,
+.companyLogo4,
+.companyLogo5,
+.companyLogo6,
+.companyLogo7 {
+  opacity: 1;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.companyLogo1:hover,
+.companyLogo2:hover,
+.companyLogo3:hover,
+.companyLogo4:hover,
+.companyLogo5:hover,
+.companyLogo6:hover,
+.companyLogo7:hover {
+  opacity: 1;
+}
+
+.companyLogo1 img,
+.companyLogo2 img,
+.companyLogo3 img,
+.companyLogo4 img,
+.companyLogo5 img,
+.companyLogo6 img,
+.companyLogo7 img {
+  max-width: 100%;
+  height: auto;
+  filter: none;
+  transition-property: filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.companyLogo1:hover img,
+.companyLogo2:hover img,
+.companyLogo3:hover img,
+.companyLogo4:hover img,
+.companyLogo5:hover img,
+.companyLogo6:hover img,
+.companyLogo7:hover img {
+  filter: none;
+}
+
+/* Pricing Card Animations */
+.animateOut {
+  opacity: 0 !important;
+  transform: translateY(50px) !important;
+  transition: all 1.2s ease-out !important;
+}
+
+.animateIn {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: all 1.2s ease-out !important;
+}
+
+/* Comparison Table Row Animations */
+.featureRow.animateOut {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.2s ease-out;
+}
+
+.featureRow.animateIn {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.2s ease-out;
+}
+
+/* How it Works Step Animations */
+.stepCopy.animateOut,
+.stepGenerate.animateOut,
+.stepCustomize.animateOut {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.stepCopy.animateIn,
+.stepGenerate.animateIn,
+.stepCustomize.animateIn {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out;
+}
+
+/* AI Image Animation */
+.aiImageContainer.animateOut {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 1.2s ease-out;
+}
+
+.aiImageContainer.animateIn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 1.2s ease-out;
+}
+
+/* AI Powered Section */
+.aiPoweredSection {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: #1a1329;
+  width: 100%;
+  margin: 0;
+}
+
+.aiPoweredContainer {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1280px;
+}
+
+.aiContentWrapper {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.aiHeading {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  margin-bottom: 1.5rem;
+}
+
+.aiDescription {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: rgb(209 213 219 / 1);
+  font-weight: 300;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aiImageContainer {
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aiImageContainer img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.gjsPlgFlexRow {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.gjsPlgFlexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pricing Section */
+.pricingSection {
+  background-color: rgb(0 0 0 / 1);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  width: 100%;
+  margin: 0;
+}
+
+.pricingContainer {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1280px;
+}
+
+.pricingHeading {
+  text-align: center;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  margin-bottom: 4rem;
+}
+
+.pricingSubtitle {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Noto Sans Nag Mundari';
+  margin-top: -1rem;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Plan Cards */
+.freePlan,
+.enterprisePlan {
+  background-color: #1a1329 !important;
+  border-radius: 1rem;
+  padding: 2rem;
+  border-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.freePlan:hover,
+.enterprisePlan:hover {
+  border-color: rgb(55 65 81 / 1);
+}
+
+.proPlan {
+  background-color: #1a1329 !important;
+  border-color: #bcacfd !important;
+  background-image: unset;
+  background-position: unset;
+  background-size: unset;
+  background-repeat: unset;
+  background-attachment: unset;
+  background-origin: unset;
+  border-radius: 1rem;
+  padding: 2rem;
+  border-width: 2px;
+  position: relative;
+}
+
+.popularBadge {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translate(-50%, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+  background-color: #bcacfd !important;
+  color: rgb(0 0 0 / 1);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.planTagline {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #d1d5db;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.freePlanTitle,
+.proPlanTitle,
+.enterprisePlanTitle {
+  font-family: 'Noto Sans Nag Mundari';
+  color: #bcacfd;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  text-align: center !important;
+}
+
+.freePlanPrice,
+.proPlanPrice {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  text-align: center !important;
+}
+
+.enterprisePlanPrice {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  text-align: center !important;
+}
+
+.freePlanPeriod,
+.proPlanPeriod,
+.enterprisePlanPeriod {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: rgb(156 163 175 / 1);
+}
+
+.planDescription {
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+/* Features Lists */
+.freePlanFeatures,
+.proPlanFeatures,
+.enterprisePlanFeatures {
+  margin-bottom: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex: 1 1;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.freeFeature1,
+.freeFeature2,
+.freeFeature3,
+.freeFeature4,
+.proFeature1,
+.proFeature2,
+.proFeature3,
+.proFeature4,
+.proFeature5,
+.enterpriseFeature1,
+.enterpriseFeature2,
+.enterpriseFeature3,
+.enterpriseFeature4,
+.enterpriseFeature5 {
+  color: rgb(209 213 219 / 1);
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.freePlanFeatures li,
+.proPlanFeatures li,
+.enterprisePlanFeatures li {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.featureCheck {
+  display: inline-block;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 2px !important;
+}
+
+/* Fix icon alignment in comparison table */
+.comparisonTable .featureCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* Center images in comparison table cells */
+.comparisonTable td img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* CTA Buttons */
+.planCta {
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.freeCta,
+.enterpriseCta {
+  border: 1px solid #ffffff;
+  background-color: #000000;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.freeCta:hover,
+.enterpriseCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(167, 139, 250, 0.2);
+}
+
+.proCta {
+  background-color: #8b5cf6;
+  color: #ffffff;
+  border: none;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.proCta:hover {
+  background-color: #8b5cf6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(167, 139, 250, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .howItWorksSection {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .poweringHeading {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .stepsGrid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .poweringSolutionsSection {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .logosGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .aiPoweredSection {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .aiPoweredContainer {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .aiHeading {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .pricingSection {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .pricingHeading {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .pricingGrid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .pricingSubtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .planTagline {
+    font-size: 0.875rem;
+  }
+
+  .planDescription {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .howItWorksSection {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .poweringHeading {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .poweringSolutionsSection {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .logosGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aiPoweredSection {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .aiHeading {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .pricingSection {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .pricingHeading {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .pricingSubtitle {
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Feature Comparison Section */
+.comparisonSection {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: #1a1329;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.comparisonContainer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  border: 1px solid #bcacfd;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.comparisonHeading {
+  text-align: center;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  margin-bottom: 1rem;
+}
+
+.comparisonDescription {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: rgb(209 213 219 / 1);
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+.comparisonTableContainer {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+
+.comparisonTable {
+  width: 100%;
+  min-width: 600px;
+}
+
+/* Green CTA Button for comparison section */
+.comparisonContainer .gjsTButton {
+  background-color: #8b5cf6;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.comparisonContainer .gjsTButton:hover {
+  background-color: #8b5cf6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(167, 139, 250, 0.2);
+}
+
+.headerRow {
+  border-bottom-width: 1px;
+  border-color: rgb(55 65 81 / 1);
+}
+
+.featureColumnHeader {
+  text-align: left;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.grapesColumnHeader {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #bcacfd;
+}
+
+.squarespaceColumnHeader {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.vercelColumnHeader {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.wordpressColumnHeader {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.featureRow {
+  border-bottom: 1px solid #374151;
+}
+
+.featureRow:hover {
+  background-color: rgba(55, 65, 81, 0.2);
+}
+
+.featureLabel {
+  padding: 1rem 1.5rem;
+  color: #d1d5db;
+}
+
+.grapesCheck {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  color: #bcacfd;
+}
+
+.squarespaceCheck {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  color: #6b7280;
+}
+
+.vercelCheck {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  color: #6b7280;
+}
+
+.wordpressCheck {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  color: #6b7280;
+}
+
+.aiGenerationRow {
+  border-bottom-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+}
+
+.aiGenerationLabel {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.grapesAiCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.squarespaceAiCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(107 114 128 / 1);
+}
+
+.vercelAiCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(107 114 128 / 1);
+}
+
+.wordpressAiCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(107 114 128 / 1);
+}
+
+.codeOwnershipRow {
+  border-bottom-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+}
+
+.codeOwnershipLabel {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.grapesCodeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.squarespaceCodeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(107 114 128 / 1);
+}
+
+.vercelCodeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.wordpressCodeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.visualEditorRow {
+  border-bottom-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+}
+
+.visualEditorLabel {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.grapesVisualCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.squarespaceVisualCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.vercelVisualCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(107 114 128 / 1);
+}
+
+.wordpressVisualCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.freePlanRow {
+  border-bottom-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+}
+
+.freePlanLabel {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.grapesFreeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.squarespaceFreeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(107 114 128 / 1);
+}
+
+.vercelFreeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.wordpressFreeCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.customDomainRow {
+  border-bottom-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+}
+
+.customDomainLabel {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.grapesDomainCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.squarespaceDomainCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.vercelDomainCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+.wordpressDomainCheck {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  color: rgb(153 226 46 / 1);
+}
+
+/* Responsive styles for comparison section */
+@media (max-width: 992px) {
+  .comparisonSection {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .comparisonHeading {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .comparisonContainer {
+    padding: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .comparisonContainer {
+    padding: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .comparisonTable {
+    font-size: 0.875rem;
+  }
+
+  .comparisonContainer .gjsTButton {
+    font-size: 1rem;
+    padding: 0.625rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .comparisonSection {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .comparisonHeading {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .comparisonContainer {
+    padding: 0.75rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
+
+  .comparisonTable {
+    font-size: 0.75rem;
+    min-width: 500px;
+  }
+
+  .comparisonContainer .gjsTButton {
+    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+  }
+}
