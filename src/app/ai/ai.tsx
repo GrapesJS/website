@@ -1,0 +1,421 @@
+"use client";
+
+import cn from "classnames";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { openInStudioViaProxy } from "./util";
+import HeaderStandalone from "./header";
+import FooterStandalone from "./footer";
+import { useSpeechToText } from "./useSpeechToText";
+
+import {
+  mdiAccount,
+  mdiAccountHeart,
+  mdiAirplaneLanding,
+  mdiCalendarStar,
+  mdiContentCopy,
+  mdiEmail,
+  mdiGiftOutline,
+  mdiMicrophone,
+  mdiMicrophoneOff,
+  mdiSend,
+  mdiWeb,
+} from "@mdi/js";
+import Icon from "@mdi/react";
+
+type AiPageProps = {
+  actionUrl?: string;
+  className?: string;
+  onPosted?: (data: unknown) => void;
+};
+
+type ProjectType = "web" | "email";
+
+export default function AiPage({ className }: AiPageProps) {
+  const searchParams = useSearchParams();
+  const [prompt, setPrompt] = useState("");
+  const [projectType, setProjectType] = useState<ProjectType>("web");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const speechToText = useSpeechToText();
+  const { isListening, transcript } = speechToText;
+
+  useEffect(() => {
+    const urlPrompt = searchParams.get("prompt");
+    const urlProjectType = searchParams.get("projectType");
+
+    if (urlPrompt) {
+      setPrompt(decodeURIComponent(urlPrompt));
+    }
+
+    if (
+      urlProjectType &&
+      (urlProjectType === "web" || urlProjectType === "email")
+    ) {
+      setProjectType(urlProjectType);
+    }
+  }, [searchParams]);
+
+  // Update prompt when speech-to-text transcript changes
+  useEffect(() => {
+    transcript && setPrompt(transcript);
+  }, [transcript]);
+
+  const handleSubmit = async (ev: React.FormEvent) => {
+    ev.preventDefault();
+    if (!prompt.trim()) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      openInStudioViaProxy(prompt, projectType);
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "Request failed";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const isEmail = projectType === "email";
+
+  return (
+    <div
+      className={cn(
+        "min-h-screen flex flex-col bg-black text-white",
+        className
+      )}
+    >
+      <HeaderStandalone />
+
+      <main className="relative">
+        <div
+          className="relative w-full bg-fixed bg-no-repeat bg-cover pt-32 pb-48"
+          style={{
+            background:
+              "radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 50%, rgba(0,0,0,1) 100%)",
+          }}
+        >
+          <div className="absolute inset-0" style={{ zIndex: 0 }}>
+            <SpinningOrbInline className="w-full h-full opacity-90" />
+          </div>
+
+          <div className="relative" style={{ zIndex: 10 }}>
+            <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+              <div className="text-center mb-14">
+                <h1 className="text-3xl sm:text-3xl mt-4 text-white">
+                  Build beautiful {isEmail ? "emails" : "websites"}, inspired
+                  from anywhere.
+                </h1>
+                <h2 className="text-2xl sm:text-xl mt-4 text-white">
+                  The only AI powered drag & drop editor.
+                </h2>
+                <h2 className="text-2xl sm:text-xl mt-4 text-[#BCACFD] font-bold" />
+              </div>
+
+              <form onSubmit={handleSubmit} className="w-full">
+                <div
+                  className={cn(
+                    "rounded-3xl py-2 backdrop-blur-sm border border-zinc-700/50",
+                    "bg-zinc-900/50 text-gray-400 text-sm",
+                    "flex flex-wrap mx-2 sm:mx-0"
+                  )}
+                >
+                  <div className="w-full">
+                    <textarea
+                      value={prompt}
+                      onChange={(e) =>
+                        setPrompt((e.target.value || "").slice(0, 3500))
+                      }
+                      className={cn(
+                        "w-full resize-none bg-transparent border-0 outline-none",
+                        "placeholder:text-neutral-500 text-gray-400",
+                        "focus:outline-none focus:ring-0 focus:border-0 focus:shadow-none",
+                        "mx-2 mt-1 mb-2 p-2 text-lg leading-7 min-h-[60px]",
+                        "box-border border-solid border-current",
+                        "font-inherit font-feature-inherit font-variation-inherit",
+                        "font-inherit tracking-inherit text-inherit",
+                        "outline-2 outline-transparent outline-offset-2"
+                      )}
+                      style={{
+                        WebkitTextSizeAdjust: "100%",
+                        tabSize: 4,
+                        WebkitTapHighlightColor: "transparent",
+                      }}
+                      placeholder={
+                        isEmail
+                          ? "Ask AI to create an email for..."
+                          : "Ask AI to create a website for..."
+                      }
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                  <div className="w-full px-4 pb-2 flex items-center justify-between">
+                    <TabsStandalone
+                      value={projectType}
+                      onChange={setProjectType}
+                    />
+                    <div className="flex gap-3 items-center">
+                      {/* Speech-to-text mic button */}
+                      {speechToText.isSupported && (
+                        <button
+                          type="button"
+                          onClick={
+                            isListening ? speechToText.stop : speechToText.start
+                          }
+                          className={cn(
+                            "flex items-center justify-center rounded-full p-2 transition-colors",
+                            "hover:opacity-90",
+                            isListening
+                              ? "bg-red-500 text-white"
+                              : "text-white/60 hover:text-white/80"
+                          )}
+                          aria-label={
+                            isListening ? "Stop listening" : "Start voice input"
+                          }
+                          title={
+                            isListening ? "Stop listening" : "Start voice input"
+                          }
+                        >
+                          <Icon
+                            path={
+                              isListening ? mdiMicrophoneOff : mdiMicrophone
+                            }
+                            size={1.2}
+                          />
+                        </button>
+                      )}
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className={cn(
+                          "flex items-center justify-center rounded-full p-2",
+                          "bg-violet-600 text-white hover:opacity-90",
+                          loading && "opacity-50"
+                        )}
+                        aria-label="Submit"
+                      >
+                        {loading ? (
+                          <span className="px-2">Submitting...</span>
+                        ) : (
+                          <Icon path={mdiSend} size={1.2} />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div className="mt-6 flex gap-3 justify-center flex-wrap px-2 sm:px-0">
+                <RecommendationsStandalone
+                  data={isEmail ? recommendationsEmail : recommendationsWeb}
+                  onClick={(p) => setPrompt(p)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <FooterStandalone />
+
+      {error && (
+        <p className="mt-4 text-center text-sm text-red-400">{error}</p>
+      )}
+    </div>
+  );
+}
+
+function SpinningOrbInline({ className }: { className?: string }) {
+  const css = `
+  @keyframes aurora-rotate { 0% { transform: translate(-50%, -50%) rotate(0deg);} 100% { transform: translate(-50%, -50%) rotate(360deg);} }
+  @keyframes aurora-counter-rotate { 0% { transform: translate(-50%, -50%) rotate(360deg);} 100% { transform: translate(-50%, -50%) rotate(0deg);} }
+  @keyframes aurora-pulse { 0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1);} 50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.2);} }
+  .auroraContainer{ animation: aurora-rotate 20s linear infinite; }
+  .auroraInnerContainer{ animation: aurora-counter-rotate 15s linear infinite; }
+  .auroraGlow{ animation: aurora-pulse 8s ease-in-out infinite; }
+  `;
+
+  return (
+    <div className={cn(className, "relative w-full h-full overflow-hidden")}>
+      <style dangerouslySetInnerHTML={{ __html: css }} />
+      <div
+        className={cn(
+          "auroraContainer",
+          "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+          "w-[350px] h-[350px] origin-center"
+        )}
+      >
+        <div
+          className="absolute top-[5px] left-0 w-[350px] h-[170px] blur-[25px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 60% at 50% 0%, rgba(124, 58, 237, 1) 0%, rgba(147, 51, 234, 0.8) 25%, rgba(168, 85, 247, 0.6) 50%, rgba(192, 132, 252, 0.4) 70%, transparent 85%)",
+            borderRadius: "50% 50% 0 0 / 100% 100% 0 0",
+          }}
+        />
+
+        <div
+          className="absolute bottom-[5px] left-0 w-[350px] h-[170px] blur-[25px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 60% at 50% 100%, rgba(168, 85, 247, 1) 0%, rgba(192, 132, 252, 0.8) 25%, rgba(217, 70, 239, 0.6) 50%, rgba(236, 72, 153, 0.4) 70%, transparent 85%)",
+            borderRadius: "0 0 50% 50% / 0 0 100% 100%",
+          }}
+        />
+      </div>
+
+      <div
+        className={cn(
+          "auroraInnerContainer",
+          "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+          "w-[250px] h-[250px] origin-center"
+        )}
+      >
+        <div
+          className="absolute top-[5px] left-0 w-[250px] h-[120px] blur-[20px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 60% at 50% 0%, rgba(124, 58, 237, 0.8) 0%, rgba(147, 51, 234, 0.6) 25%, rgba(168, 85, 247, 0.4) 50%, rgba(192, 132, 252, 0.2) 70%, transparent 85%)",
+            borderRadius: "50% 50% 0 0 / 100% 100% 0 0",
+          }}
+        />
+
+        <div
+          className="absolute bottom-[5px] left-0 w-[250px] h-[120px] blur-[20px]"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 60% at 50% 100%, rgba(168, 85, 247, 0.8) 0%, rgba(192, 132, 252, 0.6) 25%, rgba(217, 70, 239, 0.4) 50%, rgba(236, 72, 153, 0.2) 70%, transparent 85%)",
+            borderRadius: "0 0 50% 50% / 0 0 100% 100%",
+          }}
+        />
+      </div>
+
+      <div
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[100px] rounded-full blur-[10px] z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse, transparent 0%, rgba(0, 0, 0, 0.95) 30%, rgba(0, 0, 0, 1) 100%)",
+        }}
+      />
+
+      <div
+        className={cn(
+          "auroraGlow",
+          "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+          "w-[1000px] h-[500px] blur-[50px]"
+        )}
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(147, 51, 234, 0.3) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 80%)",
+        }}
+      />
+    </div>
+  );
+}
+
+function TabsStandalone({
+  value,
+  onChange,
+}: {
+  value: ProjectType;
+  onChange: (v: ProjectType) => void;
+}) {
+  return (
+    <div className="flex gap-1 bg-white/5 rounded-full p-1">
+      {(
+        [
+          { id: "web", label: "Web", icon: mdiWeb },
+          { id: "email", label: "Email", icon: mdiEmail },
+        ] as const
+      ).map((tab) => (
+        <button
+          key={tab.id}
+          type="button"
+          onClick={() => onChange(tab.id)}
+          className={cn(
+            "w-20 px-2 py-1.5 rounded-full text-sm flex items-center gap-2",
+            value === tab.id
+              ? "bg-gray-200 text-violet-600"
+              : "text-white/80 hover:text-white"
+          )}
+        >
+          <Icon path={tab.icon} size={0.8} />
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+type RecommendationItem = { label: string; prompt: string; icon: string };
+
+const recommendationsWeb: RecommendationItem[] = [
+  {
+    icon: mdiContentCopy,
+    label: "Clone a website",
+    prompt: "Copy this website for me: https://wordpress.org",
+  },
+  {
+    icon: mdiAccount,
+    label: "Personal Website",
+    prompt:
+      "Create a personal website with about me, projects, skills and contact sections.",
+  },
+  {
+    icon: mdiAirplaneLanding,
+    label: "New Product Landing Page",
+    prompt:
+      "Create a landing page for a new product landing page with a hero section, services, testimonials, and contact form.",
+  },
+];
+
+const recommendationsEmail: RecommendationItem[] = [
+  {
+    icon: mdiGiftOutline,
+    label: "Promotional Offer",
+    prompt:
+      "Create a promotional email with a discount offer, eye-catching banner, offer details, and a button to shop now.",
+  },
+  {
+    icon: mdiCalendarStar,
+    label: "Event Invitation",
+    prompt:
+      "Design a newsletter inviting users to an upcoming event, with date, location, RSVP button, and agenda highlights.",
+  },
+  {
+    icon: mdiAccountHeart,
+    label: "Welcome Email",
+    prompt:
+      "Design a friendly welcome email for new subscribers, with a thank-you message, what to expect, and helpful links to get started.",
+  },
+];
+
+function RecommendationsStandalone({
+  onClick,
+  data,
+}: {
+  onClick: (prompt: string) => void;
+  data: RecommendationItem[];
+}) {
+  return (
+    <>
+      {data.map((button, index) => (
+        <button
+          key={index}
+          type="button"
+          className={cn(
+            "rounded-full px-4 py-2 text-sm border border-white/20 hover:border-violet-400",
+            "text-gray-400 hover:text-white flex items-center gap-2"
+          )}
+          onClick={() => onClick(button.prompt)}
+        >
+          <Icon path={button.icon} size={0.8} />
+          {button.label}
+        </button>
+      ))}
+    </>
+  );
+}
