@@ -30,8 +30,8 @@ const urls = {
   getAiLandingUrl: (ref = "") =>
     `${APP_URL}/ai?${UTM_PARAMS}${getRef({ ref })}`,
   getHomeUrl: () => "/",
-  getFeaturesUrl: () => "/#features",
-  getPricingUrl: () => "/#pricing",
+  getFeaturesUrl: () => "/sdk#features",
+  getPricingUrl: () => "/sdk#pricing",
   getCareersUrl: () => "/careers",
   getContactUrl: () => "mailto:sales@grapesjs.com",
   getBlogUrl: () => "/blog",
