@@ -6,7 +6,7 @@ export function openInStudioViaProxy(
 ): void {
   const form = document.createElement("form");
   form.method = "GET";
-  form.action = "http://app.grapesjs.com/ai-proxy";
+  form.action = "https://app.grapesjs.com/ai-proxy";
 
   const promptInput = document.createElement("input");
   promptInput.type = "hidden";
