@@ -61,7 +61,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
             href="/sdk"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
           >
-            SDK
+            Studio SDK
           </a>
         </div>
 
