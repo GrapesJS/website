@@ -37,17 +37,17 @@ export default function RootLayout({
         />
         <meta name="msapplication-TileColor" content="#9e5381" />
         <meta name="theme-color" content="#9e5381" />
+        {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-74284223-1', 'auto');
-            ga('send', 'pageview');`,
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-N6SVS9RS');`,
           }}
         />
+        {/* End Google Tag Manager */}
         {/*
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
@@ -59,6 +59,16 @@ export default function RootLayout({
         */}
       </head>
       <body className={cn(inter.className, manrope.className)}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-N6SVS9RS"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <div className="min-h-screen">{children}</div>
       </body>
     </html>
