@@ -40,7 +40,7 @@ const headlineTexts = [
   "product people",
   "co-founder",
   "developers",
-  "designers",
+  "designers"
 ];
 
 export default function AiPage({ className }: AiPageProps) {
