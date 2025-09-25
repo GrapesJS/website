@@ -31,6 +31,18 @@ type AiPageProps = {
 
 type ProjectType = "web" | "email";
 
+const headlineTexts = [
+  "marketing team",
+  "website builder",
+  "future self",
+  "web-store admin",
+  "digital officer",
+  "product people",
+  "co-founder",
+  "developers",
+  "designers",
+];
+
 export default function AiPage({ className }: AiPageProps) {
   const searchParams = useSearchParams();
   const [prompt, setPrompt] = useState("");
@@ -104,14 +116,15 @@ export default function AiPage({ className }: AiPageProps) {
           <div className="relative" style={{ zIndex: 10 }}>
             <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
               <div className="text-center mb-14">
-                <h1 className="text-3xl sm:text-3xl mt-4 text-white">
-                  Build beautiful {isEmail ? "emails" : "websites"}, inspired
-                  from anywhere.
+                <h1 className="text-4xl sm:text-6xl mt-4 text-white">
+                  Build beautiful {isEmail ? "emails" : "websites"} with AI
                 </h1>
-                <h2 className="text-2xl sm:text-xl mt-4 text-white">
-                  The only AI powered drag & drop editor.
+                <h2 className="text-xl sm:text-2xl mt-4 text-white">
+                  With drag & drop editing and HTML output
                 </h2>
-                <h2 className="text-2xl sm:text-xl mt-4 text-[#BCACFD] font-bold" />
+                <h3 className="text-lg sm:text-xl mt-4 text-white opacity-70">
+                  Your <RotatingText texts={headlineTexts} /> will love you
+                </h3>
               </div>
 
               <form onSubmit={handleSubmit} className="w-full">
@@ -146,7 +159,7 @@ export default function AiPage({ className }: AiPageProps) {
                       placeholder={
                         isEmail
                           ? "Ask AI to create an email for..."
-                          : "Ask AI to create a website for..."
+                          : "Create a website based on https://wordpress.org"
                       }
                       required
                       disabled={loading}
@@ -226,6 +239,30 @@ export default function AiPage({ className }: AiPageProps) {
       )}
     </div>
   );
+}
+
+function RotatingText({ texts }: { texts: string[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % texts.length);
+        setIsVisible(true);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [texts.length]);
+
+  const cls = cn(
+    "inline-block transition-all duration-300 ease-in-out",
+    isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm"
+  );
+
+  return <span className={cls}>{texts[currentIndex]}</span>;
 }
 
 function SpinningOrbInline({ className }: { className?: string }) {
