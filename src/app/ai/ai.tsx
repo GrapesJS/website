@@ -31,6 +31,16 @@ type AiPageProps = {
 
 type ProjectType = "web" | "email";
 
+const headlineTexts = [
+  "marketing team",
+  "website builder",
+  "future self",
+  "web-store admin",
+  "digital officer",
+  "product people",
+  "co-founder",
+];
+
 export default function AiPage({ className }: AiPageProps) {
   const searchParams = useSearchParams();
   const [prompt, setPrompt] = useState("");
@@ -111,7 +121,7 @@ export default function AiPage({ className }: AiPageProps) {
                   With drag & drop editing and HTML output
                 </h2>
                 <h3 className="text-lg sm:text-xl mt-4 text-white opacity-70">
-                  Your marketing team will love you
+                  Your <RotatingText texts={headlineTexts} /> will love you
                 </h3>
               </div>
 
@@ -227,6 +237,30 @@ export default function AiPage({ className }: AiPageProps) {
       )}
     </div>
   );
+}
+
+function RotatingText({ texts }: { texts: string[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % texts.length);
+        setIsVisible(true);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [texts.length]);
+
+  const cls = cn(
+    "inline-block transition-all duration-300 ease-in-out",
+    isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm"
+  );
+
+  return <span className={cls}>{texts[currentIndex]}</span>;
 }
 
 function SpinningOrbInline({ className }: { className?: string }) {
