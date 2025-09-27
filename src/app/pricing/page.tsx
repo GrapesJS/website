@@ -32,7 +32,7 @@ const PricingPageClient = () => {
   const aiImageRef = useRef<HTMLDivElement>(null);
 
   const handleGetStarted = () => {
-    window.location.href = "/";
+    window.location.href = "https://app.grapesjs.com/dashboard/";
   };
 
   const handleContactSales = () => {
