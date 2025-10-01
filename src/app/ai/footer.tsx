@@ -23,8 +23,8 @@ export default function FooterStandalone({ className }: FooterStandaloneProps) {
               className="w-[277px] h-[75px]"
             />
             <div className="text-lg text-gray-300 font-light leading-6 max-sm:text-base">
-              The embeddable drag-and-drop builder. The open-source,
-              customizable, white-label, no-code, visual editor for: emails,
+              The drag-and-drop, open-source, no-code
+              visual editor with AI assistance for: emails,
               webpages, and landing pages.
             </div>
             <div className="flex gap-4 mt-2 justify-center">

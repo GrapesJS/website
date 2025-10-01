@@ -159,7 +159,7 @@ export default function AiPage({ className }: AiPageProps) {
                       placeholder={
                         isEmail
                           ? "Ask AI to create an email for..."
-                          : "Create a website based on https://wordpress.org"
+                          : "Create a website based on https://your-old-website.org"
                       }
                       required
                       disabled={loading}
