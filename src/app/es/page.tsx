@@ -24,12 +24,6 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 
-type AiPageProps = {
-  actionUrl?: string;
-  className?: string;
-  onPosted?: (data: unknown) => void;
-};
-
 type ProjectType = "web" | "email";
 
 const headlineTexts = [
@@ -44,7 +38,7 @@ const headlineTexts = [
   "diseñadores"
 ];
 
-export default function AiPage({ className }: AiPageProps) {
+export default function AiPage() {
   const searchParams = useSearchParams();
   const [prompt, setPrompt] = useState("");
   const [projectType, setProjectType] = useState<ProjectType>("web");
@@ -94,12 +88,7 @@ export default function AiPage({ className }: AiPageProps) {
   const isEmail = projectType === "email";
 
   return (
-    <div
-      className={cn(
-        "min-h-screen flex flex-col bg-black text-white",
-        className
-      )}
-    >
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <HeaderStandalone />
 
       <main className="relative">
@@ -124,7 +113,7 @@ export default function AiPage({ className }: AiPageProps) {
                   Con edición de arrastrar y soltar y salida HTML
                 </h2>
                 <h3 className="text-lg sm:text-xl mt-4 text-white opacity-70">
-                  Tu <RotatingText texts={headlineTexts} /> te amará
+                  Tus <RotatingText texts={headlineTexts} /> te amarán
                 </h3>
               </div>
 
