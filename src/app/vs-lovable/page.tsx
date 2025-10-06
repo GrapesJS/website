@@ -77,7 +77,7 @@ const lovableConfig: ComparisonConfig = {
       title: "Simple and Scalable",
       description: "Grapes Studio creates simple and scalable websites that don't over complicate the process of building a website, rather than adding more complexity and latency.",
       icon: "🚀",
-      imageUrl: "/assets/images/website-builders-comparison.png",
+      imageUrl: "/assets/blog/slow-website/website-builders-comparison.png",
       imageAlt: "Production-ready builder",
       gradient: "bg-gradient-to-br from-orange-500/20 to-red-500/20",
       competitor: {

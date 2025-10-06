@@ -60,7 +60,7 @@ const wordpressConfig: ComparisonConfig = {
       title: "Lightning-Fast Performance",
       description: "WordPress sites often load slowly due to bloated themes and plugins. Grapes Studio generates clean, optimized code with 99.9% uptime and global CDN delivery.",
       icon: "⚡",
-      imageUrl: "/assets/images/website-builders-comparison.png",
+      imageUrl: "/assets/blog/slow-website/website-builders-comparison.png",
       imageAlt: "Lightning fast performance",
       gradient: "bg-gradient-to-br from-green-500/20 to-yellow-500/20",
       competitor: {

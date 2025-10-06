@@ -60,7 +60,7 @@ const wixConfig: ComparisonConfig = {
       title: "Superior Performance",
       description: "Wix sites often load slowly due to heavy templates and limited optimization. Grapes Studio generates clean, fast-loading code with built-in performance optimization.",
       icon: "⚡",
-      imageUrl: "/assets/images/website-builders-comparison.png",
+      imageUrl: "/assets/blog/slow-website/website-builders-comparison.png",
       imageAlt: "Superior performance",
       gradient: "bg-gradient-to-br from-green-500/20 to-lime-500/20",
       competitor: {
