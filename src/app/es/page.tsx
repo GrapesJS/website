@@ -2,7 +2,7 @@
 
 import cn from "classnames";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSpeechToText } from "../ai/useSpeechToText";
 import { openInStudioViaProxy } from "../ai/util";
 import "./ai-globals.css";
@@ -24,12 +24,6 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 
-type AiPageProps = {
-  actionUrl?: string;
-  className?: string;
-  onPosted?: (data: unknown) => void;
-};
-
 type ProjectType = "web" | "email";
 
 const headlineTexts = [
@@ -44,7 +38,7 @@ const headlineTexts = [
   "equipo de diseño",
 ];
 
-export default function AiPage({ className }: AiPageProps) {
+export default function AiPage() {
   const searchParams = useSearchParams();
   const [prompt, setPrompt] = useState("");
   const [projectType, setProjectType] = useState<ProjectType>("web");
@@ -95,10 +89,7 @@ export default function AiPage({ className }: AiPageProps) {
 
   return (
     <div
-      className={cn(
-        "min-h-screen flex flex-col bg-black text-white",
-        className
-      )}
+      className="min-h-screen flex flex-col bg-black text-white"
     >
       <HeaderStandalone />
 
