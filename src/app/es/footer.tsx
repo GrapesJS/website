@@ -23,8 +23,8 @@ export default function FooterStandalone({ className }: FooterStandaloneProps) {
               className="w-[277px] h-[75px]"
             />
             <div className="text-lg text-gray-300 font-light leading-6 max-sm:text-base">
-              El editor visual de arrastrar y soltar, de código abierto, sin código
-              con asistencia de IA para: emails, páginas web y páginas de aterrizaje.
+              El editor visual de drag and drop, de código abierto, sin código
+              con asistencia de IA para: emails, páginas web y landing pages.
             </div>
             <div className="flex gap-4 mt-2 justify-center">
               <a

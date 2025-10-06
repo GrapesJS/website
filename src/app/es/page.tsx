@@ -1,13 +1,13 @@
 "use client";
 
-import "./ai-globals.css";
 import cn from "classnames";
-import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { openInStudioViaProxy } from "../ai/util";
-import HeaderStandalone from "./header";
-import FooterStandalone from "./footer";
+import { useEffect, useState } from "react";
 import { useSpeechToText } from "../ai/useSpeechToText";
+import { openInStudioViaProxy } from "../ai/util";
+import "./ai-globals.css";
+import FooterStandalone from "./footer";
+import HeaderStandalone from "./header";
 
 import {
   mdiAccount,
@@ -40,8 +40,8 @@ const headlineTexts = [
   "oficial digital",
   "gente de producto",
   "cofundador",
-  "desarrolladores",
-  "diseñadores"
+  "equipo de desarrollo",
+  "equipo de diseño",
 ];
 
 export default function AiPage({ className }: AiPageProps) {
@@ -118,10 +118,10 @@ export default function AiPage({ className }: AiPageProps) {
             <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
               <div className="text-center mb-14">
                 <h1 className="text-4xl sm:text-6xl mt-4 text-white">
-                  Crea hermosos {isEmail ? "emails" : "sitios web"} con IA
+                  Crea {isEmail ? "emails" : "sitios web"} hermosos con IA
                 </h1>
                 <h2 className="text-xl sm:text-2xl mt-4 text-white">
-                  Con edición de arrastrar y soltar y salida HTML
+                  Con un editor drag and drop, con salida HTML
                 </h2>
                 <h3 className="text-lg sm:text-xl mt-4 text-white opacity-70">
                   Tu <RotatingText texts={headlineTexts} /> te amará
@@ -187,10 +187,14 @@ export default function AiPage({ className }: AiPageProps) {
                               : "text-white/60 hover:text-white/80"
                           )}
                           aria-label={
-                            isListening ? "Dejar de escuchar" : "Comenzar entrada de voz"
+                            isListening
+                              ? "Dejar de escuchar"
+                              : "Empezar a escuchar"
                           }
                           title={
-                            isListening ? "Dejar de escuchar" : "Comenzar entrada de voz"
+                            isListening
+                              ? "Dejar de escuchar"
+                              : "Empezar a escuchar"
                           }
                         >
                           <Icon
@@ -398,34 +402,34 @@ const recommendationsWeb: RecommendationItem[] = [
   },
   {
     icon: mdiAccount,
-    label: "Sitio Web Personal",
+    label: "Sitio web personal",
     prompt:
       "Crea un sitio web personal con secciones sobre mí, proyectos, habilidades y contacto.",
   },
   {
     icon: mdiAirplaneLanding,
-    label: "Página de Aterrizaje de Nuevo Producto",
+    label: "Landing page para tu nuevo producto",
     prompt:
-      "Crea una página de aterrizaje para un nuevo producto con una sección hero, servicios, testimonios y formulario de contacto.",
+      "Crea una landing page para un nuevo producto con una sección hero, servicios, testimonios y formulario de contacto.",
   },
 ];
 
 const recommendationsEmail: RecommendationItem[] = [
   {
     icon: mdiGiftOutline,
-    label: "Oferta Promocional",
+    label: "Oferta promocional",
     prompt:
       "Crea un email promocional con una oferta de descuento, banner llamativo, detalles de la oferta y un botón para comprar ahora.",
   },
   {
     icon: mdiCalendarStar,
-    label: "Invitación a Evento",
+    label: "Invitación para un evento",
     prompt:
       "Diseña un boletín invitando a los usuarios a un evento próximo, con fecha, ubicación, botón RSVP y destacados de la agenda.",
   },
   {
     icon: mdiAccountHeart,
-    label: "Email de Bienvenida",
+    label: "Email de bienvenida",
     prompt:
       "Diseña un email de bienvenida amigable para nuevos suscriptores, con un mensaje de agradecimiento, qué esperar y enlaces útiles para comenzar.",
   },
