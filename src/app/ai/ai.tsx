@@ -8,6 +8,21 @@ import HeaderStandalone from "./header";
 import FooterStandalone from "./footer";
 import { useSpeechToText } from "./useSpeechToText";
 
+// PostHog tracking function
+declare global {
+  interface Window {
+    posthog?: {
+      capture: (event: string, properties?: Record<string, any>) => void;
+    };
+  }
+}
+
+function trackClientJourneyEvent(event: string, properties: Record<string, any> = {}) {
+  if (typeof window !== 'undefined' && window.posthog) {
+    window.posthog.capture(event, properties);
+  }
+}
+
 import {
   mdiAccount,
   mdiAccountHeart,
@@ -49,6 +64,7 @@ export default function AiPage({ className }: AiPageProps) {
   const [projectType, setProjectType] = useState<ProjectType>("web");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
   const speechToText = useSpeechToText();
   const { isListening, transcript } = speechToText;
 
@@ -68,14 +84,39 @@ export default function AiPage({ className }: AiPageProps) {
     }
   }, [searchParams]);
 
+  // Track homepage landing
+  useEffect(() => {
+    trackClientJourneyEvent('homepage_landed', {
+      page: window.location.pathname,
+      source: 'landing_page'
+    });
+  }, []);
+
   // Update prompt when speech-to-text transcript changes
   useEffect(() => {
     transcript && setPrompt(transcript);
   }, [transcript]);
 
+  // Track AI interest when user starts typing
+  useEffect(() => {
+    if (prompt.length > 0 && !hasTrackedInterest) {
+      trackClientJourneyEvent('ai_interest_shown', {
+        page: window.location.pathname,
+        source: 'landing_page'
+      });
+      setHasTrackedInterest(true);
+    }
+  }, [prompt, hasTrackedInterest]);
+
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!prompt.trim()) return;
+
+    // Track that signin is required when user submits
+    trackClientJourneyEvent('ai_signin_required', {
+      page: window.location.pathname,
+      prompt_length: prompt.length
+    });
 
     setLoading(true);
     setError(null);
