@@ -5,8 +5,8 @@ const wordpressConfig: ComparisonConfig = {
   competitorName: "WordPress",
   competitorSlug: "wordpress",
   hero: {
-    title: "A modern, scalable WordPress alternative",
-    subtitle: "Discover why leading agencies and organizations are switching from WordPress to Grapes Studio"
+    title: "Copy and transfer your WordPress site to a modern, scalable platform",
+    subtitle: "Discover why WordPress users are switching to Grapes Studio and saving 50% on their website costs"
   },
   cta: {
     title: "Ready to make the switch?",
@@ -24,7 +24,7 @@ const wordpressConfig: ComparisonConfig = {
     {
       id: "development-speed",
       title: "10x Faster Development",
-      description: "While WordPress requires plugins, themes, and complex setup, Grapes Studio delivers production-ready websites in minutes with our AI-powered visual editor and drag-and-drop interface.",
+      description: "While WordPress requires plugins, themes, and complex setup, Grapes Studio delivers production-ready websites in minutes with our AI-powered visual editor and drag-and-drop interface. No plugin compatability issues, no plugin conflicts, no updates to worry about.",
       icon: "🚀",
       imageUrl: "/assets/blog/ai-beta/grapes_wordpress.webp",
       imageAlt: "Drag and drop website builder",
