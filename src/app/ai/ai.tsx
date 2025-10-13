@@ -7,6 +7,7 @@ import { openInStudioViaProxy } from "./util";
 import HeaderStandalone from "./header";
 import FooterStandalone from "./footer";
 import { useSpeechToText } from "./useSpeechToText";
+import { TemplateGallery } from "../_components/TemplateGallery";
 
 // PostHog tracking function
 declare global {
@@ -272,6 +273,11 @@ export default function AiPage({ className }: AiPageProps) {
           </div>
         </div>
       </main>
+
+      <TemplateGallery 
+        defaultLimit={20}
+        showUserGreeting={true}
+      />
 
       <FooterStandalone />
 
