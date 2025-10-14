@@ -275,7 +275,7 @@ export default function AiPage({ className }: AiPageProps) {
       </main>
 
       <TemplateGallery 
-        defaultLimit={20}
+        defaultLimit={12}
         showUserGreeting={true}
       />
 
