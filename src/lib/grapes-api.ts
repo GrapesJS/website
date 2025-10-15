@@ -1,6 +1,6 @@
-// For local testing: 'http://localhost:3001'
-// For production: 'https://app.grapesjs.com'
-const API_BASE = 'http://localhost:3001';
+const API_BASE = process.env.NODE_ENV === 'production' 
+  ? 'https://app.grapesjs.com' 
+  : 'http://localhost:3001';
 
 export interface HomepageData {
   user?: {
@@ -47,7 +47,7 @@ export async function fetchHomepageData(options?: {
   
   try {
     const response = await fetch(url, {
-      // credentials: 'include', // Temporarily disabled for local testing - enable for production
+      credentials: process.env.NODE_ENV === 'production' ? 'include' : undefined,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -74,10 +74,6 @@ export async function fetchHomepageData(options?: {
 
 export function getTemplatePreviewUrl(media?: string): string {
   if (!media) return '/assets/images/grapesjs-front-page-m.jpg';
-  
-  if (media.startsWith('/')) {
-    return `${API_BASE}${media}`;
-  }
   
   return media;
 }

@@ -29,7 +29,8 @@ export function useHomepageData(options: UseHomepageDataOptions = {}): UseHomepa
     setError(null);
     
     try {
-      const result = await fetchHomepageData({ type, limit, includeProjects });
+
+      const result = await fetchHomepageData({ type: 'all', limit: 100, includeProjects });
       setData(result);
     } catch (err) {
       setError(err as Error);
@@ -41,14 +42,19 @@ export function useHomepageData(options: UseHomepageDataOptions = {}): UseHomepa
 
   useEffect(() => {
     fetchData();
-  }, [type, limit, includeProjects]);
+  }, [includeProjects]);
+
+  const filteredTemplates = data.templates.filter(template => {
+    if (type === 'all') return true;
+    return template.type === type;
+  }).slice(0, limit);
 
   return {
     data,
     loading,
     error,
     user: data.user,
-    templates: data.templates,
+    templates: filteredTemplates,
     projects: data.projects,
     isAuthenticated: !!data.user,
     refetch: fetchData

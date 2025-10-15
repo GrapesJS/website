@@ -45,7 +45,7 @@ type AiPageProps = {
   onPosted?: (data: unknown) => void;
 };
 
-type ProjectType = "web" | "email";
+type ProjectType = "web" | "email" | "all";
 
 const headlineTexts = [
   "marketing team",
@@ -62,7 +62,7 @@ const headlineTexts = [
 export default function AiPage({ className }: AiPageProps) {
   const searchParams = useSearchParams();
   const [prompt, setPrompt] = useState("");
-  const [projectType, setProjectType] = useState<ProjectType>("web");
+  const [projectType, setProjectType] = useState<ProjectType>("all");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
@@ -79,7 +79,7 @@ export default function AiPage({ className }: AiPageProps) {
 
     if (
       urlProjectType &&
-      (urlProjectType === "web" || urlProjectType === "email")
+      (urlProjectType === "web" || urlProjectType === "email" || urlProjectType === "all")
     ) {
       setProjectType(urlProjectType);
     }
@@ -123,7 +123,7 @@ export default function AiPage({ className }: AiPageProps) {
     setError(null);
 
     try {
-      openInStudioViaProxy(prompt, projectType);
+      openInStudioViaProxy(prompt, projectType === "all" ? "web" : projectType);
     } catch (e) {
       const message = e instanceof Error ? e.message : "Request failed";
       setError(message);
@@ -275,6 +275,7 @@ export default function AiPage({ className }: AiPageProps) {
       </main>
 
       <TemplateGallery 
+        defaultType={projectType}
         defaultLimit={12}
         showUserGreeting={true}
       />

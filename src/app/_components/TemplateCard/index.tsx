@@ -44,22 +44,6 @@ export function TemplateCard({ template, onSelect }: TemplateCardProps) {
       
       <div className={styles.info}>
         <h3 className={styles.name}>{template.name}</h3>
-        
-        {template.description && (
-          <p className={styles.description}>{template.description}</p>
-        )}
-        
-        <div className={styles.meta}>
-          <span className={styles.type}>
-            {template.type === 'web' ? '🌐 Web' : '📧 Email'}
-          </span>
-          
-          {template.author && (
-            <span className={styles.author}>
-              by {template.author.name}
-            </span>
-          )}
-        </div>
       </div>
     </div>
   );
