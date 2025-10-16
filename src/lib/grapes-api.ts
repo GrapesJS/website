@@ -1,7 +1,5 @@
-const API_BASE =
-  process.env.NODE_ENV === "production"
-    ? "https://app.grapesjs.com"
-    : "http://localhost:3000";
+const isDev = process.env.NODE_ENV !== "production";
+const API_BASE = isDev ? "http://localhost:3000" : "https://app.grapesjs.com";
 
 export interface HomepageData {
   user?: {
