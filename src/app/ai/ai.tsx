@@ -18,8 +18,11 @@ declare global {
   }
 }
 
-function trackClientJourneyEvent(event: string, properties: Record<string, any> = {}) {
-  if (typeof window !== 'undefined' && window.posthog) {
+function trackClientJourneyEvent(
+  event: string,
+  properties: Record<string, any> = {}
+) {
+  if (typeof window !== "undefined" && window.posthog) {
     window.posthog.capture(event, properties);
   }
 }
@@ -56,13 +59,13 @@ const headlineTexts = [
   "product people",
   "co-founder",
   "developers",
-  "designers"
+  "designers",
 ];
 
 export default function AiPage({ className }: AiPageProps) {
   const searchParams = useSearchParams();
   const [prompt, setPrompt] = useState("");
-  const [projectType, setProjectType] = useState<ProjectType>("all");
+  const [projectType, setProjectType] = useState<ProjectType>("web");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
@@ -79,7 +82,7 @@ export default function AiPage({ className }: AiPageProps) {
 
     if (
       urlProjectType &&
-      (urlProjectType === "web" || urlProjectType === "email" || urlProjectType === "all")
+      (urlProjectType === "web" || urlProjectType === "email")
     ) {
       setProjectType(urlProjectType);
     }
@@ -87,9 +90,9 @@ export default function AiPage({ className }: AiPageProps) {
 
   // Track homepage landing
   useEffect(() => {
-    trackClientJourneyEvent('homepage_landed', {
+    trackClientJourneyEvent("homepage_landed", {
       page: window.location.pathname,
-      source: 'landing_page'
+      source: "landing_page",
     });
   }, []);
 
@@ -101,9 +104,9 @@ export default function AiPage({ className }: AiPageProps) {
   // Track AI interest when user starts typing
   useEffect(() => {
     if (prompt.length > 0 && !hasTrackedInterest) {
-      trackClientJourneyEvent('ai_interest_shown', {
+      trackClientJourneyEvent("ai_interest_shown", {
         page: window.location.pathname,
-        source: 'landing_page'
+        source: "landing_page",
       });
       setHasTrackedInterest(true);
     }
@@ -114,9 +117,9 @@ export default function AiPage({ className }: AiPageProps) {
     if (!prompt.trim()) return;
 
     // Track that signin is required when user submits
-    trackClientJourneyEvent('ai_signin_required', {
+    trackClientJourneyEvent("ai_signin_required", {
       page: window.location.pathname,
-      prompt_length: prompt.length
+      prompt_length: prompt.length,
     });
 
     setLoading(true);
@@ -274,12 +277,7 @@ export default function AiPage({ className }: AiPageProps) {
         </div>
       </main>
 
-      <TemplateGallery 
-        defaultType={projectType}
-        defaultLimit={12}
-        showUserGreeting={true}
-      />
-
+      <TemplateGallery defaultType={projectType} />
       <FooterStandalone />
 
       {error && (

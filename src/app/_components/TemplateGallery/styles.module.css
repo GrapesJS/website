@@ -2,19 +2,17 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 0 2rem 10rem;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 3rem;
 }
 
 .header h2 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: hsl(var(--foreground));
 }
 
 .header p {
@@ -24,13 +22,6 @@
 
 .projects {
   margin-bottom: 4rem;
-}
-
-.projects h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: hsl(var(--foreground));
 }
 
 .projectsGrid {
@@ -50,13 +41,6 @@
   .projectsGrid {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-.templates h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: hsl(var(--foreground));
 }
 
 .grid {
@@ -79,21 +63,23 @@
 
 .loading {
   text-align: center;
-  padding: 4rem 2rem;
+  padding-bottom: 4rem;
 }
 
 .spinner {
-  width: 3rem;
-  height: 3rem;
-  border: 3px solid hsl(var(--muted));
-  border-top-color: #3b82f6;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #9333ea;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
+  margin: 0 auto;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error {
@@ -107,4 +93,3 @@
   padding: 4rem 2rem;
   color: hsl(var(--muted-foreground));
 }
-
