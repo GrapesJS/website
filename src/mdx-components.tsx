@@ -29,6 +29,9 @@ const mdxComponents = {
       {children}
     </img>
   ),
+  iframe: ({ ...rest }: React.HTMLProps<HTMLIFrameElement>) => (
+    <iframe className="rounded-lg shadow-md my-8" {...rest} />
+  ),
   h1: ({ children, ...rest }: React.HTMLProps<any>) => (
     <h1 className="font-bold text-xl" id={slugify(children!)} {...rest}>
       <a href={`#${slugify(children!)}`}>{children}</a>
