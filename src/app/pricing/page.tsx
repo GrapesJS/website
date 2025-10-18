@@ -166,7 +166,7 @@ const PricingPageClient = () => {
 
       <main className="relative">
         {/* How it Works Section */}
-        <section className={styles.howItWorksSection} ref={howItWorksRef}>
+        {/* <section className={styles.howItWorksSection} ref={howItWorksRef}>
           <h2 className={styles.poweringHeading} style={{ color: "#ffffff" }}>
             <span>HOW IT WORKS.</span>
           </h2>
@@ -247,10 +247,10 @@ const PricingPageClient = () => {
               </button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Powering Solutions Section */}
-        <section className={styles.poweringSolutionsSection}>
+        {/* <section className={styles.poweringSolutionsSection}>
           <div className={styles.poweringContainer}>
             <h2 className={styles.poweringHeading} style={{ color: "#ffffff" }}>
               <b>
@@ -309,10 +309,10 @@ const PricingPageClient = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* AI Powered Section */}
-        <section className={styles.aiPoweredSection}>
+        {/* <section className={styles.aiPoweredSection}>
           <div className={styles.aiPoweredContainer}>
             <div className={styles.aiContentWrapper}>
               <h2 className={styles.aiHeading} style={{ color: "#ffffff" }}>
@@ -339,18 +339,16 @@ const PricingPageClient = () => {
               />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Pricing Section */}
         <section className={styles.pricingSection} id="pricing-section">
           <div className={styles.pricingContainer}>
             <h2 className={styles.pricingHeading} style={{ color: "#ffffff" }}>
-              Simple, <span style={{ color: "#BCACFD" }}>Transparent</span>{" "}
               Pricing
             </h2>
             <p className={styles.pricingSubtitle}>
-              Choose the perfect plan for your needs. Start free and upgrade as
-              you grow.
+             Start free and upgrade as you grow.
             </p>
 
             <div className={styles.pricingGrid}>
@@ -485,7 +483,7 @@ const PricingPageClient = () => {
                   className={`${styles.planCta} ${styles.proCta}`}
                   onClick={handleGetStarted}
                 >
-                  Upgrade to Pro
+                  Purchase Pro
                 </button>
               </div>
 
@@ -563,7 +561,7 @@ const PricingPageClient = () => {
               className={styles.comparisonHeading}
               style={{ color: "#BCACFD" }}
             >
-              Feature Comparison
+              Competitor Comparison
             </h2>
             <p className={styles.comparisonDescription}>
               See how Grapes Studio stacks up against other site builders.

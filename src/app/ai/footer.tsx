@@ -103,7 +103,7 @@ export default function FooterStandalone({ className }: FooterStandaloneProps) {
                 </li>
                 <li>
                   <a
-                    href="/pricing#pricing-section"
+                    href="/pricing"
                     className="text-gray-300 no-underline text-[0.975rem] font-light transition-colors duration-200 inline-block hover:text-gray-300 md:text-[0.925rem]"
                   >
                     Pricing
