@@ -51,12 +51,12 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
           >
             Blog
           </a> */}
-          {/* <a
+          <a
             href="/sdk"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
           >
             Studio SDK
-          </a> */}
+          </a>
         </div>
 
         <div className="flex items-center gap-4 md:gap-3 max-sm:gap-2">

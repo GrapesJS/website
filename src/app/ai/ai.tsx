@@ -51,6 +51,18 @@ type AiPageProps = {
 type ProjectType = "web" | "email" | "all";
 
 const headlineTexts = [
+  "marketing team",
+  "website builder",
+  "future self",
+  "web-store admin",
+  "digital officer",
+  "product people",
+  "co-founder",
+  "developers",
+  "designers",
+];
+
+const inputTexts = [
   "marketing team to love...",
   "next big product launch...",
   "upcoming sales campaign...",
@@ -149,7 +161,7 @@ export default function AiPage({ className }: AiPageProps) {
 
   // Typing/deleting animation for placeholder
   useEffect(() => {
-    const currentText = headlineTexts[currentHeadlineIndex];
+    const currentText = inputTexts[currentHeadlineIndex];
 
     const typingSpeed = isDeleting ? 15 : 50;
     const pauseBeforeDelete = 1200;
@@ -160,7 +172,7 @@ export default function AiPage({ className }: AiPageProps) {
         setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
       } else if (isDeleting && typedText === "") {
         setIsDeleting(false);
-        setCurrentHeadlineIndex((prev) => (prev + 1) % headlineTexts.length);
+        setCurrentHeadlineIndex((prev) => (prev + 1) % inputTexts.length);
         setTimeout(() => {}, pauseBeforeType);
       } else if (isDeleting) {
         setTypedText(currentText.substring(0, typedText.length - 1));
@@ -222,15 +234,18 @@ export default function AiPage({ className }: AiPageProps) {
             <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
               <div className="text-center mb-14">
                 <h1 className="text-4xl sm:text-6xl !font-semibold mt-4 text-white whitespace-nowrap">
-                  What {isEmail ? "email" : "website"} will you{" "}
-                  <span className="text-violet-400 italic !font-semibold mr-1">
-                    launch
+                  Build beautiful
+                  <span className="text-violet-400 italic !font-semibold mx-1">
+                    {isEmail ? "emails" : "websites"}
                   </span>{" "}
-                  today?
+                  with AI
                 </h1>
                 <h2 className="text-xl sm:text-2xl mt-6 text-gray-300 font-light">
-                  AI builds it, you deploy it instantly — completely free
+                  With drag & drop editing and HTML output
                 </h2>
+                <h3 className="text-md sm:text-xl mt-4 text-gray-200 opacity-70">
+                  Your <RotatingText texts={headlineTexts} /> will love you
+                </h3>
               </div>
 
               <form onSubmit={handleSubmit} className="w-full">
@@ -395,14 +410,14 @@ function RotatingText({ texts }: { texts: string[] }) {
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % texts.length);
         setIsVisible(true);
-      }, 300);
+      }, 1000);
     }, 3000);
 
     return () => clearInterval(interval);
   }, [texts.length]);
 
   const cls = cn(
-    "inline-block transition-all duration-300 ease-in-out",
+    "inline-block transition-all duration-1000 ease-in-out",
     isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm"
   );
 
