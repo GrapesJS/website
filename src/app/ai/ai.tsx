@@ -72,6 +72,7 @@ const inputTexts = [
   "agency's next client...",
   "developer community platform...",
   "creative portfolio showcase...",
+  "based off https://my-old-website.com...",
 ];
 
 export default function AiPage({ className }: AiPageProps) {
