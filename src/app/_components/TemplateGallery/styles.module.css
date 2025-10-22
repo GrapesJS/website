@@ -58,7 +58,6 @@
 @media (min-width: 1200px) {
   .grid {
     grid-template-columns: repeat(6, 1fr);
-    grid-auto-flow: row dense;
   }
 }
 
