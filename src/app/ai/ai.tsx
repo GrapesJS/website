@@ -51,15 +51,15 @@ type AiPageProps = {
 type ProjectType = "web" | "email" | "all";
 
 const headlineTexts = [
-  "marketing team",
-  "website builder",
-  "future self",
-  "web-store admin",
-  "digital officer",
-  "product people",
-  "co-founder",
-  "developers",
-  "designers",
+  "marketing team to love...",
+  "next big product launch...",
+  "upcoming sales campaign...",
+  "e-commerce store redesign...",
+  "SaaS product announcement...",
+  "digital transformation project...",
+  "agency's next client...",
+  "developer community platform...",
+  "creative portfolio showcase...",
 ];
 
 export default function AiPage({ className }: AiPageProps) {
@@ -71,6 +71,11 @@ export default function AiPage({ className }: AiPageProps) {
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
   const speechToText = useSpeechToText();
   const { isListening, transcript } = speechToText;
+  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showHighlight, setShowHighlight] = useState(false);
+  const [showButtonHighlight, setShowButtonHighlight] = useState(false);
 
   useEffect(() => {
     const urlPrompt = searchParams.get("prompt");
@@ -96,6 +101,36 @@ export default function AiPage({ className }: AiPageProps) {
     });
   }, []);
 
+  // Highlight animation on page load
+  useEffect(() => {
+    // Textarea: Wait 1 second before starting the animation
+    const textareaStartTimer = setTimeout(() => {
+      setShowHighlight(true);
+    }, 1000);
+
+    // Textarea: Turn off highlight after animation completes (1s delay + 3s animation)
+    const textareaEndTimer = setTimeout(() => {
+      setShowHighlight(false);
+    }, 4000);
+
+    // Button: Start after textarea ends, with a 3s pause
+    const buttonStartTimer = setTimeout(() => {
+      setShowButtonHighlight(true);
+    }, 7000);
+
+    // Button: Turn off after 1 pulse (1.5s animation)
+    const buttonEndTimer = setTimeout(() => {
+      setShowButtonHighlight(false);
+    }, 8500);
+
+    return () => {
+      clearTimeout(textareaStartTimer);
+      clearTimeout(textareaEndTimer);
+      clearTimeout(buttonStartTimer);
+      clearTimeout(buttonEndTimer);
+    };
+  }, []);
+
   // Update prompt when speech-to-text transcript changes
   useEffect(() => {
     transcript && setPrompt(transcript);
@@ -111,6 +146,31 @@ export default function AiPage({ className }: AiPageProps) {
       setHasTrackedInterest(true);
     }
   }, [prompt, hasTrackedInterest]);
+
+  // Typing/deleting animation for placeholder
+  useEffect(() => {
+    const currentText = headlineTexts[currentHeadlineIndex];
+
+    const typingSpeed = isDeleting ? 15 : 50;
+    const pauseBeforeDelete = 1200;
+    const pauseBeforeType = 250;
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting && typedText === currentText) {
+        setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
+      } else if (isDeleting && typedText === "") {
+        setIsDeleting(false);
+        setCurrentHeadlineIndex((prev) => (prev + 1) % headlineTexts.length);
+        setTimeout(() => {}, pauseBeforeType);
+      } else if (isDeleting) {
+        setTypedText(currentText.substring(0, typedText.length - 1));
+      } else {
+        setTypedText(currentText.substring(0, typedText.length + 1));
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [typedText, isDeleting, currentHeadlineIndex]);
 
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
@@ -148,7 +208,7 @@ export default function AiPage({ className }: AiPageProps) {
 
       <main className="relative">
         <div
-          className="relative w-full bg-fixed bg-no-repeat bg-cover pt-32 pb-48"
+          className="relative w-full bg-fixed bg-no-repeat bg-cover py-32"
           style={{
             background:
               "radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 50%, rgba(0,0,0,1) 100%)",
@@ -161,23 +221,47 @@ export default function AiPage({ className }: AiPageProps) {
           <div className="relative" style={{ zIndex: 10 }}>
             <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
               <div className="text-center mb-14">
-                <h1 className="text-4xl sm:text-6xl mt-4 text-white">
-                  Build beautiful {isEmail ? "emails" : "websites"} with AI
+                <h1 className="text-4xl sm:text-6xl !font-semibold mt-4 text-white whitespace-nowrap">
+                  What {isEmail ? "email" : "website"} will you{" "}
+                  <span className="text-violet-400 italic !font-semibold mr-1">
+                    launch
+                  </span>{" "}
+                  today?
                 </h1>
-                <h2 className="text-xl sm:text-2xl mt-4 text-white">
-                  With drag & drop editing and HTML output
+                <h2 className="text-xl sm:text-2xl mt-6 text-gray-300 font-light">
+                  AI builds it, you deploy it instantly — completely free
                 </h2>
-                <h3 className="text-lg sm:text-xl mt-4 text-white opacity-70">
-                  Your <RotatingText texts={headlineTexts} /> will love you
-                </h3>
               </div>
 
               <form onSubmit={handleSubmit} className="w-full">
+                <style
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                  @keyframes borderPulse {
+                    0%, 100% { 
+                      border-color: rgba(139, 92, 246, 0.3);
+                      box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+                    }
+                    50% { 
+                      border-color: rgba(139, 92, 246, 1);
+                      box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+                    }
+                  }
+                  .pulse-border {
+                    animation: borderPulse 1.5s ease-in-out 2;
+                  }
+                  .pulse-border-once {
+                    animation: borderPulse 1.5s ease-in-out 1;
+                  }
+                `,
+                  }}
+                />
                 <div
                   className={cn(
-                    "rounded-3xl py-2 backdrop-blur-sm border border-zinc-700/50",
+                    "rounded-3xl py-2 backdrop-blur-sm border transition-all duration-500",
                     "bg-zinc-900/50 text-gray-400 text-sm",
-                    "flex flex-wrap mx-2 sm:mx-0"
+                    "flex flex-wrap mx-2 sm:mx-0",
+                    showHighlight ? "pulse-border" : "border-zinc-700/50"
                   )}
                 >
                   <div className="w-full">
@@ -186,6 +270,14 @@ export default function AiPage({ className }: AiPageProps) {
                       onChange={(e) =>
                         setPrompt((e.target.value || "").slice(0, 3500))
                       }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                          e.preventDefault();
+                          if (prompt.trim() && !loading) {
+                            handleSubmit(e as any);
+                          }
+                        }
+                      }}
                       className={cn(
                         "w-full resize-none bg-transparent border-0 outline-none",
                         "placeholder:text-neutral-500 text-gray-400",
@@ -203,11 +295,12 @@ export default function AiPage({ className }: AiPageProps) {
                       }}
                       placeholder={
                         isEmail
-                          ? "Ask AI to create an email for..."
-                          : "Create a website based on https://your-old-website.org"
+                          ? `Let's create an email for your ${typedText}`
+                          : `Let's create a website for your ${typedText}`
                       }
                       required
                       disabled={loading}
+                      autoFocus
                     />
                   </div>
                   <div className="w-full px-4 pb-2 flex items-center justify-between">
@@ -247,10 +340,14 @@ export default function AiPage({ className }: AiPageProps) {
                       )}
                       <button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !prompt.trim()}
                         className={cn(
                           "flex items-center justify-center rounded-full p-2",
-                          "bg-violet-600 text-white hover:opacity-90",
+                          "bg-violet-600 text-white transition-opacity",
+                          !prompt.trim() &&
+                            !loading &&
+                            "opacity-30 cursor-not-allowed",
+                          prompt.trim() && !loading && "hover:opacity-90",
                           loading && "opacity-50"
                         )}
                         aria-label="Submit"
@@ -270,6 +367,7 @@ export default function AiPage({ className }: AiPageProps) {
                 <RecommendationsStandalone
                   data={isEmail ? recommendationsEmail : recommendationsWeb}
                   onClick={(p) => setPrompt(p)}
+                  showHighlight={showButtonHighlight}
                 />
               </div>
             </div>
@@ -479,9 +577,11 @@ const recommendationsEmail: RecommendationItem[] = [
 function RecommendationsStandalone({
   onClick,
   data,
+  showHighlight,
 }: {
   onClick: (prompt: string) => void;
   data: RecommendationItem[];
+  showHighlight?: boolean;
 }) {
   return (
     <>
@@ -490,8 +590,11 @@ function RecommendationsStandalone({
           key={index}
           type="button"
           className={cn(
-            "rounded-full px-4 py-2 text-sm border border-white/20 hover:border-violet-400",
-            "text-gray-400 hover:text-white flex items-center gap-2"
+            "rounded-full px-4 py-2 text-sm border hover:border-violet-400",
+            "text-gray-400 hover:text-white flex items-center gap-2 transition-all duration-500",
+            index === 0 && showHighlight
+              ? "pulse-border-once"
+              : "border-white/20"
           )}
           onClick={() => onClick(button.prompt)}
         >

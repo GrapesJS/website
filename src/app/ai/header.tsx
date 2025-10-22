@@ -39,24 +39,24 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
 
         {/* Desktop Navigation */}
         <div className="flex items-center gap-6 flex-1 justify-end mr-8 max-lg:hidden">
-          <a
+          {/* <a
             href="/pricing"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
           >
             Pricing
-          </a>
-          <a
+          </a> */}
+          {/* <a
             href="/blog"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
           >
             Blog
-          </a>
-          <a
+          </a> */}
+          {/* <a
             href="/sdk"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
           >
             Studio SDK
-          </a>
+          </a> */}
         </div>
 
         <div className="flex items-center gap-4 md:gap-3 max-sm:gap-2">
