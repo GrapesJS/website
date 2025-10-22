@@ -13,6 +13,12 @@ interface TemplateGalleryProps {
   className?: string;
 }
 
+function showItem(index: number, items: any[]) {
+  const colCount = 6;
+  const visibleCount = Math.floor(items.length / colCount) * colCount;
+  return index < visibleCount;
+}
+
 export function TemplateGallery({
   defaultType = "all",
   defaultLimit = 20,
@@ -54,9 +60,12 @@ export function TemplateGallery({
         <div className={styles.templates}>
           <h2 className="text-center mb-16 text-5xl">Start with a Template</h2>
           <div className={styles.grid}>
-            {templates.map((template) => (
-              <TemplateCard key={template.id} template={template} />
-            ))}
+            {templates.map(
+              (template, index) =>
+                showItem(index, templates) && (
+                  <TemplateCard key={template.id} template={template} />
+                )
+            )}
           </div>
         </div>
       )}
