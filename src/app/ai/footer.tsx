@@ -23,9 +23,8 @@ export default function FooterStandalone({ className }: FooterStandaloneProps) {
               className="w-[277px] h-[75px]"
             />
             <div className="text-lg text-gray-300 font-light leading-6 max-sm:text-base">
-              The drag-and-drop, open-source, no-code
-              visual editor with AI assistance for: emails,
-              webpages, and landing pages.
+              Build beautiful emails, webpages, and landing pages with Grapes Studio:
+              The only AI powered drag-and-drop editor.
             </div>
             <div className="flex gap-4 mt-2 justify-center">
               <a

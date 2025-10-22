@@ -811,6 +811,8 @@ body {
   font-size: 1.125rem;
   line-height: 1.75rem;
   color: #bcacfd;
+  /* Light highlight for Grapes column header */
+  background-color: rgba(188, 172, 253, 0.08);
 }
 
 .squarespaceColumnHeader {
@@ -863,6 +865,8 @@ body {
   text-align: center;
   padding: 1rem 1.5rem;
   color: #bcacfd;
+  /* Light highlight for Grapes column cells */
+  background-color: rgba(188, 172, 253, 0.08);
 }
 
 .squarespaceCheck {

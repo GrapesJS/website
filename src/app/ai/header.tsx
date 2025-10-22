@@ -40,12 +40,6 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
         {/* Desktop Navigation */}
         <div className="flex items-center gap-6 flex-1 justify-end mr-8 max-lg:hidden">
           <a
-            href="/pricing#comparison-section"
-            className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
-          >
-            Features
-          </a>
-          <a
             href="/pricing"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
           >

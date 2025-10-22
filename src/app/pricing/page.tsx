@@ -347,10 +347,6 @@ const PricingPageClient = () => {
             <h2 className={styles.pricingHeading} style={{ color: "#ffffff" }}>
               Pricing
             </h2>
-            <p className={styles.pricingSubtitle}>
-             Start free and upgrade as you grow.
-            </p>
-
             <div className={styles.pricingGrid}>
               {/* Free Plan */}
               <div
@@ -367,7 +363,7 @@ const PricingPageClient = () => {
                 >
                   Free
                 </div>
-                <p className={styles.planDescription}>Free for everyone</p>
+                <p className={styles.planDescription}></p>
                 <ul className={styles.freePlanFeatures}>
                   <li className={styles.freeFeature1}>
                     <img
@@ -391,7 +387,7 @@ const PricingPageClient = () => {
                       alt="Checkmark"
                       className={styles.featureCheck}
                     />
-                    Unlimited projects
+                    Unlimited drag & drop edits
                   </li>
                   <li className={styles.freeFeature4}>
                     <img
@@ -572,14 +568,15 @@ const PricingPageClient = () => {
                   <tr className={styles.headerRow}>
                     <th className={styles.featureColumnHeader}>Features</th>
                     <th className={styles.grapesColumnHeader}>Grapes Studio</th>
+                    <th className={styles.vercelColumnHeader}>Vercel</th>
                     <th className={styles.squarespaceColumnHeader}>
                       Squarespace
                     </th>
-                    <th className={styles.vercelColumnHeader}>Vercel</th>
                     <th className={styles.wordpressColumnHeader}>Wordpress</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {/* Design Templates */}
                   <tr
                     className={`${styles.featureRow} ${
                       comparisonRowsVisible[0]
@@ -587,24 +584,33 @@ const PricingPageClient = () => {
                         : styles.animateOut
                     }`}
                   >
-                    <td className={styles.featureLabel}>
-                      AI Website Generation
-                    </td>
+                    <td className={styles.featureLabel}>Design Templates</td>
                     <td className={styles.grapesCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.squarespaceAiCheck}>✗</td>
-                    <td className={styles.vercelAiCheck}>
+                    <td className={styles.vercelCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.wordpressAiCheck}>✗</td>
+                    <td className={styles.squarespaceCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
+                    <td className={styles.wordpressCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
                   </tr>
+                  {/* Custom Domains */}
                   <tr
                     className={`${styles.featureRow} ${
                       comparisonRowsVisible[1]
@@ -612,19 +618,33 @@ const PricingPageClient = () => {
                         : styles.animateOut
                     }`}
                   >
-                    <td className={styles.featureLabel}>
-                      AI Website Duplication
-                    </td>
+                    <td className={styles.featureLabel}>Custom Domains</td>
                     <td className={styles.grapesCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.squarespaceCheck}>✗</td>
-                    <td className={styles.vercelCheck}>✗</td>
-                    <td className={styles.wordpressCheck}>✗</td>
+                    <td className={styles.vercelCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
+                    <td className={styles.squarespaceCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
+                    <td className={styles.wordpressCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
                   </tr>
+                  {/* Drag-and-drop editor */}
                   <tr
                     className={`${styles.featureRow} ${
                       comparisonRowsVisible[2]
@@ -641,13 +661,13 @@ const PricingPageClient = () => {
                         alt="Checkmark"
                       />
                     </td>
+                    <td className={styles.vercelCheck}>✗</td>
                     <td className={styles.squarespaceCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.vercelCheck}>✗</td>
                     <td className={styles.wordpressCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
@@ -655,6 +675,7 @@ const PricingPageClient = () => {
                       />
                     </td>
                   </tr>
+                  {/* Full Code Access & Editing */}
                   <tr
                     className={`${styles.featureRow} ${
                       comparisonRowsVisible[3]
@@ -671,89 +692,19 @@ const PricingPageClient = () => {
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.squarespaceCheck}>✗</td>
                     <td className={styles.vercelCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.wordpressCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
+                    <td className={styles.squarespaceCheck}>✗</td>
+                    <td className={styles.wordpressCheck}>✗</td>
                   </tr>
+                  {/* Custom Hosting Options */}
                   <tr
                     className={`${styles.featureRow} ${
                       comparisonRowsVisible[4]
-                        ? styles.animateIn
-                        : styles.animateOut
-                    }`}
-                  >
-                    <td className={styles.featureLabel}>Design Templates</td>
-                    <td className={styles.grapesCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.squarespaceCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.vercelCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.wordpressCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                  </tr>
-                  <tr
-                    className={`${styles.featureRow} ${
-                      comparisonRowsVisible[5]
-                        ? styles.animateIn
-                        : styles.animateOut
-                    }`}
-                  >
-                    <td className={styles.featureLabel}>Custom Domains</td>
-                    <td className={styles.grapesCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.squarespaceCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.vercelCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.wordpressCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                  </tr>
-                  <tr
-                    className={`${styles.featureRow} ${
-                      comparisonRowsVisible[6]
                         ? styles.animateIn
                         : styles.animateOut
                     }`}
@@ -767,23 +718,85 @@ const PricingPageClient = () => {
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.squarespaceCheck}>✗</td>
                     <td className={styles.vercelCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.wordpressCheck}>
+                    <td className={styles.squarespaceCheck}>✗</td>
+                    <td className={styles.wordpressCheck}>✗</td>
+                  </tr>
+                  {/* Affordable Pricing */}
+                  <tr
+                    className={`${styles.featureRow} ${
+                      comparisonRowsVisible[5]
+                        ? styles.animateIn
+                        : styles.animateOut
+                    }`}
+                  >
+                    <td className={styles.featureLabel}>Affordable Pricing</td>
+                    <td className={styles.grapesCheck}>
                       <img
                         src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
                         alt="Checkmark"
                       />
                     </td>
+                    <td className={styles.vercelCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
+                    <td className={styles.squarespaceCheck}>✗</td>
+                    <td className={styles.wordpressCheck}>✗</td>
                   </tr>
+                  {/* AI Website Generation */}
+                  <tr
+                    className={`${styles.featureRow} ${
+                      comparisonRowsVisible[6]
+                        ? styles.animateIn
+                        : styles.animateOut
+                    }`}
+                  >
+                    <td className={styles.featureLabel}>
+                      AI Website Generation
+                    </td>
+                    <td className={styles.grapesCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
+                    <td className={styles.vercelAiCheck}>✗</td>
+                    <td className={styles.squarespaceAiCheck}>✗</td>
+                    <td className={styles.wordpressAiCheck}>✗</td>
+                  </tr>
+                  {/* AI Website Duplication */}
                   <tr
                     className={`${styles.featureRow} ${
                       comparisonRowsVisible[7]
+                        ? styles.animateIn
+                        : styles.animateOut
+                    }`}
+                  >
+                    <td className={styles.featureLabel}>
+                      AI Website Duplication
+                    </td>
+                    <td className={styles.grapesCheck}>
+                      <img
+                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
+                        alt="Checkmark"
+                      />
+                    </td>
+                    <td className={styles.vercelCheck}>✗</td>
+                    <td className={styles.squarespaceCheck}>✗</td>
+                    <td className={styles.wordpressCheck}>✗</td>
+                  </tr>
+                  {/* Use Existing Site as Starting Point */}
+                  <tr
+                    className={`${styles.featureRow} ${
+                      comparisonRowsVisible[8]
                         ? styles.animateIn
                         : styles.animateOut
                     }`}
@@ -797,38 +810,11 @@ const PricingPageClient = () => {
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.squarespaceCheck}>✗</td>
                     <td className={styles.vercelCheck}>✗</td>
+                    <td className={styles.squarespaceCheck}>✗</td>
                     <td className={styles.wordpressCheck}>✗</td>
                   </tr>
-                  <tr
-                    className={`${styles.featureRow} ${
-                      comparisonRowsVisible[8]
-                        ? styles.animateIn
-                        : styles.animateOut
-                    }`}
-                  >
-                    <td className={styles.featureLabel}>Affordable Pricing</td>
-                    <td className={styles.grapesCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.squarespaceCheck}>✗</td>
-                    <td className={styles.vercelCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                    <td className={styles.wordpressCheck}>
-                      <img
-                        src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
-                        alt="Checkmark"
-                      />
-                    </td>
-                  </tr>
+                  {/* Embeddable Solutions */}
                   <tr
                     className={`${styles.featureRow} ${
                       comparisonRowsVisible[9]
@@ -845,8 +831,8 @@ const PricingPageClient = () => {
                         alt="Checkmark"
                       />
                     </td>
-                    <td className={styles.squarespaceCheck}>✗</td>
                     <td className={styles.vercelCheck}>✗</td>
+                    <td className={styles.squarespaceCheck}>✗</td>
                     <td className={styles.wordpressCheck}>✗</td>
                   </tr>
                 </tbody>
