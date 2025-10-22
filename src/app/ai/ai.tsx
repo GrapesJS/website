@@ -216,6 +216,22 @@ export default function AiPage({ className }: AiPageProps) {
         className
       )}
     >
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes borderPulse {
+              0%, 100% { 
+                border-color: rgba(139, 92, 246, 0.3);
+                box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+              }
+              50% { 
+                border-color: rgba(139, 92, 246, 1);
+                box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+              }
+            }
+          `,
+        }}
+      />
       <HeaderStandalone />
 
       <main className="relative">
@@ -249,35 +265,21 @@ export default function AiPage({ className }: AiPageProps) {
               </div>
 
               <form onSubmit={handleSubmit} className="w-full">
-                <style
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                  @keyframes borderPulse {
-                    0%, 100% { 
-                      border-color: rgba(139, 92, 246, 0.3);
-                      box-shadow: 0 0 0 rgba(139, 92, 246, 0);
-                    }
-                    50% { 
-                      border-color: rgba(139, 92, 246, 1);
-                      box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
-                    }
-                  }
-                  .pulse-border {
-                    animation: borderPulse 1.5s ease-in-out 2;
-                  }
-                  .pulse-border-once {
-                    animation: borderPulse 1.5s ease-in-out 1;
-                  }
-                `,
-                  }}
-                />
                 <div
                   className={cn(
                     "rounded-3xl py-2 backdrop-blur-sm border transition-all duration-500",
                     "bg-zinc-900/50 text-gray-400 text-sm",
                     "flex flex-wrap mx-2 sm:mx-0",
-                    showHighlight ? "pulse-border" : "border-zinc-700/50"
+                    !showHighlight && "border-zinc-700/50"
                   )}
+                  style={
+                    showHighlight
+                      ? {
+                          borderColor: "rgba(139, 92, 246, 0.3)",
+                          animation: "borderPulse 1.5s ease-in-out 2",
+                        }
+                      : undefined
+                  }
                 >
                   <div className="w-full">
                     <textarea
@@ -410,14 +412,14 @@ function RotatingText({ texts }: { texts: string[] }) {
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % texts.length);
         setIsVisible(true);
-      }, 1000);
-    }, 3000);
+      }, 500);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [texts.length]);
 
   const cls = cn(
-    "inline-block transition-all duration-1000 ease-in-out",
+    "inline-block transition-all duration-500 ease-in-out",
     isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm"
   );
 
@@ -607,10 +609,16 @@ function RecommendationsStandalone({
           className={cn(
             "rounded-full px-4 py-2 text-sm border hover:border-violet-400",
             "text-gray-400 hover:text-white flex items-center gap-2 transition-all duration-500",
-            index === 0 && showHighlight
-              ? "pulse-border-once"
-              : "border-white/20"
+            !(index === 0 && showHighlight) && "border-white/20"
           )}
+          style={
+            index === 0 && showHighlight
+              ? {
+                  borderColor: "rgba(139, 92, 246, 0.3)",
+                  animation: "borderPulse 1.5s ease-in-out 1",
+                }
+              : undefined
+          }
           onClick={() => onClick(button.prompt)}
         >
           <Icon path={button.icon} size={0.8} />
