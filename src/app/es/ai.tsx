@@ -62,6 +62,11 @@ export default function AiPage() {
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
   const speechToText = useSpeechToText();
   const { isListening, transcript } = speechToText;
+  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showHighlight, setShowHighlight] = useState(false);
+  const [showButtonHighlight, setShowButtonHighlight] = useState(false);
 
   useEffect(() => {
     const urlPrompt = searchParams.get("prompt");
@@ -87,6 +92,36 @@ export default function AiPage() {
     });
   }, []);
 
+  // Highlight animation on page load
+  useEffect(() => {
+    // Textarea: Wait 1 second before starting the animation
+    const textareaStartTimer = setTimeout(() => {
+      setShowHighlight(true);
+    }, 1000);
+
+    // Textarea: Turn off highlight after animation completes (1s delay + 3s animation)
+    const textareaEndTimer = setTimeout(() => {
+      setShowHighlight(false);
+    }, 4000);
+
+    // Button: Start after textarea ends, with a 3s pause
+    const buttonStartTimer = setTimeout(() => {
+      setShowButtonHighlight(true);
+    }, 7000);
+
+    // Button: Turn off after 1 pulse (1.5s animation)
+    const buttonEndTimer = setTimeout(() => {
+      setShowButtonHighlight(false);
+    }, 8500);
+
+    return () => {
+      clearTimeout(textareaStartTimer);
+      clearTimeout(textareaEndTimer);
+      clearTimeout(buttonStartTimer);
+      clearTimeout(buttonEndTimer);
+    };
+  }, []);
+
   // Update prompt when speech-to-text transcript changes
   useEffect(() => {
     transcript && setPrompt(transcript);
@@ -102,6 +137,44 @@ export default function AiPage() {
       setHasTrackedInterest(true);
     }
   }, [prompt, hasTrackedInterest]);
+
+  // Typing/deleting animation for placeholder
+  useEffect(() => {
+    const inputTexts = [
+      "equipo de marketing para amar...",
+      "próximo lanzamiento de producto...",
+      "campaña de ventas próxima...",
+      "rediseño de tienda online...",
+      "anuncio de producto SaaS...",
+      "proyecto de transformación digital...",
+      "próximo cliente de la agencia...",
+      "plataforma de comunidad de desarrolladores...",
+      "vitrina de portafolio creativo...",
+      "basado en https://mi-sitio-viejo.com...",
+    ];
+
+    const currentText = inputTexts[currentHeadlineIndex];
+
+    const typingSpeed = isDeleting ? 15 : 50;
+    const pauseBeforeDelete = 1200;
+    const pauseBeforeType = 250;
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting && typedText === currentText) {
+        setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
+      } else if (isDeleting && typedText === "") {
+        setIsDeleting(false);
+        setCurrentHeadlineIndex((prev) => (prev + 1) % inputTexts.length);
+        setTimeout(() => {}, pauseBeforeType);
+      } else if (isDeleting) {
+        setTypedText(currentText.substring(0, typedText.length - 1));
+      } else {
+        setTypedText(currentText.substring(0, typedText.length + 1));
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [typedText, isDeleting, currentHeadlineIndex]);
 
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
@@ -130,11 +203,27 @@ export default function AiPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes borderPulse {
+              0%, 100% { 
+                border-color: rgba(139, 92, 246, 0.3);
+                box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+              }
+              50% { 
+                border-color: rgba(139, 92, 246, 1);
+                box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+              }
+            }
+          `,
+        }}
+      />
       <HeaderStandalone />
 
       <main className="relative">
         <div
-          className="relative w-full bg-fixed bg-no-repeat bg-cover pt-32 pb-48"
+          className="relative w-full bg-fixed bg-no-repeat bg-cover py-32"
           style={{
             background:
               "radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 50%, rgba(0,0,0,1) 100%)",
@@ -147,13 +236,17 @@ export default function AiPage() {
           <div className="relative" style={{ zIndex: 10 }}>
             <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
               <div className="text-center mb-14">
-                <h1 className="text-4xl sm:text-6xl mt-4 text-white">
-                  Crea {isEmail ? "emails" : "sitios web"} hermosos con IA
+                <h1 className="text-4xl sm:text-6xl !font-semibold mt-4 text-white">
+                  Crea hermosos
+                  <span className="text-violet-400 italic !font-semibold mx-1">
+                    {isEmail ? "emails" : "sitios web"}
+                  </span>{" "}
+                  con IA
                 </h1>
-                <h2 className="text-xl sm:text-2xl mt-4 text-white">
-                  Con un editor drag and drop, con salida HTML
+                <h2 className="text-xl sm:text-2xl mt-6 text-gray-300 font-light">
+                  Con edición drag & drop y salida HTML
                 </h2>
-                <h3 className="text-lg sm:text-xl mt-4 text-white opacity-70">
+                <h3 className="text-md sm:text-xl mt-4 text-gray-200 opacity-70">
                   Tu <RotatingText texts={headlineTexts} /> te amará
                 </h3>
               </div>
@@ -161,10 +254,19 @@ export default function AiPage() {
               <form onSubmit={handleSubmit} className="w-full">
                 <div
                   className={cn(
-                    "rounded-3xl py-2 backdrop-blur-sm border border-zinc-700/50",
+                    "rounded-3xl py-2 backdrop-blur-sm border transition-all duration-500",
                     "bg-zinc-900/50 text-gray-400 text-sm",
-                    "flex flex-wrap mx-2 sm:mx-0"
+                    "flex flex-wrap mx-2 sm:mx-0",
+                    !showHighlight && "border-zinc-700/50"
                   )}
+                  style={
+                    showHighlight
+                      ? {
+                          borderColor: "rgba(139, 92, 246, 0.3)",
+                          animation: "borderPulse 1.5s ease-in-out 2",
+                        }
+                      : undefined
+                  }
                 >
                   <div className="w-full">
                     <textarea
@@ -172,6 +274,14 @@ export default function AiPage() {
                       onChange={(e) =>
                         setPrompt((e.target.value || "").slice(0, 3500))
                       }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                          e.preventDefault();
+                          if (prompt.trim() && !loading) {
+                            handleSubmit(e as any);
+                          }
+                        }
+                      }}
                       className={cn(
                         "w-full resize-none bg-transparent border-0 outline-none",
                         "placeholder:text-neutral-500 text-gray-400",
@@ -189,11 +299,12 @@ export default function AiPage() {
                       }}
                       placeholder={
                         isEmail
-                          ? "Pide a la IA que cree un email para..."
-                          : "Crea un sitio web basado en https://tu-sitio-web-antiguo.org"
+                          ? `Vamos a crear un email para tu ${typedText}`
+                          : `Vamos a crear un sitio web para tu ${typedText}`
                       }
                       required
                       disabled={loading}
+                      autoFocus
                     />
                   </div>
                   <div className="w-full px-4 pb-2 flex items-center justify-between">
@@ -237,10 +348,14 @@ export default function AiPage() {
                       )}
                       <button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !prompt.trim()}
                         className={cn(
                           "flex items-center justify-center rounded-full p-2",
-                          "bg-violet-600 text-white hover:opacity-90",
+                          "bg-violet-600 text-white transition-opacity",
+                          !prompt.trim() &&
+                            !loading &&
+                            "opacity-30 cursor-not-allowed",
+                          prompt.trim() && !loading && "hover:opacity-90",
                           loading && "opacity-50"
                         )}
                         aria-label="Enviar"
@@ -260,6 +375,7 @@ export default function AiPage() {
                 <RecommendationsStandalone
                   data={isEmail ? recommendationsEmail : recommendationsWeb}
                   onClick={(p) => setPrompt(p)}
+                  showHighlight={showButtonHighlight}
                 />
               </div>
             </div>
@@ -287,14 +403,14 @@ function RotatingText({ texts }: { texts: string[] }) {
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % texts.length);
         setIsVisible(true);
-      }, 300);
-    }, 3000);
+      }, 500);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [texts.length]);
 
   const cls = cn(
-    "inline-block transition-all duration-300 ease-in-out",
+    "inline-block transition-all duration-500 ease-in-out",
     isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm"
   );
 
@@ -469,9 +585,11 @@ const recommendationsEmail: RecommendationItem[] = [
 function RecommendationsStandalone({
   onClick,
   data,
+  showHighlight,
 }: {
   onClick: (prompt: string) => void;
   data: RecommendationItem[];
+  showHighlight?: boolean;
 }) {
   return (
     <>
@@ -480,9 +598,18 @@ function RecommendationsStandalone({
           key={index}
           type="button"
           className={cn(
-            "rounded-full px-4 py-2 text-sm border border-white/20 hover:border-violet-400",
-            "text-gray-400 hover:text-white flex items-center gap-2"
+            "rounded-full px-4 py-2 text-sm border hover:border-violet-400",
+            "text-gray-400 hover:text-white flex items-center gap-2 transition-all duration-500",
+            !(index === 0 && showHighlight) && "border-white/20"
           )}
+          style={
+            index === 0 && showHighlight
+              ? {
+                  borderColor: "rgba(139, 92, 246, 0.3)",
+                  animation: "borderPulse 1.5s ease-in-out 1",
+                }
+              : undefined
+          }
           onClick={() => onClick(button.prompt)}
         >
           <Icon path={button.icon} size={0.8} />

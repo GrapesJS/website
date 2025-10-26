@@ -51,12 +51,12 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
           >
             Precios
           </a>
-          <a
+          {/* <a
             href="/blog"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
           >
             Blog
-          </a>
+          </a> */}
           <a
             href="/sdk"
             className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
@@ -171,13 +171,13 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
             >
               Precios
             </a>
-            <a
+            {/* <a
               href="/blog"
               className="text-gray-100 no-underline font-medium text-xl transition-colors duration-200 hover:text-white hover:bg-gray-800/50 px-4 py-2 rounded-md"
               onClick={closeMobileMenu}
             >
               Blog
-            </a>
+            </a> */}
             <a
               href="/sdk"
               className="text-gray-100 no-underline font-medium text-xl transition-colors duration-200 hover:text-white hover:bg-gray-800/50 px-4 py-2 rounded-md"
