@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { useHomepageData } from "@/hooks/useHomepageData";
 import { TemplateCard } from "../TemplateCard";
 import { ProjectCard } from "../ProjectCard";
@@ -25,6 +26,9 @@ export function TemplateGallery({
   showUserGreeting = true,
   className = "",
 }: TemplateGalleryProps) {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith("/es");
+  
   const { user, templates, projects, isAuthenticated, loading } =
     useHomepageData({
       type: defaultType,
@@ -48,9 +52,13 @@ export function TemplateGallery({
       <div className={styles.header}>
         {showUserGreeting && !!isAuthenticated && !!user && (
           <>
-            <h2>Welcome back, {user.name}!</h2>
+            <h2>
+              {isSpanish ? `¡Bienvenido de nuevo, ${user.name}!` : `Welcome back, ${user.name}!`}
+            </h2>
             <p>
-              Continue working on your projects or start fresh with a template
+              {isSpanish 
+                ? "Continúa trabajando en tus proyectos o comienza de nuevo con una plantilla"
+                : "Continue working on your projects or start fresh with a template"}
             </p>
           </>
         )}
@@ -58,7 +66,9 @@ export function TemplateGallery({
 
       {templates.length > 0 && (
         <div className={styles.templates}>
-          <h2 className="text-center mb-16 text-5xl">Start with a Template</h2>
+          <h2 className="text-center mb-16 text-5xl">
+            {isSpanish ? "Comienza con una Plantilla" : "Start with a Template"}
+          </h2>
           <div className={styles.grid}>
             {templates.map(
               (template, index) =>
@@ -72,7 +82,7 @@ export function TemplateGallery({
 
       {isAuthenticated && projects && projects.length > 0 && (
         <div className={styles.projects}>
-          <h3>Your Recent Projects</h3>
+          <h3>{isSpanish ? "Tus Proyectos Recientes" : "Your Recent Projects"}</h3>
           <div className={styles.projectsGrid}>
             {projects.slice(0, 3).map((project) => (
               <ProjectCard key={project.id} project={project} />
