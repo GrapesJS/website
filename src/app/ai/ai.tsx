@@ -250,7 +250,7 @@ export default function AiPage({ className }: AiPageProps) {
           <div className="relative" style={{ zIndex: 10 }}>
             <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
               <div className="text-center mb-14">
-                <h1 className="text-4xl sm:text-6xl !font-semibold mt-4 text-white">
+                <h1 className="text-4xl sm:text-6xl !font-semibold mt-4 text-white whitespace-nowrap">
                   Build beautiful
                   <span className="text-violet-400 italic !font-semibold mx-1">
                     {isEmail ? "emails" : "websites"}
