@@ -23,6 +23,10 @@ const PricingPageClient = () => {
     customize: false,
   });
   const [aiImageVisible, setIsAiImageVisible] = useState(false);
+  const [showCtaHighlight, setShowCtaHighlight] = useState(false);
+  const [ctaPulseState, setCtaPulseState] = useState(0);
+  const [showBottomCtaHighlight, setShowBottomCtaHighlight] = useState(false);
+  const [bottomCtaPulseState, setBottomCtaPulseState] = useState(0);
 
   const starterRef = useRef<HTMLDivElement>(null);
   const proRef = useRef<HTMLDivElement>(null);
@@ -158,6 +162,92 @@ const PricingPageClient = () => {
     if (aiImageRef.current) observer.observe(aiImageRef.current);
 
     return () => observer.disconnect();
+  }, []);
+
+  // CTA highlight animation (2 pulses after 2 seconds)
+  useEffect(() => {
+    const timers: NodeJS.Timeout[] = [];
+
+    // Start after 2s
+    timers.push(
+      setTimeout(() => {
+        setShowCtaHighlight(true);
+        setCtaPulseState(1); // First pulse
+      }, 2000)
+    );
+
+    // First pulse off
+    timers.push(
+      setTimeout(() => {
+        setCtaPulseState(0);
+      }, 2750)
+    );
+
+    // Second pulse on
+    timers.push(
+      setTimeout(() => {
+        setCtaPulseState(1);
+      }, 3500)
+    );
+
+    // Second pulse off
+    timers.push(
+      setTimeout(() => {
+        setCtaPulseState(0);
+      }, 4250)
+    );
+
+    // End (wait a bit after second pulse completes)
+    timers.push(
+      setTimeout(() => {
+        setShowCtaHighlight(false);
+      }, 4500)
+    );
+
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  // Bottom CTA highlight animation (2 pulses, 2 seconds after first CTA ends)
+  useEffect(() => {
+    const timers: NodeJS.Timeout[] = [];
+
+    // Start 2 seconds after first CTA ends (4500ms + 2000ms = 6500ms)
+    timers.push(
+      setTimeout(() => {
+        setShowBottomCtaHighlight(true);
+        setBottomCtaPulseState(1); // First pulse
+      }, 6500)
+    );
+
+    // First pulse off
+    timers.push(
+      setTimeout(() => {
+        setBottomCtaPulseState(0);
+      }, 7250)
+    );
+
+    // Second pulse on
+    timers.push(
+      setTimeout(() => {
+        setBottomCtaPulseState(1);
+      }, 8000)
+    );
+
+    // Second pulse off
+    timers.push(
+      setTimeout(() => {
+        setBottomCtaPulseState(0);
+      }, 8750)
+    );
+
+    // End (wait a bit after second pulse completes)
+    timers.push(
+      setTimeout(() => {
+        setShowBottomCtaHighlight(false);
+      }, 9000)
+    );
+
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   return (
@@ -355,6 +445,7 @@ const PricingPageClient = () => {
                   styles.animateOut
                 } ${isVisible.starter ? styles.animateIn : ""}`}
               >
+                <div className={styles.popularBadge}>Try it for free</div>
                 <h3 className={styles.freePlanTitle}>Starter</h3>
                 <p className={styles.planTagline}>Best for portfolios</p>
                 <div
@@ -363,7 +454,9 @@ const PricingPageClient = () => {
                 >
                   Free
                 </div>
-                <p className={styles.planDescription}></p>
+                <p className={styles.planDescription}>
+                  No credit card required
+                </p>
                 <ul className={styles.freePlanFeatures}>
                   <li className={styles.freeFeature1}>
                     <img
@@ -409,6 +502,17 @@ const PricingPageClient = () => {
                 <button
                   className={`${styles.planCta} ${styles.freeCta}`}
                   onClick={handleGetStarted}
+                  style={
+                    showCtaHighlight
+                      ? {
+                          boxShadow:
+                            ctaPulseState === 1
+                              ? "0 0 25px rgba(139, 92, 246, 0.8), 0 0 50px rgba(139, 92, 246, 0.4)"
+                              : "0 0 0 rgba(139, 92, 246, 0)",
+                          transition: "box-shadow 0.75s ease-in-out",
+                        }
+                      : undefined
+                  }
                 >
                   Get Started
                 </button>
@@ -421,7 +525,6 @@ const PricingPageClient = () => {
                   styles.animateOut
                 } ${isVisible.pro ? styles.animateIn : ""}`}
               >
-                <div className={styles.popularBadge}>Most Popular</div>
                 <h3 className={styles.proPlanTitle}>Pro</h3>
                 <p className={styles.planTagline}>Designed for professionals</p>
                 <div
@@ -483,7 +586,7 @@ const PricingPageClient = () => {
                 </button>
               </div>
 
-              {/* Enterprise Plan */}
+              {/* Enterprise Plan - Hidden */}
               <div
                 ref={enterpriseRef}
                 className={`flex flex-col justify-between ${
@@ -491,6 +594,7 @@ const PricingPageClient = () => {
                 } ${styles.animateOut} ${
                   isVisible.enterprise ? styles.animateIn : ""
                 }`}
+                style={{ display: "none" }}
               >
                 <h3 className={styles.enterprisePlanTitle}>Enterprise</h3>
                 <p className={styles.planTagline}>
@@ -843,6 +947,17 @@ const PricingPageClient = () => {
                 type="button"
                 className={`${styles.gjsTButton} gjs-t-button`}
                 onClick={handleGetStarted}
+                style={
+                  showBottomCtaHighlight
+                    ? {
+                        boxShadow:
+                          bottomCtaPulseState === 1
+                            ? "0 0 25px rgba(139, 92, 246, 0.8), 0 0 50px rgba(139, 92, 246, 0.4)"
+                            : "0 0 0 rgba(139, 92, 246, 0)",
+                        transition: "box-shadow 0.75s ease-in-out",
+                      }
+                    : undefined
+                }
               >
                 Start Building for Free
               </button>

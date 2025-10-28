@@ -85,7 +85,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
 }
@@ -365,7 +366,7 @@ body {
   font-size: 1.125rem;
   line-height: 1.75rem;
   color: rgba(255, 255, 255, 1);
-  font-family: 'Noto Sans Nag Mundari';
+  font-family: "Noto Sans Nag Mundari";
   margin-top: -1rem;
   margin-bottom: 3rem;
   font-weight: 300;
@@ -373,32 +374,16 @@ body {
 
 .pricingGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
-  max-width: 64rem;
+  max-width: 50rem;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center;
 }
 
 /* Plan Cards */
-.freePlan,
-.enterprisePlan {
-  background-color: #1a1329 !important;
-  border-radius: 1rem;
-  padding: 2rem;
-  border-width: 1px;
-  border-color: rgb(31 41 55 / 1);
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
-}
-
-.freePlan:hover,
-.enterprisePlan:hover {
-  border-color: rgb(55 65 81 / 1);
-}
-
-.proPlan {
+.freePlan {
   background-color: #1a1329 !important;
   border-color: #bcacfd !important;
   background-image: unset;
@@ -411,6 +396,40 @@ body {
   padding: 2rem;
   border-width: 2px;
   position: relative;
+}
+
+.enterprisePlan {
+  background-color: #1a1329 !important;
+  border-radius: 1rem;
+  padding: 2rem;
+  border-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.freePlan:hover,
+.enterprisePlan:hover {
+  border-color: #bcacfd !important;
+}
+
+.proPlan {
+  background-color: #1a1329 !important;
+  border-radius: 1rem;
+  padding: 2rem;
+  border-width: 1px;
+  border-color: rgb(31 41 55 / 1);
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  position: relative;
+}
+
+.proPlan:hover {
+  border-color: rgb(55 65 81 / 1);
 }
 
 .popularBadge {
@@ -443,7 +462,7 @@ body {
 .freePlanTitle,
 .proPlanTitle,
 .enterprisePlanTitle {
-  font-family: 'Noto Sans Nag Mundari';
+  font-family: "Noto Sans Nag Mundari";
   color: #bcacfd;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -574,30 +593,39 @@ body {
 
 .freeCta,
 .enterpriseCta {
-  border: 1px solid #ffffff;
-  background-color: #000000;
+  background-color: #8b5cf6;
   color: #ffffff;
+  border: none;
   margin-top: 20px;
 }
 
 .freeCta:hover,
 .enterpriseCta:hover {
+  background-color: #7c3aed;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(167, 139, 250, 0.2);
 }
 
 .proCta {
-  background-color: #8b5cf6;
+  border: 1px solid #ffffff;
+  background-color: #000000;
   color: #ffffff;
-  border: none;
   margin-top: 20px;
   font-size: 1.1rem;
 }
 
 .proCta:hover {
-  background-color: #8b5cf6;
+  background-color: #1a1329;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(167, 139, 250, 0.2);
+}
+
+.noCreditCard {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-style: italic;
+  display: inline-block;
+  margin-top: 0.25rem;
 }
 
 /* Responsive Design */
