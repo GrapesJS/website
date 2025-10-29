@@ -106,12 +106,16 @@ export default function AiPage({ className }: AiPageProps) {
     }
   }, [searchParams]);
 
-  // Track homepage landing
+  // Track homepage landing (once per session)
   useEffect(() => {
-    trackClientJourneyEvent("homepage_landed", {
-      page: window.location.pathname,
-      source: "landing_page",
-    });
+    const hasTrackedHomepage = sessionStorage.getItem('homepage_landed_tracked');
+    if (!hasTrackedHomepage) {
+      trackClientJourneyEvent("homepage_landed", {
+        page: window.location.pathname,
+        source: "landing_page",
+      });
+      sessionStorage.setItem('homepage_landed_tracked', 'true');
+    }
   }, []);
 
   // Highlight animation on page load
