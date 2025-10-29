@@ -1,7 +1,26 @@
+"use client";
+
 import React from "react";
 import { getTemplatePreviewUrl, getTemplateCreateUrl } from "@/lib/grapes-api";
 import type { HomepageData } from "@/lib/grapes-api";
 import styles from "./styles.module.css";
+
+declare global {
+  interface Window {
+    posthog?: {
+      capture: (event: string, properties?: Record<string, any>) => void;
+    };
+  }
+}
+
+function trackClientJourneyEvent(
+  event: string,
+  properties: Record<string, any> = {}
+) {
+  if (typeof window !== "undefined" && window.posthog) {
+    window.posthog.capture(event, properties);
+  }
+}
 
 interface TemplateCardProps {
   template: HomepageData["templates"][0];
@@ -13,6 +32,13 @@ export function TemplateCard({ template }: TemplateCardProps) {
   const createUrl = getTemplateCreateUrl(template.editorUrl);
 
   const handleClick = () => {
+    trackClientJourneyEvent("ai_interest_shown", {
+      page: window.location.pathname,
+      source: "template_gallery",
+      template_id: template.id,
+      template_name: template.name,
+      template_type: template.type,
+    });
     window.location.href = createUrl;
   };
 
