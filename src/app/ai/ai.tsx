@@ -221,11 +221,11 @@ export default function AiPage({ className }: AiPageProps) {
         dangerouslySetInnerHTML={{
           __html: `
             @keyframes borderPulse {
-              0%, 100% { 
+              0%, 100% {
                 border-color: rgba(139, 92, 246, 0.3);
                 box-shadow: 0 0 0 rgba(139, 92, 246, 0);
               }
-              50% { 
+              50% {
                 border-color: rgba(139, 92, 246, 1);
                 box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
               }
@@ -282,7 +282,7 @@ export default function AiPage({ className }: AiPageProps) {
                       : undefined
                   }
                 >
-                  <div className="w-full">
+                  <div className="w-full py-3 px-5">
                     <textarea
                       value={prompt}
                       onChange={(e) =>
@@ -300,11 +300,11 @@ export default function AiPage({ className }: AiPageProps) {
                         "w-full resize-none bg-transparent border-0 outline-none",
                         "placeholder:text-neutral-500 text-gray-400",
                         "focus:outline-none focus:ring-0 focus:border-0 focus:shadow-none",
-                        "mx-2 mt-1 mb-2 p-2 text-lg leading-7 min-h-[60px]",
+                        "text-lg min-h-[60px]",
                         "box-border border-solid border-current",
                         "font-inherit font-feature-inherit font-variation-inherit",
                         "font-inherit tracking-inherit text-inherit",
-                        "outline-2 outline-transparent outline-offset-2"
+                        "outline-2 outline-transparent"
                       )}
                       style={{
                         WebkitTextSizeAdjust: "100%",
