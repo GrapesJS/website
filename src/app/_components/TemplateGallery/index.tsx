@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import { usePathname } from "next/navigation";
 import { useHomepageData } from "@/hooks/useHomepageData";
 import { TemplateCard } from "../TemplateCard";
@@ -20,15 +20,15 @@ function showItem(index: number, items: any[]) {
   return index < visibleCount;
 }
 
-export function TemplateGallery({
+export const TemplateGallery = memo(function TemplateGallery({
   defaultType = "all",
-  defaultLimit = 20,
+  defaultLimit,
   showUserGreeting = true,
   className = "",
 }: TemplateGalleryProps) {
   const pathname = usePathname();
   const isSpanish = pathname?.startsWith("/es");
-  
+
   const { user, templates, projects, isAuthenticated, loading } =
     useHomepageData({
       type: defaultType,
@@ -53,10 +53,12 @@ export function TemplateGallery({
         {showUserGreeting && !!isAuthenticated && !!user && (
           <>
             <h2>
-              {isSpanish ? `¡Bienvenido de nuevo, ${user.name}!` : `Welcome back, ${user.name}!`}
+              {isSpanish
+                ? `¡Bienvenido de nuevo, ${user.name}!`
+                : `Welcome back, ${user.name}!`}
             </h2>
             <p>
-              {isSpanish 
+              {isSpanish
                 ? "Continúa trabajando en tus proyectos o comienza de nuevo con una plantilla"
                 : "Continue working on your projects or start fresh with a template"}
             </p>
@@ -82,7 +84,9 @@ export function TemplateGallery({
 
       {isAuthenticated && projects && projects.length > 0 && (
         <div className={styles.projects}>
-          <h3>{isSpanish ? "Tus Proyectos Recientes" : "Your Recent Projects"}</h3>
+          <h3>
+            {isSpanish ? "Tus Proyectos Recientes" : "Your Recent Projects"}
+          </h3>
           <div className={styles.projectsGrid}>
             {projects.slice(0, 3).map((project) => (
               <ProjectCard key={project.id} project={project} />
@@ -92,4 +96,4 @@ export function TemplateGallery({
       )}
     </section>
   );
-}
+});
