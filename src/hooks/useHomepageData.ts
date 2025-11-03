@@ -21,7 +21,7 @@ interface UseHomepageDataReturn {
 export function useHomepageData(
   options: UseHomepageDataOptions = {}
 ): UseHomepageDataReturn {
-  const { type = "all", limit = 12, includeProjects = false } = options;
+  const { type = "all", limit = 100, includeProjects = false } = options;
   const [data, setData] = useState<HomepageData>({ templates: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -33,7 +33,7 @@ export function useHomepageData(
     try {
       const result = await fetchHomepageData({
         type: "all",
-        limit: 100,
+        limit,
         includeProjects,
       });
       setData(result);
@@ -55,8 +55,7 @@ export function useHomepageData(
     .filter((template) => {
       if (type === "all") return true;
       return template.type === type;
-    })
-    .slice(0, limit);
+    });
 
   return {
     data,
