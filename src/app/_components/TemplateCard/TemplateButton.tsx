@@ -7,6 +7,7 @@ declare global {
   interface Window {
     posthog?: {
       capture: (event: string, properties?: Record<string, any>) => void;
+      flush?: () => void;
     };
   }
 }
@@ -17,6 +18,9 @@ function trackClientJourneyEvent(
 ) {
   if (typeof window !== "undefined" && window.posthog) {
     window.posthog.capture(event, properties);
+    if (window.posthog.flush) {
+      window.posthog.flush();
+    }
   }
 }
 
@@ -34,7 +38,10 @@ export function TemplateButton({ createUrl, template }: TemplateButtonProps) {
       template_name: template.name,
       template_type: template.type,
     });
-    window.location.href = createUrl;
+    
+    setTimeout(() => {
+      window.location.href = createUrl;
+    }, 100);
   };
 
   return (
