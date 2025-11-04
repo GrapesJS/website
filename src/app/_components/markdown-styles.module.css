@@ -14,6 +14,12 @@
   margin-left: 1rem;
 }
 
+.markdown ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
 }
