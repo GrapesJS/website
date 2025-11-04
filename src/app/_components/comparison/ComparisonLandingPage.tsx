@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "classnames";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 
 export interface ComparisonPoint {
   id: string;
@@ -131,9 +131,11 @@ export default function ComparisonLandingPage({ config, className }: ComparisonL
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent leading-tight">
                 {config.hero.title}
               </h1>
-              <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
                 {config.hero.subtitle}
               </p>
+              
+              <WebsiteCopyForm competitorName={config.competitorName} />
             </div>
           </div>
         </div>
@@ -521,5 +523,78 @@ function ComparisonRow({
         </div>
       </div>
     </div>
+  );
+}
+
+function WebsiteCopyForm({ competitorName }: { competitorName: string }) {
+  const [websiteUrl, setWebsiteUrl] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Generate placeholder and hint text based on competitor name
+  const getPlaceholder = () => {
+    const competitorLower = competitorName.toLowerCase();
+    if (competitorLower === "wordpress") {
+      return "https://your-wordpress-site.com";
+    } else if (competitorLower === "wix") {
+      return "https://your-wix-site.com";
+    } else {
+      return `https://your-${competitorLower}-site.com`;
+    }
+  };
+
+  const getHintText = () => {
+    const competitorLower = competitorName.toLowerCase();
+    if (competitorLower === "wordpress") {
+      return `Paste your WordPress site URL and we'll recreate it in minutes`;
+    } else if (competitorLower === "wix") {
+      return `Paste your Wix site URL and we'll recreate it in minutes`;
+    } else {
+      return `Paste your ${competitorName} site URL and we'll recreate it in minutes`;
+    }
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!websiteUrl.trim()) return;
+
+    setIsSubmitting(true);
+
+    // Build the prompt: "Copy this website for me: {url}"
+    const prompt = `Copy this website for me: ${websiteUrl.trim()}`;
+    
+    // Double-encode the prompt for the URL parameter
+    const encodedPrompt = encodeURIComponent(encodeURIComponent(prompt));
+    
+    // Build the redirect URL
+    const redirectUrl = `https://app.grapesjs.com/ai-proxy?prompt=${encodedPrompt}&projectType=web`;
+    
+    // Redirect to the ai-proxy endpoint
+    window.location.href = redirectUrl;
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
+      <div className="flex flex-col sm:flex-row gap-4">
+        <input
+          type="url"
+          value={websiteUrl}
+          onChange={(e) => setWebsiteUrl(e.target.value)}
+          placeholder={getPlaceholder()}
+          className="flex-1 px-6 py-4 text-lg rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+          required
+          disabled={isSubmitting}
+        />
+        <button
+          type="submit"
+          disabled={isSubmitting || !websiteUrl.trim()}
+          className="px-8 py-4 text-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+        >
+          {isSubmitting ? "Copying..." : "Copy Website"}
+        </button>
+      </div>
+      <p className="text-sm text-gray-400 mt-4">
+        {getHintText()}
+      </p>
+    </form>
   );
 }
