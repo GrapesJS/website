@@ -2,6 +2,7 @@
 
 import cn from "classnames";
 import { useEffect, useRef, useState, FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
 
 export interface ComparisonPoint {
   id: string;
@@ -527,8 +528,25 @@ function ComparisonRow({
 }
 
 function WebsiteCopyForm({ competitorName }: { competitorName: string }) {
+  const searchParams = useSearchParams();
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Read prompt parameter from URL and populate input
+  useEffect(() => {
+    const urlPrompt = searchParams.get("prompt");
+    if (urlPrompt) {
+      const decodedPrompt = decodeURIComponent(urlPrompt);
+      // If the prompt is in the format "Copy this website for me: {url}", extract just the URL
+      const urlMatch = decodedPrompt.match(/Copy this website for me:\s*(.+)/i);
+      if (urlMatch) {
+        setWebsiteUrl(urlMatch[1].trim());
+      } else {
+        // Otherwise, use the prompt as-is (it might be just a URL)
+        setWebsiteUrl(decodedPrompt.trim());
+      }
+    }
+  }, [searchParams]);
 
   // Generate placeholder and hint text based on competitor name
   const getPlaceholder = () => {
