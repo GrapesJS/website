@@ -83,12 +83,6 @@ export default function AiPage({ className }: AiPageProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
-  const speechToText = useSpeechToText();
-  const { isListening, transcript } = speechToText;
-  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
-  const [typedText, setTypedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [showHighlight, setShowHighlight] = useState(false);
   const [showButtonHighlight, setShowButtonHighlight] = useState(false);
 
   useEffect(() => {
@@ -115,41 +109,6 @@ export default function AiPage({ className }: AiPageProps) {
     });
   }, []);
 
-  // Highlight animation on page load
-  useEffect(() => {
-    // Textarea: Wait 1 second before starting the animation
-    const textareaStartTimer = setTimeout(() => {
-      setShowHighlight(true);
-    }, 1000);
-
-    // Textarea: Turn off highlight after animation completes (1s delay + 3s animation)
-    const textareaEndTimer = setTimeout(() => {
-      setShowHighlight(false);
-    }, 4000);
-
-    // Button: Start after textarea ends, with a 3s pause
-    const buttonStartTimer = setTimeout(() => {
-      setShowButtonHighlight(true);
-    }, 7000);
-
-    // Button: Turn off after 1 pulse (1.5s animation)
-    const buttonEndTimer = setTimeout(() => {
-      setShowButtonHighlight(false);
-    }, 8500);
-
-    return () => {
-      clearTimeout(textareaStartTimer);
-      clearTimeout(textareaEndTimer);
-      clearTimeout(buttonStartTimer);
-      clearTimeout(buttonEndTimer);
-    };
-  }, []);
-
-  // Update prompt when speech-to-text transcript changes
-  useEffect(() => {
-    transcript && setPrompt(transcript);
-  }, [transcript]);
-
   // Track AI interest when user starts typing
   useEffect(() => {
     if (prompt.length > 0 && !hasTrackedInterest) {
@@ -160,31 +119,6 @@ export default function AiPage({ className }: AiPageProps) {
       setHasTrackedInterest(true);
     }
   }, [prompt, hasTrackedInterest]);
-
-  // Typing/deleting animation for placeholder
-  useEffect(() => {
-    const currentText = inputTexts[currentHeadlineIndex];
-
-    const typingSpeed = isDeleting ? 15 : 50;
-    const pauseBeforeDelete = 1200;
-    const pauseBeforeType = 250;
-
-    const timeout = setTimeout(() => {
-      if (!isDeleting && typedText === currentText) {
-        setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
-      } else if (isDeleting && typedText === "") {
-        setIsDeleting(false);
-        setCurrentHeadlineIndex((prev) => (prev + 1) % inputTexts.length);
-        setTimeout(() => {}, pauseBeforeType);
-      } else if (isDeleting) {
-        setTypedText(currentText.substring(0, typedText.length - 1));
-      } else {
-        setTypedText(currentText.substring(0, typedText.length + 1));
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [typedText, isDeleting, currentHeadlineIndex]);
 
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
@@ -218,24 +152,7 @@ export default function AiPage({ className }: AiPageProps) {
         className
       )}
     >
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            @keyframes borderPulse {
-              0%, 100% {
-                border-color: rgba(139, 92, 246, 0.3);
-                box-shadow: 0 0 0 rgba(139, 92, 246, 0);
-              }
-              50% {
-                border-color: rgba(139, 92, 246, 1);
-                box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
-              }
-            }
-          `,
-        }}
-      />
       <HeaderStandalone />
-
       <main className="relative">
         <div
           className="relative w-full bg-fixed bg-no-repeat bg-cover py-32"
@@ -267,119 +184,16 @@ export default function AiPage({ className }: AiPageProps) {
               </div>
 
               <form onSubmit={handleSubmit} className="w-full">
-                <div
-                  className={cn(
-                    "rounded-3xl py-2 backdrop-blur-sm border transition-all duration-500",
-                    "bg-zinc-900/50 text-gray-400 text-sm",
-                    "flex flex-wrap mx-2 sm:mx-0",
-                    !showHighlight && "border-zinc-700/50"
-                  )}
-                  style={
-                    showHighlight
-                      ? {
-                          borderColor: "rgba(139, 92, 246, 0.3)",
-                          animation: "borderPulse 1.5s ease-in-out 2",
-                        }
-                      : undefined
-                  }
-                >
-                  <div className="w-full py-3 px-5">
-                    <textarea
-                      value={prompt}
-                      onChange={(e) =>
-                        setPrompt((e.target.value || "").slice(0, 3500))
-                      }
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" && !e.shiftKey) {
-                          e.preventDefault();
-                          if (prompt.trim() && !loading) {
-                            handleSubmit(e as any);
-                          }
-                        }
-                      }}
-                      className={cn(
-                        "w-full resize-none bg-transparent border-0 outline-none",
-                        "placeholder:text-neutral-500 text-gray-400",
-                        "focus:outline-none focus:ring-0 focus:border-0 focus:shadow-none",
-                        "text-lg min-h-[60px]",
-                        "box-border border-solid border-current",
-                        "font-inherit font-feature-inherit font-variation-inherit",
-                        "font-inherit tracking-inherit text-inherit",
-                        "outline-2 outline-transparent"
-                      )}
-                      style={{
-                        WebkitTextSizeAdjust: "100%",
-                        tabSize: 4,
-                        WebkitTapHighlightColor: "transparent",
-                      }}
-                      placeholder={
-                        isEmail
-                          ? `Let's create an email for your ${typedText}`
-                          : `Let's create a website for your ${typedText}`
-                      }
-                      required
-                      disabled={loading}
-                      autoFocus
-                    />
-                  </div>
-                  <div className="w-full px-4 pb-2 flex items-center justify-between">
-                    <TabsStandalone
-                      value={projectType}
-                      onChange={setProjectType}
-                    />
-                    <div className="flex gap-3 items-center">
-                      {/* Speech-to-text mic button */}
-                      {speechToText.isSupported && (
-                        <button
-                          type="button"
-                          onClick={
-                            isListening ? speechToText.stop : speechToText.start
-                          }
-                          className={cn(
-                            "flex items-center justify-center rounded-full p-2 transition-colors",
-                            "hover:opacity-90",
-                            isListening
-                              ? "bg-red-500 text-white"
-                              : "text-white/60 hover:text-white/80"
-                          )}
-                          aria-label={
-                            isListening ? "Stop listening" : "Start voice input"
-                          }
-                          title={
-                            isListening ? "Stop listening" : "Start voice input"
-                          }
-                        >
-                          <Icon
-                            path={
-                              isListening ? mdiMicrophoneOff : mdiMicrophone
-                            }
-                            size={1.2}
-                          />
-                        </button>
-                      )}
-                      <button
-                        type="submit"
-                        disabled={loading || !prompt.trim()}
-                        className={cn(
-                          "flex items-center justify-center rounded-full p-2",
-                          "bg-violet-600 text-white transition-opacity",
-                          !prompt.trim() &&
-                            !loading &&
-                            "opacity-30 cursor-not-allowed",
-                          prompt.trim() && !loading && "hover:opacity-90",
-                          loading && "opacity-50"
-                        )}
-                        aria-label="Submit"
-                      >
-                        {loading ? (
-                          <span className="px-2">Submitting...</span>
-                        ) : (
-                          <Icon path={mdiSend} size={1.2} />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <PromptTextarea
+                  prompt={prompt}
+                  loading={loading}
+                  isEmail={isEmail}
+                  projectType={projectType}
+                  setProjectType={setProjectType}
+                  setPrompt={setPrompt}
+                  setShowButtonHighlight={setShowButtonHighlight}
+                  handleSubmit={handleSubmit}
+                />
               </form>
 
               <div className="mt-6 flex gap-3 justify-center flex-wrap px-2 sm:px-0">
@@ -400,6 +214,194 @@ export default function AiPage({ className }: AiPageProps) {
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
       )}
+    </div>
+  );
+}
+
+function PromptTextarea(props: {
+  prompt: string;
+  loading?: boolean;
+  isEmail?: boolean;
+  projectType: ProjectType;
+  setProjectType: (p: ProjectType) => void;
+  setPrompt: (s: string) => void;
+  setShowButtonHighlight: (b: boolean) => void;
+  handleSubmit: (e: any) => void;
+}) {
+  const {
+    prompt,
+    isEmail,
+    loading,
+    projectType,
+    setProjectType,
+    setPrompt,
+    handleSubmit,
+    setShowButtonHighlight,
+  } = props;
+  const [typedText, setTypedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
+  const [showHighlight, setShowHighlight] = useState(false);
+  const speechToText = useSpeechToText();
+  const { isListening, transcript } = speechToText;
+
+  // Update prompt when speech-to-text transcript changes
+  useEffect(() => {
+    transcript && setPrompt(transcript);
+  }, [transcript]);
+
+  useEffect(() => {
+    const currentText = inputTexts[currentHeadlineIndex];
+
+    const typingSpeed = isDeleting ? 15 : 50;
+    const pauseBeforeDelete = 1200;
+    const pauseBeforeType = 250;
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting && typedText === currentText) {
+        setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
+      } else if (isDeleting && typedText === "") {
+        setIsDeleting(false);
+        setCurrentHeadlineIndex((prev) => (prev + 1) % inputTexts.length);
+        setTimeout(() => {}, pauseBeforeType);
+      } else if (isDeleting) {
+        setTypedText(currentText.substring(0, typedText.length - 1));
+      } else {
+        setTypedText(currentText.substring(0, typedText.length + 1));
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [typedText, isDeleting, currentHeadlineIndex]);
+
+  // Highlight animation on page load
+  useEffect(() => {
+    // Textarea: Wait 1 second before starting the animation
+    const textareaStartTimer = setTimeout(() => {
+      setShowHighlight(true);
+    }, 1000);
+
+    // Textarea: Turn off highlight after animation completes (1s delay + 3s animation)
+    const textareaEndTimer = setTimeout(() => {
+      setShowHighlight(false);
+    }, 4000);
+
+    // Button: Start after textarea ends, with a 3s pause
+    const buttonStartTimer = setTimeout(() => {
+      setShowButtonHighlight(true);
+    }, 7000);
+
+    // Button: Turn off after 1 pulse (1.5s animation)
+    const buttonEndTimer = setTimeout(() => {
+      setShowButtonHighlight(false);
+    }, 8500);
+
+    return () => {
+      clearTimeout(textareaStartTimer);
+      clearTimeout(textareaEndTimer);
+      clearTimeout(buttonStartTimer);
+      clearTimeout(buttonEndTimer);
+    };
+  }, []);
+
+  return (
+    <div
+      className={cn(
+        "rounded-3xl py-2 backdrop-blur-sm border transition-all duration-500",
+        "bg-zinc-900/50 text-gray-400 text-sm",
+        "flex flex-wrap mx-2 sm:mx-0",
+        !showHighlight && "border-zinc-700/50"
+      )}
+      style={
+        showHighlight
+          ? {
+              borderColor: "rgba(139, 92, 246, 0.3)",
+              animation: "borderPulse 1.5s ease-in-out 2",
+            }
+          : undefined
+      }
+    >
+      <div className="w-full py-3 px-5">
+        <textarea
+          value={prompt}
+          onChange={(e) => setPrompt((e.target.value || "").slice(0, 3500))}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              if (prompt.trim() && !loading) {
+                handleSubmit(e as any);
+              }
+            }
+          }}
+          className={cn(
+            "w-full resize-none bg-transparent border-0 outline-none",
+            "placeholder:text-neutral-500 text-gray-400",
+            "focus:outline-none focus:ring-0 focus:border-0 focus:shadow-none",
+            "text-lg min-h-[60px]",
+            "box-border border-solid border-current",
+            "font-inherit font-feature-inherit font-variation-inherit",
+            "font-inherit tracking-inherit text-inherit",
+            "outline-2 outline-transparent"
+          )}
+          style={{
+            WebkitTextSizeAdjust: "100%",
+            tabSize: 4,
+            WebkitTapHighlightColor: "transparent",
+          }}
+          placeholder={
+            isEmail
+              ? `Let's create an email for your ${typedText}`
+              : `Let's create a website for your ${typedText}`
+          }
+          required
+          disabled={loading}
+          autoFocus
+        />
+      </div>
+      <div className="w-full px-4 pb-2 flex items-center justify-between">
+        <TabsStandalone value={projectType} onChange={setProjectType} />
+        <div className="flex gap-3 items-center">
+          {/* Speech-to-text mic button */}
+          {speechToText.isSupported && (
+            <button
+              type="button"
+              onClick={isListening ? speechToText.stop : speechToText.start}
+              className={cn(
+                "flex items-center justify-center rounded-full p-2 transition-colors",
+                "hover:opacity-90",
+                isListening
+                  ? "bg-red-500 text-white"
+                  : "text-white/60 hover:text-white/80"
+              )}
+              aria-label={isListening ? "Stop listening" : "Start voice input"}
+              title={isListening ? "Stop listening" : "Start voice input"}
+            >
+              <Icon
+                path={isListening ? mdiMicrophoneOff : mdiMicrophone}
+                size={1.2}
+              />
+            </button>
+          )}
+          <button
+            type="submit"
+            disabled={loading || !prompt.trim()}
+            className={cn(
+              "flex items-center justify-center rounded-full p-2",
+              "bg-violet-600 text-white transition-opacity",
+              !prompt.trim() && !loading && "opacity-30 cursor-not-allowed",
+              prompt.trim() && !loading && "hover:opacity-90",
+              loading && "opacity-50"
+            )}
+            aria-label="Submit"
+          >
+            {loading ? (
+              <span className="px-2">Submitting...</span>
+            ) : (
+              <Icon path={mdiSend} size={1.2} />
+            )}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
