@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ComparisonLandingPage from "../_components/comparison/ComparisonLandingPage";
 import { ComparisonConfig } from "../_components/comparison/ComparisonLandingPage";
 
@@ -93,5 +94,9 @@ const wordpressConfig: ComparisonConfig = {
 };
 
 export default function VsWordPressPage() {
-  return <ComparisonLandingPage config={wordpressConfig} />;
+  return (
+    <Suspense>
+      <ComparisonLandingPage config={wordpressConfig} />
+    </Suspense>
+  );
 }

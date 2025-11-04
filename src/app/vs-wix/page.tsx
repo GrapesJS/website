@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ComparisonLandingPage from "../_components/comparison/ComparisonLandingPage";
 import { ComparisonConfig } from "../_components/comparison/ComparisonLandingPage";
 
@@ -93,5 +94,9 @@ const wixConfig: ComparisonConfig = {
 };
 
 export default function VsWixPage() {
-  return <ComparisonLandingPage config={wixConfig} />;
+  return (
+    <Suspense>
+      <ComparisonLandingPage config={wixConfig} />
+    </Suspense>
+  );
 }
