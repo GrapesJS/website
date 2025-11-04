@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ComparisonLandingPage from "../_components/comparison/ComparisonLandingPage";
 import { ComparisonConfig } from "../_components/comparison/ComparisonLandingPage";
 
@@ -93,5 +94,9 @@ const lovableConfig: ComparisonConfig = {
 };
 
 export default function VsLovablePage() {
-  return <ComparisonLandingPage config={lovableConfig} />;
+  return (
+    <Suspense>
+      <ComparisonLandingPage config={lovableConfig} />
+    </Suspense>
+  );
 }
