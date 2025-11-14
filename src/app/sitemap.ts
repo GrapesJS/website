@@ -77,12 +77,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/ai`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
       url: `${SITE_URL}/sdk`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
