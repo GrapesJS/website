@@ -1,7 +1,62 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blogApi';
+import fs from 'fs';
+import { join } from 'path';
 
 const SITE_URL = 'https://grapesjs.com';
+
+function getAllDocFiles(dir: string = ''): string[] {
+  const files: string[] = [];
+  const fullPath = dir 
+    ? join(process.cwd(), 'public', 'docs', dir)
+    : join(process.cwd(), 'public', 'docs');
+  
+  if (!fs.existsSync(fullPath)) {
+    return files;
+  }
+
+  const items = fs.readdirSync(fullPath);
+  
+  for (const item of items) {
+    const itemPath = join(fullPath, item);
+    const stat = fs.statSync(itemPath);
+    
+    if (stat.isDirectory()) {
+      const subDir = dir ? join(dir, item) : item;
+      files.push(...getAllDocFiles(subDir));
+    } else if (item.endsWith('.html') && !item.startsWith('404')) {
+      const relativePath = dir ? join(dir, item) : item;
+      files.push(relativePath);
+    }
+  }
+  
+  return files;
+}
+
+function getDocUrls(): MetadataRoute.Sitemap {
+  const docFiles = getAllDocFiles('');
+  
+  return docFiles.map((file) => {
+    let urlPath = file.replace(/\\/g, '/');
+    
+    if (urlPath === 'index.html') {
+      urlPath = '';
+    } else if (urlPath.endsWith('/index.html')) {
+      urlPath = urlPath.replace('/index.html', '');
+    } else {
+      urlPath = urlPath.replace(/\.html$/, '');
+    }
+    
+    const url = urlPath ? `${SITE_URL}/docs/${urlPath}` : `${SITE_URL}/docs`;
+    
+    return {
+      url,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    };
+  });
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Get all blog posts
@@ -80,5 +135,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...comparisonPages, ...blogUrls];
+  const docUrls = getDocUrls();
+
+  return [...staticPages, ...comparisonPages, ...blogUrls, ...docUrls];
 }
