@@ -2,8 +2,89 @@ import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blogApi';
 
 const SITE_URL = 'https://grapesjs.com';
+const DOCS_SITEMAP_URL = 'https://grapesjs.com/docs/sitemap-index.xml';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+async function parseSitemapXml(xmlText: string): Promise<MetadataRoute.Sitemap> {
+  const urls: MetadataRoute.Sitemap = [];
+  
+  const urlPattern = /<url>([\s\S]*?)<\/url>/g;
+  let match;
+  
+  while ((match = urlPattern.exec(xmlText)) !== null) {
+    const urlBlock = match[1];
+    const locMatch = urlBlock.match(/<loc>(.*?)<\/loc>/);
+    const lastmodMatch = urlBlock.match(/<lastmod>(.*?)<\/lastmod>/);
+    
+    if (locMatch) {
+      const url = locMatch[1];
+      const lastModified = lastmodMatch 
+        ? new Date(lastmodMatch[1])
+        : new Date();
+      
+      urls.push({
+        url,
+        lastModified,
+        changeFrequency: 'daily' as const,
+        priority: 0.6,
+      });
+    }
+  }
+  
+  return urls;
+}
+
+async function getDocsUrls(): Promise<MetadataRoute.Sitemap> {
+  try {
+    const response = await fetch(DOCS_SITEMAP_URL, {
+      next: { revalidate: 86400 },
+    });
+    
+    if (!response.ok) {
+      return [];
+    }
+    
+    const xmlText = await response.text();
+    
+    const isSitemapIndex = xmlText.includes('<sitemapindex');
+    
+    if (isSitemapIndex) {
+      const sitemapPattern = /<sitemap>([\s\S]*?)<\/sitemap>/g;
+      const allUrls: MetadataRoute.Sitemap = [];
+      let match;
+      
+      while ((match = sitemapPattern.exec(xmlText)) !== null) {
+        const sitemapBlock = match[1];
+        const locMatch = sitemapBlock.match(/<loc>(.*?)<\/loc>/);
+        
+        if (locMatch) {
+          const sitemapUrl = locMatch[1];
+          try {
+            const sitemapResponse = await fetch(sitemapUrl, {
+              next: { revalidate: 86400 },
+            });
+            
+            if (sitemapResponse.ok) {
+              const sitemapXml = await sitemapResponse.text();
+              const urls = await parseSitemapXml(sitemapXml);
+              allUrls.push(...urls);
+            }
+          } catch (error) {
+            console.error(`Failed to fetch sitemap ${sitemapUrl}:`, error);
+          }
+        }
+      }
+      
+      return allUrls;
+    } else {
+      return await parseSitemapXml(xmlText);
+    }
+  } catch (error) {
+    console.error('Failed to fetch docs sitemap:', error);
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all blog posts
   const posts = getAllPosts();
   const blogUrls = posts.map((post) => ({
@@ -80,5 +161,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...comparisonPages, ...blogUrls];
+  // Get docs URLs from the docs sitemap
+  const docUrls = await getDocsUrls();
+
+  return [...staticPages, ...comparisonPages, ...blogUrls, ...docUrls];
 }
