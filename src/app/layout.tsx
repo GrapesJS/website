@@ -30,16 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          rel="alternate"
-          hrefLang="en"
-          href="https://grapesjs.com"
-        />
-        <link
-          rel="alternate"
-          hrefLang="es"
-          href="https://grapesjs.com/es"
-        />
+        <link rel="alternate" hrefLang="en" href="https://grapesjs.com" />
+        <link rel="alternate" hrefLang="es" href="https://grapesjs.com/es" />
         <link
           rel="alternate"
           hrefLang="x-default"
@@ -71,6 +63,10 @@ export default function RootLayout({
           })`,
           }}
         />
+        <script id="rewardful-queue">
+          {`(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,'rewardful');`}
+        </script>
+        <script src="https://r.wdfl.co/rw.js" data-rewardful="9302d5" />
         {/*
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
