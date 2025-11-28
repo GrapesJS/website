@@ -207,10 +207,8 @@ export default function AiPage({ className }: AiPageProps) {
           </div>
         </div>
       </main>
-
       <TemplateGallery defaultType={projectType} />
       <FooterStandalone />
-
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
       )}
