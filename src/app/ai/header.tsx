@@ -28,7 +28,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
 
   return (
     <>
-      <div className="w-full bg-violet-600 text-white text-sm sm:text-base">
+      {/* <div className="w-full bg-violet-600 text-white text-sm sm:text-base">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
           <div className="flex items-center gap-2 sm:gap-3 text-center sm:text-left">
             <span className="inline-flex items-center justify-center rounded-full bg-white/10 px-2 py-0.5 text-[0.7rem] sm:text-xs font-semibold tracking-wide uppercase">
@@ -44,11 +44,11 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
               Use code at checkout:
             </span>
             <span className="inline-flex items-center justify-center rounded-md border border-white/40 bg-white/10 px-3 py-1 text-xs sm:text-sm font-semibold tracking-[0.12em] uppercase">
-              3MFPP
+              XXXXX
             </span>
           </div>
         </div>
-      </div>
+      </div> */}
       <header
         className={cn(
           "sticky top-0 z-50 backdrop-blur-lg bg-black/95 border-b border-gray-700",
