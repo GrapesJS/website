@@ -6,8 +6,8 @@ const wordpressConfig: ComparisonConfig = {
   competitorName: "WordPress",
   competitorSlug: "wordpress",
   hero: {
-    title: "Copy and transfer your WordPress site to a modern, scalable platform",
-    subtitle: "Discover why WordPress users are switching to Grapes Studio and saving 50% on their website costs"
+    title: "Transfer your WordPress site and save 50%",
+    subtitle: "Input your WordPress site URL and we'll transfer it to Grapes Studio for you."
   },
   cta: {
     title: "Ready to make the switch?",
