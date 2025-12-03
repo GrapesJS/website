@@ -110,6 +110,12 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
             </a>
             <a
               href="https://app.grapesjs.com/dashboard"
+              className="max-lg:hidden inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
+            >
+              Login
+            </a>
+            <a
+              href="https://app.grapesjs.com/dashboard"
               className="inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline bg-purple-600 border border-purple-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-opacity-90 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
             >
               Get Started
@@ -230,7 +236,14 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                 </a>
                 <a
                   href="https://app.grapesjs.com/dashboard"
-                  className="mt-4 w-full text-center px-6 py-3 text-base font-semibold text-white no-underline bg-purple-600 border border-purple-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-opacity-90"
+                  className="mt-4 w-full text-center px-6 py-3 text-base font-semibold text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500"
+                  onClick={closeMobileMenu}
+                >
+                  Login
+                </a>
+                <a
+                  href="https://app.grapesjs.com/dashboard"
+                  className="mt-2 w-full text-center px-6 py-3 text-base font-semibold text-white no-underline bg-purple-600 border border-purple-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-opacity-90"
                   onClick={closeMobileMenu}
                 >
                   Get Started

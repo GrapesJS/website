@@ -27,6 +27,7 @@ const PricingPageClient = () => {
   const [ctaPulseState, setCtaPulseState] = useState(0);
   const [showBottomCtaHighlight, setShowBottomCtaHighlight] = useState(false);
   const [bottomCtaPulseState, setBottomCtaPulseState] = useState(0);
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("annual");
 
   const starterRef = useRef<HTMLDivElement>(null);
   const proRef = useRef<HTMLDivElement>(null);
@@ -437,6 +438,27 @@ const PricingPageClient = () => {
             <h2 className={styles.pricingHeading} style={{ color: "#ffffff" }}>
               Pricing
             </h2>
+            {/* Billing Toggle */}
+            <div className={styles.billingToggleContainer}>
+              <button
+                type="button"
+                className={`${styles.billingToggleOption} ${
+                  billingPeriod === "monthly" ? styles.billingToggleActive : ""
+                }`}
+                onClick={() => setBillingPeriod("monthly")}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                className={`${styles.billingToggleOption} ${
+                  billingPeriod === "annual" ? styles.billingToggleActive : ""
+                }`}
+                onClick={() => setBillingPeriod("annual")}
+              >
+                Annual
+              </button>
+            </div>
             <div className={styles.pricingGrid}>
               {/* Free Plan */}
               <div
@@ -531,7 +553,18 @@ const PricingPageClient = () => {
                   className={styles.proPlanPrice}
                   style={{ color: "#ffffff" }}
                 >
-                  $10<span className={styles.proPlanPeriod}>/month</span>
+                  {billingPeriod === "annual" ? (
+                    <>
+                      <span className={styles.strikethroughPrice}>$10</span>
+                      <span>$8.33</span>
+                      <span className={styles.proPlanPeriod}>/month</span>
+                      <div className={styles.billingNote}>(billed annually)</div>
+                    </>
+                  ) : (
+                    <>
+                      $10<span className={styles.proPlanPeriod}>/month</span>
+                    </>
+                  )}
                 </div>
                 <p className={styles.planDescription}>
                   Everything in Free, plus:
@@ -545,6 +578,11 @@ const PricingPageClient = () => {
                     />
                     500 AI credits per month
                   </li>
+                  {billingPeriod === "annual" && (
+                    <li className={styles.bonusCreditsItem}>
+                      <span className={styles.bonusCreditsBadge}>+1800 EXTRA AI CREDITS</span>
+                    </li>
+                  )}
                   <li className={styles.freeFeature1}>
                     <img
                       src="https://api.iconify.design/mdi:check-circle.svg?color=%23BCACFD&width=20&height=20"
