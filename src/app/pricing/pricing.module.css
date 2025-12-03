@@ -358,7 +358,49 @@ body {
   line-height: 2.5rem;
   font-weight: 300;
   letter-spacing: 0.025em;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+
+/* Billing Toggle */
+.billingToggleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  background-color: #1a1329;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  border: 1px solid rgb(31 41 55 / 1);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.billingToggleOption {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: #9ca3af;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.billingToggleOption:hover {
+  color: #ffffff;
+}
+
+.billingToggleActive {
+  background-color: #8b5cf6;
+  color: #ffffff;
+}
+
+.billingToggleActive:hover {
+  background-color: #7c3aed;
 }
 
 .pricingSubtitle {
@@ -428,6 +470,71 @@ body {
   position: relative;
 }
 
+/* Pro Plan Badges */
+.proBadgesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.proBadgeSave {
+  background-color: #16a34a;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.proBadgeCredits {
+  background-color: #a16207;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.inlineBadgeCredits {
+  background-color: #a16207;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+  display: inline-block;
+}
+
+.bonusCreditsItem {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 2rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bonusCreditsBadge {
+  background-color: #a16207;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-block;
+}
+
 .proPlan:hover {
   border-color: rgb(55 65 81 / 1);
 }
@@ -494,6 +601,21 @@ body {
   font-size: 1.125rem;
   line-height: 1.75rem;
   color: rgb(156 163 175 / 1);
+}
+
+.strikethroughPrice {
+  text-decoration: line-through;
+  color: rgb(156 163 175 / 1);
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.billingNote {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(156 163 175 / 1);
+  margin-top: 0.25rem;
+  font-weight: 300;
 }
 
 .planDescription {
