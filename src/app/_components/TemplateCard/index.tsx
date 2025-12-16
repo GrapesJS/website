@@ -2,7 +2,7 @@ import React from "react";
 import { getTemplatePreviewUrl, getTemplateCreateUrl } from "@/lib/grapes-api";
 import type { HomepageData } from "@/lib/grapes-api";
 import styles from "./styles.module.css";
-import { TemplateButton } from "./TemplateButton";
+import { handleClickTemplate, TemplateButton } from "./TemplateButton";
 
 interface TemplateCardProps {
   template: HomepageData["templates"][0];
@@ -14,7 +14,10 @@ export function TemplateCard({ template }: TemplateCardProps) {
   const createUrl = getTemplateCreateUrl(template.editorUrl);
 
   return (
-    <div className={styles.templateCard}>
+    <div
+      className={styles.templateCard}
+      onClick={() => handleClickTemplate(createUrl, template)}
+    >
       <div className={styles.preview}>
         <img
           src={previewUrl}

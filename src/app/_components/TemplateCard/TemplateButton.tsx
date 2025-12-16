@@ -29,19 +29,27 @@ interface TemplateButtonProps {
   template: HomepageData["templates"][0];
 }
 
+export const handleClickTemplate = (
+  createUrl: string,
+  template: TemplateButtonProps["template"]
+) => {
+  trackClientJourneyEvent("ai_interest_shown", {
+    page: window.location.pathname,
+    source: "template_gallery",
+    template_id: template.id,
+    template_name: template.name,
+    template_type: template.type,
+  });
+
+  setTimeout(() => {
+    window.location.href = createUrl;
+  }, 100);
+};
+
 export function TemplateButton({ createUrl, template }: TemplateButtonProps) {
-  const handleClick = () => {
-    trackClientJourneyEvent("ai_interest_shown", {
-      page: window.location.pathname,
-      source: "template_gallery",
-      template_id: template.id,
-      template_name: template.name,
-      template_type: template.type,
-    });
-    
-    setTimeout(() => {
-      window.location.href = createUrl;
-    }, 100);
+  const handleClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    ev.stopPropagation();
+    handleClickTemplate(createUrl, template);
   };
 
   return (
