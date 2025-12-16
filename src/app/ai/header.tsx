@@ -61,7 +61,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
               <img
                 src="https://cdn.grapesjs.com/workspaces/cmddyhbh105af12ivgiyr7vui/assets/57483344-a73e-4e1f-abb2-f2df8058ef62__grapesblackandwhite.png"
                 alt="Grapes Studio"
-                className="w-[150px] md:w-[200px]"
+                className="w-[150px] h-[40px] md:w-[200px] md:h-[53px]"
               />
             </a>
           </div>
