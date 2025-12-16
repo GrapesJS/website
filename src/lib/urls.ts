@@ -24,9 +24,9 @@ const urls = {
   getStudioEditorUrl: () =>
     `${APP_URL}/playground?${UTM_PARAMS}&utm_medium=tryEditor`,
   getSignInUrl: (props: UrlProps) =>
-    `${APP_URL}/signin?${UTM_PARAMS}${getRef(props)}`,
+    `${APP_URL}/signin?${UTM_PARAMS}${getRef(props)}&signupintent=sdk`,
   getSdkLicensesUrl: (props: UrlProps) =>
-    `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${getRef(props)}`,
+    `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${getRef(props)}&signupintent=sdk`,
   getAiLandingUrl: (ref = "") =>
     `${APP_URL}/ai?${UTM_PARAMS}${getRef({ ref })}`,
   getHomeUrl: () => "/",
