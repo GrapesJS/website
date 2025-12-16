@@ -63,9 +63,12 @@ export default function RootLayout({
           })`,
           }}
         />
-        <script id="rewardful-queue">
-          {`(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,'rewardful');`}
-        </script>
+        <script
+          id="rewardful-queue"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,'rewardful');`,
+          }}
+        />
         <script src="https://r.wdfl.co/rw.js" data-rewardful="9302d5" />
         {/*
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
@@ -77,7 +80,10 @@ export default function RootLayout({
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         */}
       </head>
-      <body className={cn(inter.className, manrope.className)}>
+      <body
+        suppressHydrationWarning
+        className={cn(inter.className, manrope.className)}
+      >
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-N6SVS9RS"
