@@ -114,12 +114,12 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
             >
               Login
             </a>
-            <a
+            {/* <a
               href="https://app.grapesjs.com/dashboard"
               className="inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline bg-purple-600 border border-purple-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-opacity-90 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
             >
               Get Started
-            </a>
+            </a> */}
 
             {/* Mobile Menu Button */}
             <button
