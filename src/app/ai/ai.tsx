@@ -79,7 +79,7 @@ const inputTexts = [
 export default function AiPage({ className }: AiPageProps) {
   const searchParams = useSearchParams();
   const [prompt, setPrompt] = useState("");
-  const [projectType, setProjectType] = useState<ProjectType>("web");
+  const [projectType, setProjectType] = useState<ProjectType>("email");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
