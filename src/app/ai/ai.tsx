@@ -53,7 +53,6 @@ type ProjectType = "web" | "email" | "all";
 
 const headlineTexts = [
   "marketing team",
-  "website builder",
   "future self",
   "web-store admin",
   "digital officer",
