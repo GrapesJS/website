@@ -1,15 +1,13 @@
 "use client";
 
 import cn from "classnames";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { openInStudioViaProxy } from "./util";
 import HeaderStandalone from "./header";
 import FooterStandalone from "./footer";
 import { useSpeechToText } from "./useSpeechToText";
 import { TemplateGallery } from "../_components/TemplateGallery";
 
-// PostHog tracking function
 declare global {
   interface Window {
     posthog?: {
@@ -40,8 +38,14 @@ import {
   mdiMicrophoneOff,
   mdiSend,
   mdiWeb,
+  mdiClose,
 } from "@mdi/js";
 import Icon from "@mdi/react";
+import { UploadMenu } from "./UploadMenu";
+import { AuthIframe } from "./AuthIframe";
+import { checkAuthSession } from "@/lib/grapes-api";
+import { FileUploadType, FILE_TYPE_CONFIGS } from "./types";
+import { openInStudioViaAuthProxy } from "./util";
 
 type AiPageProps = {
   actionUrl?: string;
@@ -83,6 +87,10 @@ export default function AiPage({ className }: AiPageProps) {
   const [error, setError] = useState<string | null>(null);
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
   const [showButtonHighlight, setShowButtonHighlight] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [showAuthIframe, setShowAuthIframe] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const hasAutoSubmittedRef = useRef(false);
 
   useEffect(() => {
     const urlPrompt = searchParams.get("prompt");
@@ -119,27 +127,78 @@ export default function AiPage({ className }: AiPageProps) {
     }
   }, [prompt, hasTrackedInterest]);
 
+  const handleFileSelect = (file: File, type: FileUploadType) => {
+    setUploadedFile(file);
+
+    const config = FILE_TYPE_CONFIGS[type];
+    if (config) {
+      setPrompt(config.prompt);
+    }
+
+    trackClientJourneyEvent('file_upload_selected', {
+      type,
+      fileName: file.name,
+      fileSize: file.size,
+    });
+  };
+
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!prompt.trim()) return;
+    
+    if (loading || isSubmitting) {
+      return;
+    }
 
-    // Track that signin is required when user submits
-    trackClientJourneyEvent("ai_signin_required", {
-      page: window.location.pathname,
-      prompt_length: prompt.length,
-    });
+    const result = await checkAuthSession();
+    
+    if (!result.isAuthenticated) {
+      trackClientJourneyEvent("ai_signin_required", {
+        page: globalThis.location?.pathname,
+        prompt_length: prompt.length,
+        has_file: !!uploadedFile,
+      });
+
+      hasAutoSubmittedRef.current = false;
+      setShowAuthIframe(true);
+      return;
+    }
 
     setLoading(true);
+    setIsSubmitting(true);
     setError(null);
 
     try {
-      openInStudioViaProxy(prompt, projectType === "all" ? "web" : projectType);
+      await openInStudioViaAuthProxy(
+        prompt,
+        projectType === "all" ? "web" : projectType,
+        uploadedFile
+      );
     } catch (e) {
       const message = e instanceof Error ? e.message : "Request failed";
       setError(message);
     } finally {
       setLoading(false);
+      setIsSubmitting(false);
     }
+  };
+
+  const handleAuthSuccess = (userData: any) => {
+    setShowAuthIframe(false);
+
+    trackClientJourneyEvent('ai_auth_success', {
+      userId: userData?.id,
+    });
+
+    if (!hasAutoSubmittedRef.current) {
+      hasAutoSubmittedRef.current = true;
+      handleSubmit(new Event('submit') as any);
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setUploadedFile(null);
+    setPrompt('');
   };
 
   const isEmail = projectType === "email";
@@ -192,6 +251,9 @@ export default function AiPage({ className }: AiPageProps) {
                   setPrompt={setPrompt}
                   setShowButtonHighlight={setShowButtonHighlight}
                   handleSubmit={handleSubmit}
+                  uploadedFile={uploadedFile}
+                  onFileSelect={handleFileSelect}
+                  onRemoveFile={handleRemoveFile}
                 />
               </form>
 
@@ -211,11 +273,20 @@ export default function AiPage({ className }: AiPageProps) {
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
       )}
+      {showAuthIframe && (
+        <AuthIframe
+          onAuthSuccess={handleAuthSuccess}
+          onClose={() => {
+            setShowAuthIframe(false);
+            hasAutoSubmittedRef.current = false;
+          }}
+        />
+      )}
     </div>
   );
 }
 
-function PromptTextarea(props: {
+function PromptTextarea(props: Readonly<{
   prompt: string;
   loading?: boolean;
   isEmail?: boolean;
@@ -224,7 +295,10 @@ function PromptTextarea(props: {
   setPrompt: (s: string) => void;
   setShowButtonHighlight: (b: boolean) => void;
   handleSubmit: (e: any) => void;
-}) {
+  uploadedFile?: File | null;
+  onFileSelect?: (file: File, type: FileUploadType) => void;
+  onRemoveFile?: () => void;
+}>) {
   const {
     prompt,
     isEmail,
@@ -234,6 +308,9 @@ function PromptTextarea(props: {
     setPrompt,
     handleSubmit,
     setShowButtonHighlight,
+    uploadedFile,
+    onFileSelect,
+    onRemoveFile,
   } = props;
   const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -319,6 +396,31 @@ function PromptTextarea(props: {
       }
     >
       <div className="w-full py-3 px-5">
+        {/* File upload indicator */}
+        {uploadedFile && (
+          <div className="mb-3 flex items-center gap-2 bg-violet-600/20 border border-violet-500/30 rounded-lg px-3 py-2">
+            <div className="flex-1 flex items-center gap-2 text-sm">
+              <Icon
+                path={mdiContentCopy}
+                size={0.8}
+                className="text-violet-400"
+              />
+              <span className="text-white truncate">{uploadedFile.name}</span>
+              <span className="text-gray-400 text-xs">
+                ({(uploadedFile.size / 1024).toFixed(1)} KB)
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={onRemoveFile}
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Remove file"
+            >
+              <Icon path={mdiClose} size={0.8} />
+            </button>
+          </div>
+        )}
+
         <textarea
           value={prompt}
           onChange={(e) => setPrompt((e.target.value || "").slice(0, 3500))}
@@ -357,7 +459,12 @@ function PromptTextarea(props: {
       </div>
       <div className="w-full px-4 pb-2 flex items-center justify-between">
         <TabsStandalone value={projectType} onChange={setProjectType} />
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 items-center">
+          {/* Upload menu button */}
+          {onFileSelect && !isEmail && (
+            <UploadMenu onFileSelect={onFileSelect} disabled={loading} />
+          )}
+
           {/* Speech-to-text mic button */}
           {speechToText.isSupported && (
             <button

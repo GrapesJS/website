@@ -1,3 +1,5 @@
+import { getAppApiBase } from '@/lib/config';
+
 export type ProjectType = "web" | "email";
 
 export function openInStudioViaProxy(
@@ -24,4 +26,60 @@ export function openInStudioViaProxy(
   document.body.appendChild(form);
   form.submit();
   document.body.removeChild(form);
+}
+
+export async function openInStudioViaAuthProxy(
+  prompt: string,
+  projectType: ProjectType = "web",
+  uploadedFile?: File | null
+): Promise<void> {
+  const formData = new FormData();
+  
+  formData.append('prompt', prompt);
+  formData.append('projectType', projectType);
+  formData.append('hasFile', uploadedFile ? 'true' : 'false');
+  
+  if (uploadedFile) {
+    formData.append('file', uploadedFile);
+  }
+  
+  const response = await fetch(`${getAppApiBase()}/api/ai/ai-proxy`, {
+    method: 'POST',
+    body: formData,
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    let errorMessage = `API error: ${response.statusText}`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.error || errorMessage;
+    } catch {
+      const errorText = await response.text();
+      console.error('API error:', response.status, errorText);
+    }
+    throw new Error(errorMessage);
+  }
+
+  const responseData = await response.json();
+  const result = responseData.result;
+  console.log(result);
+  if (!result.success) {
+    console.error(result.error);
+    throw new Error(result.error || 'API request failed');
+  }
+
+  let redirectUrl = result.projectUrl;
+  console.log(redirectUrl);
+  
+  if (redirectUrl?.includes('localhost')) {
+    redirectUrl = redirectUrl.replace(/https?:\/\/localhost:\d+/, getAppApiBase());
+  }
+  
+  if (!redirectUrl) {
+    throw new Error('No redirect URL returned from API');
+  }
+  
+  // Redirect to the Studio editor with the AI-generated project
+  globalThis.location.href = redirectUrl;
 }

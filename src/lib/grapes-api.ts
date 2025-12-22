@@ -1,3 +1,7 @@
+import { getAppApiBase } from './config';
+
+export type { AuthUser } from '@/types/auth';
+
 const isDev = process.env.NODE_ENV !== "production";
 const API_BASE = isDev
   ? process.env.NEXT_PUBLIC_API_APP_BASE || "http://localhost:3000"
@@ -82,4 +86,30 @@ export function getTemplatePreviewUrl(media?: string): string {
 
 export function getTemplateCreateUrl(editorUrl: string): string {
   return `${API_BASE}${editorUrl}`;
+}
+
+export async function checkAuthSession() {
+  try {
+    const response = await fetch(`${getAppApiBase()}/api/auth/session`, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      return { isAuthenticated: false, user: null };
+    }
+
+    const data = await response.json();
+    
+    if (data?.user) {
+      return { isAuthenticated: true, user: data.user };
+    }
+
+    return { isAuthenticated: false, user: null };
+  } catch (error) {
+    console.error('Auth check failed:', error);
+    throw error;
+  }
 }
