@@ -108,7 +108,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
     setUser(null);
     
     const appUrl = getAppApiBase();
-    globalThis.location.href = `${appUrl}/api/auth/signout?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
+    globalThis.location.href = `${appUrl}/api/website-proxy/signout?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
   };
 
   return (
