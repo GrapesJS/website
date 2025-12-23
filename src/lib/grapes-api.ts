@@ -1,6 +1,7 @@
 import { getAppApiBase } from './config';
+import type { AuthUser, UserResponse } from '@/types/auth';
 
-export type { AuthUser } from '@/types/auth';
+export type { AuthUser, UserResponse };
 
 const isDev = process.env.NODE_ENV !== "production";
 const API_BASE = isDev
@@ -88,9 +89,9 @@ export function getTemplateCreateUrl(editorUrl: string): string {
   return `${API_BASE}${editorUrl}`;
 }
 
-export async function checkAuthSession() {
+export async function checkAuthSession(): Promise<UserResponse> {
   try {
-    const response = await fetch(`${getAppApiBase()}/api/auth/session`, {
+    const response = await fetch(`${getAppApiBase()}/api/website/user`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -101,10 +102,19 @@ export async function checkAuthSession() {
       return { isAuthenticated: false, user: null };
     }
 
-    const data = await response.json();
-    
-    if (data?.user) {
-      return { isAuthenticated: true, user: data.user };
+    const data = await response.json() as UserResponse;
+
+    if (data?.user && typeof data.user.id === 'string') {
+      return { 
+        isAuthenticated: true, 
+        user: {
+          id: data.user.id,
+          email: data.user.email ?? null,
+          name: data.user.name ?? null,
+          role: data.user.role ?? null,
+          image: data.user.image ?? null,
+        }
+      };
     }
 
     return { isAuthenticated: false, user: null };
