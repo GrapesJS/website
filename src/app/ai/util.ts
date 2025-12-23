@@ -1,4 +1,5 @@
 import { getAppApiBase } from '@/lib/config';
+import { useNewAuthFlow } from '@/lib/feature-flags';
 
 export type ProjectType = "web" | "email";
 
@@ -43,7 +44,7 @@ export async function openInStudioViaAuthProxy(
     formData.append('file', uploadedFile);
   }
   
-  const response = await fetch(`${getAppApiBase()}/api/ai/ai-proxy`, {
+  const response = await fetch(`${getAppApiBase()}/api/website-proxy`, {
     method: 'POST',
     body: formData,
     credentials: 'include',
@@ -82,4 +83,21 @@ export async function openInStudioViaAuthProxy(
   
   // Redirect to the Studio editor with the AI-generated project
   globalThis.location.href = redirectUrl;
+}
+
+export async function openInStudio(
+  prompt: string,
+  projectType: ProjectType = "web",
+  uploadedFile?: File | null
+): Promise<void> {
+  const useNewFlow = useNewAuthFlow();
+  
+  if (useNewFlow) {
+    return openInStudioViaAuthProxy(prompt, projectType, uploadedFile);
+  } else {
+    if (uploadedFile) {
+      console.warn('File upload is only supported with new auth flow. File will be ignored.');
+    }
+    openInStudioViaProxy(prompt, projectType);
+  }
 }

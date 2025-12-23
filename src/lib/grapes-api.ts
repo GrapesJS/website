@@ -91,7 +91,7 @@ export function getTemplateCreateUrl(editorUrl: string): string {
 
 export async function checkAuthSession(): Promise<UserResponse> {
   try {
-    const response = await fetch(`${getAppApiBase()}/api/website/user`, {
+    const response = await fetch(`${getAppApiBase()}/api/website-proxy`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',

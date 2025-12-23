@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { AuthIframe } from "./AuthIframe";
 import { getAppApiBase } from "@/lib/config";
 import { checkAuthSession } from "@/lib/grapes-api";
+import { useNewAuthFlow } from "@/lib/feature-flags";
 
 interface HeaderStandaloneProps {
   readonly className?: string;
@@ -19,8 +20,23 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
   const [showAuthIframe, setShowAuthIframe] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const [useNewFlow, setUseNewFlow] = useState(useNewAuthFlow());
 
   useEffect(() => {
+    const handleFlagChange = () => {
+      setUseNewFlow(useNewAuthFlow());
+    };
+
+    window.addEventListener('featureFlagChanged', handleFlagChange);
+    return () => window.removeEventListener('featureFlagChanged', handleFlagChange);
+  }, []);
+
+  useEffect(() => {
+    // Only check auth session if using new flow
+    if (!useNewFlow) {
+      return;
+    }
+
     const checkAuth = async () => {
       try {
         const result = await checkAuthSession();
@@ -35,7 +51,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
     };
 
     checkAuth();
-  }, []);
+  }, [useNewFlow]);
 
   useEffect(() => {
     const handleClickOutside = (event: PointerEvent) => {
@@ -75,7 +91,15 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
 
   const handleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
-    setShowAuthIframe(true);
+    
+    if (useNewFlow) {
+      // New flow: show iframe modal
+      setShowAuthIframe(true);
+    } else {
+      // Legacy flow: redirect to app signin
+      const appUrl = getAppApiBase();
+      globalThis.location.href = `${appUrl}/signin?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
+    }
   };
 
   const handleSignOut = async () => {
@@ -170,7 +194,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
               </svg>
             </a>
             
-            {isAuthenticated && user ? (
+            {useNewFlow && isAuthenticated && user ? (
               <div className="relative max-lg:hidden" ref={userMenuRef}>
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
@@ -344,7 +368,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                   </svg>
                 </a>
                 
-                {isAuthenticated && user ? (
+                {useNewFlow && isAuthenticated && user ? (
                   <>
                     <div className="mt-4 px-4 py-3 bg-zinc-800 rounded-lg">
                       <p className="text-sm font-medium text-white">{user.name || 'User'}</p>
@@ -387,7 +411,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
         )}
       </header>
       
-      {showAuthIframe && (
+      {useNewFlow && showAuthIframe && (
         <AuthIframe
           onAuthSuccess={handleAuthSuccess}
           onClose={() => setShowAuthIframe(false)}

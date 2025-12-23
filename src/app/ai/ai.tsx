@@ -45,7 +45,8 @@ import { UploadMenu } from "./UploadMenu";
 import { AuthIframe } from "./AuthIframe";
 import { checkAuthSession } from "@/lib/grapes-api";
 import { FileUploadType, FILE_TYPE_CONFIGS } from "./types";
-import { openInStudioViaAuthProxy } from "./util";
+import { openInStudio } from "./util";
+import { useNewAuthFlow } from "@/lib/feature-flags";
 
 type AiPageProps = {
   actionUrl?: string;
@@ -91,6 +92,16 @@ export default function AiPage({ className }: AiPageProps) {
   const [showAuthIframe, setShowAuthIframe] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const hasAutoSubmittedRef = useRef(false);
+  const [useNewFlow, setUseNewFlow] = useState(useNewAuthFlow());
+
+  useEffect(() => {
+    const handleFlagChange = () => {
+      setUseNewFlow(useNewAuthFlow());
+    };
+
+    window.addEventListener('featureFlagChanged', handleFlagChange);
+    return () => window.removeEventListener('featureFlagChanged', handleFlagChange);
+  }, []);
 
   useEffect(() => {
     const urlPrompt = searchParams.get("prompt");
@@ -150,18 +161,23 @@ export default function AiPage({ className }: AiPageProps) {
       return;
     }
 
-    const result = await checkAuthSession();
-    
-    if (!result.isAuthenticated) {
-      trackClientJourneyEvent("ai_signin_required", {
-        page: globalThis.location?.pathname,
-        prompt_length: prompt.length,
-        has_file: !!uploadedFile,
-      });
+    const useNewFlow = useNewAuthFlow();
 
-      hasAutoSubmittedRef.current = false;
-      setShowAuthIframe(true);
-      return;
+    // New flow: check authentication before proceeding
+    if (useNewFlow) {
+      const result = await checkAuthSession();
+      
+      if (!result.isAuthenticated) {
+        trackClientJourneyEvent("ai_signin_required", {
+          page: globalThis.location?.pathname,
+          prompt_length: prompt.length,
+          has_file: !!uploadedFile,
+        });
+
+        hasAutoSubmittedRef.current = false;
+        setShowAuthIframe(true);
+        return;
+      }
     }
 
     setLoading(true);
@@ -169,7 +185,7 @@ export default function AiPage({ className }: AiPageProps) {
     setError(null);
 
     try {
-      await openInStudioViaAuthProxy(
+      await openInStudio(
         prompt,
         projectType === "all" ? "web" : projectType,
         uploadedFile
@@ -252,7 +268,7 @@ export default function AiPage({ className }: AiPageProps) {
                   setShowButtonHighlight={setShowButtonHighlight}
                   handleSubmit={handleSubmit}
                   uploadedFile={uploadedFile}
-                  onFileSelect={handleFileSelect}
+                  onFileSelect={useNewFlow ? handleFileSelect : undefined}
                   onRemoveFile={handleRemoveFile}
                 />
               </form>
@@ -273,7 +289,7 @@ export default function AiPage({ className }: AiPageProps) {
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
       )}
-      {showAuthIframe && (
+      {useNewFlow && showAuthIframe && (
         <AuthIframe
           onAuthSuccess={handleAuthSuccess}
           onClose={() => {

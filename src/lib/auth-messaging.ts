@@ -2,8 +2,9 @@ import { AUTH_MESSAGE_TYPES, type AuthMessage, type AuthMessageType } from '@/ap
 
 export interface User {
   id: string;
-  email?: string;
-  name?: string;
+  email?: string | null;
+  name?: string | null;
+  image?: string | null;
   avatar?: string;
   [key: string]: any;
 }
