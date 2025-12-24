@@ -63,15 +63,17 @@ export async function openInStudioViaAuthProxy(
   }
 
   const responseData = await response.json();
-  const result = responseData.result;
-  console.log(result);
+  const result = responseData.result || responseData;
+  
+  if (!result) {
+    throw new Error('No result object in API response');
+  }
+  
   if (!result.success) {
-    console.error(result.error);
     throw new Error(result.error || 'API request failed');
   }
 
   let redirectUrl = result.projectUrl;
-  console.log(redirectUrl);
   
   if (redirectUrl?.includes('localhost')) {
     redirectUrl = redirectUrl.replace(/https?:\/\/localhost:\d+/, API_BASE);
