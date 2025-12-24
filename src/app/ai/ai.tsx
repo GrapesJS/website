@@ -42,7 +42,6 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { UploadMenu } from "./UploadMenu";
-import { AuthIframe } from "./AuthIframe";
 import { checkAuthSession } from "@/lib/grapes-api";
 import { FileUploadType, FILE_TYPE_CONFIGS } from "./types";
 import { openInStudio } from "./util";
@@ -212,6 +211,11 @@ export default function AiPage({ className }: AiPageProps) {
     }
   };
 
+  const handleAuthClose = () => {
+    setShowAuthIframe(false);
+    hasAutoSubmittedRef.current = false;
+  };
+
   const handleRemoveFile = () => {
     setUploadedFile(null);
     setPrompt('');
@@ -226,7 +230,12 @@ export default function AiPage({ className }: AiPageProps) {
         className
       )}
     >
-      <HeaderStandalone />
+      <HeaderStandalone 
+        showAuthIframe={showAuthIframe}
+        onShowAuthIframe={setShowAuthIframe}
+        onAuthSuccess={handleAuthSuccess}
+        onAuthClose={handleAuthClose}
+      />
       <main className="relative">
         <div
           className="relative w-full bg-fixed bg-no-repeat bg-cover py-32"
@@ -288,15 +297,6 @@ export default function AiPage({ className }: AiPageProps) {
       <FooterStandalone />
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
-      )}
-      {useNewFlow && showAuthIframe && (
-        <AuthIframe
-          onAuthSuccess={handleAuthSuccess}
-          onClose={() => {
-            setShowAuthIframe(false);
-            hasAutoSubmittedRef.current = false;
-          }}
-        />
       )}
     </div>
   );

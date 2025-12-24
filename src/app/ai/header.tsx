@@ -8,18 +8,31 @@ import { useNewAuthFlow } from "@/lib/feature-flags";
 
 interface HeaderStandaloneProps {
   readonly className?: string;
+  readonly showAuthIframe?: boolean;
+  readonly onShowAuthIframe?: (show: boolean) => void;
+  readonly onAuthSuccess?: (userData: any) => void;
+  readonly onAuthClose?: () => void;
 }
 
-export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
+export default function HeaderStandalone({ 
+  className,
+  showAuthIframe: externalShowAuthIframe,
+  onShowAuthIframe,
+  onAuthSuccess: externalOnAuthSuccess,
+  onAuthClose: externalOnAuthClose,
+}: HeaderStandaloneProps) {
   const githubRepoPath = "GrapesJS/grapesjs";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<any>(null);
-  const [showAuthIframe, setShowAuthIframe] = useState(false);
+  const [internalShowAuthIframe, setInternalShowAuthIframe] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const [useNewFlow, setUseNewFlow] = useState(useNewAuthFlow());
+
+  const showAuthIframe = externalShowAuthIframe ?? internalShowAuthIframe;
+  const setShowAuthIframe = onShowAuthIframe ?? setInternalShowAuthIframe;
 
   useEffect(() => {
     const handleFlagChange = () => {
@@ -86,6 +99,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
     setIsAuthenticated(true);
     setUser(userData);
     setShowAuthIframe(false);
+    externalOnAuthSuccess?.(userData);
   };
 
   const handleLogin = (e: React.MouseEvent) => {
@@ -411,7 +425,10 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
       {useNewFlow && showAuthIframe && (
         <AuthIframe
           onAuthSuccess={handleAuthSuccess}
-          onClose={() => setShowAuthIframe(false)}
+          onClose={() => {
+            setShowAuthIframe(false);
+            externalOnAuthClose?.();
+          }}
         />
       )}
     </>
