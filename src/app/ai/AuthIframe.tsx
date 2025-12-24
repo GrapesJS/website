@@ -127,22 +127,17 @@ export function AuthIframe({
         break;
 
       case AUTH_MESSAGE_TYPES.AUTH_SUCCESS:
-        if (message.payload?.user) {
-          handleSuccess(message.payload.user);
-        } else {
-
-          checkAuthSession()
-            .then((result) => {
-              if (result.isAuthenticated && result.user) {
-                handleSuccess(result.user);
-              } else {
-                handleError(new Error('No user in session after successful auth'));
-              }
-            })
-            .catch((error) => {
-              handleError(new Error(`Failed to fetch session: ${error.message}`));
-            });
-        }
+        checkAuthSession()
+          .then((result) => {
+            if (result.isAuthenticated && result.user) {
+              handleSuccess(result.user);
+            } else {
+              handleError(new Error('No user in session after successful auth'));
+            }
+          })
+          .catch((error) => {
+            handleError(new Error(`Failed to fetch session: ${error.message}`));
+          });
         break;
 
       case AUTH_MESSAGE_TYPES.AUTH_ERROR:
