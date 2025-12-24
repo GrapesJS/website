@@ -177,13 +177,7 @@ export function AuthIframe({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleClose]);
 
-  const iframeUrl = (() => {
-    const params = new URLSearchParams({
-      callbackUrl: `${API_BASE}/auth/callback?success=true`,
-      postMessage: 'true',
-    });
-    return `${API_BASE}/signin?${params}`;
-  })();
+  const iframeUrl = `${API_BASE}/signin`;
 
   const isProcessing = ['loading', 'authenticated'].includes(authState.status);
   const processingText = authState.status === 'authenticated' ? 'Signing in...' : 'Loading...';
