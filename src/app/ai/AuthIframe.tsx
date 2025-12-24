@@ -184,7 +184,6 @@ export function AuthIframe({
 
   const iframeUrl = (() => {
     const params = new URLSearchParams({
-      embedded: 'true',
       callbackUrl: `${API_BASE}/auth/callback?success=true`,
       postMessage: 'true',
     });
