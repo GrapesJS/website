@@ -1,4 +1,4 @@
-import { getAppApiBase } from '@/lib/config';
+import { API_BASE } from '@/lib/grapes-api';
 import { useNewAuthFlow } from '@/lib/feature-flags';
 
 export type ProjectType = "web" | "email";
@@ -44,7 +44,7 @@ export async function openInStudioViaAuthProxy(
     formData.append('file', uploadedFile);
   }
   
-  const response = await fetch(`${getAppApiBase()}/api/website-proxy`, {
+  const response = await fetch(`${API_BASE}/api/website-proxy`, {
     method: 'POST',
     body: formData,
     credentials: 'include',
@@ -74,7 +74,7 @@ export async function openInStudioViaAuthProxy(
   console.log(redirectUrl);
   
   if (redirectUrl?.includes('localhost')) {
-    redirectUrl = redirectUrl.replace(/https?:\/\/localhost:\d+/, getAppApiBase());
+    redirectUrl = redirectUrl.replace(/https?:\/\/localhost:\d+/, API_BASE);
   }
   
   if (!redirectUrl) {

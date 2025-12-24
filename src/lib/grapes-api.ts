@@ -1,10 +1,9 @@
-import { getAppApiBase } from './config';
 import type { AuthUser, UserResponse } from '@/types/auth';
 
 export type { AuthUser, UserResponse };
 
 const isDev = process.env.NODE_ENV !== "production";
-const API_BASE = isDev
+export const API_BASE = isDev
   ? process.env.NEXT_PUBLIC_API_APP_BASE || "http://localhost:3000"
   : "https://app.grapesjs.com";
 
@@ -91,7 +90,7 @@ export function getTemplateCreateUrl(editorUrl: string): string {
 
 export async function checkAuthSession(): Promise<UserResponse> {
   try {
-    const response = await fetch(`${getAppApiBase()}/api/website-proxy`, {
+    const response = await fetch(`${API_BASE}/api/website-proxy`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',

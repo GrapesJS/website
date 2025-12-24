@@ -3,8 +3,7 @@
 import cn from "classnames";
 import { useState, useEffect, useRef } from "react";
 import { AuthIframe } from "./AuthIframe";
-import { getAppApiBase } from "@/lib/config";
-import { checkAuthSession } from "@/lib/grapes-api";
+import { API_BASE, checkAuthSession } from "@/lib/grapes-api";
 import { useNewAuthFlow } from "@/lib/feature-flags";
 
 interface HeaderStandaloneProps {
@@ -97,8 +96,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
       setShowAuthIframe(true);
     } else {
       // Legacy flow: redirect to app signin
-      const appUrl = getAppApiBase();
-      globalThis.location.href = `${appUrl}/signin?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
+      globalThis.location.href = `${API_BASE}/signin?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
     }
   };
 
@@ -107,8 +105,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
     setIsAuthenticated(false);
     setUser(null);
     
-    const appUrl = getAppApiBase();
-    globalThis.location.href = `${appUrl}/api/website-proxy/signout?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
+    globalThis.location.href = `${API_BASE}/api/website-proxy/signout?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
   };
 
   return (
@@ -230,7 +227,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                     </div>
                     <div className="py-1">
                       <a
-                        href={`${getAppApiBase()}/dashboard`}
+                        href={`${API_BASE}/dashboard`}
                         className="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-800 hover:text-white transition-colors no-underline"
                       >
                         Dashboard
@@ -375,7 +372,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                       <p className="text-xs text-gray-400">{user.email}</p>
                     </div>
                     <a
-                      href={`${getAppApiBase()}/dashboard`}
+                      href={`${API_BASE}/dashboard`}
                       className="mt-2 w-full text-center px-6 py-3 text-base font-semibold text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500"
                       onClick={closeMobileMenu}
                     >

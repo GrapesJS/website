@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { getAppApiBase } from '@/lib/config';
-import { checkAuthSession } from '@/lib/grapes-api';
+import { API_BASE, checkAuthSession } from '@/lib/grapes-api';
 
 const AUTH_TIMEOUT_MS = 300000;
 const IFRAME_MIN_HEIGHT = 700;
@@ -184,13 +183,12 @@ export function AuthIframe({
   }, [handleClose]);
 
   const iframeUrl = (() => {
-    const baseUrl = getAppApiBase();
     const params = new URLSearchParams({
       embedded: 'true',
-      callbackUrl: `${baseUrl}/auth/callback?success=true`,
+      callbackUrl: `${API_BASE}/auth/callback?success=true`,
       postMessage: 'true',
     });
-    return `${baseUrl}/signin?${params}`;
+    return `${API_BASE}/signin?${params}`;
   })();
 
   const isProcessing = ['loading', 'authenticated'].includes(authState.status);
