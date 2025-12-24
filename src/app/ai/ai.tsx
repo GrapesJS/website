@@ -42,7 +42,7 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { UploadMenu } from "./UploadMenu";
-import { checkAuthSession } from "@/lib/grapes-api";
+import { checkAuthSession, UserResponse } from "@/lib/grapes-api";
 import { FileUploadType, FILE_TYPE_CONFIGS } from "./types";
 import { openInStudio } from "./util";
 import { useNewAuthFlow } from "@/lib/feature-flags";
@@ -92,6 +92,7 @@ export default function AiPage({ className }: AiPageProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const hasAutoSubmittedRef = useRef(false);
   const [useNewFlow, setUseNewFlow] = useState(useNewAuthFlow());
+  const [authSession, setAuthSession] = useState<UserResponse | null>(null);
 
   useEffect(() => {
     const handleFlagChange = () => {
@@ -101,6 +102,19 @@ export default function AiPage({ className }: AiPageProps) {
     window.addEventListener('featureFlagChanged', handleFlagChange);
     return () => window.removeEventListener('featureFlagChanged', handleFlagChange);
   }, []);
+
+  useEffect(() => {
+    if (!useNewFlow) {
+      return;
+    }
+
+    const checkAuth = async () => {
+      const result = await checkAuthSession();
+      setAuthSession(result);
+    };
+
+    checkAuth();
+  }, [useNewFlow]);
 
   useEffect(() => {
     const urlPrompt = searchParams.get("prompt");
@@ -162,9 +176,12 @@ export default function AiPage({ className }: AiPageProps) {
 
     const useNewFlow = useNewAuthFlow();
 
-    // New flow: check authentication before proceeding
     if (useNewFlow) {
-      const result = await checkAuthSession();
+      let result = authSession;
+      if (!result) {
+        result = await checkAuthSession();
+        setAuthSession(result);
+      }
       
       if (!result.isAuthenticated) {
         trackClientJourneyEvent("ai_signin_required", {
@@ -201,6 +218,11 @@ export default function AiPage({ className }: AiPageProps) {
   const handleAuthSuccess = (userData: any) => {
     setShowAuthIframe(false);
 
+    setAuthSession({
+      isAuthenticated: true,
+      user: userData,
+    });
+
     trackClientJourneyEvent('ai_auth_success', {
       userId: userData?.id,
     });
@@ -235,6 +257,7 @@ export default function AiPage({ className }: AiPageProps) {
         onShowAuthIframe={setShowAuthIframe}
         onAuthSuccess={handleAuthSuccess}
         onAuthClose={handleAuthClose}
+        authSession={authSession}
       />
       <main className="relative">
         <div

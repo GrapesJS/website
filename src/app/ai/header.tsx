@@ -3,7 +3,7 @@
 import cn from "classnames";
 import { useState, useEffect, useRef } from "react";
 import { AuthIframe } from "./AuthIframe";
-import { API_BASE, checkAuthSession } from "@/lib/grapes-api";
+import { API_BASE, checkAuthSession, UserResponse } from "@/lib/grapes-api";
 import { useNewAuthFlow } from "@/lib/feature-flags";
 
 interface HeaderStandaloneProps {
@@ -12,6 +12,7 @@ interface HeaderStandaloneProps {
   readonly onShowAuthIframe?: (show: boolean) => void;
   readonly onAuthSuccess?: (userData: any) => void;
   readonly onAuthClose?: () => void;
+  readonly authSession?: UserResponse | null;
 }
 
 export default function HeaderStandalone({ 
@@ -20,6 +21,7 @@ export default function HeaderStandalone({
   onShowAuthIframe,
   onAuthSuccess: externalOnAuthSuccess,
   onAuthClose: externalOnAuthClose,
+  authSession: externalAuthSession,
 }: HeaderStandaloneProps) {
   const githubRepoPath = "GrapesJS/grapesjs";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -44,8 +46,18 @@ export default function HeaderStandalone({
   }, []);
 
   useEffect(() => {
-    // Only check auth session if using new flow
     if (!useNewFlow) {
+      return;
+    }
+
+    if (externalAuthSession) {
+      if (externalAuthSession.isAuthenticated && externalAuthSession.user) {
+        setIsAuthenticated(true);
+        setUser(externalAuthSession.user);
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
       return;
     }
 
@@ -63,7 +75,7 @@ export default function HeaderStandalone({
     };
 
     checkAuth();
-  }, [useNewFlow]);
+  }, [useNewFlow, externalAuthSession]);
 
   useEffect(() => {
     const handleClickOutside = (event: PointerEvent) => {
