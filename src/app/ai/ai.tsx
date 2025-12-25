@@ -1,15 +1,14 @@
 "use client";
 
 import cn from "classnames";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { openInStudioViaProxy } from "./util";
 import HeaderStandalone from "./header";
 import FooterStandalone from "./footer";
 import { useSpeechToText } from "./useSpeechToText";
 import { TemplateGallery } from "../_components/TemplateGallery";
+import { useAuthContext } from "./AuthContext";
 
-// PostHog tracking function
 declare global {
   interface Window {
     posthog?: {
@@ -40,8 +39,14 @@ import {
   mdiMicrophoneOff,
   mdiSend,
   mdiWeb,
+  mdiClose,
 } from "@mdi/js";
 import Icon from "@mdi/react";
+import { UploadMenu } from "./UploadMenu";
+import { checkAuthSession, UserResponse } from "@/lib/grapes-api";
+import { FileUploadType, FILE_TYPE_CONFIGS } from "./types";
+import { openInStudio } from "./util";
+import { useNewAuthFlow } from "@/lib/feature-flags";
 
 type AiPageProps = {
   actionUrl?: string;
@@ -83,6 +88,13 @@ export default function AiPage({ className }: AiPageProps) {
   const [error, setError] = useState<string | null>(null);
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
   const [showButtonHighlight, setShowButtonHighlight] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [autoSubmit, setAutoSubmit] = useState(false);
+
+  const authContext = useAuthContext();
+  const authSession = authContext?.authSession;
+  const triggerAuth = authContext?.triggerAuth || (() => { });
+  const useNewFlow = authContext?.useNewFlow || false;
 
   useEffect(() => {
     const urlPrompt = searchParams.get("prompt");
@@ -119,27 +131,78 @@ export default function AiPage({ className }: AiPageProps) {
     }
   }, [prompt, hasTrackedInterest]);
 
+  const handleFileSelect = (file: File, type: FileUploadType) => {
+    setUploadedFile(file);
+
+    const config = FILE_TYPE_CONFIGS[type];
+    if (config) {
+      setPrompt(config.prompt);
+    }
+
+    trackClientJourneyEvent('file_upload_selected', {
+      type,
+      fileName: file.name,
+      fileSize: file.size,
+    });
+  };
+
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!prompt.trim()) return;
 
-    // Track that signin is required when user submits
-    trackClientJourneyEvent("ai_signin_required", {
-      page: window.location.pathname,
-      prompt_length: prompt.length,
-    });
+    if (loading) {
+      return;
+    }
+
+    if (!useNewFlow) {
+      // Track that signin is required when user submits
+      trackClientJourneyEvent("ai_signin_required", {
+        page: window.location.pathname,
+        prompt_length: prompt.length,
+      });
+    }
+
+    if (useNewFlow) {
+      if (!authSession?.isAuthenticated) {
+        trackClientJourneyEvent("ai_signin_required", {
+          page: globalThis.location?.pathname,
+          prompt_length: prompt.length,
+          has_file: !!uploadedFile,
+        });
+
+        setAutoSubmit(false);
+        triggerAuth();
+        return;
+      }
+    }
 
     setLoading(true);
     setError(null);
 
     try {
-      openInStudioViaProxy(prompt, projectType === "all" ? "web" : projectType);
+      await openInStudio(
+        prompt,
+        projectType === "all" ? "web" : projectType,
+        uploadedFile
+      );
     } catch (e) {
       const message = e instanceof Error ? e.message : "Request failed";
       setError(message);
     } finally {
       setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    if (autoSubmit && authSession?.isAuthenticated) {
+      handleSubmit(new Event('submit') as any);
+      setAutoSubmit(false); // Reset
+    }
+  }, [authSession, autoSubmit]);
+
+  const handleRemoveFile = () => {
+    setUploadedFile(null);
+    setPrompt('');
   };
 
   const isEmail = projectType === "email";
@@ -192,6 +255,9 @@ export default function AiPage({ className }: AiPageProps) {
                   setPrompt={setPrompt}
                   setShowButtonHighlight={setShowButtonHighlight}
                   handleSubmit={handleSubmit}
+                  uploadedFile={uploadedFile}
+                  onFileSelect={useNewFlow ? handleFileSelect : undefined}
+                  onRemoveFile={handleRemoveFile}
                 />
               </form>
 
@@ -211,11 +277,12 @@ export default function AiPage({ className }: AiPageProps) {
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
       )}
+
     </div>
   );
 }
 
-function PromptTextarea(props: {
+function PromptTextarea(props: Readonly<{
   prompt: string;
   loading?: boolean;
   isEmail?: boolean;
@@ -224,7 +291,10 @@ function PromptTextarea(props: {
   setPrompt: (s: string) => void;
   setShowButtonHighlight: (b: boolean) => void;
   handleSubmit: (e: any) => void;
-}) {
+  uploadedFile?: File | null;
+  onFileSelect?: (file: File, type: FileUploadType) => void;
+  onRemoveFile?: () => void;
+}>) {
   const {
     prompt,
     isEmail,
@@ -234,6 +304,9 @@ function PromptTextarea(props: {
     setPrompt,
     handleSubmit,
     setShowButtonHighlight,
+    uploadedFile,
+    onFileSelect,
+    onRemoveFile,
   } = props;
   const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -260,7 +333,7 @@ function PromptTextarea(props: {
       } else if (isDeleting && typedText === "") {
         setIsDeleting(false);
         setCurrentHeadlineIndex((prev) => (prev + 1) % inputTexts.length);
-        setTimeout(() => {}, pauseBeforeType);
+        setTimeout(() => { }, pauseBeforeType);
       } else if (isDeleting) {
         setTypedText(currentText.substring(0, typedText.length - 1));
       } else {
@@ -312,13 +385,38 @@ function PromptTextarea(props: {
       style={
         showHighlight
           ? {
-              borderColor: "rgba(139, 92, 246, 0.3)",
-              animation: "borderPulse 1.5s ease-in-out 2",
-            }
+            borderColor: "rgba(139, 92, 246, 0.3)",
+            animation: "borderPulse 1.5s ease-in-out 2",
+          }
           : undefined
       }
     >
       <div className="w-full py-3 px-5">
+        {/* File upload indicator */}
+        {uploadedFile && (
+          <div className="mb-3 flex items-center gap-2 bg-violet-600/20 border border-violet-500/30 rounded-lg px-3 py-2">
+            <div className="flex-1 flex items-center gap-2 text-sm">
+              <Icon
+                path={mdiContentCopy}
+                size={0.8}
+                className="text-violet-400"
+              />
+              <span className="text-white truncate">{uploadedFile.name}</span>
+              <span className="text-gray-400 text-xs">
+                ({(uploadedFile.size / 1024).toFixed(1)} KB)
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={onRemoveFile}
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Remove file"
+            >
+              <Icon path={mdiClose} size={0.8} />
+            </button>
+          </div>
+        )}
+
         <textarea
           value={prompt}
           onChange={(e) => setPrompt((e.target.value || "").slice(0, 3500))}
@@ -357,7 +455,12 @@ function PromptTextarea(props: {
       </div>
       <div className="w-full px-4 pb-2 flex items-center justify-between">
         <TabsStandalone value={projectType} onChange={setProjectType} />
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 items-center">
+          {/* Upload menu button */}
+          {onFileSelect && !isEmail && (
+            <UploadMenu onFileSelect={onFileSelect} disabled={loading} />
+          )}
+
           {/* Speech-to-text mic button */}
           {speechToText.isSupported && (
             <button
@@ -615,9 +718,9 @@ function RecommendationsStandalone({
           style={
             index === 0 && showHighlight
               ? {
-                  borderColor: "rgba(139, 92, 246, 0.3)",
-                  animation: "borderPulse 1.5s ease-in-out 1",
-                }
+                borderColor: "rgba(139, 92, 246, 0.3)",
+                animation: "borderPulse 1.5s ease-in-out 1",
+              }
               : undefined
           }
           onClick={() => onClick(button.prompt)}

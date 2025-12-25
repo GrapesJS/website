@@ -1,15 +1,14 @@
+import type { AuthUser, UserResponse } from '@/types/auth';
+
+export type { AuthUser, UserResponse };
+
 const isDev = process.env.NODE_ENV !== "production";
-const API_BASE = isDev
+export const API_BASE = isDev
   ? process.env.NEXT_PUBLIC_API_APP_BASE || "http://localhost:3000"
   : "https://app.grapesjs.com";
 
 export interface HomepageData {
-  user?: {
-    id: string;
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-  };
+  user?: AuthUser;
   templates: Array<{
     id: string;
     name: string;
@@ -82,4 +81,38 @@ export function getTemplatePreviewUrl(media?: string): string {
 
 export function getTemplateCreateUrl(editorUrl: string): string {
   return `${API_BASE}${editorUrl}`;
+}
+
+export async function checkAuthSession(): Promise<UserResponse> {
+  try {
+    const response = await fetch(`${API_BASE}/api/website-proxy`, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      return { isAuthenticated: false, user: null };
+    }
+
+    const data = await response.json() as UserResponse;
+
+    if (data?.user && typeof data.user.id === 'string') {
+      return {
+        isAuthenticated: true,
+        user: {
+          id: data.user.id,
+          email: data.user.email ?? null,
+          name: data.user.name ?? null,
+          role: data.user.role ?? null,
+          image: data.user.image ?? null,
+        }
+      };
+    }
+
+    return { isAuthenticated: false, user: null };
+  } catch (error) {
+    return { isAuthenticated: false, user: null };
+  }
 }
