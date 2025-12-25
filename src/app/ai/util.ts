@@ -29,21 +29,27 @@ export function openInStudioViaProxy(
   document.body.removeChild(form);
 }
 
+interface ProxyResponse {
+  success: boolean;
+  projectUrl?: string;
+}
+
 export async function openInStudioViaAuthProxy(
   prompt: string,
   projectType: ProjectType = "web",
   uploadedFile?: File | null
 ): Promise<void> {
   const formData = new FormData();
-  
   formData.append('prompt', prompt);
   formData.append('projectType', projectType);
-  formData.append('hasFile', uploadedFile ? 'true' : 'false');
-  
+
   if (uploadedFile) {
     formData.append('file', uploadedFile);
+    formData.append('hasFile', 'true');
+  } else {
+    formData.append('hasFile', 'false');
   }
-  
+
   const response = await fetch(`${API_BASE}/api/website-proxy`, {
     method: 'POST',
     body: formData,
@@ -51,39 +57,21 @@ export async function openInStudioViaAuthProxy(
   });
 
   if (!response.ok) {
-    let errorMessage = `API error: ${response.statusText}`;
-    try {
-      const errorData = await response.json();
-      errorMessage = errorData.error || errorMessage;
-    } catch {
-      const errorText = await response.text();
-      console.error('API error:', response.status, errorText);
-    }
-    throw new Error(errorMessage);
+    throw new Error(`API Request Failed: ${response.statusText}`);
   }
 
-  const responseData = await response.json();
-  const result = responseData.result || responseData;
-  
-  if (!result) {
-    throw new Error('No result object in API response');
-  }
-  
-  if (!result.success) {
-    throw new Error(result.error || 'API request failed');
+  const data = (await response.json()) as ProxyResponse;
+
+  if (!data.success) {
+    throw new Error('Unknown API Error');
   }
 
-  let redirectUrl = result.projectUrl;
-  
-  if (redirectUrl?.includes('localhost')) {
-    redirectUrl = redirectUrl.replace(/https?:\/\/localhost:\d+/, API_BASE);
-  }
-  
+  let redirectUrl = data.projectUrl;
+
   if (!redirectUrl) {
-    throw new Error('No redirect URL returned from API');
+    throw new Error('API returned success but no projectUrl');
   }
-  
-  // Redirect to the Studio editor with the AI-generated project
+
   globalThis.location.href = redirectUrl;
 }
 
@@ -93,7 +81,7 @@ export async function openInStudio(
   uploadedFile?: File | null
 ): Promise<void> {
   const useNewFlow = useNewAuthFlow();
-  
+
   if (useNewFlow) {
     return openInStudioViaAuthProxy(prompt, projectType, uploadedFile);
   } else {
