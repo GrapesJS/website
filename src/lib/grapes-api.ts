@@ -99,8 +99,8 @@ export async function checkAuthSession(): Promise<UserResponse> {
     const data = await response.json() as UserResponse;
 
     if (data?.user && typeof data.user.id === 'string') {
-      return { 
-        isAuthenticated: true, 
+      return {
+        isAuthenticated: true,
         user: {
           id: data.user.id,
           email: data.user.email ?? null,
@@ -113,7 +113,6 @@ export async function checkAuthSession(): Promise<UserResponse> {
 
     return { isAuthenticated: false, user: null };
   } catch (error) {
-    console.error('Auth check failed:', error);
-    throw error;
+    return { isAuthenticated: false, user: null };
   }
 }
