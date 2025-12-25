@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { API_BASE, checkAuthSession, type AuthUser } from '@/lib/grapes-api';
 
 const IFRAME_MIN_HEIGHT = 700;
@@ -55,20 +56,20 @@ export function AuthIframe({ onAuthSuccess, onClose }: AuthIframeProps) {
     };
   }, [onAuthSuccess, onClose]);
 
-  return (
+  const modalContent = (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
       role="dialog"
       aria-modal="true"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="relative w-full max-w-md mx-4">
-        <div className="bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 max-h-[85vh] flex flex-col">
+      <div className="relative w-full max-w-md">
+        <div className="bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-zinc-800">
           <iframe
             ref={iframeRef}
             src={`${API_BASE}/signin?redirect=/signin`}
-            className="w-full h-full border-0 rounded-2xl"
-            style={{ minHeight: IFRAME_MIN_HEIGHT }}
+            className="w-full border-0 rounded-2xl"
+            style={{ height: '700px', maxHeight: '85vh' }}
             title="Sign In"
             sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-storage-access-by-user-activation"
             allow="camera 'none'; microphone 'none'; geolocation 'none'"
@@ -77,4 +78,11 @@ export function AuthIframe({ onAuthSuccess, onClose }: AuthIframeProps) {
       </div>
     </div>
   );
+
+  // Render in a portal to ensure it's at the document root level
+  if (typeof document !== 'undefined') {
+    return createPortal(modalContent, document.body);
+  }
+
+  return null;
 }
