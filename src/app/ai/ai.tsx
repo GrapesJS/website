@@ -154,6 +154,14 @@ export default function AiPage({ className }: AiPageProps) {
       return;
     }
 
+    if (!useNewFlow) {
+      // Track that signin is required when user submits
+      trackClientJourneyEvent("ai_signin_required", {
+        page: window.location.pathname,
+        prompt_length: prompt.length,
+      });
+    }
+
     if (useNewFlow) {
       if (!authSession?.isAuthenticated) {
         trackClientJourneyEvent("ai_signin_required", {
