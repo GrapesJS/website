@@ -2,59 +2,30 @@
 
 import cn from "classnames";
 import { useState, useEffect, useRef } from "react";
-import { AuthIframe } from "./AuthIframe";
-import { API_BASE, checkAuthSession, UserResponse } from "@/lib/grapes-api";
+import { API_BASE, checkAuthSession } from "@/lib/grapes-api";
+import { useAuthContext } from "./AuthContext";
 
 interface AuthButtonProps {
-  readonly showAuthIframe?: boolean;
-  readonly onShowAuthIframe?: (show: boolean) => void;
-  readonly onAuthSuccess?: (userData: any) => void;
-  readonly onAuthClose?: () => void;
-  readonly authSession?: UserResponse | null;
   readonly isMobile?: boolean;
   readonly onMobileMenuClose?: () => void;
+  readonly showLogin?: boolean;
+  readonly showUserProfile?: boolean;
 }
 
 export function AuthButton({
-  showAuthIframe: externalShowAuthIframe,
-  onShowAuthIframe,
-  onAuthSuccess: externalOnAuthSuccess,
-  onAuthClose: externalOnAuthClose,
-  authSession: externalAuthSession,
   isMobile = false,
   onMobileMenuClose,
+  showLogin = true,
+  showUserProfile = true,
 }: AuthButtonProps) {
-  const [user, setUser] = useState<any>(null);
-  const [showAuthIframe, setShowAuthIframe] = useState(false);
+  const authContext = useAuthContext();
+
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
-  // Sync external showAuthIframe prop to internal state if provided
-  useEffect(() => {
-    if (externalShowAuthIframe !== undefined) {
-      setShowAuthIframe(externalShowAuthIframe);
-    }
-  }, [externalShowAuthIframe]);
-
-  useEffect(() => {
-    if (externalAuthSession) {
-      setUser(externalAuthSession.isAuthenticated && externalAuthSession.user ? externalAuthSession.user : null);
-      return;
-    }
-
-    const checkAuth = async () => {
-      try {
-        const result = await checkAuthSession();
-        if (result.isAuthenticated && result.user) {
-          setUser(result.user);
-        }
-      } catch (error) {
-        console.error('Auth check failed:', error);
-      }
-    };
-
-    checkAuth();
-  }, [externalAuthSession]);
+  // Since we are now guaranteed to be inside AuthProvider, context should exist.
+  // However, for safety (e.g. if used outside provider accidentally), we can have a safe check.
+  const user = authContext?.authSession?.isAuthenticated ? authContext.authSession.user : null;
 
   useEffect(() => {
     const handleClickOutside = (event: PointerEvent) => {
@@ -72,31 +43,16 @@ export function AuthButton({
     };
   }, [showUserMenu]);
 
-  const handleAuthSuccess = (userData: any) => {
-    setUser(userData);
-    setShowAuthIframe(false);
-    onShowAuthIframe?.(false);
-    externalOnAuthSuccess?.(userData);
-  };
-
   const handleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
     onMobileMenuClose?.();
-    setShowAuthIframe(true);
-    onShowAuthIframe?.(true);
-  };
-
-  const handleAuthIframeClose = () => {
-    setShowAuthIframe(false);
-    onShowAuthIframe?.(false);
-    externalOnAuthClose?.();
+    authContext?.triggerAuth();
   };
 
   const handleSignOut = async () => {
     setShowUserMenu(false);
     onMobileMenuClose?.();
-    setUser(null);
-    globalThis.location.href = `${API_BASE}/api/website-proxy/signout?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
+    authContext?.logout();
   };
 
   const handleDashboardClick = () => {
@@ -111,12 +67,12 @@ export function AuthButton({
   return (
     <>
       {/* Login Button - shown when not authenticated */}
-      {!user && (
+      {!user && showLogin && (
         <button
           onClick={handleLogin}
           className={cn(
             "font-semibold text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500",
-            isMobile 
+            isMobile
               ? "mt-4 w-full text-center px-6 py-3 text-base"
               : "inline-block px-4 py-2 text-sm leading-5 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
           )}
@@ -126,7 +82,7 @@ export function AuthButton({
       )}
 
       {/* Mobile Authenticated View */}
-      {user && isMobile && (
+      {user && isMobile && showUserProfile && (
         <>
           <div className="mt-4 px-4 py-3 bg-zinc-800 rounded-lg flex items-center gap-3">
             {user.image ? (
@@ -158,7 +114,7 @@ export function AuthButton({
       )}
 
       {/* Desktop Authenticated View */}
-      {user && !isMobile && (
+      {user && !isMobile && showUserProfile && (
         <div className="relative" ref={userMenuRef}>
           <button
             onClick={() => setShowUserMenu(!showUserMenu)}
@@ -172,16 +128,16 @@ export function AuthButton({
                 {userInitial}
               </div>
             )}
-            <svg 
-              className={cn("w-4 h-4 text-gray-400 transition-transform max-lg:hidden", showUserMenu && "rotate-180")} 
-              fill="none" 
-              stroke="currentColor" 
+            <svg
+              className={cn("w-4 h-4 text-gray-400 transition-transform max-lg:hidden", showUserMenu && "rotate-180")}
+              fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          
+
           {showUserMenu && (
             <div className="absolute right-0 mt-2 w-56 bg-zinc-900 rounded-lg shadow-lg border border-zinc-700 overflow-hidden z-50">
               <div className="px-4 py-3 border-b border-zinc-700">
@@ -206,15 +162,6 @@ export function AuthButton({
           )}
         </div>
       )}
-
-      {/* Auth Iframe - single instance for all cases */}
-      {showAuthIframe && (
-        <AuthIframe
-          onAuthSuccess={handleAuthSuccess}
-          onClose={handleAuthIframeClose}
-        />
-      )}
     </>
   );
 }
-

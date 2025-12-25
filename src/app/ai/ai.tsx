@@ -7,7 +7,7 @@ import HeaderStandalone from "./header";
 import FooterStandalone from "./footer";
 import { useSpeechToText } from "./useSpeechToText";
 import { TemplateGallery } from "../_components/TemplateGallery";
-import { AuthIframe } from "./AuthIframe";
+import { useAuthContext } from "./AuthContext";
 
 declare global {
   interface Window {
@@ -89,32 +89,12 @@ export default function AiPage({ className }: AiPageProps) {
   const [hasTrackedInterest, setHasTrackedInterest] = useState(false);
   const [showButtonHighlight, setShowButtonHighlight] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [showAuthIframe, setShowAuthIframe] = useState(false);
   const [autoSubmit, setAutoSubmit] = useState(false);
-  const [useNewFlow, setUseNewFlow] = useState(useNewAuthFlow());
-  const [authSession, setAuthSession] = useState<UserResponse | null>(null);
 
-  useEffect(() => {
-    const handleFlagChange = () => {
-      setUseNewFlow(useNewAuthFlow());
-    };
-
-    window.addEventListener('featureFlagChanged', handleFlagChange);
-    return () => window.removeEventListener('featureFlagChanged', handleFlagChange);
-  }, []);
-
-  useEffect(() => {
-    if (!useNewFlow) {
-      return;
-    }
-
-    const checkAuth = async () => {
-      const result = await checkAuthSession();
-      setAuthSession(result);
-    };
-
-    checkAuth();
-  }, [useNewFlow]);
+  const authContext = useAuthContext();
+  const authSession = authContext?.authSession;
+  const triggerAuth = authContext?.triggerAuth || (() => { });
+  const useNewFlow = authContext?.useNewFlow || false;
 
   useEffect(() => {
     const urlPrompt = searchParams.get("prompt");
@@ -169,21 +149,13 @@ export default function AiPage({ className }: AiPageProps) {
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!prompt.trim()) return;
-    
+
     if (loading) {
       return;
     }
 
-    const useNewFlow = useNewAuthFlow();
-
     if (useNewFlow) {
-      let result = authSession;
-      if (!result) {
-        result = await checkAuthSession();
-        setAuthSession(result);
-      }
-      
-      if (!result.isAuthenticated) {
+      if (!authSession?.isAuthenticated) {
         trackClientJourneyEvent("ai_signin_required", {
           page: globalThis.location?.pathname,
           prompt_length: prompt.length,
@@ -191,7 +163,7 @@ export default function AiPage({ className }: AiPageProps) {
         });
 
         setAutoSubmit(false);
-        setShowAuthIframe(true);
+        triggerAuth();
         return;
       }
     }
@@ -213,28 +185,12 @@ export default function AiPage({ className }: AiPageProps) {
     }
   };
 
-  const handleAuthSuccess = (userData: any) => {
-    setShowAuthIframe(false);
-
-    setAuthSession({
-      isAuthenticated: true,
-      user: userData,
-    });
-
-    trackClientJourneyEvent('ai_auth_success', {
-      userId: userData?.id,
-    });
-
-    if (!autoSubmit) {
-      setAutoSubmit(true);
+  useEffect(() => {
+    if (autoSubmit && authSession?.isAuthenticated) {
       handleSubmit(new Event('submit') as any);
+      setAutoSubmit(false); // Reset
     }
-  };
-
-  const handleAuthClose = () => {
-    setShowAuthIframe(false);
-    setAutoSubmit(false);
-  };
+  }, [authSession, autoSubmit]);
 
   const handleRemoveFile = () => {
     setUploadedFile(null);
@@ -313,12 +269,7 @@ export default function AiPage({ className }: AiPageProps) {
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
       )}
-      {showAuthIframe && (
-        <AuthIframe
-          onAuthSuccess={handleAuthSuccess}
-          onClose={handleAuthClose}
-        />
-      )}
+
     </div>
   );
 }
@@ -374,7 +325,7 @@ function PromptTextarea(props: Readonly<{
       } else if (isDeleting && typedText === "") {
         setIsDeleting(false);
         setCurrentHeadlineIndex((prev) => (prev + 1) % inputTexts.length);
-        setTimeout(() => {}, pauseBeforeType);
+        setTimeout(() => { }, pauseBeforeType);
       } else if (isDeleting) {
         setTypedText(currentText.substring(0, typedText.length - 1));
       } else {
@@ -426,9 +377,9 @@ function PromptTextarea(props: Readonly<{
       style={
         showHighlight
           ? {
-              borderColor: "rgba(139, 92, 246, 0.3)",
-              animation: "borderPulse 1.5s ease-in-out 2",
-            }
+            borderColor: "rgba(139, 92, 246, 0.3)",
+            animation: "borderPulse 1.5s ease-in-out 2",
+          }
           : undefined
       }
     >
@@ -759,9 +710,9 @@ function RecommendationsStandalone({
           style={
             index === 0 && showHighlight
               ? {
-                  borderColor: "rgba(139, 92, 246, 0.3)",
-                  animation: "borderPulse 1.5s ease-in-out 1",
-                }
+                borderColor: "rgba(139, 92, 246, 0.3)",
+                animation: "borderPulse 1.5s ease-in-out 1",
+              }
               : undefined
           }
           onClick={() => onClick(button.prompt)}

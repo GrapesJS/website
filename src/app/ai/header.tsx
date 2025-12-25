@@ -9,7 +9,9 @@ interface HeaderStandaloneProps {
   className?: string;
 }
 
-export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
+export default function HeaderStandalone({
+  className,
+}: HeaderStandaloneProps) {
   const githubRepoPath = "GrapesJS/grapesjs";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
@@ -111,7 +113,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                 />
               </svg>
             </a>
-            
+
             {/* Desktop Auth Button */}
             {!useNewFlow ? (
               <a
@@ -135,8 +137,8 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                 Login
               </a>
             ) : (
-              <div className="lg:hidden">
-                <AuthButton />
+              <div className="lg:hidden mr-2">
+                <AuthButton isMobile={false} showUserProfile={true} />
               </div>
             )}
 
@@ -260,6 +262,8 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                     />
                   </svg>
                 </a>
+
+
               </div>
             </div>
           </div>
