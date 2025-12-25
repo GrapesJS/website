@@ -26,15 +26,12 @@ export default function HeaderStandalone({
   const githubRepoPath = "GrapesJS/grapesjs";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [internalShowAuthIframe, setInternalShowAuthIframe] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const [useNewFlow, setUseNewFlow] = useState(useNewAuthFlow());
-
-  const showAuthIframe = externalShowAuthIframe ?? internalShowAuthIframe;
-  const setShowAuthIframe = onShowAuthIframe ?? setInternalShowAuthIframe;
+  const isAuthenticated = !!user;
 
   useEffect(() => {
     const handleFlagChange = () => {
@@ -51,13 +48,7 @@ export default function HeaderStandalone({
     }
 
     if (externalAuthSession) {
-      if (externalAuthSession.isAuthenticated && externalAuthSession.user) {
-        setIsAuthenticated(true);
-        setUser(externalAuthSession.user);
-      } else {
-        setIsAuthenticated(false);
-        setUser(null);
-      }
+      setUser(externalAuthSession.isAuthenticated && externalAuthSession.user ? externalAuthSession.user : null);
       return;
     }
 
@@ -66,7 +57,6 @@ export default function HeaderStandalone({
         const result = await checkAuthSession();
         
         if (result.isAuthenticated && result.user) {
-          setIsAuthenticated(true);
           setUser(result.user);
         }
       } catch (error) {
@@ -108,9 +98,12 @@ export default function HeaderStandalone({
   };
 
   const handleAuthSuccess = (userData: any) => {
-    setIsAuthenticated(true);
     setUser(userData);
-    setShowAuthIframe(false);
+    if (onShowAuthIframe) {
+      onShowAuthIframe(false);
+    } else {
+      setInternalShowAuthIframe(false);
+    }
     externalOnAuthSuccess?.(userData);
   };
 
@@ -119,7 +112,11 @@ export default function HeaderStandalone({
     
     if (useNewFlow) {
       // New flow: show iframe modal
-      setShowAuthIframe(true);
+      if (onShowAuthIframe) {
+        onShowAuthIframe(true);
+      } else {
+        setInternalShowAuthIframe(true);
+      }
     } else {
       // Legacy flow: redirect to app signin
       globalThis.location.href = `${API_BASE}/signin?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
@@ -128,7 +125,6 @@ export default function HeaderStandalone({
 
   const handleSignOut = async () => {
     setShowUserMenu(false);
-    setIsAuthenticated(false);
     setUser(null);
     
     globalThis.location.href = `${API_BASE}/api/website-proxy/signout?callbackUrl=${encodeURIComponent(globalThis.location.href)}`;
@@ -434,11 +430,15 @@ export default function HeaderStandalone({
         )}
       </header>
       
-      {useNewFlow && showAuthIframe && (
+      {useNewFlow && (externalShowAuthIframe ?? internalShowAuthIframe) && (
         <AuthIframe
           onAuthSuccess={handleAuthSuccess}
           onClose={() => {
-            setShowAuthIframe(false);
+            if (onShowAuthIframe) {
+              onShowAuthIframe(false);
+            } else {
+              setInternalShowAuthIframe(false);
+            }
             externalOnAuthClose?.();
           }}
         />
