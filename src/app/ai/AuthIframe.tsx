@@ -177,7 +177,7 @@ export function AuthIframe({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleClose]);
 
-  const iframeUrl = `${API_BASE}/signin`;
+  const iframeUrl = `${API_BASE}/signin?redirect=/signin`;
 
   const isProcessing = ['loading', 'authenticated'].includes(authState.status);
   const processingText = authState.status === 'authenticated' ? 'Signing in...' : 'Loading...';
