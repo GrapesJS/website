@@ -99,9 +99,22 @@ export function AuthButton({
     if (isAuthenticated && user) {
       return (
         <>
-          <div className="mt-4 px-4 py-3 bg-zinc-800 rounded-lg">
-            <p className="text-sm font-medium text-white">{user.name || 'User'}</p>
-            <p className="text-xs text-gray-400">{user.email}</p>
+          <div className="mt-4 px-4 py-3 bg-zinc-800 rounded-lg flex items-center gap-3">
+            {user.image ? (
+              <img 
+                src={user.image} 
+                alt={user.name || 'User'} 
+                className="w-10 h-10 rounded-full"
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center text-white font-semibold">
+                {(user.name || user.email || 'U')[0].toUpperCase()}
+              </div>
+            )}
+            <div className="flex-1">
+              <p className="text-sm font-medium text-white">{user.name || 'User'}</p>
+              <p className="text-xs text-gray-400">{user.email}</p>
+            </div>
           </div>
           <a
             href={`${API_BASE}/dashboard`}
@@ -162,10 +175,10 @@ export function AuthButton({
   if (isAuthenticated && user) {
     return (
       <>
-        <div className="relative max-lg:hidden" ref={userMenuRef}>
+        <div className="relative" ref={userMenuRef}>
           <button
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+            className="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-gray-800/50 transition-colors"
             aria-label="User menu"
           >
             {user.image ? (
@@ -180,7 +193,7 @@ export function AuthButton({
               </div>
             )}
             <svg 
-              className={cn("w-4 h-4 text-gray-400 transition-transform", showUserMenu && "rotate-180")} 
+              className={cn("w-4 h-4 text-gray-400 transition-transform max-lg:hidden", showUserMenu && "rotate-180")} 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -233,7 +246,7 @@ export function AuthButton({
     <>
       <button
         onClick={handleLogin}
-        className="max-lg:hidden inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
+        className="inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
       >
         Login
       </button>
