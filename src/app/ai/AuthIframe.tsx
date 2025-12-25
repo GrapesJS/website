@@ -1,30 +1,18 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { API_BASE, checkAuthSession } from '@/lib/grapes-api';
+import { API_BASE, checkAuthSession, type AuthUser } from '@/lib/grapes-api';
 
 const IFRAME_MIN_HEIGHT = 700;
 const ALLOWED_ORIGINS = [
   'https://app.grapesjs.com',
   'https://app-staging.grapesjs.com',
-  'https://app.grapesjs.local:3000',
-  'http://app.grapesjs.local:3000',
-  'http://www.grapesjs.local:3001',
   'http://localhost:3000',
   'http://localhost:3001',
 ];
 
-interface User {
-  id: string;
-  email?: string | null;
-  name?: string | null;
-  image?: string | null;
-  avatar?: string;
-  [key: string]: any;
-}
-
 interface AuthIframeProps {
-  readonly onAuthSuccess: (user: User) => void;
+  readonly onAuthSuccess: (user: AuthUser) => void;
   readonly onClose: () => void;
 }
 
@@ -33,8 +21,7 @@ export function AuthIframe({ onAuthSuccess, onClose }: AuthIframeProps) {
 
   useEffect(() => {
     const handleMessage = async (event: MessageEvent<any>) => {
-      const isLocalDev = event.origin.includes('localhost') || event.origin.includes('grapesjs.local');
-      if (!ALLOWED_ORIGINS.includes(event.origin) && !isLocalDev) return;
+      if (!ALLOWED_ORIGINS.includes(event.origin)) return;
 
       const message = event.data;
       

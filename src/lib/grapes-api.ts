@@ -8,12 +8,7 @@ export const API_BASE = isDev
   : "https://app.grapesjs.com";
 
 export interface HomepageData {
-  user?: {
-    id: string;
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-  };
+  user?: AuthUser;
   templates: Array<{
     id: string;
     name: string;
