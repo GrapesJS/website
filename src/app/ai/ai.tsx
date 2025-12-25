@@ -89,8 +89,7 @@ export default function AiPage({ className }: AiPageProps) {
   const [showButtonHighlight, setShowButtonHighlight] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [showAuthIframe, setShowAuthIframe] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const hasAutoSubmittedRef = useRef(false);
+  const [autoSubmit, setAutoSubmit] = useState(false);
   const [useNewFlow, setUseNewFlow] = useState(useNewAuthFlow());
   const [authSession, setAuthSession] = useState<UserResponse | null>(null);
 
@@ -170,7 +169,7 @@ export default function AiPage({ className }: AiPageProps) {
     ev.preventDefault();
     if (!prompt.trim()) return;
     
-    if (loading || isSubmitting) {
+    if (loading) {
       return;
     }
 
@@ -190,14 +189,13 @@ export default function AiPage({ className }: AiPageProps) {
           has_file: !!uploadedFile,
         });
 
-        hasAutoSubmittedRef.current = false;
+        setAutoSubmit(false);
         setShowAuthIframe(true);
         return;
       }
     }
 
     setLoading(true);
-    setIsSubmitting(true);
     setError(null);
 
     try {
@@ -211,7 +209,6 @@ export default function AiPage({ className }: AiPageProps) {
       setError(message);
     } finally {
       setLoading(false);
-      setIsSubmitting(false);
     }
   };
 
@@ -227,15 +224,15 @@ export default function AiPage({ className }: AiPageProps) {
       userId: userData?.id,
     });
 
-    if (!hasAutoSubmittedRef.current) {
-      hasAutoSubmittedRef.current = true;
+    if (!autoSubmit) {
+      setAutoSubmit(true);
       handleSubmit(new Event('submit') as any);
     }
   };
 
   const handleAuthClose = () => {
     setShowAuthIframe(false);
-    hasAutoSubmittedRef.current = false;
+    setAutoSubmit(false);
   };
 
   const handleRemoveFile = () => {
