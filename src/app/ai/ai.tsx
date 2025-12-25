@@ -7,6 +7,7 @@ import HeaderStandalone from "./header";
 import FooterStandalone from "./footer";
 import { useSpeechToText } from "./useSpeechToText";
 import { TemplateGallery } from "../_components/TemplateGallery";
+import { AuthIframe } from "./AuthIframe";
 
 declare global {
   interface Window {
@@ -249,13 +250,7 @@ export default function AiPage({ className }: AiPageProps) {
         className
       )}
     >
-      <HeaderStandalone 
-        showAuthIframe={showAuthIframe}
-        onShowAuthIframe={setShowAuthIframe}
-        onAuthSuccess={handleAuthSuccess}
-        onAuthClose={handleAuthClose}
-        authSession={authSession}
-      />
+      <HeaderStandalone />
       <main className="relative">
         <div
           className="relative w-full bg-fixed bg-no-repeat bg-cover py-32"
@@ -317,6 +312,12 @@ export default function AiPage({ className }: AiPageProps) {
       <FooterStandalone />
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
+      )}
+      {showAuthIframe && (
+        <AuthIframe
+          onAuthSuccess={handleAuthSuccess}
+          onClose={handleAuthClose}
+        />
       )}
     </div>
   );
