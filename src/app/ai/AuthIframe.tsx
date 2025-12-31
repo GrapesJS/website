@@ -71,7 +71,7 @@ export function AuthIframe({ onAuthSuccess, onClose }: AuthIframeProps) {
             className="w-full border-0 rounded-2xl"
             style={{ height: '700px', maxHeight: '85vh' }}
             title="Sign In"
-            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-storage-access-by-user-activation"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-storage-access-by-user-activation"
             allow="camera 'none'; microphone 'none'; geolocation 'none'"
           />
         </div>
