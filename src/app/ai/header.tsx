@@ -2,15 +2,20 @@
 
 import cn from "classnames";
 import { useState } from "react";
+import { AuthButton } from "./AuthButton";
+import { useNewAuthFlow } from "@/lib/feature-flags";
 
 interface HeaderStandaloneProps {
   className?: string;
 }
 
-export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
+export default function HeaderStandalone({
+  className,
+}: HeaderStandaloneProps) {
   const githubRepoPath = "GrapesJS/grapesjs";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+  const useNewFlow = useNewAuthFlow();
 
   const toggleMobileMenu = () => {
     if (isMobileMenuOpen) {
@@ -108,12 +113,35 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                 />
               </svg>
             </a>
-            <a
-              href="https://app.grapesjs.com/dashboard"
-              className="max-lg:hidden inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
-            >
-              Login
-            </a>
+
+            {/* Desktop Auth Button */}
+            {!useNewFlow ? (
+              <a
+                href="https://app.grapesjs.com/dashboard"
+                className="max-lg:hidden inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
+              >
+                Login
+              </a>
+            ) : (
+              <div className="max-lg:hidden">
+                <AuthButton />
+              </div>
+            )}
+
+            {/* Mobile Auth Button - visible on mobile header */}
+            {!useNewFlow ? (
+              <a
+                href="https://app.grapesjs.com/dashboard"
+                className="lg:hidden inline-block px-3 py-1.5 text-sm font-semibold text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500"
+              >
+                Login
+              </a>
+            ) : (
+              <div className="lg:hidden mr-2">
+                <AuthButton isMobile={false} showUserProfile={true} />
+              </div>
+            )}
+
             {/* <a
               href="https://app.grapesjs.com/dashboard"
               className="inline-block px-4 py-2 text-sm font-semibold leading-5 text-gray-100 no-underline bg-purple-600 border border-purple-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-opacity-90 sm:px-5 sm:py-2 lg:px-6 lg:py-2 whitespace-nowrap"
@@ -123,7 +151,7 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden ml-4 p-2 text-gray-100 hover:text-white transition-colors duration-200"
+              className="lg:hidden ml-2 p-2 text-gray-100 hover:text-white transition-colors duration-200"
               onClick={toggleMobileMenu}
               aria-label="Toggle mobile menu"
             >
@@ -234,20 +262,8 @@ export default function HeaderStandalone({ className }: HeaderStandaloneProps) {
                     />
                   </svg>
                 </a>
-                <a
-                  href="https://app.grapesjs.com/dashboard"
-                  className="mt-4 w-full text-center px-6 py-3 text-base font-semibold text-gray-100 no-underline border border-gray-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800 hover:border-gray-500"
-                  onClick={closeMobileMenu}
-                >
-                  Login
-                </a>
-                <a
-                  href="https://app.grapesjs.com/dashboard"
-                  className="mt-2 w-full text-center px-6 py-3 text-base font-semibold text-white no-underline bg-purple-600 border border-purple-600 rounded-lg cursor-pointer transition-all duration-200 hover:bg-opacity-90"
-                  onClick={closeMobileMenu}
-                >
-                  Get Started
-                </a>
+
+
               </div>
             </div>
           </div>

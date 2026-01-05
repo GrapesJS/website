@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 
 import cn from "classnames";
 import "./globals.css";
+import { AuthProvider } from "./ai/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] });
@@ -92,7 +93,11 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <div className="min-h-screen">{children}</div>
+        <div className="min-h-screen">
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </div>
       </body>
     </html>
   );
