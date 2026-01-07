@@ -7,10 +7,12 @@ import { useNewAuthFlow } from "@/lib/feature-flags";
 
 interface HeaderStandaloneProps {
   className?: string;
+  showIntegrations?: boolean;
 }
 
 export default function HeaderStandalone({
   className,
+  showIntegrations = false,
 }: HeaderStandaloneProps) {
   const githubRepoPath = "GrapesJS/grapesjs";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,6 +75,14 @@ export default function HeaderStandalone({
 
           {/* Desktop Navigation */}
           <div className="flex items-center gap-6 flex-1 justify-end mr-8 max-lg:hidden">
+            {showIntegrations && (
+              <a
+                href="/ai/integrations"
+                className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
+              >
+                Integrations
+              </a>
+            )}
             <a
               href="/pricing"
               className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
@@ -215,6 +225,15 @@ export default function HeaderStandalone({
                 </button>
               </div>
               <div className="flex flex-col space-y-6 bg-gray-900/90 rounded-lg p-6 backdrop-blur-sm">
+                {showIntegrations && (
+                  <a
+                    href="/ai/integrations"
+                    className="text-gray-100 no-underline font-medium text-xl transition-colors duration-200 hover:text-white hover:bg-gray-800/50 px-4 py-2 rounded-md"
+                    onClick={closeMobileMenu}
+                  >
+                    Integrations
+                  </a>
+                )}
                 {/* <a
               href="/pricing#comparison-section"
               className="text-gray-100 no-underline font-medium text-xl transition-colors duration-200 hover:text-white hover:bg-gray-800/50 px-4 py-2 rounded-md"
