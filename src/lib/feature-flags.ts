@@ -6,14 +6,14 @@ declare global {
 
 export function useNewAuthFlow(): boolean {
   if (typeof window === 'undefined') {
-    return false;
+    return true;
   }
   
   if (typeof window.GRAPES_USE_NEW_AUTH === 'boolean') {
     return window.GRAPES_USE_NEW_AUTH;
   }
   
-  return false;
+  return true;
 }
 
 export function enableNewAuthFlow(): void {
