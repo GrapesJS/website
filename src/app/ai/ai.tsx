@@ -214,7 +214,7 @@ export default function AiPage({ className }: AiPageProps) {
         className
       )}
     >
-      <HeaderStandalone />
+      <HeaderStandalone showIntegrations={isEmail} />
       <main className="relative">
         <div
           className="relative w-full bg-fixed bg-no-repeat bg-cover py-32"
