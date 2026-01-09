@@ -70,7 +70,7 @@ export default function RootLayout({
             __html: `(function(w,r){w._rwq=r;w[r]=w[r]||function(){(w[r].q=w[r].q||[]).push(arguments)}})(window,'rewardful');`,
           }}
         />
-        <script src="https://r.wdfl.co/rw.js" data-rewardful="9302d5" />
+        <script src="https://r.wdfl.co/rw.js" data-rewardful="9302d5" async />
         {/*
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
@@ -94,9 +94,7 @@ export default function RootLayout({
           />
         </noscript>
         <div className="min-h-screen">
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </div>
       </body>
     </html>
