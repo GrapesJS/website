@@ -12,28 +12,38 @@ import "../home.css";
 import styles from "../styles.module.css";
 
 const clsFullWhite = "!brightness-0 !invert";
+const clsSmallLogo = "!h-[40px]";
 const customers = [
   {
     src: "assets/images/external-logos/microsoft.png",
     alt: "Microsoft",
+    className: clsFullWhite,
   },
   {
-    src: "assets/images/external-logos/france-gov.png",
-    alt: "Government of France",
+    src: "/assets/images/external-logos/bytedance.png",
+    alt: "TikTok",
+    className: cn(clsFullWhite, clsSmallLogo),
   },
-  { src: "assets/images/external-logos/pfizer.png", alt: "Pfizer" },
+  {
+    src: "/assets/images/external-logos/gainsight.png",
+    alt: "Gainsight",
+    className: cn(clsFullWhite, clsSmallLogo),
+  },
   {
     src: "assets/images/external-logos/bbc.png",
     alt: "BBC",
     className: clsFullWhite,
   },
-  {
-    src: "assets/images/external-logos/deloitte.png",
-    alt: "Deloitte",
-    className: cn(clsFullWhite, "!h-[25px]"),
+  { 
+    src: "assets/images/external-logos/braze.png", 
+    alt: "Braze",
+    className: clsFullWhite,
   },
-  { src: "assets/images/external-logos/braze.png", alt: "Braze" },
-  { src: "assets/images/external-logos/phresia.png", alt: "Phresia" },
+  { 
+    src: "assets/images/external-logos/phresia.png", 
+    alt: "Phresia",
+    className: clsFullWhite,
+  },
 ];
 
 export default function SDKPage() {
