@@ -28,28 +28,47 @@ const urlProps = { ref };
 const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
   const [open, setOpen] = useState(false);
   return (
-    <header className={cn(styles.container, isHome && styles.home)} {...rest}>
-      <div className={styles.navbar}>
-        <div className={styles.content}>
-          <div className={cn(styles.logo, "z-10")}>
-            <Link href={urls.getHomeUrl()}>
-              <Logo />
-            </Link>
-          </div>
-          <MainNav />
-          <button
-            className={cn(styles.drawerButton, "z-10")}
-            aria-label="Toggle menu"
-            onClick={() => setOpen((open) => !open)}
+    <>
+      <div className="w-full border-b border-white/15 bg-gradient-to-r from-[#7b2d8e] via-[#973aa8] to-[#7b2d8e] text-white">
+        <div className="mx-auto flex w-full max-w-[1150px] items-center justify-center gap-2 px-4 py-2.5 text-[12px] font-medium leading-5 sm:px-5 sm:text-sm">
+          <span className="truncate">
+            ✨ <b>AI Chat Plugin is here!</b> Build AI agents that edit your
+            projects.
+          </span>
+          <a
+            href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 font-semibold text-purple-200 transition-colors hover:text-white"
           >
-            <Icon path={open ? mdiClose : mdiMenu} size={1} />
-          </button>
+            View Docs -&gt;
+          </a>
         </div>
       </div>
-      <div className={cn(styles.drawer, open && styles.open)}>
-        <MainNav onLinkClick={() => setOpen(false)} isVertical />
-      </div>
-    </header>
+
+      <header className={cn(styles.container, isHome && styles.home)} {...rest}>
+        <div className={styles.navbar}>
+          <div className={styles.content}>
+            <div className={cn(styles.logo, "z-10")}>
+              <Link href={urls.getHomeUrl()}>
+                <Logo />
+              </Link>
+            </div>
+            <MainNav />
+            <button
+              className={cn(styles.drawerButton, "z-10")}
+              aria-label="Toggle menu"
+              onClick={() => setOpen((open) => !open)}
+            >
+              <Icon path={open ? mdiClose : mdiMenu} size={1} />
+            </button>
+          </div>
+        </div>
+        <div className={cn(styles.drawer, open && styles.open)}>
+          <MainNav onLinkClick={() => setOpen(false)} isVertical />
+        </div>
+      </header>
+    </>
   );
 };
 
@@ -136,7 +155,7 @@ function MainNav({
                   className={cn(
                     isVertical
                       ? "text-right"
-                      : cn(styles.navListLayer, "absolute w-auto")
+                      : cn(styles.navListLayer, "absolute w-auto"),
                   )}
                 >
                   <ul
@@ -186,7 +205,7 @@ const ListItem = forwardRef<
           target={target}
           className={cn(
             "block select-none hover:bg-white/5 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
-            className
+            className,
           )}
           {...props}
         >
