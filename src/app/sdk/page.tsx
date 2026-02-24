@@ -34,13 +34,13 @@ const customers = [
     alt: "BBC",
     className: clsFullWhite,
   },
-  { 
-    src: "assets/images/external-logos/braze.png", 
+  {
+    src: "assets/images/external-logos/braze.png",
     alt: "Braze",
     className: clsFullWhite,
   },
-  { 
-    src: "assets/images/external-logos/phresia.png", 
+  {
+    src: "assets/images/external-logos/phresia.png",
     alt: "Phresia",
     className: clsFullWhite,
   },
@@ -68,14 +68,17 @@ export default function SDKPage() {
             </div>
           </BadgeLink> */}
           <h1 className={cn(styles.h1)}>
-            The embeddable drag-and-drop builder
+            Embed an AI-powered visual editor in your app.
           </h1>
           <p className={cn(styles.p)}>
-            Seamlessly integrate and create within your application.
+            White-label, no-code editor that integrates seamlessly into your
+            stack.
             <br />
-            Open-source, customizable, white-label, no-code, visual editor for:
+            Build with AI, drag & drop, or code.
             <br />
-            <b>Emails</b>, <b>Landing Pages</b>, and <b>Webpages</b>
+            For <b className="text-white">Emails</b>,{" "}
+            <b className="text-white">Landing Pages</b>, and{" "}
+            <b className="text-white">Webpages</b>.
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
@@ -93,19 +96,6 @@ export default function SDKPage() {
           <Tabs
             tabs={[
               {
-                id: "editorImage",
-                label: "HTML/Website Builder",
-                content: (
-                  <WindowShell>
-                    <img
-                      className="w-full"
-                      src="/assets/images/html_builder.webp"
-                      alt="GrapesJS Studio SDK Webpage Demo"
-                    />
-                  </WindowShell>
-                ),
-              },
-              {
                 id: "editorImage3",
                 label: "Newsletter Builder",
                 content: (
@@ -114,6 +104,19 @@ export default function SDKPage() {
                       className="w-full"
                       src="/assets/images/newsletter.webp"
                       alt="GrapesJS Studio SDK Email/Newsletter Demo"
+                    />
+                  </WindowShell>
+                ),
+              },
+              {
+                id: "editorImage",
+                label: "HTML/Website Builder",
+                content: (
+                  <WindowShell>
+                    <img
+                      className="w-full"
+                      src="/assets/images/html_builder.webp"
+                      alt="GrapesJS Studio SDK Webpage Demo"
                     />
                   </WindowShell>
                 ),
@@ -323,7 +326,7 @@ export default function SDKPage() {
               <div className="flex flex-col gap-[8px] p-[32px] flex-1">
                 <h4 className={styles.h4}>Responsive design</h4>
                 <p className={cn(styles.p)}>
-                  All the tools you need to allow your uses to create content
+                  All the tools you need to allow your users to create content
                   that looks great on any device.
                 </p>
               </div>
@@ -437,9 +440,9 @@ export default function SDKPage() {
           </div>
 
           <h3 className={cn(styles.h1)}>Plans that fit your scale</h3>
-          <p className={cn(styles.p, "mb-10")}>
+          {/* <p className={cn(styles.p, "mb-10")}>
             Simple, transparent pricing that grows with you.
-          </p>
+          </p> */}
 
           <Pricing />
         </section>
@@ -478,7 +481,7 @@ export default function SDKPage() {
                 alt="Phreesia logo"
               />
             </a>
-            <a
+            {/* <a
               className={styles.sponsorLink}
               href="https://veepn.com/vpn-apps/download-vpn-for-pc/"
             >
@@ -488,7 +491,7 @@ export default function SDKPage() {
                 src="/assets/images/logo_veepn.png"
                 alt="Download the Best Windows VPN for PC"
               />
-            </a>
+            </a> */}
           </div>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="sponsors">

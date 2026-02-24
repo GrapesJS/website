@@ -3,7 +3,7 @@
   justify-content: center;
   position: sticky;
   height: 0;
-  top: 36px;
+  top: 30px;
   z-index: 10;
   pointer-events: none;
   margin: 0px;
@@ -15,6 +15,7 @@
 .navbar {
   height: fit-content;
   padding: 11px 20px;
+  margin-top: 7px;
   box-sizing: border-box;
   position: relative;
   width: 100%;
@@ -126,7 +127,7 @@
   .container.home .drawer { */
     color: var(--textColor);
     background: var(--backgroundColor);
-    padding-top: calc(36px + 68px + 16px);
+    padding-top: calc(42px + 68px + 16px);
     padding-right: 48px;
   }
   .drawer.open {
