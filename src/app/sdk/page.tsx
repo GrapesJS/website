@@ -447,7 +447,7 @@ export default function SDKPage() {
           <Pricing />
         </section>
 
-        <section className={styles.section}>
+        <section className={cn(styles.section, "!py-20")}>
           <h3 className={cn(styles.h1)}>Get started for free</h3>
           <p className={cn(styles.p)}>
             Join the thousands of companies & developers using our editor today
@@ -457,7 +457,7 @@ export default function SDKPage() {
           </CTALink>
         </section>
 
-        <section className={cn("!pt-20 !pb-44", styles.section)}>
+        {/* <section className={cn("!pt-20 !pb-44", styles.section)}>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="gold-sponsors">
               OUR GOLD SPONSORS
@@ -481,7 +481,7 @@ export default function SDKPage() {
                 alt="Phreesia logo"
               />
             </a>
-            {/* <a
+            <a
               className={styles.sponsorLink}
               href="https://veepn.com/vpn-apps/download-vpn-for-pc/"
             >
@@ -491,7 +491,7 @@ export default function SDKPage() {
                 src="/assets/images/logo_veepn.png"
                 alt="Download the Best Windows VPN for PC"
               />
-            </a> */}
+            </a>
           </div>
           <div className={styles.specialHeadingContainer}>
             <h2 className={styles.h2} id="sponsors">
@@ -509,7 +509,7 @@ export default function SDKPage() {
               Open Collective
             </object>
           </div>
-        </section>
+        </section> */}
 
         <Footer />
       </main>

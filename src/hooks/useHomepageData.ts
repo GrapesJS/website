@@ -19,9 +19,9 @@ interface UseHomepageDataReturn {
 }
 
 export function useHomepageData(
-  options: UseHomepageDataOptions = {}
+  options: UseHomepageDataOptions = {},
 ): UseHomepageDataReturn {
-  const { type = "all", limit = 100, includeProjects = false } = options;
+  const { type = "all", limit = 500, includeProjects = false } = options;
   const [data, setData] = useState<HomepageData>({ templates: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
