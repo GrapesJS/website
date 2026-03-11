@@ -15,7 +15,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
 const mdxComponents = {
   a: ({ children, ...rest }: any) => (
-    <Link className="link-gjs" {...rest}>
+    <Link className="link-gjs" target="_blank" {...rest}>
       {children}
     </Link>
   ),
@@ -41,6 +41,11 @@ const mdxComponents = {
     <h2 className="font-semibold" id={slugify(children!)} {...rest}>
       <a href={`#${slugify(children!)}`}>{children}</a>
     </h2>
+  ),
+  h3: ({ children, ...rest }: React.HTMLProps<any>) => (
+    <h3 className="font-semibold !text-base" id={slugify(children!)} {...rest}>
+      <a href={`#${slugify(children!)}`}>{children}</a>
+    </h3>
   ),
 };
 
