@@ -1,0 +1,66 @@
+---
+title: "How Skills Help AI Coding Agents Integrate Studio SDK Faster"
+excerpt: "Agent Skills package Studio SDK's docs and patterns into a format AI coding agents actually understand, so they stop guessing at APIs and start writing working integrations."
+coverImage: "/assets/blog/agent-skills/agent-skills-studio-sdk.webp"
+date: "2026-03-24T14:00:00Z"
+author:
+  name: Grapes Studio Team
+ogImage:
+  url: "/assets/blog/agent-skills/agent-skills-studio-sdk.webp"
+---
+
+## Faster Studio SDK Integrations with Agent Skills
+
+If you're using an AI coding agent to integrate Studio SDK, the bottleneck isn't writing code. It's getting the agent to understand the editor well enough to write the *right* code. The APIs, the plugin system, project types, rendering... there's a lot of surface area, and agents tend to waste tokens guessing at it.
+
+We built Agent Skills to fix this. Instead of pointing an agent at our full docs site and hoping for the best, Skills package the key concepts, code patterns, and API details into a compact format that LLMs can actually consume efficiently.
+
+---
+
+## A Simple Example
+
+Here's what that looks like in practice. A coding agent takes a generic CRM app and, from a single prompt, replaces a basic textarea used to store email HTML with a full Studio SDK integration.
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="none"
+  loading="lazy"
+  poster="/assets/blog/agent-skills/agent-skills-studio-sdk.webp"
+  style={{ width: '100%', height: 'auto', borderRadius: '16px', margin: '1.5rem 0' }}
+>
+  <source src="/assets/blog/agent-skills/studio-sdk-skills.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+---
+
+## What's Inside the Skills
+
+Studio SDK is flexible. You can embed it into web apps, email builders, CMS workflows, internal tools, and all kinds of custom visual editing experiences. That flexibility means integrations touch a lot of concepts at once: editor setup, plugins, project types, asset handling, rendering, UI customization.
+
+Before we had Skills, we'd watch agents hallucinate plugin APIs that don't exist, or wire up editor configs that looked plausible but missed how project types actually work. The Skills repo solves this by giving the agent structured context about each of these areas, with working code snippets and the correct API signatures, so it doesn't have to guess.
+
+---
+
+## Not Just for First-Time Setup
+
+Skills also help when you're updating an existing integration. Adding a new plugin, changing editor behavior, expanding a custom workflow: these are the kinds of follow-up tasks where agents tend to drift if they don't have the right context loaded.
+
+With Skills installed, your agent already knows how the SDK is structured, so follow-up prompts land closer to correct on the first try. Your developers stay focused on product decisions instead of babysitting the agent through docs.
+
+---
+
+## Get the Studio SDK Skills
+
+You can install Skills by running:
+
+```sh
+npx skills add GrapesJS/skills-studio-sdk
+```
+
+Once installed, you can ask your coding agent to use the Studio SDK Skills when working on editor-related tasks.
+
+The skills are also available on GitHub [here](https://github.com/GrapesJS/skills-studio-sdk). If you run into issues or want to suggest additions, open an issue on the repo.
