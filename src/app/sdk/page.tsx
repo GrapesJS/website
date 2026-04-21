@@ -82,12 +82,12 @@ export default function SDKPage() {
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>Try the Editor</CTALink>
+            <CTALink href={urls.getStudioEditorUrl()}>Open Playground</CTALink>
             <CTALink
-              href={urls.getSignInUrl({ ref: "heroAccount" })}
+              href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
               variant="tertiary"
             >
-              Create Account
+              Get License
             </CTALink>
           </div>
 
