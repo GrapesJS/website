@@ -82,7 +82,7 @@ function FeatureBullet({ children }: { children: React.ReactNode }) {
       <Icon
         path={mdiCheckCircleOutline}
         size={0.9}
-        className="mt-1 shrink-0 text-[#d39cdd]"
+        className="shrink-0 text-[#d39cdd]"
       />
       <span>{children}</span>
     </li>
@@ -102,54 +102,56 @@ function PlanCard({
     return (
       <article className="overflow-hidden rounded-[28px] border-2 border-[#c98ad6]/70 bg-[linear-gradient(180deg,rgba(0,0,0,0)_48%,rgba(116,59,139,0.45)_76%,rgba(223,157,176,0.72)_100%),#111111] shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
         <div className="grid gap-0 md:grid-cols-[1fr_1.2fr]">
-          <div className="flex flex-col px-10 pb-12 pt-16 md:px-12">
+          <div className="flex flex-col gap-12 px-10 pb-12 pt-16 md:px-12">
             <div className="flex items-center gap-5">
-              <div className="relative h-16 w-16 overflow-visible">
+              <div className="relative h-12 w-12 overflow-visible">
                 <img
                   loading="lazy"
                   src={plan.icon}
                   alt={`${plan.name} plan icon`}
-                  className="absolute -right-3 -top-3 h-20 w-20 max-w-none"
+                  className="absolute -right-3 -top-3 h-[62px] w-[62px] max-w-none"
                 />
               </div>
-              <h3 className="text-2xl font-semibold text-[#d39cdd] md:text-[28px]">
+              <h3 className="text-xl font-semibold text-[#d39cdd]">
                 {plan.name}
               </h3>
             </div>
 
-            <div className="mt-12 flex flex-col items-center text-center md:items-start md:text-left">
-              <p className="text-[72px] font-bold leading-none tracking-[-0.04em] text-white md:text-[92px]">
+            <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
+              <p className="text-[42px] font-bold leading-none tracking-[-0.02em] text-white md:text-[54px]">
                 {plan.price[selectedPeriod]}
               </p>
-              <p className="mt-4 text-xl leading-8 text-white/75 md:text-[30px] md:leading-10">
+              <p className="text-base leading-6 text-white/70">
                 {plan.description}
               </p>
             </div>
 
-            <div className="mt-12 md:max-w-[520px]">
+            <div className="md:max-w-[520px]">
               <PricingButton href={plan.cta.href} label={plan.cta.label} />
             </div>
           </div>
 
-          <div className="border-t border-white/20 px-10 pb-12 pt-12 md:border-l md:border-t-0 md:px-12">
-            <h4 className="text-base font-semibold text-[#d39cdd] md:text-lg">
-              FEATURES
-            </h4>
-            {plan.includes ? (
-              <p className="mt-6 text-sm leading-7 text-white/70 md:text-base">
-                Everything in{" "}
-                <strong className="capitalize text-white">
-                  {plan.includes}
-                </strong>{" "}
-                plus...
-              </p>
-            ) : null}
-            {plan.preList ? (
-              <p className="mt-6 text-sm leading-7 text-white/70 md:text-base">
-                {plan.preList}
-              </p>
-            ) : null}
-            <ul className="mt-10 grid gap-x-12 gap-y-5 md:grid-cols-2">
+          <div className="flex flex-col gap-10 border-t border-white/20 px-10 pb-12 pt-12 md:border-l md:border-t-0 md:px-12">
+            <div className="flex flex-col gap-6">
+              <h4 className="text-base font-semibold text-[#d39cdd] md:text-lg">
+                FEATURES
+              </h4>
+              {plan.includes ? (
+                <p className="text-sm leading-7 text-white/70 md:text-base">
+                  Everything in{" "}
+                  <strong className="capitalize text-white">
+                    {plan.includes}
+                  </strong>{" "}
+                  plus...
+                </p>
+              ) : null}
+              {plan.preList ? (
+                <p className="text-sm leading-7 text-white/70 md:text-base">
+                  {plan.preList}
+                </p>
+              ) : null}
+            </div>
+            <ul className="grid gap-x-12 gap-y-5 md:grid-cols-2">
               {plan.cardFeatures.map((feature, index) => (
                 <FeatureBullet key={`${plan.id}-feature-${index}`}>
                   {feature}
@@ -165,7 +167,7 @@ function PlanCard({
   return (
     <article className={cardClass}>
       <div>
-        <div className="flex flex-col items-center gap-2 p-6 text-center md:p-8">
+        <div className="flex flex-col items-center gap-4 p-6 text-center md:p-8">
           <div className="flex flex-row items-center justify-center gap-4 pt-6">
             <div className="relative h-12 w-12 overflow-visible">
               <img
@@ -196,7 +198,7 @@ function PlanCard({
           >
             {plan.description}
           </p>
-          <div className="mt-4 w-full">
+          <div className="w-full">
             <PricingButton
               href={plan.cta.href}
               label={plan.cta.label}
@@ -221,7 +223,7 @@ function PlanCard({
               {plan.preList}
             </p>
           ) : null}
-          <ul className="mt-3 grid gap-y-4">
+          <ul className="grid gap-y-4 pt-3">
             {plan.cardFeatures.map((feature, index) => (
               <FeatureBullet key={`${plan.id}-feature-${index}`}>
                 {feature}
