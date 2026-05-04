@@ -56,11 +56,12 @@ function BillingToggle({
             {period === "monthly" ? (
               "Monthly"
             ) : (
-              <span className="flex items-center gap-2 whitespace-nowrap leading-none">
+              <span className="flex items-center gap-3 whitespace-nowrap leading-none">
                 <span>Annual</span>
                 <span
                   className={cn(
-                    "text-[10px] font-semibold uppercase tracking-[0.14em]",
+                    "inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em]",
+                    accentBadgeClass,
                     isActive ? annualBadgeActiveClass : annualBadgeInactiveClass,
                   )}
                 >
