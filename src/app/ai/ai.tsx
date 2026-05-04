@@ -1,13 +1,15 @@
 "use client";
 
 import cn from "classnames";
-import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import HeaderStandalone from "./header";
-import FooterStandalone from "./footer";
-import { useSpeechToText } from "./useSpeechToText";
+import { useEffect, useState } from "react";
 import { TemplateGallery } from "../_components/TemplateGallery";
 import { useAuthContext } from "./AuthContext";
+import FooterStandalone from "./footer";
+import HeaderStandalone from "./header";
+import { useSpeechToText } from "./useSpeechToText";
+
+import "./ai-globals.css";
 
 declare global {
   interface Window {
@@ -20,7 +22,7 @@ declare global {
 
 function trackClientJourneyEvent(
   event: string,
-  properties: Record<string, any> = {}
+  properties: Record<string, any> = {},
 ) {
   if (typeof window !== "undefined" && window.posthog) {
     window.posthog.capture(event, properties);
@@ -32,6 +34,7 @@ import {
   mdiAccountHeart,
   mdiAirplaneLanding,
   mdiCalendarStar,
+  mdiClose,
   mdiContentCopy,
   mdiEmail,
   mdiGiftOutline,
@@ -39,14 +42,11 @@ import {
   mdiMicrophoneOff,
   mdiSend,
   mdiWeb,
-  mdiClose,
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { UploadMenu } from "./UploadMenu";
-import { checkAuthSession, UserResponse } from "@/lib/grapes-api";
-import { FileUploadType, FILE_TYPE_CONFIGS } from "./types";
+import { FILE_TYPE_CONFIGS, FileUploadType } from "./types";
 import { openInStudio } from "./util";
-import { useNewAuthFlow } from "@/lib/feature-flags";
 
 type AiPageProps = {
   actionUrl?: string;
@@ -93,7 +93,7 @@ export default function AiPage({ className }: AiPageProps) {
 
   const authContext = useAuthContext();
   const authSession = authContext?.authSession;
-  const triggerAuth = authContext?.triggerAuth || (() => { });
+  const triggerAuth = authContext?.triggerAuth || (() => {});
   const useNewFlow = authContext?.useNewFlow || false;
 
   useEffect(() => {
@@ -139,7 +139,7 @@ export default function AiPage({ className }: AiPageProps) {
       setPrompt(config.prompt);
     }
 
-    trackClientJourneyEvent('file_upload_selected', {
+    trackClientJourneyEvent("file_upload_selected", {
       type,
       fileName: file.name,
       fileSize: file.size,
@@ -183,7 +183,7 @@ export default function AiPage({ className }: AiPageProps) {
       await openInStudio(
         prompt,
         projectType === "all" ? "web" : projectType,
-        uploadedFile
+        uploadedFile,
       );
     } catch (e) {
       const message = e instanceof Error ? e.message : "Request failed";
@@ -195,14 +195,14 @@ export default function AiPage({ className }: AiPageProps) {
 
   useEffect(() => {
     if (autoSubmit && authSession?.isAuthenticated) {
-      handleSubmit(new Event('submit') as any);
+      handleSubmit(new Event("submit") as any);
       setAutoSubmit(false); // Reset
     }
   }, [authSession, autoSubmit]);
 
   const handleRemoveFile = () => {
     setUploadedFile(null);
-    setPrompt('');
+    setPrompt("");
   };
 
   const isEmail = projectType === "email";
@@ -211,7 +211,7 @@ export default function AiPage({ className }: AiPageProps) {
     <div
       className={cn(
         "min-h-screen flex flex-col bg-black text-white",
-        className
+        className,
       )}
     >
       <HeaderStandalone showIntegrations={isEmail} />
@@ -277,24 +277,25 @@ export default function AiPage({ className }: AiPageProps) {
       {error && (
         <p className="mt-4 text-center text-sm text-red-400">{error}</p>
       )}
-
     </div>
   );
 }
 
-function PromptTextarea(props: Readonly<{
-  prompt: string;
-  loading?: boolean;
-  isEmail?: boolean;
-  projectType: ProjectType;
-  setProjectType: (p: ProjectType) => void;
-  setPrompt: (s: string) => void;
-  setShowButtonHighlight: (b: boolean) => void;
-  handleSubmit: (e: any) => void;
-  uploadedFile?: File | null;
-  onFileSelect?: (file: File, type: FileUploadType) => void;
-  onRemoveFile?: () => void;
-}>) {
+function PromptTextarea(
+  props: Readonly<{
+    prompt: string;
+    loading?: boolean;
+    isEmail?: boolean;
+    projectType: ProjectType;
+    setProjectType: (p: ProjectType) => void;
+    setPrompt: (s: string) => void;
+    setShowButtonHighlight: (b: boolean) => void;
+    handleSubmit: (e: any) => void;
+    uploadedFile?: File | null;
+    onFileSelect?: (file: File, type: FileUploadType) => void;
+    onRemoveFile?: () => void;
+  }>,
+) {
   const {
     prompt,
     isEmail,
@@ -333,7 +334,7 @@ function PromptTextarea(props: Readonly<{
       } else if (isDeleting && typedText === "") {
         setIsDeleting(false);
         setCurrentHeadlineIndex((prev) => (prev + 1) % inputTexts.length);
-        setTimeout(() => { }, pauseBeforeType);
+        setTimeout(() => {}, pauseBeforeType);
       } else if (isDeleting) {
         setTypedText(currentText.substring(0, typedText.length - 1));
       } else {
@@ -380,14 +381,14 @@ function PromptTextarea(props: Readonly<{
         "rounded-3xl py-2 backdrop-blur-sm border transition-all duration-500",
         "bg-zinc-900/50 text-gray-400 text-sm",
         "flex flex-wrap mx-2 sm:mx-0",
-        !showHighlight && "border-zinc-700/50"
+        !showHighlight && "border-zinc-700/50",
       )}
       style={
         showHighlight
           ? {
-            borderColor: "rgba(139, 92, 246, 0.3)",
-            animation: "borderPulse 1.5s ease-in-out 2",
-          }
+              borderColor: "rgba(139, 92, 246, 0.3)",
+              animation: "borderPulse 1.5s ease-in-out 2",
+            }
           : undefined
       }
     >
@@ -436,7 +437,7 @@ function PromptTextarea(props: Readonly<{
             "box-border border-solid border-current",
             "font-inherit font-feature-inherit font-variation-inherit",
             "font-inherit tracking-inherit text-inherit",
-            "outline-2 outline-transparent"
+            "outline-2 outline-transparent",
           )}
           style={{
             WebkitTextSizeAdjust: "100%",
@@ -471,7 +472,7 @@ function PromptTextarea(props: Readonly<{
                 "hover:opacity-90",
                 isListening
                   ? "bg-red-500 text-white"
-                  : "text-white/60 hover:text-white/80"
+                  : "text-white/60 hover:text-white/80",
               )}
               aria-label={isListening ? "Stop listening" : "Start voice input"}
               title={isListening ? "Stop listening" : "Start voice input"}
@@ -490,7 +491,7 @@ function PromptTextarea(props: Readonly<{
               "bg-violet-600 text-white transition-opacity",
               !prompt.trim() && !loading && "opacity-30 cursor-not-allowed",
               prompt.trim() && !loading && "hover:opacity-90",
-              loading && "opacity-50"
+              loading && "opacity-50",
             )}
             aria-label="Submit"
           >
@@ -524,7 +525,7 @@ function RotatingText({ texts }: { texts: string[] }) {
 
   const cls = cn(
     "inline-block transition-all duration-500 ease-in-out",
-    isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm"
+    isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm",
   );
 
   return <span className={cls}>{texts[currentIndex]}</span>;
@@ -547,7 +548,7 @@ function SpinningOrbInline({ className }: { className?: string }) {
         className={cn(
           "auroraContainer",
           "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
-          "w-[350px] h-[350px] origin-center"
+          "w-[350px] h-[350px] origin-center",
         )}
       >
         <div
@@ -573,7 +574,7 @@ function SpinningOrbInline({ className }: { className?: string }) {
         className={cn(
           "auroraInnerContainer",
           "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
-          "w-[250px] h-[250px] origin-center"
+          "w-[250px] h-[250px] origin-center",
         )}
       >
         <div
@@ -607,7 +608,7 @@ function SpinningOrbInline({ className }: { className?: string }) {
         className={cn(
           "auroraGlow",
           "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
-          "w-[1000px] h-[500px] blur-[50px]"
+          "w-[1000px] h-[500px] blur-[50px]",
         )}
         style={{
           background:
@@ -641,7 +642,7 @@ function TabsStandalone({
             "w-20 px-2 py-1.5 rounded-full text-sm flex items-center gap-2",
             value === tab.id
               ? "bg-gray-200 text-violet-600"
-              : "text-white/80 hover:text-white"
+              : "text-white/80 hover:text-white",
           )}
         >
           <Icon path={tab.icon} size={0.8} />
@@ -713,14 +714,14 @@ function RecommendationsStandalone({
           className={cn(
             "rounded-full px-4 py-2 text-sm border hover:border-violet-400",
             "text-gray-400 hover:text-white flex items-center gap-2 transition-all duration-500",
-            !(index === 0 && showHighlight) && "border-white/20"
+            !(index === 0 && showHighlight) && "border-white/20",
           )}
           style={
             index === 0 && showHighlight
               ? {
-                borderColor: "rgba(139, 92, 246, 0.3)",
-                animation: "borderPulse 1.5s ease-in-out 1",
-              }
+                  borderColor: "rgba(139, 92, 246, 0.3)",
+                  animation: "borderPulse 1.5s ease-in-out 1",
+                }
               : undefined
           }
           onClick={() => onClick(button.prompt)}
