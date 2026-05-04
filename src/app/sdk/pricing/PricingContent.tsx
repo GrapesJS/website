@@ -149,7 +149,7 @@ function PlanSummary({
         <p className="text-base leading-6 text-white/70">{plan.description}</p>
       </div>
 
-      <div className={cn("w-full", actionClassName)}>
+      <div className={cn("w-full mt-3", actionClassName)}>
         <PricingButton
           href={plan.cta.href}
           label={plan.cta.label}
