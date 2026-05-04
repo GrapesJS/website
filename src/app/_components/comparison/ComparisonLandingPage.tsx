@@ -85,7 +85,7 @@ export default function ComparisonLandingPage({ config, className }: ComparisonL
               Blog
             </a>
             <a
-              href="/sdk"
+              href="/"
               className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
             >
               Studio SDK
@@ -313,7 +313,7 @@ export default function ComparisonLandingPage({ config, className }: ComparisonL
                   </li>
                   <li>
                     <a
-                      href="/sdk"
+                      href="/"
                       className="text-gray-300 no-underline text-[0.975rem] font-light transition-colors duration-200 inline-block hover:text-gray-300 md:text-[0.925rem]"
                     >
                       SDK

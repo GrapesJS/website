@@ -48,6 +48,11 @@ const linkCategories: {
     links: [
       { id: "Blog", label: "Blog", href: urls.getBlogUrl() },
       {
+        id: "StudioAi",
+        label: "Studio AI",
+        href: urls.getAiPageUrl(),
+      },
+      {
         id: "SdkDocs",
         label: "Studio SDK Docs",
         href: urls.getGettingStartedDocsUrl(),

@@ -94,6 +94,7 @@ function MainNav({
   const navLinks: NavLink[] = [
     { content: "Features", href: urls.getFeaturesUrl() },
     { content: "Pricing", href: urls.getPricingUrl() },
+    { content: "Studio AI", href: urls.getAiPageUrl() },
     { content: "Blog", href: urls.getBlogUrl() },
     {
       content: "Docs",

@@ -13,6 +13,7 @@ import styles from "../styles.module.css";
 
 const clsFullWhite = "!brightness-0 !invert";
 const clsSmallLogo = "!h-[40px]";
+
 const customers = [
   {
     src: "assets/images/external-logos/microsoft.png",

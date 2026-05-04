@@ -1,5 +1,5 @@
-import SDKPage from "./SdkPage";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <SDKPage />;
+  redirect("/");
 }

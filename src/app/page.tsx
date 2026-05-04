@@ -1,10 +1,5 @@
-import { Suspense } from "react";
-import AiPage from "./ai/ai";
+import SDKPage from "./sdk/SdkPage";
 
 export default function RootPage() {
-  return (
-    <Suspense>
-      <AiPage />
-    </Suspense>
-  );
+  return <SDKPage />;
 }

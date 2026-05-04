@@ -29,9 +29,10 @@ const urls = {
     `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${getRef(props)}&signupintent=sdk`,
   getAiLandingUrl: (ref = "") =>
     `${APP_URL}/ai?${UTM_PARAMS}${getRef({ ref })}`,
+  getAiPageUrl: () => "/ai",
   getHomeUrl: () => "/",
-  getFeaturesUrl: () => "/sdk#features",
-  getPricingUrl: () => "/sdk#pricing",
+  getFeaturesUrl: () => "/#features",
+  getPricingUrl: () => "/#pricing",
   getCareersUrl: () => "/careers",
   getContactUrl: () => "mailto:sales@grapesjs.com",
   getBlogUrl: () => "/blog",
