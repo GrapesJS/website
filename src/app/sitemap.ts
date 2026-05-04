@@ -34,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}/sdk/pricing`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/ai/integrations`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,

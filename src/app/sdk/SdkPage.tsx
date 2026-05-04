@@ -4,7 +4,6 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import Pricing from "../_components/Pricing";
 import StarOnGH from "../_components/StarOnGH";
 import { Tabs } from "../_components/Tabs";
 import WindowShell from "../_components/WindowShell";
@@ -434,18 +433,18 @@ export default function SDKPage() {
 
         <section className={cn(styles.section, "!px-0")}>
           <div className={styles.specialHeadingContainer}>
-            <h2 className={styles.h2} id="pricing">
+            <h2 className={styles.h2}>
               PRICING
             </h2>
             <hr className={styles.separator} />
           </div>
 
-          <h3 className={cn(styles.h1)}>Plans that fit your scale</h3>
-          {/* <p className={cn(styles.p, "mb-10")}>
-            Simple, transparent pricing that grows with you.
-          </p> */}
-
-          <Pricing />
+          <h3 className={cn(styles.h1)}>Explore SDK pricing in detail</h3>
+          <p className={cn(styles.p, "mb-10")}>
+            Review plan limits, overage pricing, and enterprise support on the
+            dedicated SDK pricing page.
+          </p>
+          <CTALink href={urls.getPricingUrl()}>View SDK Pricing</CTALink>
         </section>
 
         <section className={cn(styles.section, "!py-20")}>
