@@ -13,7 +13,7 @@ import {
 } from "./sdkPricingData";
 
 const cardClass =
-  "rounded-2xl border border-white/25 bg-[#272727cc] backdrop-blur-sm";
+  "rounded-2xl border border-white/25 bg-[#27272777] backdrop-blur-sm";
 const buttonBaseClass =
   "inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors";
 const darkTextClass = "text-[#1b131b]";
@@ -334,12 +334,12 @@ function ComparisonCell({ value }: { value: ComparisonValue }) {
     );
   }
 
-  const isCustom = value === "Custom";
+  const isHighlightedValue = value === "Custom" || value === "Unlimited";
   return (
     <span
       className={[
         "text-sm leading-6 md:text-base",
-        isCustom
+        isHighlightedValue
           ? `inline-flex rounded-full border px-3 py-1 font-semibold ${accentBadgeClass}`
           : "text-white/75",
       ].join(" ")}
@@ -471,9 +471,9 @@ export default function PricingContent() {
         ) : null}
       </section>
 
-      <section className="flex flex-col gap-10">
-        <div className="text-center flex flex-col gap-3">
-          <h2 className="text-3xl font-semibold text-white md:text-4xl">
+      <section className="flex flex-col gap-14">
+        <div className="text-center flex flex-col gap-4">
+          <h2 className="text-3xl font-semibold text-white md:text-5xl">
             Compare plan details
           </h2>
           <p className="text-base leading-7 text-white/70 md:text-lg">
