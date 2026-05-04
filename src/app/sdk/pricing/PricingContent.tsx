@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import cn from "classnames";
 import { mdiCheckCircleOutline, mdiMinusCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import {
@@ -78,14 +79,84 @@ function FeatureBullet({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <li className="flex items-start gap-3 text-sm leading-6 text-white/75 md:text-base">
+    <li className="flex gap-3 text-sm items-center leading-6 text-white/75 md:text-base">
       <Icon
         path={mdiCheckCircleOutline}
-        size={0.9}
+        size={0.8}
         className="shrink-0 text-[#d39cdd]"
       />
       <span>{children}</span>
     </li>
+  );
+}
+
+function PlanSummary({
+  plan,
+  selectedPeriod,
+  subtle,
+  align = "center",
+  className,
+  actionClassName,
+}: {
+  plan: SdkPricingPlan;
+  selectedPeriod: BillingPeriod;
+  subtle?: boolean;
+  align?: "center" | "left";
+  className?: string;
+  actionClassName?: string;
+}) {
+  const isLeft = align === "left";
+
+  return (
+    <div
+      className={cn(
+        "flex flex-col gap-5",
+        isLeft ? "items-start text-left" : "items-center text-center",
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          "flex items-center gap-4",
+          isLeft ? "justify-start" : "justify-center",
+        )}
+      >
+        <div className="relative h-12 w-12 overflow-visible">
+          <img
+            loading="lazy"
+            src={plan.icon}
+            alt={`${plan.name} plan icon`}
+            className="absolute -right-3 -top-3 h-[62px] w-[62px] max-w-none"
+          />
+        </div>
+        <h3 className="text-xl font-semibold text-[#d39cdd]">{plan.name}</h3>
+      </div>
+
+      <div
+        className={cn(
+          "flex flex-col gap-3",
+          isLeft ? "items-start text-left" : "items-center text-center",
+        )}
+      >
+        <p className="flex items-end gap-1 text-[42px] font-bold leading-none tracking-[-0.02em] text-white md:text-[54px]">
+          <span>{plan.price[selectedPeriod]}</span>
+          {plan.priceSuffix?.[selectedPeriod] ? (
+            <span className="pb-1 text-base font-semibold tracking-normal text-white/65 md:text-lg">
+              {plan.priceSuffix[selectedPeriod]}
+            </span>
+          ) : null}
+        </p>
+        <p className="text-base leading-6 text-white/70">{plan.description}</p>
+      </div>
+
+      <div className={cn("w-full", actionClassName)}>
+        <PricingButton
+          href={plan.cta.href}
+          label={plan.cta.label}
+          subtle={subtle}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -101,41 +172,19 @@ function PlanCard({
   if (enterprise) {
     return (
       <article className="overflow-hidden rounded-[28px] border-2 border-[#c98ad6]/70 bg-[linear-gradient(180deg,rgba(0,0,0,0)_48%,rgba(116,59,139,0.45)_76%,rgba(223,157,176,0.72)_100%),#111111] shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
-        <div className="grid gap-0 md:grid-cols-[1fr_1.2fr]">
-          <div className="flex flex-col gap-12 px-10 pb-12 pt-16 md:px-12">
-            <div className="flex items-center gap-5">
-              <div className="relative h-12 w-12 overflow-visible">
-                <img
-                  loading="lazy"
-                  src={plan.icon}
-                  alt={`${plan.name} plan icon`}
-                  className="absolute -right-3 -top-3 h-[62px] w-[62px] max-w-none"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-[#d39cdd]">
-                {plan.name}
-              </h3>
-            </div>
-
-            <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
-              <p className="text-[42px] font-bold leading-none tracking-[-0.02em] text-white md:text-[54px]">
-                {plan.price[selectedPeriod]}
-              </p>
-              <p className="text-base leading-6 text-white/70">
-                {plan.description}
-              </p>
-            </div>
-
-            <div className="md:max-w-[520px]">
-              <PricingButton href={plan.cta.href} label={plan.cta.label} />
-            </div>
+        <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+          <div className="flex px-10 pb-12 pt-14 md:px-12">
+            <PlanSummary
+              plan={plan}
+              selectedPeriod={selectedPeriod}
+              align="left"
+              className="w-full self-stretch"
+              actionClassName="max-w-[520px]"
+            />
           </div>
 
-          <div className="flex flex-col gap-10 border-t border-white/20 px-10 pb-12 pt-12 md:border-l md:border-t-0 md:px-12">
+          <div className="flex flex-col gap-8 border-t border-white/20 px-10 pb-12 pt-10 md:border-l md:border-t-0 md:px-12">
             <div className="flex flex-col gap-6">
-              <h4 className="text-base font-semibold text-[#d39cdd] md:text-lg">
-                FEATURES
-              </h4>
               {plan.includes ? (
                 <p className="text-sm leading-7 text-white/70 md:text-base">
                   Everything in{" "}
@@ -167,50 +216,18 @@ function PlanCard({
   return (
     <article className={cardClass}>
       <div>
-        <div className="flex flex-col items-center gap-4 p-6 text-center md:p-8">
-          <div className="flex flex-row items-center justify-center gap-4 pt-6">
-            <div className="relative h-12 w-12 overflow-visible">
-              <img
-                loading="lazy"
-                src={plan.icon}
-                alt={`${plan.name} plan icon`}
-                className="absolute -right-3 -top-3 h-[62px] w-[62px] max-w-none"
-              />
-            </div>
-            <h3 className="text-xl font-semibold text-[#d39cdd]">
-              {plan.name}
-            </h3>
-          </div>
-
-          <p className="flex items-end gap-1 text-[42px] font-bold leading-none tracking-[-0.02em] text-white md:text-[54px]">
-            <span>{plan.price[selectedPeriod]}</span>
-            {plan.priceSuffix?.[selectedPeriod] ? (
-              <span className="pb-1 text-base font-semibold tracking-normal text-white/65 md:text-lg">
-                {plan.priceSuffix[selectedPeriod]}
-              </span>
-            ) : null}
-          </p>
-          <p
-            className={[
-              "text-base leading-6 text-white/70",
-              enterprise ? "md:text-left" : "",
-            ].join(" ")}
-          >
-            {plan.description}
-          </p>
-          <div className="w-full">
-            <PricingButton
-              href={plan.cta.href}
-              label={plan.cta.label}
-              subtle={plan.id === "free"}
-            />
-          </div>
+        <div className="p-6 md:p-8">
+          <PlanSummary
+            plan={plan}
+            selectedPeriod={selectedPeriod}
+            subtle={plan.id === "free"}
+            className="pt-6"
+          />
         </div>
 
         <div className="h-px w-full bg-white/20" />
 
         <div className="flex flex-col gap-3 p-6 md:p-8">
-          <h4 className="text-base font-semibold text-[#d39cdd]">FEATURES</h4>
           {plan.includes ? (
             <p className="text-sm leading-6 text-white/70 md:text-base">
               Everything in{" "}
