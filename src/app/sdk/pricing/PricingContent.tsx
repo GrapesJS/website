@@ -101,19 +101,32 @@ function PricingButton({
   );
 }
 
-function FeatureBullet({ children }: { children: React.ReactNode }) {
-  if (!children) {
+function CardFeatureItem({
+  title,
+  note,
+}: {
+  title?: string;
+  note?: string;
+}) {
+  if (!title) {
     return <li className="min-h-6 md:min-h-7" aria-hidden="true" />;
   }
 
   return (
-    <li className="flex gap-3 text-sm items-center leading-6 text-white/75 md:text-base">
+    <li className="flex items-start gap-3 text-sm leading-6 text-white/75 md:text-base">
       <Icon
         path={mdiCheckCircleOutline}
         size={0.8}
         className={cn("shrink-0", accentTextClass)}
       />
-      <span>{children}</span>
+      <div className="flex flex-col gap-1">
+        <span>{title}</span>
+        {note ? (
+          <span className="text-xs font-medium leading-5 text-white/45 md:text-sm">
+            {note}
+          </span>
+        ) : null}
+      </div>
     </li>
   );
 }
@@ -179,7 +192,7 @@ function PlanSummary({
         <p className="text-base leading-6 text-white/70">{plan.description}</p>
       </div>
 
-      <div className={cn("w-full mt-3", actionClassName)}>
+      <div className={cn("w-full", actionClassName)}>
         <PricingButton
           href={plan.cta.href}
           label={plan.cta.label}
@@ -242,9 +255,11 @@ function PlanCard({
             </div>
             <ul className="grid gap-x-12 gap-y-5 md:grid-cols-2">
               {plan.cardFeatures.map((feature, index) => (
-                <FeatureBullet key={`${plan.id}-feature-${index}`}>
-                  {feature}
-                </FeatureBullet>
+                <CardFeatureItem
+                  key={`${plan.id}-feature-${index}`}
+                  title={feature?.title}
+                  note={feature?.note}
+                />
               ))}
             </ul>
           </div>
@@ -282,9 +297,11 @@ function PlanCard({
           ) : null}
           <ul className="grid gap-y-4 pt-3">
             {plan.cardFeatures.map((feature, index) => (
-              <FeatureBullet key={`${plan.id}-feature-${index}`}>
-                {feature}
-              </FeatureBullet>
+              <CardFeatureItem
+                key={`${plan.id}-feature-${index}`}
+                title={feature?.title}
+                note={feature?.note}
+              />
             ))}
           </ul>
         </div>

@@ -4,8 +4,8 @@ export type BillingPeriod = "monthly" | "annual";
 export type ComparisonValue = string | boolean;
 
 export type ComparisonFeatureKey =
-  | "loads"
-  | "extraLoadsPrice"
+  | "sessions"
+  | "extraSessionsPrice"
   | "storage"
   | "extraStoragePrice"
   | "domains"
@@ -31,7 +31,10 @@ export interface SdkPricingPlan {
   priceSuffix?: Partial<Record<BillingPeriod, string>>;
   includes?: string;
   preList?: string;
-  cardFeatures: Array<string | null>;
+  cardFeatures: Array<{
+    title: string;
+    note?: string;
+  } | null>;
   comparison: Record<ComparisonFeatureKey, ComparisonValue>;
 }
 
@@ -54,25 +57,24 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       href: urls.getSdkLicensesUrl({ plan: "free" }),
     },
     cardFeatures: [
-      "1,000 loads per month",
-      "$50 per extra 1,000 loads",
-      "100 MB storage",
-      "1 domain included",
-      null,
-      "GrapesJS branding",
-      "Standard email support",
-      null,
+      {
+        title: "1,000 sessions per month",
+        note: "$50 per extra 1,000 sessions",
+      },
+      { title: "1 domain included" },
+      { title: "With Studio branding" },
+      { title: "Standard email support" },
     ],
     comparison: {
-      loads: "1,000 / month",
-      extraLoadsPrice: "$50 / extra 1,000",
+      sessions: "1,000 / month",
+      extraSessionsPrice: "$50 / extra 1,000",
       storage: "100 MB",
       extraStoragePrice: "$20 / GB",
       domains: "1 included",
       extraDomainPrice: "N/A",
       wildcardDomains: false,
       apiCallPrice: "N/A",
-      branding: "GrapesJS branding",
+      branding: "With Studio branding",
       support: "Standard email",
       slackChannel: false,
       pluginSupport: false,
@@ -92,18 +94,17 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       href: urls.getSdkLicensesUrl({ plan: "startup" }),
     },
     cardFeatures: [
-      "20,000 loads per month",
-      "$20 per extra 1,000 loads",
-      "10 GB storage",
-      "2 domains included",
-      "$0.01 per API call",
-      "Custom branding",
-      "Priority email support",
-      null,
+      {
+        title: "20,000 sessions per month",
+        note: "$20 per extra 1,000 sessions",
+      },
+      { title: "2 domains included" },
+      { title: "Custom branding" },
+      { title: "Priority email support" },
     ],
     comparison: {
-      loads: "20,000 / month",
-      extraLoadsPrice: "$20 / extra 1,000",
+      sessions: "20,000 / month",
+      extraSessionsPrice: "$20 / extra 1,000",
       storage: "10 GB",
       extraStoragePrice: "$10 / GB",
       domains: "2 included",
@@ -130,18 +131,17 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       href: urls.getSdkLicensesUrl({ plan: "business" }),
     },
     cardFeatures: [
-      "50,000 loads per month",
-      "$10 per extra 1,000 loads",
-      "100 GB storage",
-      "2 domains included",
-      "$0.001 per API call",
-      "Wildcard domains",
-      "Dedicated Slack channel",
-      null,
+      {
+        title: "50,000 sessions per month",
+        note: "$10 per extra 1,000 sessions",
+      },
+      { title: "2 domains included" },
+      { title: "Wildcard domains" },
+      { title: "Dedicated Slack channel" },
     ],
     comparison: {
-      loads: "50,000 / month",
-      extraLoadsPrice: "$10 / extra 1,000",
+      sessions: "50,000 / month",
+      extraSessionsPrice: "$10 / extra 1,000",
       storage: "100 GB",
       extraStoragePrice: "$5 / GB",
       domains: "2 included",
@@ -167,17 +167,16 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       href: urls.getEnterpriseContactFormUrl(),
     },
     cardFeatures: [
-      "24x7 Phone Support",
-      "Unlimited Sessions",
-      "Unlimited Cloud Storage",
-      "Custom plugin support",
-      "Multiple Domains Support",
-      "Custom Branding",
-      "Custom development",
+      { title: "24x7 phone support" },
+      { title: "Unlimited sessions" },
+      { title: "Custom plugin support" },
+      { title: "Multiple domains support" },
+      { title: "Custom branding" },
+      { title: "Custom development" },
     ],
     comparison: {
-      loads: "Custom",
-      extraLoadsPrice: "Custom",
+      sessions: "Custom",
+      extraSessionsPrice: "Custom",
       storage: "Custom",
       extraStoragePrice: "Custom",
       domains: "Custom",
@@ -194,8 +193,8 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
 ];
 
 export const comparisonRows: ComparisonRow[] = [
-  { key: "loads", label: "Editor loads" },
-  { key: "extraLoadsPrice", label: "Extra loads pricing" },
+  { key: "sessions", label: "Editor sessions" },
+  { key: "extraSessionsPrice", label: "Extra session pricing" },
   { key: "storage", label: "Storage" },
   { key: "extraStoragePrice", label: "Extra storage pricing" },
   { key: "domains", label: "Included domains" },
