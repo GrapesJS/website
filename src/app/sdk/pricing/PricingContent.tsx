@@ -171,7 +171,14 @@ function PlanCard({
 }) {
   if (enterprise) {
     return (
-      <article className="overflow-hidden rounded-[28px] border-2 border-[#c98ad6]/70 bg-[linear-gradient(180deg,rgba(0,0,0,0)_48%,rgba(116,59,139,0.45)_76%,rgba(223,157,176,0.72)_100%),#111111] shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
+      <article
+        className="overflow-hidden rounded-[28px] border-2 border-[#c98ad6]/70 shadow-[0_24px_80px_rgba(0,0,0,0.3)]"
+        style={{
+          backgroundColor: "#111111",
+          backgroundImage:
+            "radial-gradient(140% 120% at 100% 0%, rgba(176, 106, 196, 0.55) 0%, rgba(176, 106, 196, 0.16) 34%, rgba(0, 0, 0, 0) 60%)",
+        }}
+      >
         <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
           <div className="flex px-10 pb-12 pt-14 md:px-12">
             <PlanSummary
@@ -183,7 +190,7 @@ function PlanCard({
             />
           </div>
 
-          <div className="flex flex-col gap-8 border-t border-white/20 px-10 pb-12 pt-10 md:border-l md:border-t-0 md:px-12">
+          <div className="flex flex-col gap-8 border-t border-white/20 px-10 pb-12 pt-10 md:border-t-0 md:px-12">
             <div className="flex flex-col gap-6">
               {plan.includes ? (
                 <p className="text-sm leading-7 text-white/70 md:text-base">
