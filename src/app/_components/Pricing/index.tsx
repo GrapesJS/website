@@ -49,7 +49,7 @@ const plans: Plan[] = [
     name: "Startup plan",
     icon: "/assets/images/plans/startup.png",
     price: { monthly: "$200", annual: "$2,000" },
-    description: "Best for small team",
+    description: "Best for small teams",
     cta: {
       label: "Get This Plan",
       variant: "secondary",
@@ -157,12 +157,12 @@ const Pricing = ({ ...rest }: Props) => {
   const tabs: Tab[] = [
     {
       id: "monthly",
-      label: "Month billing",
+      label: "Monthly",
       onClick: (tab, i) => setSelectedIndex(i),
     },
     {
       id: "annual",
-      label: "Annual billing",
+      label: "Annual",
       onClick: (tab, i) => setSelectedIndex(i),
     },
   ] as const;

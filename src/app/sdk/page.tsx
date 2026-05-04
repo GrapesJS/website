@@ -76,9 +76,9 @@ export default function SDKPage() {
             <br />
             Build with AI, drag & drop, or code.
             <br />
-            For <b className="text-white">Emails</b>,{" "}
-            <b className="text-white">Landing Pages</b>, and{" "}
-            <b className="text-white">Webpages</b>.
+            For <b className="text-white">Newsletters</b>,{" "}
+            <b className="text-white">Websites</b>, and{" "}
+            <b className="text-white">Documents</b>.
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
@@ -110,7 +110,7 @@ export default function SDKPage() {
               },
               {
                 id: "editorImage",
-                label: "HTML/Website Builder",
+                label: "Website Builder",
                 content: (
                   <WindowShell>
                     <img
@@ -196,7 +196,7 @@ export default function SDKPage() {
             <div className="flex flex-col gap-[8px] p-[32px] flex-1">
               <h4 className={styles.h4}>Multi-Format Support</h4>
               <p className={cn(styles.p)}>
-                Create landing pages, multipage websites, and newsletters.
+                Create newsletters, landing pages, websites, and documents.
               </p>
             </div>
             <img
