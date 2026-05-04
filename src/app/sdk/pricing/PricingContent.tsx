@@ -16,6 +16,19 @@ const cardClass =
   "rounded-2xl border border-white/25 bg-[#272727cc] backdrop-blur-sm";
 const buttonBaseClass =
   "inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors";
+const darkTextClass = "text-[#1b131b]";
+const accentTextClass = "text-[#d39cdd]";
+const accentBorderClass = "border-[#d39cdd]";
+const accentButtonClass = `bg-[#d39cdd] ${darkTextClass} ${accentBorderClass} hover:bg-[#e4b9eb]`;
+const accentBadgeClass =
+  "border-[#d39cdd]/35 bg-[#d39cdd]/10 text-[#f1c0f8]";
+const annualBadgeActiveClass = "text-[#6d2f79]";
+const annualBadgeInactiveClass = accentTextClass;
+const enterpriseBorderClass = "border-[#c98ad6]/70";
+const tableShellClass =
+  "relative rounded-2xl border border-white/10 bg-[#120d14]/85 shadow-[0_24px_80px_rgba(0,0,0,0.28)]";
+const tableStickyHeaderClass =
+  "sticky top-[108px] z-30 border-b border-white/10 bg-[#120d14]/95 backdrop-blur";
 
 function BillingToggle({
   selectedPeriod,
@@ -25,7 +38,7 @@ function BillingToggle({
   onChange: (value: BillingPeriod) => void;
 }) {
   return (
-    <div className="inline-flex rounded-full border border-white/15 bg-white/5 p-1">
+    <div className="relative z-[2] inline-flex rounded-full border border-white/15 bg-white/5 p-1">
       {(["monthly", "annual"] as BillingPeriod[]).map((period) => {
         const isActive = period === selectedPeriod;
         return (
@@ -36,11 +49,25 @@ function BillingToggle({
             className={[
               "rounded-full px-4 py-2 text-sm font-semibold transition-colors md:px-5",
               isActive
-                ? "bg-white text-[#1b131b]"
+                ? `bg-white ${darkTextClass}`
                 : "text-white/75 hover:text-white",
             ].join(" ")}
           >
-            {period === "monthly" ? "Monthly" : "Annual"}
+            {period === "monthly" ? (
+              "Monthly"
+            ) : (
+              <span className="flex items-center gap-2 whitespace-nowrap leading-none">
+                <span>Annual</span>
+                <span
+                  className={cn(
+                    "text-[10px] font-semibold uppercase tracking-[0.14em]",
+                    isActive ? annualBadgeActiveClass : annualBadgeInactiveClass,
+                  )}
+                >
+                  2 months free
+                </span>
+              </span>
+            )}
           </button>
         );
       })}
@@ -65,7 +92,7 @@ function PricingButton({
         "w-full",
         subtle
           ? "border-white/25 bg-transparent text-white hover:border-white/45 hover:bg-white/5"
-          : "border-[#d39cdd] bg-[#d39cdd] text-[#1b131b] hover:bg-[#e4b9eb]",
+          : accentButtonClass,
       ].join(" ")}
     >
       {label}
@@ -83,7 +110,7 @@ function FeatureBullet({ children }: { children: React.ReactNode }) {
       <Icon
         path={mdiCheckCircleOutline}
         size={0.8}
-        className="shrink-0 text-[#d39cdd]"
+        className={cn("shrink-0", accentTextClass)}
       />
       <span>{children}</span>
     </li>
@@ -129,7 +156,9 @@ function PlanSummary({
             className="absolute -right-3 -top-3 h-[62px] w-[62px] max-w-none"
           />
         </div>
-        <h3 className="text-xl font-semibold text-[#d39cdd]">{plan.name}</h3>
+        <h3 className={cn("text-xl font-semibold", accentTextClass)}>
+          {plan.name}
+        </h3>
       </div>
 
       <div
@@ -172,7 +201,10 @@ function PlanCard({
   if (enterprise) {
     return (
       <article
-        className="overflow-hidden rounded-[28px] border-2 border-[#c98ad6]/70 shadow-[0_24px_80px_rgba(0,0,0,0.3)]"
+        className={cn(
+          "overflow-hidden rounded-[28px] border-2 shadow-[0_24px_80px_rgba(0,0,0,0.3)]",
+          enterpriseBorderClass,
+        )}
         style={{
           backgroundColor: "#111111",
           backgroundImage:
@@ -283,7 +315,7 @@ function ComparisonCell({ value }: { value: ComparisonValue }) {
       className={[
         "text-sm leading-6 md:text-base",
         isCustom
-          ? "inline-flex rounded-full border border-[#d39cdd]/35 bg-[#d39cdd]/10 px-3 py-1 font-semibold text-[#f1c0f8]"
+          ? `inline-flex rounded-full border px-3 py-1 font-semibold ${accentBadgeClass}`
           : "text-white/75",
       ].join(" ")}
     >
@@ -298,21 +330,34 @@ function ComparisonTable({
   selectedPeriod: BillingPeriod;
 }) {
   return (
-    <div className="relative rounded-2xl border border-white/10 bg-[#120d14]/85 shadow-[0_24px_80px_rgba(0,0,0,0.28)]">
+    <div className={tableShellClass}>
       <div className="overflow-x-auto">
         <table className="min-w-[920px] w-full border-collapse">
           <thead>
             <tr>
-              <th className="sticky top-[108px] z-30 border-b border-white/10 bg-[#120d14]/95 px-5 py-4 text-left text-sm font-semibold uppercase tracking-[0.18em] text-white/55 backdrop-blur">
+              <th
+                className={cn(
+                  tableStickyHeaderClass,
+                  "px-5 py-4 text-left text-sm font-semibold uppercase tracking-[0.18em] text-white/55",
+                )}
+              >
                 Feature
               </th>
               {sdkPricingPlans.map((plan) => (
                 <th
                   key={plan.id}
-                  className="sticky top-[108px] z-30 min-w-[170px] border-b border-white/10 bg-[#120d14]/95 px-5 py-4 text-left backdrop-blur"
+                  className={cn(
+                    tableStickyHeaderClass,
+                    "min-w-[170px] px-5 py-4 text-left",
+                  )}
                 >
                   <div className="space-y-1">
-                    <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#d39cdd]">
+                    <div
+                      className={cn(
+                        "text-sm font-semibold uppercase tracking-[0.14em]",
+                        accentTextClass,
+                      )}
+                    >
                       {plan.name}
                     </div>
                     <div className="text-lg font-bold text-white">
