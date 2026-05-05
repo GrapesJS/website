@@ -378,7 +378,7 @@ export const sdkPricingFaqs: PricingFaqItem[] = [
   },
   {
     value: "custom-plan",
-    question: "Can I have a custom plan configuration?",
+    question: "Can I have a custom plan?",
     answer: (
       <p>
         Yes, it is possible. Please{" "}

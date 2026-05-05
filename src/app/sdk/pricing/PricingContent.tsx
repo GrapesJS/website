@@ -36,7 +36,7 @@ const accentTextClass = "text-[#d39cdd]";
 const accentBorderClass = "border-[#d39cdd]";
 const accentButtonClass = `bg-[#d39cdd] ${darkTextClass} ${accentBorderClass} hover:bg-[#e4b9eb]`;
 const accentBadgeClass = "border-[#d39cdd]/35 bg-[#d39cdd]/10 text-[#f1c0f8]";
-const annualBadgeActiveClass = "text-[#6d2f79]";
+const annualBadgeActiveClass = "border-[#e6c6ec] bg-[#f6e6f8] text-[#8f4b9c]";
 const annualBadgeInactiveClass = accentTextClass;
 const enterpriseBorderClass = "border-[#c98ad6]/70";
 const tableShellClass =
@@ -502,7 +502,6 @@ export default function PricingContent() {
   const enterprisePlan = sdkPricingPlans.find(
     (plan) => plan.id === "enterprise",
   );
-
   return (
     <TooltipProvider delayDuration={120}>
       <div className="flex flex-col gap-12 md:gap-16">
@@ -545,23 +544,27 @@ export default function PricingContent() {
           <ComparisonTable />
         </section>
 
-        <section className="flex flex-col gap-8">
-          <div className="text-center flex flex-col gap-4">
-            <h2 className="text-3xl font-semibold text-white md:text-5xl">
+        <section className="grid gap-8 pt-6 md:pt-12 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-start">
+          <div className="flex flex-col items-center gap-4 text-center lg:sticky lg:top-[140px] lg:items-start lg:text-left">
+            <h2 className="text-3xl font-semibold text-white md:text-5xl leading-snug">
               Frequently asked questions
             </h2>
-            <p className="text-base leading-7 text-white/70 md:text-lg">
+            <p className="max-w-xl text-base leading-7 text-white/70 md:text-lg">
               Answers to the most common questions we get about usage, storage,
               and plan flexibility.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 md:px-8">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-0">
             <Accordion type="single" collapsible className="w-full">
               {sdkPricingFaqs.map((faq) => (
                 <AccordionItem key={faq.value} value={faq.value}>
-                  <AccordionTrigger>{faq.question}</AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
+                  <AccordionTrigger className="px-6 md:px-8">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 md:px-8">
+                    {faq.answer}
+                  </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
