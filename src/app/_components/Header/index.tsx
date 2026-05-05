@@ -3,6 +3,7 @@ import urls from "@/lib/urls";
 import { mdiClose, mdiMenu } from "@mdi/js";
 import Icon from "@mdi/react";
 import cn from "classnames";
+import { WandSparkles } from "lucide-react";
 import Link from "next/link";
 import { forwardRef, useState } from "react";
 import { getCtaClassName } from "../CTALink";
@@ -80,6 +81,7 @@ interface NavLink {
   className?: string;
   target?: string;
   icon?: string;
+  leadingIcon?: React.ReactNode;
   description?: string;
   items?: NavLink[];
 }
@@ -92,6 +94,11 @@ function MainNav({
   onLinkClick?: () => void;
 }) {
   const navLinks: NavLink[] = [
+    {
+      content: "Studio AI",
+      href: urls.getAiPageUrl(),
+      leadingIcon: <WandSparkles className="h-4 w-4" />,
+    },
     { content: "Features", href: urls.getFeaturesUrl() },
     { content: "Pricing", href: urls.getPricingUrl() },
     { content: "Blog", href: urls.getBlogUrl() },
@@ -141,7 +148,7 @@ function MainNav({
       isVertical={isVertical}
     >
       <NavigationMenuList className={cn(styles.links, isVertical && "!gap-4")}>
-        {navLinks.map(({ href, target, content, className, items }) => (
+        {navLinks.map(({ href, target, content, className, items, leadingIcon }) => (
           <NavigationMenuItem
             key={href || content}
             className={cn(isVertical && "flex flex-col items-end")}
@@ -182,7 +189,14 @@ function MainNav({
                   onClick={onLinkClick}
                   className={cn(styles.link, className)}
                 >
-                  {content}
+                  {leadingIcon ? (
+                    <span className="inline-flex items-center gap-2">
+                      {leadingIcon}
+                      <span>{content}</span>
+                    </span>
+                  ) : (
+                    content
+                  )}
                 </NavigationMenuLink>
               </Link>
             )}

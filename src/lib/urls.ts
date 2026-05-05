@@ -1,3 +1,5 @@
+import { APP_URL, SITE_URL } from "@/lib/site";
+
 const toCapitalCase = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -6,8 +8,6 @@ interface UrlProps {
   ref?: string;
 }
 
-const APP_URL = "https://app.grapesjs.com";
-const WEBSITE_URL = "https://grapesjs.com";
 const UTM_PARAMS = `utm_source=grapesjs`;
 
 const getRef = ({ ref, plan }: UrlProps = {}) =>
@@ -20,7 +20,7 @@ const getRef = ({ ref, plan }: UrlProps = {}) =>
 const urls = {
   getGettingStartedDocsUrl: () =>
     `${APP_URL}/docs-sdk/overview/getting-started?${UTM_PARAMS}&utm_medium=docsHeader`,
-  getGrapesJsDocs: () => `${WEBSITE_URL}/docs/?${UTM_PARAMS}`,
+  getGrapesJsDocs: () => `${SITE_URL}/docs/?${UTM_PARAMS}`,
   getStudioEditorUrl: () =>
     `${APP_URL}/playground?${UTM_PARAMS}&utm_medium=tryEditor`,
   getSignInUrl: (props: UrlProps) =>
@@ -29,9 +29,10 @@ const urls = {
     `${APP_URL}/dashboard/sdk/licenses?${UTM_PARAMS}${getRef(props)}&signupintent=sdk`,
   getAiLandingUrl: (ref = "") =>
     `${APP_URL}/ai?${UTM_PARAMS}${getRef({ ref })}`,
+  getAiPageUrl: () => "/ai",
   getHomeUrl: () => "/",
-  getFeaturesUrl: () => "/sdk#features",
-  getPricingUrl: () => "/sdk#pricing",
+  getFeaturesUrl: () => "/#features",
+  getPricingUrl: () => "/sdk/pricing",
   getCareersUrl: () => "/careers",
   getContactUrl: () => "mailto:sales@grapesjs.com",
   getBlogUrl: () => "/blog",

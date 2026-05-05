@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-
-const SITE_URL = 'https://grapesjs.com';
+import { SITE_URL } from "@/lib/site";
 
 export async function GET() {
   const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
@@ -22,4 +21,3 @@ export async function GET() {
     },
   });
 }
-

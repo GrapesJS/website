@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blogApi";
-
-const SITE_URL = "https://grapesjs.com";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Get all blog posts
@@ -22,13 +21,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/sdk`,
+      url: `${SITE_URL}/ai`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/sdk/email`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/sdk/pricing`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
@@ -58,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
-      url: `${SITE_URL}/es`,
+      url: `${SITE_URL}/ai/es`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,

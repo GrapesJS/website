@@ -27,7 +27,8 @@ export const TemplateGallery = memo(function TemplateGallery({
   className = "",
 }: TemplateGalleryProps) {
   const pathname = usePathname();
-  const isSpanish = pathname?.startsWith("/es");
+  const isSpanish =
+    pathname?.startsWith("/es") || pathname?.startsWith("/ai/es");
 
   const { user, templates, projects, isAuthenticated, loading } =
     useHomepageData({

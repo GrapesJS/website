@@ -96,7 +96,7 @@ export default function HeaderStandalone({
             Blog
           </a> */}
             <a
-              href="/sdk"
+              href="/"
               className="text-gray-100 no-underline font-medium transition-colors duration-200 hover:text-white"
             >
               Studio SDK
@@ -256,7 +256,7 @@ export default function HeaderStandalone({
               Blog
             </a> */}
                 <a
-                  href="/sdk"
+                  href="/"
                   className="text-gray-100 no-underline font-medium text-xl transition-colors duration-200 hover:text-white hover:bg-gray-800/50 px-4 py-2 rounded-md"
                   onClick={closeMobileMenu}
                 >

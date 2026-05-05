@@ -5,7 +5,7 @@ const StarOnGH = () => {
   return (
     <div className="flex gap-3 items-center font-normal">
       <span className="text-sm">Join the thousands of happy developers</span>
-      <div className="h-[27px]">
+      <div className="h-[27px] w-[128px]">
         <GitHubButton
           href="https://github.com/GrapesJS/grapesjs"
           data-color-scheme="dark"

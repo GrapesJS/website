@@ -1,11 +1,5 @@
-import { Suspense } from "react";
-import "../ai/ai-globals.css";
-import AiPage from "./ai";
+import { permanentRedirect } from "next/navigation";
 
 export default function RootPage() {
-  return (
-    <Suspense>
-      <AiPage />
-    </Suspense>
-  );
+  permanentRedirect("/ai/es");
 }
