@@ -4,6 +4,13 @@ import { useRef, useState } from "react";
 import cn from "classnames";
 import { mdiCheckCircleOutline, mdiMinusCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
+import { CircleHelp } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   BillingPeriod,
   comparisonRows,
@@ -114,7 +121,15 @@ function PricingButton({
   );
 }
 
-function CardFeatureItem({ title, note }: { title?: string; note?: string }) {
+function CardFeatureItem({
+  title,
+  note,
+  tooltip,
+}: {
+  title?: string;
+  note?: string;
+  tooltip?: string;
+}) {
   if (!title) {
     return <li className="min-h-6 md:min-h-7" aria-hidden="true" />;
   }
@@ -127,7 +142,23 @@ function CardFeatureItem({ title, note }: { title?: string; note?: string }) {
         className={cn("shrink-0 mt-0.5", accentTextClass)}
       />
       <div className="flex flex-col gap-1">
-        <span>{title}</span>
+        <div className="flex items-center gap-2">
+          <span>{title}</span>
+          {tooltip ? (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  aria-label={`More info about ${title}`}
+                  className="inline-flex shrink-0 items-center justify-center rounded-full text-white/35 transition-colors hover:text-white/70"
+                >
+                  <CircleHelp className="h-4 w-4" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="top">{tooltip}</TooltipContent>
+            </Tooltip>
+          ) : null}
+        </div>
         {note ? (
           <span className="text-xs font-medium leading-5 text-white/45 md:text-sm">
             {note}
@@ -266,6 +297,7 @@ function PlanCard({
                   key={`${plan.id}-feature-${index}`}
                   title={feature?.title}
                   note={feature?.note}
+                  tooltip={feature?.tooltip}
                 />
               ))}
             </ul>
@@ -308,6 +340,7 @@ function PlanCard({
                 key={`${plan.id}-feature-${index}`}
                 title={feature?.title}
                 note={feature?.note}
+                tooltip={feature?.tooltip}
               />
             ))}
           </ul>
@@ -377,7 +410,7 @@ function ComparisonTable() {
                         accentTextClass,
                       )}
                     >
-                      {plan.id}
+                      {plan.name}
                     </div>
                   </div>
                 </th>
@@ -401,7 +434,7 @@ function ComparisonTable() {
             <tr>
               <th>Feature</th>
               {sdkPricingPlans.map((plan) => (
-                <th key={plan.id}>{plan.id}</th>
+                <th key={plan.id}>{plan.name}</th>
               ))}
             </tr>
           </thead>
@@ -444,45 +477,47 @@ export default function PricingContent() {
   );
 
   return (
-    <div className="flex flex-col gap-12 md:gap-16">
-      <section className="flex flex-col items-center gap-4 text-center">
-        <BillingToggle
-          selectedPeriod={selectedPeriod}
-          onChange={setSelectedPeriod}
-        />
-      </section>
-
-      <section className="space-y-8">
-        <div className="grid gap-8 lg:grid-cols-3">
-          {standardPlans.map((plan) => (
-            <PlanCard
-              key={plan.id}
-              plan={plan}
-              selectedPeriod={selectedPeriod}
-            />
-          ))}
-        </div>
-        {enterprisePlan ? (
-          <PlanCard
-            plan={enterprisePlan}
+    <TooltipProvider delayDuration={120}>
+      <div className="flex flex-col gap-12 md:gap-16">
+        <section className="flex flex-col items-center gap-4 text-center">
+          <BillingToggle
             selectedPeriod={selectedPeriod}
-            enterprise
+            onChange={setSelectedPeriod}
           />
-        ) : null}
-      </section>
+        </section>
 
-      <section className="flex flex-col gap-14">
-        <div className="text-center flex flex-col gap-4">
-          <h2 className="text-3xl font-semibold text-white md:text-5xl">
-            Compare plan details
-          </h2>
-          <p className="text-base leading-7 text-white/70 md:text-lg">
-            Review the exact usage limits, overage pricing, and support levels
-            across every SDK plan.
-          </p>
-        </div>
-        <ComparisonTable />
-      </section>
-    </div>
+        <section className="space-y-8">
+          <div className="grid gap-8 lg:grid-cols-3">
+            {standardPlans.map((plan) => (
+              <PlanCard
+                key={plan.id}
+                plan={plan}
+                selectedPeriod={selectedPeriod}
+              />
+            ))}
+          </div>
+          {enterprisePlan ? (
+            <PlanCard
+              plan={enterprisePlan}
+              selectedPeriod={selectedPeriod}
+              enterprise
+            />
+          ) : null}
+        </section>
+
+        <section className="flex flex-col gap-14">
+          <div className="text-center flex flex-col gap-4">
+            <h2 className="text-3xl font-semibold text-white md:text-5xl">
+              Compare plan details
+            </h2>
+            <p className="text-base leading-7 text-white/70 md:text-lg">
+              Review the exact usage limits, overage pricing, and support levels
+              across every SDK plan.
+            </p>
+          </div>
+          <ComparisonTable />
+        </section>
+      </div>
+    </TooltipProvider>
   );
 }

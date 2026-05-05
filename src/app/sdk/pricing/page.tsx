@@ -7,7 +7,7 @@ export default function SdkPricingPage() {
   return (
     <main className="min-h-screen bg-[var(--backgroundColor)] text-white">
       <Hero
-        title="SDK PRICING"
+        title="STUDIO SDK PRICING"
         subTitle="Plans that fit your scale"
         className="pb-8 md:pb-10"
       />

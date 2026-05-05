@@ -34,6 +34,7 @@ export interface SdkPricingPlan {
   cardFeatures: Array<{
     title: string;
     note?: string;
+    tooltip?: string;
   } | null>;
   comparison: Record<ComparisonFeatureKey, ComparisonValue>;
 }
@@ -42,6 +43,11 @@ export interface ComparisonRow {
   key: ComparisonFeatureKey;
   label: string;
 }
+
+const sessionsTooltip =
+  "Sessions are editor loads started by your end users within the billing period.";
+const unlimitedSessionsTooltip =
+  "Sessions are editor loads started by your end users, with no capped monthly allowance on Enterprise.";
 
 // Seeded values mirror grapesjs-studio-platform/packages/studio-app/prisma/seed-function.ts
 export const sdkPricingPlans: SdkPricingPlan[] = [
@@ -60,6 +66,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       {
         title: "1,000 sessions per month",
         note: "$50 per extra 1,000 sessions",
+        tooltip: sessionsTooltip,
       },
       { title: "1 domain included" },
       { title: "With Studio branding" },
@@ -83,7 +90,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
   },
   {
     id: "startup",
-    name: "Startup plan",
+    name: "Startup",
     icon: "/assets/images/plans/startup.png",
     price: { monthly: "$200", annual: "$2,000" },
     description: "Best for small teams",
@@ -97,6 +104,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       {
         title: "20,000 sessions per month",
         note: "$20 per extra 1,000 sessions",
+        tooltip: sessionsTooltip,
       },
       { title: "2 domains included" },
       { title: "Custom branding" },
@@ -120,7 +128,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
   },
   {
     id: "business",
-    name: "Business plan",
+    name: "Business",
     icon: "/assets/images/plans/business.png",
     price: { monthly: "$2,000", annual: "$20,000" },
     description: "Best for growing businesses",
@@ -134,6 +142,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       {
         title: "50,000 sessions per month",
         note: "$10 per extra 1,000 sessions",
+        tooltip: sessionsTooltip,
       },
       { title: "2 domains included" },
       { title: "Wildcard domains" },
@@ -157,7 +166,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
   },
   {
     id: "enterprise",
-    name: "Enterprise plan",
+    name: "Enterprise",
     icon: "/assets/images/plans/enterprise.png",
     price: { monthly: "Custom", annual: "Custom" },
     description: "Best for large organizations",
