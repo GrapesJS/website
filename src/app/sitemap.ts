@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blogApi";
-
-const SITE_URL = "https://grapesjs.com";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Get all blog posts

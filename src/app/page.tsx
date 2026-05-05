@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 import SDKPage from "./sdk/SdkPage";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     description:
       "Embed a white-label, AI-powered visual editor in your app. Build newsletters, websites, and documents with drag and drop, code editing, and HTML output.",
     url: "/",
-    images: ["/assets/images/grapesjs-og-image-2.jpg"],
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

@@ -4,22 +4,21 @@ import { Inter, Manrope } from "next/font/google";
 import cn from "classnames";
 import "./globals.css";
 import { AuthProvider } from "./ai/AuthProvider";
+import { DEFAULT_OG_IMAGE, SITE_URL, SITE_URL_OBJECT } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] });
 
-const DOMAIN_URL = "https://grapesjs.com";
-
 export const metadata: Metadata = {
   title: "GrapesJS - Free and Open Source Web Template Editor Framework",
-  metadataBase: new URL(DOMAIN_URL),
+  metadataBase: SITE_URL_OBJECT,
   description:
     "Free and Open source Web Template Editor - Next generation tool for building templates without coding",
   keywords: "site builder, web template editor, html builder, html editor",
   openGraph: {
     type: "website",
-    url: DOMAIN_URL,
-    images: ["/assets/images/grapesjs-og-image-2.jpg"],
+    url: SITE_URL,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

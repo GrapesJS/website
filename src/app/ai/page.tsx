@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 import { Suspense } from "react";
 import AiPage from "./ai";
 
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     description:
       "Build websites and emails with GrapesJS Studio AI. Generate with AI, refine with drag and drop, and export clean HTML with full visual control.",
     url: "/ai",
-    images: ["/assets/images/grapesjs-og-image-2.jpg"],
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
