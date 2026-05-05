@@ -56,6 +56,14 @@ const customBrandingTooltip =
   'No "powered by" badge will be rendered in the editor.';
 const wildcardDomainsTooltip =
   "Wildcard domains are useful for setups like user1.mydomain.com and user2.mydomain.com, allowing you to cover them with a single *.mydomain.com domain.";
+const extraSessionsPricingTooltip =
+  "If you go above the included session limit, the difference is billed at the end of the monthly cycle.";
+const storageTooltip =
+  "This is the included storage available when projects or user-uploaded assets, like images and files, are stored on our cloud.";
+const extraStoragePricingTooltip =
+  "If you go above the included storage limit, the difference is billed at the end of the monthly cycle.";
+const extraDomainPricingTooltip =
+  "If you need more domains than the included limit, each additional domain is billed at the end of the monthly cycle.";
 
 // Seeded values mirror grapesjs-studio-platform/packages/studio-app/prisma/seed-function.ts
 export const sdkPricingPlans: SdkPricingPlan[] = [
@@ -211,11 +219,23 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
 
 export const comparisonRows: ComparisonRow[] = [
   { key: "sessions", label: "Editor sessions", tooltip: sessionsTooltip },
-  { key: "extraSessionsPrice", label: "Extra session pricing" },
-  { key: "storage", label: "Storage" },
-  { key: "extraStoragePrice", label: "Extra storage pricing" },
+  {
+    key: "extraSessionsPrice",
+    label: "Extra session pricing",
+    tooltip: extraSessionsPricingTooltip,
+  },
+  { key: "storage", label: "Storage", tooltip: storageTooltip },
+  {
+    key: "extraStoragePrice",
+    label: "Extra storage pricing",
+    tooltip: extraStoragePricingTooltip,
+  },
   { key: "domains", label: "Included domains", tooltip: multiDomainTooltip },
-  { key: "extraDomainPrice", label: "Extra domain pricing" },
+  {
+    key: "extraDomainPrice",
+    label: "Extra domain pricing",
+    tooltip: extraDomainPricingTooltip,
+  },
   // { key: "apiCallPrice", label: "API call pricing" },
   { key: "branding", label: "Branding" },
   { key: "support", label: "Support" },
