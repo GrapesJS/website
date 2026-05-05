@@ -45,7 +45,7 @@
 .logoMarqueeTrack {
   display: flex;
   width: max-content;
-  animation: logoMarqueeScroll 26s linear infinite;
+  animation: logoMarqueeScroll 40s linear infinite;
   will-change: transform;
 }
 

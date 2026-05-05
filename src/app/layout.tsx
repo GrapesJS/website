@@ -28,16 +28,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+      return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="alternate" hrefLang="en" href="https://grapesjs.com" />
-        <link rel="alternate" hrefLang="es" href="https://grapesjs.com/es" />
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href="https://grapesjs.com"
-        />
         <link
           rel="shortcut icon"
           type="image/x-icon"

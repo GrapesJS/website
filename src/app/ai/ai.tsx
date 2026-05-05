@@ -238,7 +238,7 @@ export default function AiPage({ className }: AiPageProps) {
                   with AI
                 </h1>
                 <h2 className="text-xl sm:text-2xl mt-6 text-gray-300 font-light">
-                  With drag & drop editing and HTML output
+                  With drag & drop editing and clean HTML output
                 </h2>
                 <h3 className="text-md sm:text-xl mt-4 text-gray-200 opacity-70">
                   Your <RotatingText texts={headlineTexts} /> will love you
