@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
 import urls from "@/lib/urls";
 
 export type BillingPeriod = "monthly" | "annual";
 export type ComparisonValue = string | boolean;
+export type FeatureTooltipContent = ReactNode;
 
 export type ComparisonFeatureKey =
   | "sessions"
@@ -12,6 +14,7 @@ export type ComparisonFeatureKey =
   | "extraDomainPrice"
   | "wildcardDomains"
   | "apiCallPrice"
+  | "aiChat"
   | "branding"
   | "support"
   | "slackChannel"
@@ -34,7 +37,7 @@ export interface SdkPricingPlan {
   cardFeatures: Array<{
     title: string;
     note?: string;
-    tooltip?: string;
+    tooltip?: FeatureTooltipContent;
   } | null>;
   comparison: Record<ComparisonFeatureKey, ComparisonValue>;
 }
@@ -42,7 +45,7 @@ export interface SdkPricingPlan {
 export interface ComparisonRow {
   key: ComparisonFeatureKey;
   label: string;
-  tooltip?: string;
+  tooltip?: FeatureTooltipContent;
 }
 
 const sessionsTooltip =
@@ -59,13 +62,48 @@ const wildcardDomainsTooltip =
 const extraSessionsPricingTooltip =
   "If you go above the included session limit, the difference is billed at the end of the monthly cycle.";
 const storageTooltip =
-  "This is the included storage available when projects or user-uploaded assets, like images and files, are stored on our cloud.";
+  "This is the included storage available when user-uploaded assets, like images and files, are stored on our cloud.";
 const extraStoragePricingTooltip =
   "If you go above the included storage limit, the difference is billed at the end of the monthly cycle.";
 const extraDomainPricingTooltip =
   "If you need more domains than the included limit, each additional domain is billed at the end of the monthly cycle.";
+const aiChatTooltip = (
+  <>
+    <p>
+      Startup includes the AI Chat frontend plugin with messages routed through
+      our cloud backend, using our model choices and rechargeable credits.
+      Business and Enterprise can connect a custom AI backend, so you control
+      models, tools, and behavior.
+    </p>
+    <div className="flex flex-col gap-1">
+      <a
+        href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview"
+        target="_blank"
+        rel="noreferrer"
+        className="text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+      >
+        Overview
+      </a>
+      <a
+        href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-chat"
+        target="_blank"
+        rel="noreferrer"
+        className="text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+      >
+        AI Chat frontend
+      </a>
+      <a
+        href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-backend"
+        target="_blank"
+        rel="noreferrer"
+        className="text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+      >
+        Custom AI backend
+      </a>
+    </div>
+  </>
+);
 
-// Seeded values mirror grapesjs-studio-platform/packages/studio-app/prisma/seed-function.ts
 export const sdkPricingPlans: SdkPricingPlan[] = [
   {
     id: "free",
@@ -97,6 +135,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       extraDomainPrice: "N/A",
       wildcardDomains: false,
       apiCallPrice: "N/A",
+      aiChat: false,
       branding: "With Studio branding",
       support: "Standard email",
       slackChannel: false,
@@ -135,6 +174,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       extraDomainPrice: "$150 / domain",
       wildcardDomains: false,
       apiCallPrice: "$0.01 / call",
+      aiChat: "Frontend plugin",
       branding: "Custom branding",
       support: "Priority email",
       slackChannel: false,
@@ -173,6 +213,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       extraDomainPrice: "$100 / domain",
       wildcardDomains: true,
       apiCallPrice: "$0.001 / call",
+      aiChat: "Custom backend",
       branding: "Custom branding",
       support: "Dedicated Slack",
       slackChannel: true,
@@ -196,7 +237,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       { title: "Unlimited sessions" },
       { title: "Custom plugin support" },
       { title: "Multiple domains support" },
-      { title: "Custom branding" },
+      { title: "Custom branding", tooltip: customBrandingTooltip },
       { title: "Custom development" },
     ],
     comparison: {
@@ -208,6 +249,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       extraDomainPrice: "Custom",
       wildcardDomains: true,
       apiCallPrice: "Custom",
+      aiChat: "Custom backend",
       branding: "Custom branding",
       support: "24x7 phone support",
       slackChannel: true,
@@ -236,7 +278,7 @@ export const comparisonRows: ComparisonRow[] = [
     label: "Extra domain pricing",
     tooltip: extraDomainPricingTooltip,
   },
-  // { key: "apiCallPrice", label: "API call pricing" },
+  { key: "aiChat", label: "AI Chat", tooltip: aiChatTooltip },
   { key: "branding", label: "Branding" },
   { key: "support", label: "Support" },
   {

@@ -15,6 +15,7 @@ import {
   BillingPeriod,
   comparisonRows,
   ComparisonValue,
+  FeatureTooltipContent,
   sdkPricingPlans,
   SdkPricingPlan,
 } from "./sdkPricingData";
@@ -126,7 +127,7 @@ function FeatureTooltip({
   content,
 }: {
   label: string;
-  content?: string;
+  content?: FeatureTooltipContent;
 }) {
   if (!content) {
     return null;
@@ -143,7 +144,9 @@ function FeatureTooltip({
           <CircleHelp className="h-4 w-4" />
         </button>
       </TooltipTrigger>
-      <TooltipContent side="top">{content}</TooltipContent>
+      <TooltipContent side="top" className="flex flex-col gap-2">
+        {content}
+      </TooltipContent>
     </Tooltip>
   );
 }
@@ -155,7 +158,7 @@ function CardFeatureItem({
 }: {
   title?: string;
   note?: string;
-  tooltip?: string;
+  tooltip?: FeatureTooltipContent;
 }) {
   if (!title) {
     return <li className="min-h-6 md:min-h-7" aria-hidden="true" />;
