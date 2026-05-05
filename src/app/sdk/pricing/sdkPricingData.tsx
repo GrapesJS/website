@@ -49,10 +49,16 @@ export interface ComparisonRow {
   tooltip?: FeatureTooltipContent;
 }
 
+export interface PricingFaqItem {
+  value: string;
+  question: string;
+  answer: ReactNode;
+}
+
 const tooltipLinkClassName =
   "text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white";
 
-function TooltipDocLink({
+function PricingInfoLink({
   href,
   children,
 }: {
@@ -99,24 +105,24 @@ const aiChatTooltip = (
       models, tools, and behavior.
     </p>
     <div className="flex flex-col gap-1">
-      <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview">
+      <PricingInfoLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview">
         Overview
-      </TooltipDocLink>
-      <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-chat">
+      </PricingInfoLink>
+      <PricingInfoLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-chat">
         AI Chat frontend
-      </TooltipDocLink>
-      <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-backend">
+      </PricingInfoLink>
+      <PricingInfoLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-backend">
         Custom AI backend
-      </TooltipDocLink>
+      </PricingInfoLink>
     </div>
   </>
 );
 const premiumPluginsTooltip = (
   <>
     <p>Premium plugins are available starting from the Startup plan.</p>
-    <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/overview">
+    <PricingInfoLink href="https://app.grapesjs.com/docs-sdk/plugins/overview">
       View plugin list
-    </TooltipDocLink>
+    </PricingInfoLink>
   </>
 );
 
@@ -314,4 +320,73 @@ export const comparisonRows: ComparisonRow[] = [
   { key: "slackChannel", label: "Dedicated Slack channel" },
   { key: "pluginSupport", label: "Custom plugin support" },
   { key: "customDevelopment", label: "Custom development" },
+];
+
+export const sdkPricingFaqs: PricingFaqItem[] = [
+  {
+    value: "sessions",
+    question: "What are the sessions?",
+    answer: (
+      <p>
+        A session is counted each time a user loads the editor. For example, if
+        one user loads the editor in the morning and keeps it open while
+        working, that is one session for the whole time until the editor is
+        closed or reloaded.
+      </p>
+    ),
+  },
+  {
+    value: "reload-session",
+    question:
+      "If a user reloads the page, will this count as an additional session?",
+    answer: (
+      <p>
+        Yes, but there is a 1 minute cooldown period for each session to avoid
+        counting fast refreshes as additional sessions.
+      </p>
+    ),
+  },
+  {
+    value: "published-projects",
+    question: "Are the published/hosted projects counted towards sessions?",
+    answer: (
+      <p>
+        No, sessions are only related to the editor load, and we have no
+        visibility on your exported or published projects.
+      </p>
+    ),
+  },
+  {
+    value: "custom-storage",
+    question: "Can I choose where to store my users' data?",
+    answer: (
+      <div className="flex flex-col gap-3">
+        <p>
+          Yes. You can configure custom storage for projects and uploaded
+          assets, like images, instead of using our cloud storage.
+        </p>
+        <div className="flex flex-col gap-1">
+          <PricingInfoLink href="https://app.grapesjs.com/docs-sdk/configuration/projects#self-hosted-storage">
+            Project storage
+          </PricingInfoLink>
+          <PricingInfoLink href="https://app.grapesjs.com/docs-sdk/configuration/assets/overview#custom-storage">
+            Asset storage
+          </PricingInfoLink>
+        </div>
+      </div>
+    ),
+  },
+  {
+    value: "custom-plan",
+    question: "Can I have a custom plan configuration?",
+    answer: (
+      <p>
+        Yes, it is possible. Please{" "}
+        <PricingInfoLink href={urls.getContactUsUrl()}>
+          reach out to us
+        </PricingInfoLink>{" "}
+        and we can discuss a custom plan setup.
+      </p>
+    ),
+  },
 ];

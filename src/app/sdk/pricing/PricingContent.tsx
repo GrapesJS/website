@@ -6,6 +6,12 @@ import { mdiCheckCircleOutline, mdiMinusCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { CircleHelp } from "lucide-react";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -16,6 +22,7 @@ import {
   comparisonRows,
   ComparisonValue,
   FeatureTooltipContent,
+  sdkPricingFaqs,
   sdkPricingPlans,
   SdkPricingPlan,
 } from "./sdkPricingData";
@@ -526,17 +533,40 @@ export default function PricingContent() {
         </section>
 
         <section className="flex flex-col gap-14">
-          <div className="text-center flex flex-col gap-4">
-            <h2 className="text-3xl font-semibold text-white md:text-5xl">
-              Compare plan details
+        <div className="text-center flex flex-col gap-4">
+          <h2 className="text-3xl font-semibold text-white md:text-5xl">
+            Compare plan details
             </h2>
             <p className="text-base leading-7 text-white/70 md:text-lg">
               Review the exact usage limits, overage pricing, and support levels
               across every SDK plan.
             </p>
-          </div>
-          <ComparisonTable />
-        </section>
+        </div>
+        <ComparisonTable />
+      </section>
+
+      <section className="flex flex-col gap-8">
+        <div className="text-center flex flex-col gap-4">
+          <h2 className="text-3xl font-semibold text-white md:text-5xl">
+            Frequently asked questions
+          </h2>
+          <p className="text-base leading-7 text-white/70 md:text-lg">
+            Answers to the most common questions we get about usage, storage,
+            and plan flexibility.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 md:px-8">
+          <Accordion type="single" collapsible className="w-full">
+            {sdkPricingFaqs.map((faq) => (
+              <AccordionItem key={faq.value} value={faq.value}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
       </div>
     </TooltipProvider>
   );
