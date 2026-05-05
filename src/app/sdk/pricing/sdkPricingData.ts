@@ -42,12 +42,11 @@ export interface SdkPricingPlan {
 export interface ComparisonRow {
   key: ComparisonFeatureKey;
   label: string;
+  tooltip?: string;
 }
 
 const sessionsTooltip =
-  "Sessions are editor loads started by your end users within the billing period.";
-const unlimitedSessionsTooltip =
-  "Sessions are editor loads started by your end users, with no capped monthly allowance on Enterprise.";
+  "A session is counted each time a user opens the editor. The session remains active as long as the editor stays open and isn't reloaded.";
 
 // Seeded values mirror grapesjs-studio-platform/packages/studio-app/prisma/seed-function.ts
 export const sdkPricingPlans: SdkPricingPlan[] = [
@@ -202,7 +201,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
 ];
 
 export const comparisonRows: ComparisonRow[] = [
-  { key: "sessions", label: "Editor sessions" },
+  { key: "sessions", label: "Editor sessions", tooltip: sessionsTooltip },
   { key: "extraSessionsPrice", label: "Extra session pricing" },
   { key: "storage", label: "Storage" },
   { key: "extraStoragePrice", label: "Extra storage pricing" },

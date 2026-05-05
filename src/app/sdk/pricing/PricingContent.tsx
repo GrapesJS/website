@@ -121,6 +121,33 @@ function PricingButton({
   );
 }
 
+function FeatureTooltip({
+  label,
+  content,
+}: {
+  label: string;
+  content?: string;
+}) {
+  if (!content) {
+    return null;
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          type="button"
+          aria-label={`More info about ${label}`}
+          className="inline-flex shrink-0 items-center justify-center rounded-full text-white/35 transition-colors hover:text-white/70"
+        >
+          <CircleHelp className="h-4 w-4" />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side="top">{content}</TooltipContent>
+    </Tooltip>
+  );
+}
+
 function CardFeatureItem({
   title,
   note,
@@ -144,20 +171,7 @@ function CardFeatureItem({
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <span>{title}</span>
-          {tooltip ? (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  type="button"
-                  aria-label={`More info about ${title}`}
-                  className="inline-flex shrink-0 items-center justify-center rounded-full text-white/35 transition-colors hover:text-white/70"
-                >
-                  <CircleHelp className="h-4 w-4" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="top">{tooltip}</TooltipContent>
-            </Tooltip>
-          ) : null}
+          <FeatureTooltip label={title} content={tooltip} />
         </div>
         {note ? (
           <span className="text-xs font-medium leading-5 text-white/45 md:text-sm">
@@ -447,7 +461,10 @@ function ComparisonTable() {
                 }
               >
                 <th className="border-b border-white/10 px-5 py-4 text-left text-sm font-medium text-white md:text-base">
-                  {row.label}
+                  <div className="flex items-center gap-2">
+                    <span>{row.label}</span>
+                    <FeatureTooltip label={row.label} content={row.tooltip} />
+                  </div>
                 </th>
                 {sdkPricingPlans.map((plan) => (
                   <td
