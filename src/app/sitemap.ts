@@ -64,7 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
-      url: `${SITE_URL}/es`,
+      url: `${SITE_URL}/ai/es`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,

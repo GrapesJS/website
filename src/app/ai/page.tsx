@@ -8,6 +8,10 @@ export const metadata: Metadata = {
     "Build websites and emails with GrapesJS Studio AI. Generate with AI, refine with drag and drop, and export clean HTML with full visual control.",
   alternates: {
     canonical: "/ai",
+    languages: {
+      en: "/ai",
+      es: "/ai/es",
+    },
   },
   openGraph: {
     title: "GrapesJS Studio AI Website and Email Builder",

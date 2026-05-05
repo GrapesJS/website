@@ -7,10 +7,6 @@ export const metadata: Metadata = {
     "Embed a white-label, AI-powered visual editor in your app. Build newsletters, websites, and documents with drag and drop, code editing, and HTML output.",
   alternates: {
     canonical: "/",
-    languages: {
-      en: "/",
-      es: "/es",
-    },
   },
   openGraph: {
     title: "Embedded Visual Editor SDK for Newsletters, Websites, and Documents",
