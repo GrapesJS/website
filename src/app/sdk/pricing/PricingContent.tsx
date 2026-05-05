@@ -504,16 +504,15 @@ export default function PricingContent() {
   );
   return (
     <TooltipProvider delayDuration={120}>
-      <div className="flex flex-col gap-12 md:gap-16">
-        <section className="flex flex-col items-center gap-4 text-center">
-          <BillingToggle
-            selectedPeriod={selectedPeriod}
-            onChange={setSelectedPeriod}
-          />
-        </section>
-
-        <section className="space-y-8">
-          <div className="grid gap-8 lg:grid-cols-3">
+      <div className="flex flex-col gap-12 md:gap-20">
+        <section className="flex flex-col gap-7">
+          <section className="flex flex-col items-center gap-4 text-center">
+            <BillingToggle
+              selectedPeriod={selectedPeriod}
+              onChange={setSelectedPeriod}
+            />
+          </section>
+          <div className="grid gap-5 md:grid-cols-3">
             {standardPlans.map((plan) => (
               <PlanCard
                 key={plan.id}
