@@ -15,6 +15,11 @@ const clsSmallLogo = "!h-[40px]";
 
 const customers = [
   {
+    src: "/assets/images/external-logos/gainsight.png",
+    alt: "Gainsight",
+    className: cn(clsFullWhite, clsSmallLogo),
+  },
+  {
     src: "assets/images/external-logos/microsoft.png",
     alt: "Microsoft",
     className: clsFullWhite,
@@ -25,14 +30,14 @@ const customers = [
     className: cn(clsFullWhite, clsSmallLogo),
   },
   {
-    src: "/assets/images/external-logos/gainsight.png",
-    alt: "Gainsight",
-    className: cn(clsFullWhite, clsSmallLogo),
-  },
-  {
     src: "assets/images/external-logos/bbc.png",
     alt: "BBC",
     className: clsFullWhite,
+  },
+  {
+    src: "assets/images/external-logos/servicenow.png",
+    alt: "ServiceNow",
+    className: cn(clsFullWhite, "!h-[30px]"),
   },
   {
     src: "assets/images/external-logos/braze.png",
@@ -43,6 +48,10 @@ const customers = [
     src: "assets/images/external-logos/phresia.png",
     alt: "Phresia",
     className: clsFullWhite,
+  },
+  {
+    src: "assets/images/external-logos/france-gov.png",
+    alt: "France Government",
   },
 ];
 
@@ -147,15 +156,29 @@ export default function SDKPage() {
               <hr className={styles.separator} />
             </div>
           </div>
-          <div className={styles.logosContainer}>
-            {customers.map(({ src, alt, className }) => (
-              <img
-                key={src}
-                className={cn(styles.userLogo, className)}
-                src={src}
-                alt={alt}
-              />
-            ))}
+          <div className={styles.logoMarquee}>
+            <div className={styles.logoMarqueeTrack}>
+              {[0, 1].map((copyIndex) => (
+                <div
+                  key={copyIndex}
+                  className={styles.logoMarqueeGroup}
+                  aria-hidden={copyIndex === 1}
+                >
+                  {customers.map(({ src, alt, className }) => (
+                    <div
+                      key={`${copyIndex}-${src}`}
+                      className={styles.logoMarqueeItem}
+                    >
+                      <img
+                        className={cn(styles.userLogo, className)}
+                        src={src}
+                        alt={alt}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -415,7 +438,7 @@ export default function SDKPage() {
                   <h4 className={styles.h4}>
                     Connect to External Data for Dynamic Content
                   </h4>
-                  <span className={styles.comingSoonTag}>Coming Soon</span>
+                  {/* <span className={styles.comingSoonTag}>Coming Soon</span> */}
                 </div>
                 <p className={cn(styles.p)}>
                   Integrate your editor with external data sources to create
