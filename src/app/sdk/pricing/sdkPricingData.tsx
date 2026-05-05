@@ -15,6 +15,7 @@ export type ComparisonFeatureKey =
   | "wildcardDomains"
   | "apiCallPrice"
   | "aiChat"
+  | "premiumPlugins"
   | "branding"
   | "support"
   | "slackChannel"
@@ -48,6 +49,28 @@ export interface ComparisonRow {
   tooltip?: FeatureTooltipContent;
 }
 
+const tooltipLinkClassName =
+  "text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white";
+
+function TooltipDocLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={tooltipLinkClassName}
+    >
+      {children}
+    </a>
+  );
+}
+
 const sessionsTooltip =
   "A session is counted each time a user opens the editor. The session remains active as long as the editor stays open and isn't reloaded.";
 const domainTooltip =
@@ -76,31 +99,24 @@ const aiChatTooltip = (
       models, tools, and behavior.
     </p>
     <div className="flex flex-col gap-1">
-      <a
-        href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview"
-        target="_blank"
-        rel="noreferrer"
-        className="text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
-      >
+      <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview">
         Overview
-      </a>
-      <a
-        href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-chat"
-        target="_blank"
-        rel="noreferrer"
-        className="text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
-      >
+      </TooltipDocLink>
+      <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-chat">
         AI Chat frontend
-      </a>
-      <a
-        href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-backend"
-        target="_blank"
-        rel="noreferrer"
-        className="text-sm font-medium text-[#d39cdd] underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
-      >
+      </TooltipDocLink>
+      <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/ai-backend">
         Custom AI backend
-      </a>
+      </TooltipDocLink>
     </div>
+  </>
+);
+const premiumPluginsTooltip = (
+  <>
+    <p>Premium plugins are available starting from the Startup plan.</p>
+    <TooltipDocLink href="https://app.grapesjs.com/docs-sdk/plugins/overview">
+      View plugin list
+    </TooltipDocLink>
   </>
 );
 
@@ -136,6 +152,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       wildcardDomains: false,
       apiCallPrice: "N/A",
       aiChat: false,
+      premiumPlugins: false,
       branding: "With Studio branding",
       support: "Standard email",
       slackChannel: false,
@@ -175,6 +192,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       wildcardDomains: false,
       apiCallPrice: "$0.01 / call",
       aiChat: "Frontend plugin",
+      premiumPlugins: true,
       branding: "Custom branding",
       support: "Priority email",
       slackChannel: false,
@@ -214,6 +232,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       wildcardDomains: true,
       apiCallPrice: "$0.001 / call",
       aiChat: "Custom backend",
+      premiumPlugins: true,
       branding: "Custom branding",
       support: "Dedicated Slack",
       slackChannel: true,
@@ -250,6 +269,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
       wildcardDomains: true,
       apiCallPrice: "Custom",
       aiChat: "Custom backend",
+      premiumPlugins: true,
       branding: "Custom branding",
       support: "24x7 phone support",
       slackChannel: true,
@@ -278,9 +298,14 @@ export const comparisonRows: ComparisonRow[] = [
     label: "Extra domain pricing",
     tooltip: extraDomainPricingTooltip,
   },
-  { key: "aiChat", label: "AI Chat", tooltip: aiChatTooltip },
   { key: "branding", label: "Branding" },
   { key: "support", label: "Support" },
+  { key: "aiChat", label: "AI Chat", tooltip: aiChatTooltip },
+  {
+    key: "premiumPlugins",
+    label: "Premium plugins",
+    tooltip: premiumPluginsTooltip,
+  },
   {
     key: "wildcardDomains",
     label: "Wildcard domains",
