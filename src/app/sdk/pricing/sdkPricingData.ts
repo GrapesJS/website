@@ -47,6 +47,15 @@ export interface ComparisonRow {
 
 const sessionsTooltip =
   "A session is counted each time a user opens the editor. The session remains active as long as the editor stays open and isn't reloaded.";
+const domainTooltip =
+  "A domain is where the editor is loaded from, for example app.mydomain.com.";
+const multiDomainTooltip = `${domainTooltip} Multiple domains let you reuse the same license across the available domains, for example for production and stage environments.`;
+const studioBrandingTooltip =
+  'A small "powered by" badge will be rendered in the editor.';
+const customBrandingTooltip =
+  'No "powered by" badge will be rendered in the editor.';
+const wildcardDomainsTooltip =
+  "Wildcard domains are useful for setups like user1.mydomain.com and user2.mydomain.com, allowing you to cover them with a single *.mydomain.com domain.";
 
 // Seeded values mirror grapesjs-studio-platform/packages/studio-app/prisma/seed-function.ts
 export const sdkPricingPlans: SdkPricingPlan[] = [
@@ -67,8 +76,8 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
         note: "$50 per extra 1,000 sessions",
         tooltip: sessionsTooltip,
       },
-      { title: "1 domain included" },
-      { title: "With Studio branding" },
+      { title: "1 domain included", tooltip: domainTooltip },
+      { title: "With Studio branding", tooltip: studioBrandingTooltip },
       { title: "Standard email support" },
     ],
     comparison: {
@@ -105,8 +114,8 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
         note: "$20 per extra 1,000 sessions",
         tooltip: sessionsTooltip,
       },
-      { title: "2 domains included" },
-      { title: "Custom branding" },
+      { title: "2 domains included", tooltip: multiDomainTooltip },
+      { title: "Custom branding", tooltip: customBrandingTooltip },
       { title: "Priority email support" },
     ],
     comparison: {
@@ -143,8 +152,8 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
         note: "$10 per extra 1,000 sessions",
         tooltip: sessionsTooltip,
       },
-      { title: "2 domains included" },
-      { title: "Wildcard domains" },
+      { title: "2 domains included", tooltip: multiDomainTooltip },
+      { title: "Wildcard domains", tooltip: wildcardDomainsTooltip },
       { title: "Dedicated Slack channel" },
     ],
     comparison: {
@@ -205,12 +214,16 @@ export const comparisonRows: ComparisonRow[] = [
   { key: "extraSessionsPrice", label: "Extra session pricing" },
   { key: "storage", label: "Storage" },
   { key: "extraStoragePrice", label: "Extra storage pricing" },
-  { key: "domains", label: "Included domains" },
+  { key: "domains", label: "Included domains", tooltip: multiDomainTooltip },
   { key: "extraDomainPrice", label: "Extra domain pricing" },
   // { key: "apiCallPrice", label: "API call pricing" },
   { key: "branding", label: "Branding" },
   { key: "support", label: "Support" },
-  { key: "wildcardDomains", label: "Wildcard domains" },
+  {
+    key: "wildcardDomains",
+    label: "Wildcard domains",
+    tooltip: wildcardDomainsTooltip,
+  },
   { key: "slackChannel", label: "Dedicated Slack channel" },
   { key: "pluginSupport", label: "Custom plugin support" },
   { key: "customDevelopment", label: "Custom development" },
