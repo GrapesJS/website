@@ -431,22 +431,6 @@ export default function SDKPage() {
           </div>
         </section>
 
-        <section className={cn(styles.section, "!px-0")}>
-          <div className={styles.specialHeadingContainer}>
-            <h2 className={styles.h2}>
-              PRICING
-            </h2>
-            <hr className={styles.separator} />
-          </div>
-
-          <h3 className={cn(styles.h1)}>Explore SDK pricing in detail</h3>
-          <p className={cn(styles.p, "mb-10")}>
-            Review plan limits, overage pricing, and enterprise support on the
-            dedicated SDK pricing page.
-          </p>
-          <CTALink href={urls.getPricingUrl()}>View SDK Pricing</CTALink>
-        </section>
-
         <section className={cn(styles.section, "!py-20")}>
           <h3 className={cn(styles.h1)}>Get started for free</h3>
           <p className={cn(styles.p)}>
