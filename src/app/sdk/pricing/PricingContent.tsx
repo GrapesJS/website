@@ -87,10 +87,7 @@ function BillingToggle({
                 <span
                   className={cn(
                     "inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em]",
-                    accentBadgeClass,
-                    isActive
-                      ? annualBadgeActiveClass
-                      : annualBadgeInactiveClass,
+                    isActive ? annualBadgeActiveClass : accentBadgeClass,
                   )}
                 >
                   2 months free
