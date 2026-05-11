@@ -1,19 +1,33 @@
 ---
 title: "What We Learned Building an Interactive MCP App"
 excerpt: "..."
-coverImage: "/assets/blog/studio-mcp-app/studio-chatgpt-app-poster.webp"
+coverImage: "/assets/blog/studio-mcp-app/grapes-studio-mcp-app-chatgpt.webp"
 date: "2026-05-11T14:00:00Z"
 author:
   name: Grapes Studio Team
 ogImage:
-  url: "/assets/blog/studio-mcp-app/studio-chatgpt-app-poster.webp"
+  url: "/assets/blog/studio-mcp-app/grapes-studio-mcp-app-chatgpt.webp"
 ---
 
-When we started building the Grapes Studio MCP App, the goal was simple: make Studio usable inside tools people already spend time in, like ChatGPT.
+When we started building the [Grapes Studio MCP App](/blog/studio-mcp-chatgpt-app), the goal was simple: make Studio usable inside tools people already spend time in, like ChatGPT.
 
 We did not want AI to stop at "here is some HTML" or "here is a rough idea." We wanted users to go from prompt, to real project, to visual editing, without breaking their flow or jumping across five tabs. That is where MCP Apps became really interesting for us.
 
-For users, the value is obvious. If your product can live directly inside one of the popular chat interfaces, it becomes much easier to use your product in context, connect it with other tools in the same conversation, and showcase it where a lot of creative and technical work is already happening.
+Here's is published app working in ChatGPT:
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="none"
+  loading="lazy"
+  poster="/assets/blog/studio-mcp-app/studio-chatgpt-app-poster.webp"
+  style={{ width: '100%', height: 'auto', borderRadius: '16px', margin: '1.5rem 0' }}
+>
+  <source src="/assets/blog/studio-mcp-app/studio-chatgpt-app.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 For developers, though, the path is a bit more nuanced. The core MCP pieces are actually quite reasonable. The hard part is usually the app-host ecosystem around them: review processes, metadata, CSP details, auth setup, iframe loading behavior, and host-specific quirks.
 
