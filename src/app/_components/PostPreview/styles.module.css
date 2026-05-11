@@ -26,6 +26,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 12px;
+  border: 1px solid #ffffff1a;
   transition: opacity var(--transitionDuration) var(--transitionTimingFunction);
   opacity: 1;
 }
@@ -39,7 +40,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  border-top: 1px solid #ffffff4d;
+  border-top: 1px solid #ffffff1a;
   background: #0000004d;
   backdrop-filter: blur(25px);
   width: 100%;

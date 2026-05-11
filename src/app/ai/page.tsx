@@ -4,9 +4,9 @@ import { Suspense } from "react";
 import AiPage from "./ai";
 
 export const metadata: Metadata = {
-  title: "GrapesJS Studio AI Website and Email Builder",
+  title: "Free AI Website and Email Builder | Grapes Studio AI",
   description:
-    "Build websites and emails with GrapesJS Studio AI. Generate with AI, refine with drag and drop, and export clean HTML with full visual control.",
+    "Build websites and emails with Grapes Studio AI. Generate with AI, refine with drag and drop editing, and export clean HTML with full visual control.",
   alternates: {
     canonical: "/ai",
     languages: {
@@ -15,9 +15,6 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "GrapesJS Studio AI Website and Email Builder",
-    description:
-      "Build websites and emails with GrapesJS Studio AI. Generate with AI, refine with drag and drop, and export clean HTML with full visual control.",
     url: "/ai",
     images: [DEFAULT_OG_IMAGE],
   },

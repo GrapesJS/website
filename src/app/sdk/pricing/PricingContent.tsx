@@ -37,7 +37,6 @@ const accentBorderClass = "border-[#d39cdd]";
 const accentButtonClass = `bg-[#d39cdd] ${darkTextClass} ${accentBorderClass} hover:bg-[#e4b9eb]`;
 const accentBadgeClass = "border-[#d39cdd]/35 bg-[#d39cdd]/10 text-[#f1c0f8]";
 const annualBadgeActiveClass = "border-[#e6c6ec] bg-[#f6e6f8] text-[#8f4b9c]";
-const annualBadgeInactiveClass = accentTextClass;
 const enterpriseBorderClass = "border-[#c98ad6]/70";
 const tableShellClass =
   "relative rounded-2xl border border-white/10 bg-[#120d14]/85 shadow-[0_24px_80px_rgba(0,0,0,0.28)]";
@@ -83,7 +82,7 @@ function BillingToggle({
               "Monthly"
             ) : (
               <span className="flex items-center gap-3 whitespace-nowrap leading-none">
-                <span>Annual</span>
+                <span>Yearly</span>
                 <span
                   className={cn(
                     "inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em]",

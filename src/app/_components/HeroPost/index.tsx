@@ -21,6 +21,33 @@ const Label = ({ label, children }: { label: string; children: ReactNode }) => {
 
 export function HeroPost({ post }: { post: Post }) {
   const { title, author, slug } = post;
+  const titleAndExcerpt = (
+    <div className={styles.titleAndExcerpt}>
+      <h3 className={styles.title}>
+        <Link href={urls.getPathBlog(slug)}>{title}</Link>
+      </h3>
+      <p className={styles.excerpt}>{post.excerpt}</p>
+    </div>
+  );
+
+  const metadata = (
+    <div className={styles.metadataContainer}>
+      <Label label="Written by">
+        <Avatar
+          className={styles.metadata}
+          name={author.name}
+          picture={author.picture}
+        />
+      </Label>
+      <Label label="Published on">
+        <DateFormatter className={styles.metadata} dateString={post.date} />
+      </Label>
+      <Label label="Read time">
+        <PostReadTime className={styles.metadata} post={post} />
+      </Label>
+    </div>
+  );
+
   return (
     <section className={styles.postPreview}>
       <div className={styles.imageContainer}>
@@ -35,39 +62,14 @@ export function HeroPost({ post }: { post: Post }) {
           src={post.coverImage}
           slug={slug}
         />
-        <div className={styles.imageCaption}>
-          <div className={styles.titleAndExcerpt}>
-            <h3 className={styles.title}>
-              <Link href={urls.getPathBlog(slug)}>
-                {title}{" "}
-                <Icon
-                  className={styles.linkIcon}
-                  path={mdiArrowTopRightThick}
-                  size={1}
-                />
-              </Link>
-            </h3>
-            <p className={styles.excerpt}>{post.excerpt}</p>
-          </div>
-          <div className={styles.metadataContainer}>
-            <Label label="Written by">
-              <Avatar
-                className={styles.metadata}
-                name={author.name}
-                picture={author.picture}
-              />
-            </Label>
-            <Label label="Published on">
-              <DateFormatter
-                className={styles.metadata}
-                dateString={post.date}
-              />
-            </Label>
-            <Label label="Read time">
-              <PostReadTime className={styles.metadata} post={post} />
-            </Label>
-          </div>
+        <div className={styles.mobileCaption}>
+          {titleAndExcerpt}
+          {metadata}
         </div>
+      </div>
+      <div className={styles.desktopContent}>
+        {titleAndExcerpt}
+        {metadata}
       </div>
     </section>
   );
