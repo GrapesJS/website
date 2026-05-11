@@ -1,6 +1,6 @@
 ---
 title: "What We Learned Building an Interactive MCP App"
-excerpt: "..."
+excerpt: "What we learned building the Grapes Studio MCP App for ChatGPT, from MCP server architecture and UI integration to testing, hosting, and the review process."
 coverImage: "/assets/blog/studio-mcp-app/grapes-studio-mcp-app-chatgpt.webp"
 date: "2026-05-11T14:00:00Z"
 author:
@@ -13,7 +13,7 @@ When we started building the [Grapes Studio MCP App](/blog/studio-mcp-chatgpt-ap
 
 We did not want AI to stop at "here is some HTML" or "here is a rough idea." We wanted users to go from prompt, to real project, to visual editing, without breaking their flow or jumping across five tabs. That is where MCP Apps became really interesting for us.
 
-Here's is published app working in ChatGPT:
+Here is the published app running in ChatGPT:
 
 <video
   autoPlay
@@ -123,9 +123,7 @@ function createServer() {
 }
 ```
 
-That is more or less the first milestone: a clean MCP server instance with a couple of tools and predictable structured results.
-
-Keep your tool surface small at the beginning. Two or three excellent tools are better than fifteen vague ones.
+That was our first real milestone: a small MCP server, a couple of useful tools, and structured results we could trust.
 
 ## The route layer is usually thinner than you expect
 
@@ -173,7 +171,7 @@ Once the server is ready, the next step is attaching an interactive UI resource 
 
 For us, this was the key move. A visual website and email editor does not fit naturally into pure text output. It needs a real interface.
 
-The MCP Apps gives you that bridge. The pattern is:
+MCP Apps give you that bridge. The pattern is:
 
 1. Register a UI resource.
 2. Register tools that point to that resource.
@@ -347,16 +345,14 @@ export function App() {
 
 For a lot of products, that is enough to get to the first meaningful demo.
 
-## One thing we would strongly recommend: design your tool results for UI from day one
+## Design your tool results for UI from day one
 
-This was one of the most helpful lessons for us.
-
-If your tools only return human-readable text, your app layer will quickly become brittle. A proper MCP App wants stable shapes:
+If your tools only return human-readable text, the app layer gets brittle fast. Text output was fine for the chat, but the UI still needed real state and we did not want to keep reconstructing it on the frontend. Stable shapes made that boundary much easier to manage:
 
 - `structuredContent` for business objects that will be shared with the chat context.
-- `_meta` for heavier UI-only payloads. These won't be shared with the chat context.
+- `_meta` for heavier UI-only payloads. These won't be shared with the chat.
 
-That separation made our flow much cleaner. The host sees a readable tool result, while the app receives the richer state it needs to render and continue.
+Once we separated those responsibilities, the flow became much less fragile. The host still got a readable tool result, and the app got the richer payload it actually needed to render and keep going.
 
 ## A practical hosting detail: serve your app bundle in a host-friendly way
 
@@ -412,7 +408,9 @@ If you are building an MCP integration, we would highly recommend trying it. It 
 
 ## The hardest part was not really the code
 
-The hardest part was the review and hosting process on app platforms, like ChatGPT. In our case, the full review process took about two weeks. Looking through posts on [community.openai.com](https://community.openai.com/), we also saw other developers describing longer timelines and rejection messages that were not always very clear.
+The hardest part was the review process on app platforms, like ChatGPT. In our case, the full review process took about two weeks. That was manageable, but it was still slower and more manual than the implementation itself.
+
+Looking through posts on [OpenAI Community](https://community.openai.com/), we also saw other developers describe longer timelines and rejection messages that were not always very clear.
 
 If you are heading into the review phase, prepare for things like:
 
@@ -428,8 +426,8 @@ So if you are planning an MCP App launch, build some patience into the schedule.
 
 ## Why we still think it is worth it
 
-Even with the rough edges, we think MCP Apps are one of the most interesting ways to make software more usable inside AI products.
+Even with the rough edges, we still think MCP Apps are worth the effort.
 
-When it works well, users do not feel like they are leaving the conversation to go operate another system. Your product becomes part of the conversation itself. That is a much better experience, especially when the user is already combining research, generation, editing, and publishing in the same chat.
+For a product like Studio, the value becomes obvious the moment someone can create a project, open the editor, and keep iterating without leaving the chat. That is a much better experience than bouncing between a conversation, a generated snippet, and another tab where the real work still has to begin.
 
-For us, that is why the effort was worth it. We did not just add another integration surface. We made Grapes Studio available in the exact place where many users are already trying to get real work done.
+That is why the effort was worth it for us. We did not just add another integration surface. We made Grapes Studio available right at the moment when a user wants to stop talking about an idea and actually start building it.
