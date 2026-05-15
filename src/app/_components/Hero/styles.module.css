@@ -1,17 +1,102 @@
 .hero {
-  --padding: 72px;
-  padding-top: calc(76px + 36px + var(--padding));
-  padding-bottom: var(--padding);
-  overflow: hidden;
-
+  /*
   background: url(/assets/images/background.svg) bottom -100px center no-repeat,
     url(/assets/images/background-pattern.svg) top center,
     var(--backgroundColor);
   background-size: cover;
+  */
+  --padding: 72px;
+  padding-top: calc(76px + 36px + var(--padding));
+  padding-bottom: var(--padding);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   width: 100%;
+  background:
+    linear-gradient(
+      180deg,
+      #110913 0%,
+      #1a0d19 16%,
+      #120914 30%,
+      #090509 48%,
+      #050306 68%,
+      #050306 100%
+    ),
+    var(--backgroundColor);
 
   /* fixes SVG rendering glitch on scroll in iOS */
   -webkit-transform: scale(1);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero::before {
+  inset: -18% -6% -12%;
+  background:
+    radial-gradient(
+      78% 100% at 30% 30%,
+      rgb(239 139 165 / 0.5) 7%,
+      rgb(239 139 185 / 0.35) 20%,
+      rgb(239 139 165 / 0.1) 35%,
+      rgb(239 139 165 / 0) 50%
+    ),
+    radial-gradient(
+      50% 80% at 65% 30%,
+      rgb(151 58 168 / 0.65) 0%,
+      rgb(151 58 168 / 0.4) 30%,
+      rgb(151 58 168 / 0.2) 45%,
+      rgb(151 58 168 / 0.1) 60%,
+      rgb(149 58 168 / 0) 90%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0) 0%,
+      rgb(0 0 0 / 0.08) 14%,
+      rgb(0 0 0 / 0.28) 28%,
+      rgb(0 0 0 / 0.62) 44%,
+      rgb(0 0 0 / 0.88) 60%,
+      rgb(0 0 0 / 1) 74%
+    );
+}
+
+.hero::after {
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgb(152 162 179 / 0.26) 0 1.5px,
+    transparent 1.6px
+  );
+  background-position: center top;
+  background-size: 23px 23px;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0) 10%,
+    rgb(0 0 0 / 0.08) 16%,
+    rgb(0 0 0 / 0.32) 28%,
+    rgb(0 0 0 / 0.78) 52%,
+    rgb(0 0 0 / 0.98) 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0) 10%,
+    rgb(0 0 0 / 0.08) 16%,
+    rgb(0 0 0 / 0.32) 28%,
+    rgb(0 0 0 / 0.78) 52%,
+    rgb(0 0 0 / 0.98) 100%
+  );
+  opacity: 0.7;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
 }
 
 .h1 {
@@ -48,6 +133,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.bannerContainer {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bannerFrame {
+  opacity: 0.2;
+  filter: blur(7px);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.bannerImage {
+  max-width: max-content;
 }
 
 .shadowSeparator {
