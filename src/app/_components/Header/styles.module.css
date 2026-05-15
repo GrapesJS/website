@@ -123,8 +123,11 @@
   border-color: white;
 }
 
-.ctaLinkOverride {
+.link.ctaLinkOverride {
   color: var(--activeTextColor);
+  padding: 5px 16px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 @media (max-width: 875px) {
