@@ -1,15 +1,63 @@
 .bg {
-  background: url(/assets/images/background.svg) bottom -200px center no-repeat,
-    url(/assets/images/background-pattern.svg) top center,
-    var(--backgroundColor);
-  background-size: cover;
+  background: var(--backgroundColor);
   height: 100vh;
   width: 100%;
   z-index: -1;
   position: absolute;
+  overflow: hidden;
+  pointer-events: none;
 
   /* fixes SVG rendering glitch on scroll in iOS */
   -webkit-transform: scale(1);
+}
+
+.bg::before,
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.bg::before {
+  background-image: radial-gradient(
+    circle,
+    rgb(152 162 179 / 0.28) 0 1.5px,
+    transparent 1.6px
+  );
+  background-position: center top;
+  background-size: 23px 23px;
+  mask-image: radial-gradient(
+    ellipse 55% 100% at 50% 0%,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 1) 58%,
+    rgb(0 0 0 / 0.85) 72%,
+    rgb(0 0 0 / 0) 100%
+  );
+  opacity: 0.65;
+}
+
+.bg::after {
+  inset: -12% -8% -10%;
+  background:
+    radial-gradient(
+      58% 46% at 56% 74%,
+      rgb(151 58 168 / 0.56) 0%,
+      rgb(151 58 168 / 0.28) 34%,
+      rgb(151 58 168 / 0) 76%
+    ),
+    radial-gradient(
+      62% 54% at 38% 70%,
+      rgb(239 139 165 / 0.48) 0%,
+      rgb(239 139 165 / 0.24) 42%,
+      rgb(239 139 165 / 0) 78%
+    ),
+    radial-gradient(
+      45% 36% at 74% 50%,
+      rgb(202 164 234 / 0.18) 0%,
+      rgb(202 164 234 / 0.08) 34%,
+      rgb(202 164 234 / 0) 76%
+    );
+  filter: blur(56px);
 }
 
 .sticky {
