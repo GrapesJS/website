@@ -19,6 +19,9 @@ export const Tabs = (props: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(selectedIndex);
   const inTransition = prevIndex !== selectedIndex;
+  const visibleIndices = inTransition
+    ? Array.from(new Set([prevIndex, selectedIndex]))
+    : [selectedIndex];
 
   useEffect(() => {
     if (!inTransition) {
@@ -46,14 +49,17 @@ export const Tabs = (props: Props) => {
         }))}
       />
       <div className={styles.panels}>
-        {tabs.map((t, i) => (
-          <div
-            key={t.id}
-            className={cn(styles.panel, i === selectedIndex && styles.selected)}
-          >
-            {t.content}
-          </div>
-        ))}
+        {visibleIndices.map((i) => {
+          const t = tabs[i];
+          return (
+            <div
+              key={t.id}
+              className={cn(styles.panel, i === selectedIndex && styles.selected)}
+            >
+              {t.content}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
