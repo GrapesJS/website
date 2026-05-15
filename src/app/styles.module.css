@@ -292,7 +292,6 @@
   background: var(--activeOpaqueColor);
   border: 1px solid var(--activeBorderColor);
   border-radius: 6px;
-  font-family: var(--font-inter);
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;

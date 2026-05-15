@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import Script from "next/script";
 
 import cn from "classnames";
 import "./globals.css";
 import { DEFAULT_OG_IMAGE, SITE_URL, SITE_URL_OBJECT } from "@/lib/site";
 
-const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] });
 
 const GTM_SNIPPET = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -69,7 +68,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className={cn(inter.className, manrope.className)}
+        className={cn(manrope.className)}
       >
         <noscript>
           <iframe
