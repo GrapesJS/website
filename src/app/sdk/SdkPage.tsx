@@ -14,42 +14,42 @@ const clsSmallLogo = "!h-[40px]";
 
 const customers = [
   {
-    src: "/assets/images/external-logos/gainsight.png",
+    src: "/assets/images/external-logos/gainsight.webp",
     alt: "Gainsight",
     className: cn(clsFullWhite, clsSmallLogo),
   },
   {
-    src: "assets/images/external-logos/microsoft.png",
+    src: "assets/images/external-logos/microsoft.webp",
     alt: "Microsoft",
     className: clsFullWhite,
   },
   {
-    src: "/assets/images/external-logos/bytedance.png",
+    src: "/assets/images/external-logos/bytedance.webp",
     alt: "TikTok",
     className: cn(clsFullWhite, clsSmallLogo),
   },
   {
-    src: "assets/images/external-logos/bbc.png",
+    src: "assets/images/external-logos/bbc.webp",
     alt: "BBC",
     className: clsFullWhite,
   },
   {
-    src: "assets/images/external-logos/servicenow.png",
+    src: "assets/images/external-logos/servicenow.webp",
     alt: "ServiceNow",
     className: cn(clsFullWhite, "!h-[30px]"),
   },
   {
-    src: "assets/images/external-logos/braze.png",
+    src: "assets/images/external-logos/braze.webp",
     alt: "Braze",
     className: clsFullWhite,
   },
   {
-    src: "assets/images/external-logos/phresia.png",
+    src: "assets/images/external-logos/phresia.webp",
     alt: "Phresia",
     className: clsFullWhite,
   },
   {
-    src: "assets/images/external-logos/france-gov.png",
+    src: "assets/images/external-logos/france-gov.webp",
     alt: "France Government",
   },
 ];
@@ -219,7 +219,7 @@ export default function SDKPage() {
             </div>
             <img
               loading="lazy"
-              src="assets/images/sdk-features/1.png"
+              src="assets/images/sdk-features/1.webp"
               alt="SDK UI"
             />
           </section>
@@ -232,7 +232,7 @@ export default function SDKPage() {
             </div>
             <img
               loading="lazy"
-              src="assets/images/sdk-features/2.png"
+              src="assets/images/sdk-features/2.webp"
               alt="SDK UI"
             />
           </section>
@@ -245,7 +245,7 @@ export default function SDKPage() {
             </div>
             <img
               loading="lazy"
-              src="assets/images/sdk-features/3.png"
+              src="assets/images/sdk-features/3.webp"
               alt="SDK UI"
               className="pt-[36px]"
             />
@@ -260,7 +260,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/sdk-features/4.png"
+                src="assets/images/sdk-features/4.webp"
                 alt="SDK UI"
               />
             </section>
@@ -273,7 +273,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/sdk-features/5.png"
+                src="assets/images/sdk-features/5.webp"
                 alt="SDK support chat"
               />
             </section>
@@ -289,7 +289,7 @@ export default function SDKPage() {
               </p>
             </div>
             <img
-              src="assets/images/sdk-features/6.png"
+              src="assets/images/sdk-features/6.webp"
               alt="SDK UI"
               className="h-[360px] object-cover !w-auto"
             />
@@ -306,7 +306,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/sdk-features/7.png"
+                src="assets/images/sdk-features/7.webp"
                 alt="SDK UI"
               />
             </section>
@@ -319,7 +319,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/sdk-features/8.png"
+                src="assets/images/sdk-features/8.webp"
                 alt="SDK UI"
               />
             </section>
@@ -335,7 +335,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/studio-features/1.png"
+                src="assets/images/studio-features/1.webp"
                 alt="SDK UI"
               />
             </section>
@@ -363,7 +363,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/studio-features/3.png"
+                src="assets/images/studio-features/3.webp"
                 alt="SDK UI"
               />
             </section>
@@ -376,7 +376,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/studio-features/7.png"
+                src="assets/images/studio-features/7.webp"
                 alt="SDK UI"
               />
             </section>
@@ -390,7 +390,7 @@ export default function SDKPage() {
                 </div>
                 <img
                   loading="lazy"
-                  src="assets/images/studio-features/4.png"
+                  src="assets/images/studio-features/4.webp"
                   alt="SDK UI"
                 />
               </section>
@@ -403,7 +403,7 @@ export default function SDKPage() {
                 </div>
                 <img
                   loading="lazy"
-                  src="assets/images/studio-features/5.png"
+                  src="assets/images/studio-features/5.webp"
                   alt="SDK UI"
                 />
               </section>
@@ -420,7 +420,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/studio-features/6.png"
+                src="assets/images/studio-features/6.webp"
                 alt="SDK UI"
               />
             </section>
@@ -436,7 +436,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/studio-features/8.png"
+                src="assets/images/studio-features/8.webp"
                 alt="SDK UI"
               />
             </section>
@@ -455,7 +455,7 @@ export default function SDKPage() {
               </div>
               <img
                 loading="lazy"
-                src="assets/images/studio-features/9.png"
+                src="assets/images/studio-features/9.webp"
                 alt="SDK UI"
               />
             </section>
@@ -492,7 +492,7 @@ export default function SDKPage() {
               <img
                 loading="lazy"
                 className={cn(styles.sponsorLogo, styles.phreesiaLogo)}
-                src="/assets/images/phreesia_logo.png"
+                src="/assets/images/phreesia_logo.webp"
                 alt="Phreesia logo"
               />
             </a>
@@ -503,7 +503,7 @@ export default function SDKPage() {
               <img
                 loading="lazy"
                 className={cn(styles.sponsorLogo, styles.veepnLogo)}
-                src="/assets/images/logo_veepn.png"
+                src="/assets/images/logo_veepn.webp"
                 alt="Download the Best Windows VPN for PC"
               />
             </a>

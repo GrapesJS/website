@@ -112,7 +112,7 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
       <div className="max-w-[1100px]">
         <section className={styles.footerSection}>
           <div className={styles.logoAndDescription}>
-            <Logo height={35} />
+            <Logo height={35} loading="lazy" />
             <p className={styles.description}>
               The leading open-source framework for building your visual web
               builders.
@@ -149,6 +149,8 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
                   className={styles.footerSectionSocialImg}
                   src={src}
                   alt={title}
+                  loading="lazy"
+                  decoding="async"
                 />
               </a>
             ))}
