@@ -36,7 +36,7 @@ const navLinks: HeaderNavLink[] = [
   },
   {
     content: "Contact Us",
-    className: getCtaClassName({ variant: "primary", className: "!px-4" }),
+    className: getCtaClassName({ variant: "primary" }),
     href: urls.getContactUsUrl(),
     isCta: true,
     target: "_blank",
@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
         </div>
       </div>
 
-      <header className={cn(styles.container, isHome && styles.home)} {...rest}>
+      <header className={cn(styles.container)} {...rest}>
         <div className={styles.navbar}>
           <div className={styles.content}>
             <div className={cn(styles.logo, "z-10")}>
