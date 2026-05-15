@@ -1,4 +1,8 @@
 .bg {
+  /* background: url(/assets/images/background.svg) bottom -200px center no-repeat,
+    url(/assets/images/background-pattern.svg) top center,
+    var(--backgroundColor);
+  background-size: cover; */
   background: var(--backgroundColor);
   height: 100vh;
   width: 100%;
