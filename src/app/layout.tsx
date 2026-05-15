@@ -41,7 +41,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-      return (
+  return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -66,10 +66,8 @@ export default function RootLayout({
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         */}
       </head>
-      <body
-        suppressHydrationWarning
-        className={cn(manrope.className)}
-      >
+      <body suppressHydrationWarning className={cn(manrope.className)}>
+        <div className="min-h-screen">{children}</div>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-N6SVS9RS"
@@ -93,7 +91,6 @@ export default function RootLayout({
           data-rewardful="9302d5"
           strategy="lazyOnload"
         />
-        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );
