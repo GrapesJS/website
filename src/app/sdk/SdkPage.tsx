@@ -4,7 +4,6 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import StarOnGH from "../_components/StarOnGH";
 import { Tabs } from "../_components/Tabs";
 import WindowShell from "../_components/WindowShell";
 import "../home.css";
@@ -100,7 +99,7 @@ export default function SDKPage() {
             </CTALink>
           </div>
 
-          <StarOnGH />
+          {/* <StarOnGH /> */}
 
           <Tabs
             tabs={[

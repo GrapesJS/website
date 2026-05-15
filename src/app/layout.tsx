@@ -4,7 +4,6 @@ import Script from "next/script";
 
 import cn from "classnames";
 import "./globals.css";
-import { AuthProvider } from "./ai/AuthProvider";
 import { DEFAULT_OG_IMAGE, SITE_URL, SITE_URL_OBJECT } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -95,9 +94,7 @@ export default function RootLayout({
           data-rewardful="9302d5"
           strategy="lazyOnload"
         />
-        <div className="min-h-screen">
-          <AuthProvider>{children}</AuthProvider>
-        </div>
+        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );
