@@ -1,9 +1,26 @@
 .bg {
-  /* background: url(/assets/images/background.svg) bottom -200px center no-repeat,
+  /*
+  background: url(/assets/images/background.svg) bottom -200px center no-repeat,
     url(/assets/images/background-pattern.svg) top center,
     var(--backgroundColor);
-  background-size: cover; */
-  background: var(--backgroundColor);
+  background-size: cover;
+  */
+  background:
+    radial-gradient(
+      78% 162% at 22% 108%,
+      rgb(239 139 165 / 0.3) 0%,
+      rgb(239 139 165 / 0.18) 30%,
+      rgb(239 139 165 / 0.08) 48%,
+      rgb(239 139 165 / 0) 74%
+    ),
+    radial-gradient(
+      64% 68% at 82% 78%,
+      rgb(151 58 168 / 0.26) 0%,
+      rgb(151 58 168 / 0.14) 32%,
+      rgb(151 58 168 / 0.05) 48%,
+      rgb(151 58 168 / 0) 76%
+    ),
+    linear-gradient(180deg, #050306 0%, #08040a 30%, #110912 62%, #120912 100%);
   height: 100vh;
   width: 100%;
   z-index: -1;
@@ -25,43 +42,59 @@
 .bg::before {
   background-image: radial-gradient(
     circle,
-    rgb(152 162 179 / 0.28) 0 1.5px,
+    rgb(152 162 179 / 0.24) 0 1.5px,
     transparent 1.6px
   );
-  background-position: center top;
+  background-position: center bottom;
   background-size: 23px 23px;
-  mask-image: radial-gradient(
-    ellipse 55% 100% at 50% 0%,
-    rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 1) 58%,
-    rgb(0 0 0 / 0.85) 72%,
-    rgb(0 0 0 / 0) 100%
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.18) 0%,
+    rgb(0 0 0 / 0.28) 22%,
+    rgb(0 0 0 / 0.48) 90%,
+    rgb(0 0 0 / 0.9) 100%
   );
-  opacity: 0.65;
+  mask-image: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.18) 0%,
+    rgb(0 0 0 / 0.28) 22%,
+    rgb(0 0 0 / 0.48) 90%,
+    rgb(0 0 0 / 0.9) 100%
+  );
+  opacity: 0.9;
 }
 
 .bg::after {
-  inset: -12% -8% -10%;
+  inset: -18% -12% -14%;
   background:
     radial-gradient(
-      58% 46% at 56% 74%,
-      rgb(151 58 168 / 0.56) 0%,
-      rgb(151 58 168 / 0.28) 34%,
-      rgb(151 58 168 / 0) 76%
+      72% 58% at 18% 100%,
+      rgb(239 139 165 / 0.4) 0%,
+      rgb(239 139 165 / 0.24) 30%,
+      rgb(239 139 165 / 0.12) 48%,
+      rgb(239 139 165 / 0) 74%
     ),
     radial-gradient(
-      62% 54% at 38% 70%,
-      rgb(239 139 165 / 0.48) 0%,
-      rgb(239 139 165 / 0.24) 42%,
-      rgb(239 139 165 / 0) 78%
+      48% 34% at 48% 96%,
+      rgb(209 152 189 / 0.2) 0%,
+      rgb(209 152 189 / 0.08) 42%,
+      rgb(209 152 189 / 0) 76%
     ),
     radial-gradient(
-      45% 36% at 74% 50%,
-      rgb(202 164 234 / 0.18) 0%,
-      rgb(202 164 234 / 0.08) 34%,
-      rgb(202 164 234 / 0) 76%
+      44% 56% at 86% 64%,
+      rgb(164 81 220 / 0.54) 0%,
+      rgb(164 81 220 / 0.24) 34%,
+      rgb(164 81 220 / 0.08) 50%,
+      rgb(164 81 220 / 0) 76%
+    ),
+    radial-gradient(
+      34% 42% at 72% 80%,
+      rgb(115 39 154 / 0.34) 0%,
+      rgb(115 39 154 / 0.14) 36%,
+      rgb(115 39 154 / 0) 72%
     );
-  filter: blur(56px);
+  filter: blur(72px);
+  opacity: 0.95;
 }
 
 .sticky {
