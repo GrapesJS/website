@@ -1,4 +1,3 @@
-"use client";
 import cn from "classnames";
 
 const Logo = ({

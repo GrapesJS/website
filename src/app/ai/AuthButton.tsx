@@ -2,7 +2,7 @@
 
 import cn from "classnames";
 import { useState, useEffect, useRef } from "react";
-import { API_BASE, checkAuthSession } from "@/lib/grapes-api";
+import { API_BASE } from "@/lib/grapes-api";
 import { useAuthContext } from "./AuthContext";
 
 interface AuthButtonProps {

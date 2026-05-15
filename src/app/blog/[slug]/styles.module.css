@@ -13,7 +13,6 @@
 }
 
 .backLink {
-  font-family: var(--font-inter);
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
@@ -26,7 +25,6 @@
 }
 
 .metadata {
-  font-family: var(--font-inter);
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;

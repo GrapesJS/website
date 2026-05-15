@@ -4,7 +4,6 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import StarOnGH from "../_components/StarOnGH";
 import { Tabs } from "../_components/Tabs";
 import WindowShell from "../_components/WindowShell";
 import "../home.css";
@@ -100,7 +99,7 @@ export default function SDKPage() {
             </CTALink>
           </div>
 
-          <StarOnGH />
+          {/* <StarOnGH /> */}
 
           <Tabs
             tabs={[
@@ -113,6 +112,9 @@ export default function SDKPage() {
                       className="w-full"
                       src="/assets/images/newsletter.webp"
                       alt="GrapesJS Studio SDK Email/Newsletter Demo"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="sync"
                     />
                   </WindowShell>
                 ),
@@ -126,6 +128,8 @@ export default function SDKPage() {
                       className="w-full"
                       src="/assets/images/html_builder.webp"
                       alt="GrapesJS Studio SDK Webpage Demo"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </WindowShell>
                 ),
@@ -139,6 +143,8 @@ export default function SDKPage() {
                       className="w-full"
                       src="/assets/images/document.webp"
                       alt="GrapesJS Document Demo"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </WindowShell>
                 ),
@@ -173,6 +179,8 @@ export default function SDKPage() {
                         className={cn(styles.userLogo, className)}
                         src={src}
                         alt={alt}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   ))}

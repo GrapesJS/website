@@ -21,7 +21,6 @@
 }
 
 .description {
-  font-family: var(--font-inter);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -51,7 +50,6 @@
 }
 
 .categoryName {
-  font-family: var(--font-inter);
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
@@ -61,7 +59,6 @@
 }
 
 .link {
-  font-family: var(--font-inter);
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
