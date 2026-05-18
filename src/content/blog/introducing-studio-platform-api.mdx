@@ -1,41 +1,37 @@
 ---
 title: "Making Studio Programmable: Introducing the Studio Platform API"
-excerpt: "The first phase of our Platform API is here, with project management, template catalog access and the foundation for deeper automation workflows."
-coverImage: "/assets/blog/studio-mcp-app/grapes-studio-mcp-app-chatgpt.webp"
+excerpt: "The first phase of the Studio Platform API is live, with project management, template access, and the foundation for deeper automation workflows."
+coverImage: "/assets/blog/platform-api/introducing-platform-api.webp"
 date: "2026-05-18T14:00:00Z"
 author:
   name: Grapes Studio Team
 ogImage:
-  url: "/assets/blog/studio-mcp-app/grapes-studio-mcp-app-chatgpt.webp"
+  url: "/assets/blog/platform-api/introducing-platform-api.webp"
 ---
 
-The way teams create visual content is changing. More of the workflow now starts outside the editor, with AI-generated drafts, structured data, internal tools, and automated pipelines feeding work into a visual editing step. We think Studio needs to adapt to that reality.
+Studio has mostly been something teams use through the dashboard. That works well until project creation starts somewhere else: your app, an internal tool, a CRM, or an AI workflow. At that point, you need more than a visual editor. You need a way to plug Studio into the rest of your stack.
 
 Today, we're rolling out the first phase of the [Studio Platform API](https://app.grapesjs.com/docs-sdk/api).
 
-This release gives teams a programmatic way to work with Studio beyond the dashboard. Instead of creating and managing everything manually, you can now connect Studio to your own backend, internal tools, automation workflows, and AI-driven experiences.
+This release gives teams a programmatic way to create and manage Studio resources outside the dashboard, so Studio can sit inside real product workflows instead of beside them.
 
-## Why this matters now
+## Why this matters
 
-Part of the shift is AI. As generation gets cheaper and faster, teams are no longer creating one page, one email, or one document at a time. They are creating variations, drafts, personalized assets, and campaign batches at a much higher volume. That changes the role of visual editing. The editor is still where people refine the result, apply brand judgment, and make final decisions, but it increasingly sits inside a larger workflow instead of being the whole workflow.
+AI is part of the reason this matters, but it is not the only reason. Teams are producing more variations, more drafts, and more personalized assets than they used to. The editor still matters, but it is increasingly one step in a larger workflow rather than the whole workflow.
 
-In other words, the job is no longer just "give me a canvas." More teams now need a system that can generate a starting point, route it into a visual editor, let a person review or adjust it, and then push it into publishing or downstream business processes. That is true whether the upstream input is a human brief, structured product data, or an AI-generated draft.
+Visual editing is not going away. It just needs to connect cleanly to the systems around it: generation, review, publishing, and internal business logic. The Platform API is the first step in that direction.
 
-That is the broader reason the Platform API matters to us. We are not trying to replace the editor. We are making it easier for the editor to plug into the systems around it, so Studio can support workflows that are more automated, more data-driven, and more collaborative than the traditional "open the dashboard and build everything by hand" model.
+## What is in the first release
 
-## What we delivered in this initial phase
-
-The first release is intentionally focused on the core building blocks that make automation practical from day one.
+We started with the building blocks teams need first.
 
 ### Project management
 
-The biggest gap we wanted to close first was project management.
+You can now create, list, fetch, update, and delete Studio projects programmatically. That means your backend or internal tooling can create a project when a customer signs up, clone a starter project for a campaign, sync metadata with another system, or update stored content without going through the dashboard.
 
-With the Platform API, you can now create, list, fetch, update, and delete Studio projects programmatically. That means a backend service or internal workflow can create a new project when a customer signs up, duplicate a starting structure for a campaign, keep an external system in sync with Studio, or update stored project content without going through the dashboard manually.
+This first phase is not about exposing every editing action yet. It is about giving developers a reliable way to manage the lifecycle of Studio projects from their own systems.
 
-This first phase is not about exposing every possible editing capability yet. It is about giving developers a reliable way to manage the lifecycle of Studio projects from their own systems.
-
-That alone unlocks a lot of useful workflows:
+That already unlocks useful workflows:
 
 - creating starter projects for new customers
 - provisioning website or email projects from your app UI
@@ -43,29 +39,23 @@ That alone unlocks a lot of useful workflows:
 - maintaining template-like internal starter projects
 - building simple admin tools on top of Studio resources
 
-For many teams, that is the minimum viable layer needed to move from "Studio as a manual tool" to "Studio as part of our platform."
+For many teams, that is the minimum viable layer needed to move from "Studio as a manual tool" to "Studio as part of our product."
 
-### Template catalog access
+### Template access
 
-The second major piece in this release is template catalog access.
+Templates are often the bridge between platform logic and visual output. With the Platform API, developers can now list and fetch templates programmatically, including public templates and workspace-specific ones.
 
-Templates are one of the fastest ways to make Studio useful in production workflows, because they let teams start from a known structure instead of an empty canvas. With the Platform API, developers can now list and fetch templates programmatically, including our public templates and workspace-specific ones.
+For Studio SDK users, this is especially useful. A team can create projects in its workspace through the API or from the dashboard, then surface those projects as templates inside its embedded editor experience. That makes templates part of your product flow instead of something users have to discover manually.
 
-This matters because templates are often the bridge between platform logic and visual output.
+We also added audit logs for Platform API activity, so teams can review what happened inside their workspace.
 
-For Studio SDK consumers, this is especially important. A team can create projects in its workspace through the API or directly from the dashboard, and then make those projects easily accessible as templates inside its embedded editor experience. That creates a much smoother workflow between backend setup, internal curation, and what end users actually see when they start a new project.
+## What comes next
 
-## What we plan to deliver next
-
-This initial phase is only the start. The bigger vision for the Platform API is to make Studio a programmable content engine, not just a hosted editor.
-
-Here are a few of the areas we're most excited about next.
+This release is intentionally narrow, but the direction is clear: make Studio easier to automate, embed, and connect to the rest of a content stack.
 
 ### Generate projects with AI
 
-One of the most natural next steps is deeper AI project generation.
-
-We want the Platform API to make it easier to create Studio projects from prompts, briefs, and other structured inputs, so teams can move faster from idea to editable result.
+One natural next step is deeper project generation from prompts, briefs, and structured inputs, so teams can move faster from idea to editable result.
 
 ### Export projects in multiple formats
 
@@ -75,9 +65,9 @@ Another big area is export. We want Studio projects to move more easily into dow
 - PDF for printable documents, proposals, reports, or presentations
 - image outputs for previews, approvals, ad creatives, or social assets
 
-### Export with custom data sources and replacement data
+### Export with custom data
 
-Studio already has strong foundations for dynamic, data-driven content. Extending that into the Platform API would let teams export a project while injecting custom data at export time.
+Studio already supports dynamic, data-driven content. Extending that into the Platform API would let teams export a project while injecting custom data at export time.
 
 That could support workflows like:
 
@@ -88,6 +78,6 @@ That could support workflows like:
 
 ## Where this is going
 
-This first phase is foundational, but it already opens the door to useful integrations today.
+The first phase is live now, and it already makes Studio easier to plug into real product workflows.
 
-Our goal is to keep expanding the Platform API so Studio becomes easier to embed, automate, and connect with AI, data, and publishing workflows.
+Our goal is to keep expanding the Platform API so Studio becomes easier to embed, automate, and connect to AI, data, and publishing systems without losing the visual editing layer that makes the output practical to work with.
