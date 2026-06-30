@@ -49,16 +49,16 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
       <div className="w-full border-b border-white/15 bg-gradient-to-r from-[#7b2d8e] via-[#973aa8] to-[#7b2d8e] text-white">
         <div className="mx-auto flex w-full max-w-[1150px] items-center justify-center gap-2 px-4 py-2.5 text-[12px] font-medium leading-5 sm:px-5 sm:text-sm">
           <span className="truncate">
-            ✨ <b>AI Chat Plugin is here!</b> Build AI agents that edit your
-            projects.
+            ✨ <b>New:</b> Open Studio directly inside ChatGPT and keep editing
+            without leaving the conversation.
           </span>
           <a
-            href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview"
+            href={urls.getChatGptAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 font-semibold text-purple-200 transition-colors hover:text-white"
           >
-            View Docs -&gt;
+            Open App -&gt;
           </a>
         </div>
       </div>

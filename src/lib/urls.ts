@@ -14,12 +14,14 @@ const getRef = ({ ref, plan }: UrlProps = {}) =>
   ref
     ? `&utm_medium=${ref}`
     : plan
-    ? `&utm_medium=ctaSdkPlan${toCapitalCase(plan)}`
-    : "";
+      ? `&utm_medium=ctaSdkPlan${toCapitalCase(plan)}`
+      : "";
 
 const urls = {
   getGettingStartedDocsUrl: () =>
     `${APP_URL}/docs-sdk/overview/getting-started?${UTM_PARAMS}&utm_medium=docsHeader`,
+  getChatGptAppUrl: () =>
+    "https://chatgpt.com/apps/grapes-studio/asdk_app_69dd38930d64819196c02d0f9db061b5",
   getGrapesJsDocs: () => `${SITE_URL}/docs/?${UTM_PARAMS}`,
   getStudioEditorUrl: () =>
     `${APP_URL}/playground?${UTM_PARAMS}&utm_medium=tryEditor`,
