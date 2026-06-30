@@ -115,7 +115,7 @@ export default function EmailSDKPage() {
                 href={urls.getSdkLicensesUrl({ ref: "emailHeroCta" })}
                 className="inline-block px-8 py-4 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition-colors duration-200 text-lg"
               >
-                Get Started for Free
+                Get a License
               </a>
               <a
                 href={urls.getGettingStartedDocsUrl()}
@@ -362,7 +362,7 @@ export default function EmailSDKPage() {
                 href={urls.getSdkLicensesUrl({ ref: "emailCta" })}
                 className="inline-block px-8 py-4 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition-colors duration-200 text-lg"
               >
-                Get Started for Free
+                Get a License
               </a>
               <a
                 href={urls.getContactUsUrl()}
@@ -381,4 +381,3 @@ export default function EmailSDKPage() {
     </div>
   );
 }
-

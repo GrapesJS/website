@@ -135,7 +135,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
     description: "Free access. Forever",
     preList: "All basic features",
     cta: {
-      label: "Try Now",
+      label: "Get a License",
       href: urls.getSdkLicensesUrl({ plan: "free" }),
     },
     cardFeatures: [
@@ -175,7 +175,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
     priceSuffix: { monthly: "/month", annual: "/year" },
     includes: "free",
     cta: {
-      label: "Get This Plan",
+      label: "Get a License",
       href: urls.getSdkLicensesUrl({ plan: "startup" }),
     },
     cardFeatures: [
@@ -215,7 +215,7 @@ export const sdkPricingPlans: SdkPricingPlan[] = [
     priceSuffix: { monthly: "/month", annual: "/year" },
     includes: "startup",
     cta: {
-      label: "Get This Plan",
+      label: "Get a License",
       href: urls.getSdkLicensesUrl({ plan: "business" }),
     },
     cardFeatures: [

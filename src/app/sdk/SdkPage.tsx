@@ -79,9 +79,6 @@ export default function SDKPage() {
             Embed an AI-powered visual editor in your app.
           </h1>
           <p className={cn(styles.p)}>
-            White-label, no-code editor that integrates seamlessly into your
-            stack.
-            <br />
             Build with AI, drag & drop, or code.
             <br />
             For <b className="text-white">Newsletters</b>,{" "}
@@ -95,7 +92,7 @@ export default function SDKPage() {
               href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
               variant="tertiary"
             >
-              Get License
+              Get a License
             </CTALink>
           </div>
 
@@ -207,7 +204,7 @@ export default function SDKPage() {
             href={urls.getSdkLicensesUrl({ ref: "featuresCta" })}
             className="my-10"
           >
-            Start Now<span className="font-[400]"> - It's free</span>
+            Get a License
           </CTALink>
 
           <section className={styles.card}>
@@ -468,7 +465,7 @@ export default function SDKPage() {
             Join the thousands of companies & developers using our editor today
           </p>
           <CTALink href={urls.getSdkLicensesUrl({ ref: "preSponsorCta" })}>
-            Get Started for Free
+            Get a License
           </CTALink>
         </section>
 
