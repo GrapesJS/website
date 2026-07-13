@@ -76,24 +76,47 @@ export default function SDKPage() {
             </div>
           </BadgeLink> */}
           <h1 className={cn(styles.h1)}>
-            Embed an AI-powered visual editor in your app.
+            Embedded visual editor for newsletters and websites
           </h1>
-          <p className={cn(styles.p)}>
-            Build with AI, drag & drop, or code.
-            <br />
-            For <b className="text-white">Newsletters</b>,{" "}
-            <b className="text-white">Websites</b>, and{" "}
-            <b className="text-white">Documents</b>.
+          <p className={cn(styles.p, "!max-w-[500px]")}>
+            Use it in{" "}
+            <a
+              href={urls.getChatGptAppUrl()}
+              className="text-white underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ChatGPT
+            </a>
+            ,{" "}
+            <a
+              href={urls.getAiPageUrl()}
+              className="text-white underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Grapes Studio
+            </a>
+            , or embed in your own app with our{" "}
+            <a
+              href={urls.getGettingStartedDocsUrl()}
+              className="text-white underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SDK
+            </a>
+            .
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>Open Playground</CTALink>
-            <CTALink
+            <CTALink href={urls.getStudioEditorUrl()}>Get Your Editor</CTALink>
+            {/* <CTALink
               href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
               variant="tertiary"
             >
               Get a License
-            </CTALink>
+            </CTALink> */}
           </div>
 
           {/* <StarOnGH /> */}
@@ -125,27 +148,28 @@ export default function SDKPage() {
                       className="w-full"
                       src="/assets/images/html_builder.webp"
                       alt="GrapesJS Studio SDK Webpage Demo"
-                      loading="lazy"
-                      decoding="async"
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="sync"
                     />
                   </WindowShell>
                 ),
               },
-              {
-                id: "editorImage2",
-                label: "Document Builder",
-                content: (
-                  <WindowShell>
-                    <img
-                      className="w-full"
-                      src="/assets/images/document.webp"
-                      alt="GrapesJS Document Demo"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </WindowShell>
-                ),
-              },
+              // {
+              //   id: "editorImage2",
+              //   label: "Document Builder",
+              //   content: (
+              //     <WindowShell>
+              //       <img
+              //         className="w-full"
+              //         src="/assets/images/document.webp"
+              //         alt="GrapesJS Document Demo"
+              //         loading="lazy"
+              //         decoding="async"
+              //       />
+              //     </WindowShell>
+              //   ),
+              // },
             ]}
           />
         </section>
@@ -204,7 +228,7 @@ export default function SDKPage() {
             href={urls.getSdkLicensesUrl({ ref: "featuresCta" })}
             className="my-10"
           >
-            Get a License
+            Get Started for Free
           </CTALink>
 
           <section className={styles.card}>
@@ -465,7 +489,7 @@ export default function SDKPage() {
             Join the thousands of companies & developers using our editor today
           </p>
           <CTALink href={urls.getSdkLicensesUrl({ ref: "preSponsorCta" })}>
-            Get a License
+            Get Started for Free
           </CTALink>
         </section>
 
