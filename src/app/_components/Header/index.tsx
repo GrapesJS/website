@@ -1,6 +1,5 @@
 import urls from "@/lib/urls";
 import cn from "classnames";
-import { WandSparkles } from "lucide-react";
 import Link from "next/link";
 import { getCtaClassName } from "../CTALink";
 import Logo from "../Logo";
@@ -16,9 +15,9 @@ const urlProps = { ref };
 
 const navLinks: HeaderNavLink[] = [
   {
-    content: "Studio AI",
+    content: "Grapes Studio",
     href: urls.getAiPageUrl(),
-    leadingIcon: <WandSparkles className="h-4 w-4" />,
+    // leadingIcon: <WandSparkles className="h-4 w-4" />,
   },
   { content: "Features", href: urls.getFeaturesUrl() },
   { content: "Pricing", href: urls.getPricingUrl() },
@@ -46,7 +45,7 @@ const navLinks: HeaderNavLink[] = [
 const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
   return (
     <>
-      <div className="w-full border-b border-white/15 bg-gradient-to-r from-[#7b2d8e] via-[#973aa8] to-[#7b2d8e] text-white">
+      {/* <div className="w-full border-b border-white/15 bg-gradient-to-r from-[#7b2d8e] via-[#973aa8] to-[#7b2d8e] text-white">
         <div className="mx-auto flex w-full max-w-[1150px] items-center justify-center gap-2 px-4 py-2.5 text-[12px] font-medium leading-5 sm:px-5 sm:text-sm">
           <span className="truncate">
             ✨ <b>New:</b> Open Studio directly inside ChatGPT and keep editing
@@ -61,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
             Open App -&gt;
           </a>
         </div>
-      </div>
+      </div> */}
 
       <header className={cn(styles.container)} {...rest}>
         <div className={styles.navbar}>

@@ -49,7 +49,7 @@ const linkCategories: {
       { id: "Blog", label: "Blog", href: urls.getBlogUrl() },
       {
         id: "StudioAi",
-        label: "Studio AI",
+        label: "Grapes Studio",
         href: urls.getAiPageUrl(),
       },
       {
