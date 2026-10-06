@@ -311,7 +311,7 @@ export default function GrapesDemoEditor({ children, config, info, components, p
             <div className="hidden">
                 <div className="gjs-logo-cont">
                     <a href="/">
-                        <img className="gjs-logo" src="/assets/images/grapesjs-logo-cl.png"/>
+                        <img className="gjs-logo" src="/assets/images/grapesjs-logo-cl.png" alt="GrapesJS logo"/>
                     </a>
                     <div className="gjs-logo-version"></div>
                 </div>
@@ -319,7 +319,7 @@ export default function GrapesDemoEditor({ children, config, info, components, p
 
             <div id="info-panel" className="hidden">
                 <br/>
-                <img className="block mx-auto" src="/assets/images/grapesjs-logo-cl.png"/>
+                <img className="block mx-auto" src="/assets/images/grapesjs-logo-cl.png" alt="GrapesJS logo"/>
                 <br/>
                 <div className="info-panel-label">
                     <b>{info.name}</b> is a simple showcase of what is possible to achieve with
