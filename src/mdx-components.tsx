@@ -50,12 +50,11 @@ const mdxComponents = {
 };
 
 const options: MDXRemoteProps["options"] = {
+  // Blog MDX is checked into src/content/blog and uses expressions for inline styles.
+  blockJS: false,
   mdxOptions: {
     remarkPlugins: [],
-    rehypePlugins: [
-      // @ts-expect-error
-      rehypeHighlight,
-    ],
+    rehypePlugins: [rehypeHighlight],
   },
 };
 

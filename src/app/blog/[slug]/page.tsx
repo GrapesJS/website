@@ -15,14 +15,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./styles.module.css";
 
+export const dynamicParams = false;
+
 interface PageBlogPostProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function PageBlogPost({ params }: PageBlogPostProps) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
@@ -77,8 +80,11 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
   );
 }
 
-export function generateMetadata({ params }: PageBlogPostProps): Metadata {
-  const post = getPostBySlug(params.slug);
+export async function generateMetadata({
+  params,
+}: PageBlogPostProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
@@ -96,7 +102,7 @@ export function generateMetadata({ params }: PageBlogPostProps): Metadata {
 }
 
 export async function generateStaticParams() {
-  const result: PageBlogPostProps["params"][] = getAllPosts().map((post) => ({
+  const result: Awaited<PageBlogPostProps["params"]>[] = getAllPosts().map((post) => ({
     slug: post.slug,
   }));
   return result;
