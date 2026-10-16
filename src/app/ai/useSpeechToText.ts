@@ -20,7 +20,7 @@ export function useSpeechToText() {
   const [transcript, setTranscript] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [isSupported, setIsSupported] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | undefined>();
+  const recognitionRef = useRef<SpeechRecognition | undefined>(undefined);
 
   useEffect(() => setIsSupported(!!getSpeechRecognition()), []);
 

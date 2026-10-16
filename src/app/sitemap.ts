@@ -2,6 +2,8 @@ import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blogApi";
 import { SITE_URL } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // Get all blog posts
   const posts = getAllPosts();
@@ -75,7 +77,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "vs-wordpress",
     "vs-squarespace",
     "vs-wix",
-    "vs-unbounce",
     "vs-cargo",
     "vs-lovable",
   ].map((page) => ({
