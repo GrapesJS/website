@@ -6,6 +6,7 @@ import Footer from "../_components/Footer";
 import Header from "../_components/Header";
 import { Tabs } from "../_components/Tabs";
 import WindowShell from "../_components/WindowShell";
+import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import "../home.css";
 import styles from "../styles.module.css";
 
@@ -118,14 +119,7 @@ export default function SDKPage() {
                 label: "Website Builder",
                 content: (
                   <WindowShell>
-                    <img
-                      className="w-full"
-                      src="/assets/images/html_builder.webp"
-                      alt="GrapesJS Studio SDK Webpage Demo"
-                      loading="eager"
-                      fetchPriority="high"
-                      decoding="sync"
-                    />
+                    <EmbedBuilderWeb />
                   </WindowShell>
                 ),
               },
