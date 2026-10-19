@@ -75,38 +75,12 @@ export default function SDKPage() {
               <span className="text-[#d97de9]"> Try It Now!</span>
             </div>
           </BadgeLink> */}
-          <h1 className={cn(styles.h1)}>
-            Embedded visual editor for newsletters and websites
-          </h1>
-          <p className={cn(styles.p, "!max-w-[500px]")}>
-            Use it in{" "}
-            <a
-              href={urls.getChatGptAppUrl()}
-              className="text-white underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ChatGPT
-            </a>
-            ,{" "}
-            <a
-              href={urls.getAiPageUrl()}
-              className="text-white underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Grapes Studio
-            </a>
-            , or embed in your own app with our{" "}
-            <a
-              href={urls.getGettingStartedDocsUrl()}
-              className="text-white underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              SDK
-            </a>
-            .
+          <h1 className={cn(styles.h1)}>AI visual editor for SaaS</h1>
+          <p className={cn(styles.p, "!max-w-[900px]")}>
+            Embeddable drag-and-drop editor for building emails, landing pages,
+            websites, and more. <br />
+            Give your users AI-powered content creation tools directly from your
+            app.
           </p>
 
           <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
