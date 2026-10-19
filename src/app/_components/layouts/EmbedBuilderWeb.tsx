@@ -2,35 +2,42 @@ import type { ReactNode } from "react";
 import {
   ArrowUp,
   Bell,
+  Check,
   ChevronDown,
   ChevronRight,
   ChevronUp,
   CodeXml,
   Copy,
   Crosshair,
-  Download,
+  Database,
   EllipsisVertical,
-  Eye,
   FileStack,
   Frame,
   Hand,
   Image as ImageIcon,
   Layers,
+  LogOut,
   Maximize,
   Menu,
+  Mic,
+  Monitor,
   Move,
   MoveVertical,
   PanelTop,
   Play,
   Plus,
   Redo2,
+  Save,
   Scan,
-  Settings,
+  Sparkles,
   SquareDashed,
+  SquarePlus,
+  SwatchBook,
   Tag,
   Trash2,
   Type,
   Undo2,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -122,6 +129,7 @@ const layerRows = [
   { name: "Footer section", depth: 1, icon: SquareDashed },
 ];
 
+// Retained for layouts that show the page and layer managers.
 function PagesPanel() {
   return (
     <div className="min-w-0 border-r-[0.075cqw] border-[#494251] bg-[#201e2a]">
@@ -174,30 +182,141 @@ function PagesPanel() {
   );
 }
 
+function EditorSidebar() {
+  return (
+    <div className="flex min-h-0 flex-col items-center border-r-[0.05cqw] border-[#3c3d43] bg-[#18191b] py-[0.45cqw] text-[#a1a6b0]">
+      <div className="flex flex-col items-center gap-[0.5cqw]">
+        {[SquarePlus, Layers, SwatchBook, ImageIcon, Database, Sparkles].map(
+          (Icon, index) => (
+            <span
+              key={index}
+              className={cn(
+                "flex h-[1.65cqw] w-[2cqw] items-center justify-center rounded-[0.18cqw]",
+                Icon === Sparkles && "bg-[#8b5cf6] text-white",
+              )}
+            >
+              <Icon
+                className="size-[0.95cqw]"
+                fill={Icon === Sparkles ? "currentColor" : "none"}
+                strokeWidth={1.8}
+              />
+            </span>
+          ),
+        )}
+      </div>
+      <div className="mt-auto flex flex-col items-center gap-[1.3cqw] pb-[0.15cqw]">
+        <LogOut className="size-[0.95cqw] rotate-180" />
+        <span className="flex size-[1.25cqw] items-center justify-center rounded-full bg-[#a1a6b0] text-[#18191b]">
+          <svg viewBox="0 0 24 24" fill="none" className="size-[0.95cqw]">
+            <path
+              d="m12 3-8 4.5v9L12 21l8-4.5V12l-8 4.5V12l4-2.3M4 7.5l8-4.5"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function ConversationAction({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex h-[1.65cqw] items-center gap-[0.45cqw] rounded-[0.18cqw] bg-[#26272a] px-[0.5cqw]">
+      <Check className="size-[0.8cqw]" />
+      <span className="flex-1">{children}</span>
+      <ChevronDown className="size-[0.75cqw]" />
+    </div>
+  );
+}
+
+function AIChatPanel() {
+  return (
+    <div className="flex min-h-0 min-w-0 flex-col border-r-[0.05cqw] border-[#3c3d43] bg-[#18191b] text-[0.72cqw] text-[#a1a6b0]">
+      <div className="flex h-[2.1cqw] shrink-0 items-center gap-[0.45cqw] border-b-[0.05cqw] border-[#3c3d43] px-[0.5cqw]">
+        <Sparkles className="size-[0.95cqw] fill-current" strokeWidth={1} />
+        <span className="flex-1">AI Assistant</span>
+        <Trash2 className="size-[0.85cqw]" />
+        <X className="ml-[0.35cqw] size-[0.95cqw]" />
+      </div>
+      <div className="min-h-0 flex-1 space-y-[0.75cqw] overflow-hidden px-[0.5cqw] py-[0.5cqw] leading-[1.45]">
+        <div className="rounded-[0.2cqw] bg-[#8b5cf6] px-[0.45cqw] py-[0.4cqw] text-white">
+          Create a landing page for our visual website builder. Use a purple
+          theme and add a waitlist.
+        </div>
+        <div className="space-y-[0.45cqw]">
+          <p>
+            I’ll create a landing page with a bold headline, feature sections,
+            and a clear call to action.
+          </p>
+          <ConversationAction>Create new project page</ConversationAction>
+        </div>
+        <div className="space-y-[0.45cqw]">
+          <p>
+            The page is ready. I’ll add your content and style it with a purple
+            gradient and waitlist buttons.
+          </p>
+          <ConversationAction>Edit page content</ConversationAction>
+        </div>
+        <div className="rounded-[0.2cqw] bg-[#8b5cf6] px-[0.45cqw] py-[0.4cqw] text-white">
+          Make “drag-and-drop builder” stand out in a brighter purple.
+        </div>
+        <div className="space-y-[0.45cqw]">
+          <p>
+            I’ll highlight the selected text and keep the rest of the heading
+            white.
+          </p>
+          <ConversationAction>Update styles</ConversationAction>
+        </div>
+        <p>
+          Done — your landing page is ready, with a purple headline and matching
+          waitlist buttons.
+        </p>
+      </div>
+      <div className="shrink-0 border-t-[0.05cqw] border-[#3c3d43] p-[0.5cqw]">
+        <div className="flex h-[6.6cqw] flex-col rounded-[0.45cqw] border-[0.05cqw] border-[#3c3d43] p-[0.45cqw]">
+          <div className="flex items-center gap-[0.5cqw]">
+            <Crosshair className="size-[0.8cqw]" />
+            <span className="flex items-center gap-[0.3cqw] rounded-[0.15cqw] bg-[#3998df] px-[0.35cqw] py-[0.1cqw] text-white">
+              <Type className="size-[0.8cqw]" />
+              Text
+              <X className="ml-[0.2cqw] size-[0.75cqw]" />
+            </span>
+          </div>
+          <span className="mt-[0.45cqw] text-[#777b82]">Ask anything...</span>
+          <div className="mt-auto flex items-center gap-[0.85cqw]">
+            <Plus className="size-[0.95cqw]" />
+            <Mic className="ml-auto size-[0.9cqw]" />
+            <span className="flex size-[1.6cqw] items-center justify-center rounded-full bg-[#8b5cf6]/50 text-[#b69ae6]">
+              <ArrowUp className="size-[1.05cqw]" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CanvasToolbar() {
   return (
-    <div className="relative flex h-[2.1cqw] shrink-0 items-center justify-between bg-[#201e29] px-[0.6cqw]">
-      <div className="flex size-[1.4cqw] items-center justify-center rounded-[0.15cqw] bg-[#8b5cf6] text-white shadow-[inset_0_0_0_0.08cqw_#ffffff15]">
-        <Plus className="size-[0.95cqw]" />
+    <div className="relative flex h-[2.1cqw] shrink-0 items-center justify-between border-b-[0.05cqw] border-[#3c3d43] bg-[#18191b] px-[0.45cqw] text-[#a1a6b0]">
+      <div className="flex h-[1.6cqw] items-center gap-[0.4cqw] rounded-[0.18cqw] border-[0.05cqw] border-[#3c3d43] px-[0.5cqw] text-[0.75cqw]">
+        <CodeXml className="size-[0.85cqw]" />
+        <span>Code</span>
       </div>
-      <div className="absolute left-1/2 flex h-[1.5cqw] -translate-x-1/2 items-center gap-[0.4cqw] rounded-[0.2cqw] border-[0.05cqw] border-[#45404f] px-[0.5cqw]">
+      <div className="absolute left-1/2 flex h-[1.5cqw] -translate-x-1/2 items-center gap-[0.4cqw] rounded-[0.2cqw] border-[0.05cqw] border-[#3c3d43] px-[0.5cqw]">
+        <Monitor className="size-[0.85cqw]" />
         <span>Desktop</span>
         <ChevronDown className="size-[0.7cqw]" />
       </div>
-      <div className="flex items-center gap-[0.78cqw]">
-        {[
-          Scan,
-          Eye,
-          Maximize,
-          CodeXml,
-          Download,
-          Trash2,
-          Undo2,
-          Redo2,
-          Settings,
-        ].map((Icon, index) => (
+      <div className="flex items-center gap-[0.75cqw]">
+        {[Scan, Maximize, Save, Undo2, Redo2, Play].map((Icon, index) => (
           <Icon key={index} className="size-[0.85cqw]" strokeWidth={2.1} />
         ))}
+        <span className="flex h-[1.65cqw] items-center rounded-[0.18cqw] bg-[#8b5cf6] px-[0.6cqw] text-[0.75cqw] text-white">
+          Publish
+        </span>
       </div>
     </div>
   );
@@ -218,15 +337,15 @@ function WaitlistButton({ className }: { className?: string }) {
 
 function LandingPageCanvas() {
   return (
-    <div className="flex min-w-0 flex-col overflow-hidden">
+    <div className="flex min-w-0 flex-col overflow-hidden bg-[#27272a]">
       <CanvasToolbar />
-      <div className="relative min-h-0 flex-1 overflow-hidden bg-[linear-gradient(165deg,#18051e_0%,#351039_45%,#501e58_100%)] text-white">
-        <div className="flex h-[4.7cqw] items-center justify-between px-[2.7cqw]">
+      <div className="relative m-[0.65cqw] min-h-0 flex-1 overflow-hidden rounded-[0.2cqw] bg-[linear-gradient(165deg,#18051e_0%,#351039_45%,#501e58_100%)] text-white">
+        <div className="flex h-[4.7cqw] items-center justify-between px-[1.8cqw]">
           <div className="flex items-center gap-[0.65cqw] text-[1.45cqw] font-bold text-[#c647dd]">
             <SiteLogo />
             <span>Your Logo</span>
           </div>
-          <div className="flex items-center gap-[2.2cqw] text-[1.05cqw]">
+          <div className="flex items-center gap-[1.5cqw] text-[0.95cqw]">
             <span>About</span>
             <span>Features</span>
             <span>Testimonials</span>
@@ -234,7 +353,7 @@ function LandingPageCanvas() {
           <WaitlistButton />
         </div>
         <div className="mt-[5.2cqw] flex flex-col items-center text-center">
-          <div className="flex items-center justify-center gap-[0.5cqw] whitespace-nowrap text-[2.6cqw] font-bold leading-[1.5] tracking-[-0.06cqw]">
+          <div className="flex items-center justify-center gap-[0.5cqw] whitespace-nowrap text-[2.3cqw] font-bold leading-[1.5] tracking-[-0.06cqw]">
             <span>Your embeddable</span>
             <span className="relative border-[0.08cqw] border-[#b18be9] px-[0.4cqw] py-[0.1cqw] text-[#c647dd]">
               drag-and-drop builder
@@ -302,7 +421,7 @@ function PropertyField({
         {label}
         {highlighted && <span className="ml-[0.35cqw]">×</span>}
       </div>
-      <div className="flex h-[1.6cqw] min-w-0 items-center gap-[0.3cqw] rounded-[0.18cqw] border-[0.05cqw] border-[#45404e] px-[0.45cqw] text-[#9a96a5]">
+      <div className="flex h-[1.6cqw] min-w-0 items-center gap-[0.3cqw] rounded-[0.18cqw] border-[0.05cqw] border-[#3c3d43] px-[0.45cqw] text-[#a1a6b0]">
         {adjustable && (
           <MoveVertical className="size-[0.65cqw] text-[#6c6679]" />
         )}
@@ -317,7 +436,7 @@ function PropertyField({
 
 function PanelSection({ label, open }: { label: string; open?: boolean }) {
   return (
-    <div className="flex h-[1.8cqw] items-center justify-between border-y-[0.025cqw] border-[#484050] bg-[#2b2739] px-[0.65cqw] text-[0.8cqw]">
+    <div className="flex h-[1.8cqw] items-center justify-between border-y-[0.025cqw] border-[#3c3d43] bg-[#26272a] px-[0.65cqw] text-[0.8cqw]">
       <span className="flex items-center gap-[0.35cqw]">
         {label}
         {open && <span className="size-[0.23cqw] rounded-full bg-[#ae88ed]" />}
@@ -333,8 +452,8 @@ function PanelSection({ label, open }: { label: string; open?: boolean }) {
 
 function StylesPanel() {
   return (
-    <div className="min-w-0 overflow-hidden border-l-[0.075cqw] border-[#494251] bg-[#201e2a]">
-      <div className="flex h-[2.1cqw] border-b-[0.05cqw] border-[#47404f] font-semibold">
+    <div className="min-w-0 overflow-hidden border-l-[0.05cqw] border-[#3c3d43] bg-[#18191b] text-[#a1a6b0]">
+      <div className="flex h-[2.1cqw] border-b-[0.05cqw] border-[#3c3d43] font-semibold">
         <div className="flex w-1/2 items-center justify-center border-b-[0.08cqw] border-[#b494f4] text-[#b494f4]">
           Styles
         </div>
@@ -429,7 +548,7 @@ export default function EmbedBuilderWeb({ className }: EmbedBuilderWebProps) {
   return (
     <div
       role="img"
-      aria-label="GrapesJS Studio website builder embedded in your app, with page layers, a purple landing page, and style controls."
+      aria-label="GrapesJS Studio website builder embedded in your app, with an AI Assistant conversation, a purple landing page, and style controls."
       className={cn(
         "relative isolate aspect-[1172/621] w-full overflow-hidden bg-[#24212b] [container-type:inline-size]",
         className,
@@ -440,8 +559,9 @@ export default function EmbedBuilderWeb({ className }: EmbedBuilderWebProps) {
         className="absolute inset-0 select-none text-left font-[Arial,Helvetica,sans-serif] text-[0.7cqw] font-normal leading-normal text-[#a7a4b3] [&_svg]:shrink-0"
       >
         <ApplicationShell />
-        <div className="absolute bottom-[2.6%] left-[16.7%] right-[1.35%] top-[10.1%] grid grid-cols-[16.7%_minmax(0,1fr)_16.7%] overflow-hidden shadow-[0_0_0.6cqw_#16131c22]">
-          <PagesPanel />
+        <div className="absolute bottom-[2.6%] left-[16.7%] right-[1.35%] top-[10.1%] grid grid-cols-[2.8%_19.7%_minmax(0,1fr)_16.4%] overflow-hidden shadow-[0_0_0.6cqw_#16131c22]">
+          <EditorSidebar />
+          <AIChatPanel />
           <LandingPageCanvas />
           <StylesPanel />
         </div>
