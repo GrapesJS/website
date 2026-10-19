@@ -1,4 +1,7 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useRef, type ReactNode } from "react";
+import { MotionConfig } from "motion/react";
 import {
   ArrowUp,
   Bell,
@@ -40,6 +43,13 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  BrandLandingPage,
+  DemoConversation,
+  DemoPlaybackControls,
+  demoSteps,
+  useBuilderDemo,
+} from "./EmbedBuilderWebDemo";
 
 type EmbedBuilderWebProps = {
   className?: string;
@@ -450,7 +460,13 @@ function PanelSection({ label, open }: { label: string; open?: boolean }) {
   );
 }
 
-function StylesPanel() {
+function StylesPanel({
+  brand = false,
+  selected = false,
+}: {
+  brand?: boolean;
+  selected?: boolean;
+} = {}) {
   return (
     <div className="min-w-0 overflow-hidden border-l-[0.05cqw] border-[#3c3d43] bg-[#18191b] text-[#a1a6b0]">
       <div className="flex h-[2.1cqw] border-b-[0.05cqw] border-[#3c3d43] font-semibold">
@@ -474,7 +490,9 @@ function StylesPanel() {
           </span>
           <Plus className="mx-[0.3cqw] size-[0.85cqw] text-[#b494f4]" />
           <span className="flex items-center gap-[0.25cqw] rounded-[0.15cqw] bg-[#f6c7e6] px-[0.3cqw] py-[0.1cqw] text-[0.55cqw] text-[#5c314f]">
-            gjs-text-blue
+            {brand
+              ? selected ? "hero-title" : "landing-page"
+              : "gjs-text-blue"}
             <EllipsisVertical className="size-[0.6cqw]" />
           </span>
         </div>
@@ -483,7 +501,7 @@ function StylesPanel() {
             <Frame className="size-[0.85cqw]" />
           </span>
           <span className="rounded-[0.1cqw] bg-[#4b9dce] px-[0.3cqw] py-[0.05cqw] text-[0.6cqw] text-white">
-            Text
+            {brand ? (selected ? "Heading" : "Body") : "Text"}
           </span>
         </div>
         <div className="flex h-[1.5cqw] items-center justify-between">
@@ -503,17 +521,24 @@ function StylesPanel() {
       <PanelSection label="Typography" open />
       <div className="grid gap-[0.55cqw] px-[0.6cqw] py-[0.6cqw]">
         <PropertyField label="Font" highlighted>
-          Helvetica
+          {brand ? "Arial" : "Helvetica"}
         </PropertyField>
         <PropertyField label="Color" highlighted>
-          <span className="size-[0.85cqw] shrink-0 rounded-[0.1cqw] bg-[#c647dd]" />
-          <span className="text-[0.6cqw]">rgb(198, 71, 221)</span>
+          <span
+            className="size-[0.85cqw] shrink-0 rounded-[0.1cqw]"
+            style={{ backgroundColor: brand ? "#183f35" : "#c647dd" }}
+          />
+          <span className="text-[0.6cqw]">
+            {brand ? "rgb(24, 63, 53)" : "rgb(198, 71, 221)"}
+          </span>
         </PropertyField>
         <div className="grid grid-cols-2 gap-[0.3cqw]">
           <PropertyField label="Size" adjustable>
-            medium
+            {brand ? (selected ? "48 px" : "16 px") : "medium"}
           </PropertyField>
-          <PropertyField label="Weight">Normal</PropertyField>
+          <PropertyField label="Weight">
+            {brand && selected ? "600" : "Normal"}
+          </PropertyField>
         </div>
         <div className="grid grid-cols-2 gap-[0.3cqw]">
           <PropertyField label="Line height" adjustable>
@@ -543,29 +568,44 @@ function StylesPanel() {
   );
 }
 
-/** A static React illustration; dimensions scale together with its container. */
+/** An animated editor demo; dimensions scale together with its container. */
 export default function EmbedBuilderWeb({ className }: EmbedBuilderWebProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const demo = useBuilderDemo(ref);
+
   return (
-    <div
-      role="img"
-      aria-label="GrapesJS Studio website builder embedded in your app, with an AI Assistant conversation, a purple landing page, and style controls."
-      className={cn(
-        "relative isolate aspect-[1172/621] w-full overflow-hidden bg-[#24212b] [container-type:inline-size]",
-        className,
-      )}
-    >
+    <MotionConfig reducedMotion="user">
       <div
-        aria-hidden="true"
-        className="absolute inset-0 select-none text-left font-[Arial,Helvetica,sans-serif] text-[0.7cqw] font-normal leading-normal text-[#a7a4b3] [&_svg]:shrink-0"
+        ref={ref}
+        data-demo-step={demo.step}
+        className={cn(
+          "group relative isolate aspect-[1172/621] w-full overflow-hidden bg-[#24212b] [container-type:inline-size]",
+          className,
+        )}
       >
-        <ApplicationShell />
-        <div className="absolute bottom-[2.6%] left-[16.7%] right-[1.35%] top-[10.1%] grid grid-cols-[2.8%_19.7%_minmax(0,1fr)_16.4%] overflow-hidden shadow-[0_0_0.6cqw_#16131c22]">
-          <EditorSidebar />
-          <AIChatPanel />
-          <LandingPageCanvas />
-          <StylesPanel />
+        <div
+          role="img"
+          aria-label="GrapesJS Studio demo: an AI assistant fetches brand guidelines, builds a landing page, personalizes it for Lumio, and a user edits the headline directly on the canvas."
+          className="absolute inset-0"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 select-none text-left font-[Arial,Helvetica,sans-serif] text-[0.7cqw] font-normal leading-normal text-[#a7a4b3] [&_svg]:shrink-0"
+          >
+            <ApplicationShell />
+            <div className="absolute bottom-[2.6%] left-[16.7%] right-[1.35%] top-[10.1%] grid grid-cols-[2.8%_19.7%_minmax(0,1fr)_16.4%] overflow-hidden shadow-[0_0_0.6cqw_#16131c22]">
+              <EditorSidebar />
+              <DemoConversation demo={demo} />
+              <div className="flex min-w-0 flex-col overflow-hidden bg-[#27272a]">
+                <CanvasToolbar />
+                <BrandLandingPage demo={demo} />
+              </div>
+              <StylesPanel brand selected={demo.step >= demoSteps.hover} />
+            </div>
+          </div>
         </div>
+        <DemoPlaybackControls demo={demo} />
       </div>
-    </div>
+    </MotionConfig>
   );
 }
