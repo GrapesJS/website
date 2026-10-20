@@ -15,6 +15,7 @@ import {
   Type,
 } from "lucide-react";
 import urls from "@/lib/urls";
+import { cn } from "@/lib/utils";
 import CTALink from "../CTALink";
 import {
   AiWorkflowIllustration,
@@ -23,12 +24,15 @@ import {
   StorageIllustration,
   ThemeIllustration,
 } from "./SdkIllustrations";
+import { theme } from "./theme";
 
 const docs = "https://app.grapesjs.com/docs-sdk";
-const linkClass =
-  "inline-flex items-center gap-2 text-sm font-semibold text-[#deb2e8] transition-colors hover:text-white focus-visible:rounded-sm";
-const cardClass =
-  "overflow-hidden rounded-2xl border border-white/[0.1] bg-gradient-to-br from-[#1d1522] to-[#100d13]";
+const linkClass = cn(theme.links.base, theme.colors.linkText);
+const cardClass = cn(
+  "overflow-hidden rounded-2xl",
+  theme.cards.border,
+  theme.cards.bg,
+);
 
 function DocsLink({
   href,
@@ -158,17 +162,30 @@ export default function SdkFeatures() {
         className="mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
       >
         <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#cd8cdb]">
+          <p
+            className={cn(
+              "mb-4 text-xs font-semibold uppercase tracking-[0.2em]",
+              theme.colors.accentText,
+            )}
+          >
             Built to become part of your product
           </p>
           <h2
             id="sdk-features-heading"
-            className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-[46px] md:leading-[1.16]"
+            className={cn(
+              "text-3xl font-semibold leading-tight tracking-tight md:text-[46px] md:leading-[1.16]",
+              theme.colors.primaryText,
+            )}
           >
             Your product. Your workflows.
             <br className="hidden sm:block" /> Your visual editor.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#aaa2b2] md:text-lg">
+          <p
+            className={cn(
+              "mx-auto mt-5 max-w-2xl text-base leading-relaxed md:text-lg",
+              theme.colors.mutedText,
+            )}
+          >
             Give your users the freedom to create. Keep control of how the
             editor looks, what it can do, and how it fits your application.
           </p>
@@ -178,13 +195,29 @@ export default function SdkFeatures() {
           <article className={`${cardClass} md:col-span-2`}>
             <div className="flex flex-col gap-5 p-6 md:flex-row md:items-end md:justify-between md:p-9">
               <div className="max-w-[680px]">
-                <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-[#b28dbd]">
+                <p
+                  className={cn(
+                    "mb-3",
+                    theme.cards.eyebrow,
+                    theme.colors.eyebrowText,
+                  )}
+                >
                   Fully customizable UI
                 </p>
-                <h3 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-[30px]">
+                <h3
+                  className={cn(
+                    "text-2xl font-semibold leading-tight tracking-tight md:text-[30px]",
+                    theme.colors.primaryText,
+                  )}
+                >
                   Compose the editor your product needs.
                 </h3>
-                <p className="mt-4 text-base leading-relaxed text-[#b8afc0]">
+                <p
+                  className={cn(
+                    "mt-4 text-base leading-relaxed",
+                    theme.colors.secondaryText,
+                  )}
+                >
                   Install Studio SDK in your codebase, without loading the
                   editor from an external domain. Arrange built-in panels,
                   replace toolbars, and bring your own UI components into the
@@ -204,13 +237,29 @@ export default function SdkFeatures() {
 
           <article className={`${cardClass} flex flex-col`}>
             <div className="flex-1 p-6 md:p-8">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-[#b28dbd]">
+              <p
+                className={cn(
+                  "mb-3",
+                  theme.cards.eyebrow,
+                  theme.colors.eyebrowText,
+                )}
+              >
                 Built-in AI assistant
               </p>
-              <h3 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-[28px]">
+              <h3
+                className={cn(
+                  "text-2xl font-semibold leading-tight tracking-tight md:text-[28px]",
+                  theme.colors.primaryText,
+                )}
+              >
                 AI that works inside your workflow.
               </h3>
-              <p className="mb-5 mt-4 text-base leading-relaxed text-[#b8afc0]">
+              <p
+                className={cn(
+                  "mb-5 mt-4 text-base leading-relaxed",
+                  theme.colors.secondaryText,
+                )}
+              >
                 Let users create and edit content through conversation, then
                 refine it visually. Customize the chat UI, instructions, and
                 tools to connect AI to your product.
@@ -218,7 +267,12 @@ export default function SdkFeatures() {
               <DocsLink href="plugins/ai/overview">
                 Explore AI integration
               </DocsLink>
-              <p className="mt-3 text-xs leading-relaxed text-[#918699]">
+              <p
+                className={cn(
+                  "mt-3 text-xs leading-relaxed",
+                  theme.colors.captionText,
+                )}
+              >
                 AI Chat on Startup and above. Custom AI backends on Business and
                 above.
               </p>
@@ -230,13 +284,29 @@ export default function SdkFeatures() {
 
           <article className={`${cardClass} flex flex-col`}>
             <div className="flex-1 p-6 md:p-8">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-[#b28dbd]">
+              <p
+                className={cn(
+                  "mb-3",
+                  theme.cards.eyebrow,
+                  theme.colors.eyebrowText,
+                )}
+              >
                 White label & theming
               </p>
-              <h3 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-[28px]">
+              <h3
+                className={cn(
+                  "text-2xl font-semibold leading-tight tracking-tight md:text-[28px]",
+                  theme.colors.primaryText,
+                )}
+              >
                 Make it feel like it was always yours.
               </h3>
-              <p className="mb-5 mt-4 text-base leading-relaxed text-[#b8afc0]">
+              <p
+                className={cn(
+                  "mb-5 mt-4 text-base leading-relaxed",
+                  theme.colors.secondaryText,
+                )}
+              >
                 Match your application with light or dark themes, custom colors,
                 and your own icons. Carry your brand through the entire editing
                 experience.
@@ -252,13 +322,29 @@ export default function SdkFeatures() {
 
           <article className={`${cardClass} md:col-span-2`}>
             <div className="p-6 md:p-9">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-[#b28dbd]">
+              <p
+                className={cn(
+                  "mb-3",
+                  theme.cards.eyebrow,
+                  theme.colors.eyebrowText,
+                )}
+              >
                 One SDK, many editor experiences
               </p>
-              <h3 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-[30px]">
+              <h3
+                className={cn(
+                  "text-2xl font-semibold leading-tight tracking-tight md:text-[30px]",
+                  theme.colors.primaryText,
+                )}
+              >
                 Build beyond a single content format.
               </h3>
-              <p className="mt-4 max-w-[760px] text-base leading-relaxed text-[#b8afc0]">
+              <p
+                className={cn(
+                  "mt-4 max-w-[760px] text-base leading-relaxed",
+                  theme.colors.secondaryText,
+                )}
+              >
                 Create a landing page builder, a newsletter designer, or a
                 document editor on the same foundation. Structured project JSON
                 keeps content editable; project-specific exports turn it into
@@ -270,29 +356,59 @@ export default function SdkFeatures() {
             </div>
             <div className="grid gap-6 px-6 py-7 md:grid-cols-3 md:px-9 md:pb-9">
               <div>
-                <h4 className="mb-2 text-sm font-semibold text-white">
+                <h4
+                  className={cn(
+                    "mb-2 text-sm font-semibold",
+                    theme.colors.primaryText,
+                  )}
+                >
                   Websites & landing pages
                 </h4>
-                <p className="mb-3 text-sm leading-relaxed text-[#aaa2b2]">
+                <p
+                  className={cn(
+                    "mb-3 text-sm leading-relaxed",
+                    theme.colors.mutedText,
+                  )}
+                >
                   Export HTML, CSS, and JavaScript for your own publishing
                   pipeline.
                 </p>
                 <DocsLink href="project-types/web">Web projects</DocsLink>
               </div>
               <div>
-                <h4 className="mb-2 text-sm font-semibold text-white">
+                <h4
+                  className={cn(
+                    "mb-2 text-sm font-semibold",
+                    theme.colors.primaryText,
+                  )}
+                >
                   Emails & newsletters
                 </h4>
-                <p className="mb-3 text-sm leading-relaxed text-[#aaa2b2]">
+                <p
+                  className={cn(
+                    "mb-3 text-sm leading-relaxed",
+                    theme.colors.mutedText,
+                  )}
+                >
                   Build with MJML and export responsive HTML for email clients.
                 </p>
                 <DocsLink href="project-types/email">Email projects</DocsLink>
               </div>
               <div>
-                <h4 className="mb-2 text-sm font-semibold text-white">
+                <h4
+                  className={cn(
+                    "mb-2 text-sm font-semibold",
+                    theme.colors.primaryText,
+                  )}
+                >
                   Documents & custom output
                 </h4>
-                <p className="mb-3 text-sm leading-relaxed text-[#aaa2b2]">
+                <p
+                  className={cn(
+                    "mb-3 text-sm leading-relaxed",
+                    theme.colors.mutedText,
+                  )}
+                >
                   Create document experiences and extend exports to fit your use
                   case.
                 </p>
@@ -307,13 +423,29 @@ export default function SdkFeatures() {
             className={`${cardClass} grid md:col-span-2 md:grid-cols-[1fr_1.05fr]`}
           >
             <div className="flex flex-col justify-center p-6 md:p-9">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-[#b28dbd]">
+              <p
+                className={cn(
+                  "mb-3",
+                  theme.cards.eyebrow,
+                  theme.colors.eyebrowText,
+                )}
+              >
                 Your content, your infrastructure
               </p>
-              <h3 className="text-2xl font-semibold leading-tight tracking-tight text-white md:text-[30px]">
+              <h3
+                className={cn(
+                  "text-2xl font-semibold leading-tight tracking-tight md:text-[30px]",
+                  theme.colors.primaryText,
+                )}
+              >
                 Keep control of the data you create.
               </h3>
-              <p className="mb-5 mt-4 text-base leading-relaxed text-[#b8afc0]">
+              <p
+                className={cn(
+                  "mb-5 mt-4 text-base leading-relaxed",
+                  theme.colors.secondaryText,
+                )}
+              >
                 Save project JSON to your backend, store assets in your own
                 media infrastructure, and publish exported content wherever you
                 choose. Your storage and delivery stay in your hands.
@@ -334,16 +466,29 @@ export default function SdkFeatures() {
         className="mx-auto max-w-[1132px] px-4 py-16 md:py-20"
       >
         <div className="mb-10 max-w-2xl">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#cd8cdb]">
+          <p
+            className={cn(
+              "mb-4 text-xs font-semibold uppercase tracking-[0.2em]",
+              theme.colors.accentText,
+            )}
+          >
             The details are built in
           </p>
           <h2
             id="sdk-toolkit-heading"
-            className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-[38px]"
+            className={cn(
+              "text-3xl font-semibold leading-tight tracking-tight md:text-[38px]",
+              theme.colors.primaryText,
+            )}
           >
             A complete toolkit for content creation.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-[#aaa2b2]">
+          <p
+            className={cn(
+              "mt-4 text-base leading-relaxed",
+              theme.colors.mutedText,
+            )}
+          >
             Start with the capabilities your users expect. Adapt them as your
             product grows.
           </p>
@@ -353,23 +498,33 @@ export default function SdkFeatures() {
             <a
               key={title}
               href={`${docs}/${href}`}
-              className="group rounded-lg border-t border-white/10 pt-6"
+              className={cn("group rounded-lg pt-6", theme.cards.divider)}
             >
               <Icon
                 size={23}
                 strokeWidth={1.5}
-                className="mb-4 text-[#c68bd6]"
+                className={cn("mb-4", theme.colors.icon)}
                 aria-hidden
               />
-              <h3 className="mb-2 flex items-center gap-2 text-base font-semibold text-[#eee8f1]">
+              <h3
+                className={cn(
+                  "mb-2 flex items-center gap-2 text-base font-semibold",
+                  theme.colors.headingText,
+                )}
+              >
                 {title}
                 <ArrowRight
                   size={14}
-                  className="shrink-0 text-[#b28dbd] opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  className={cn(
+                    "shrink-0 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 group-focus-visible:opacity-100",
+                    theme.colors.eyebrowText,
+                  )}
                   aria-hidden
                 />
               </h3>
-              <p className="text-sm leading-[1.8] text-[#a59bad]">
+              <p
+                className={cn("text-sm leading-[1.8]", theme.colors.subtleText)}
+              >
                 {description}
               </p>
             </a>
@@ -383,16 +538,29 @@ export default function SdkFeatures() {
       >
         <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#cd8cdb]">
+            <p
+              className={cn(
+                "mb-4 text-xs font-semibold uppercase tracking-[0.2em]",
+                theme.colors.accentText,
+              )}
+            >
               Keep building on top
             </p>
             <h2
               id="sdk-plugins-heading"
-              className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-[38px]"
+              className={cn(
+                "text-3xl font-semibold leading-tight tracking-tight md:text-[38px]",
+                theme.colors.primaryText,
+              )}
             >
               Extend it in every direction.
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-[#aaa2b2]">
+            <p
+              className={cn(
+                "mt-4 text-base leading-relaxed",
+                theme.colors.mutedText,
+              )}
+            >
               Add Studio plugins for richer content and integrations, or build
               your own with the editor API.
             </p>
@@ -404,30 +572,55 @@ export default function SdkFeatures() {
             <a
               key={title}
               href={`${docs}/plugins/${href}`}
-              className="group flex flex-col gap-4 rounded-xl border border-white/10 bg-[#17101c] p-5 transition-colors hover:border-[#b66bc4]/50 hover:bg-[#211529] sm:flex-row sm:items-center"
+              className={cn(
+                "group flex flex-col gap-4 rounded-xl p-5 sm:flex-row sm:items-center",
+                theme.cards.border,
+                theme.cards.bg,
+                theme.cards.hover,
+              )}
             >
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#ab6bbc]/20 bg-[#a45dbc]/10 text-[#d8a2e7]">
+              <div
+                className={cn(
+                  "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl",
+                  theme.cards.iconBadge,
+                )}
+              >
                 <Icon size={21} strokeWidth={1.5} aria-hidden />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-[#eee8f1]">
+                <h3
+                  className={cn(
+                    "text-sm font-semibold",
+                    theme.colors.headingText,
+                  )}
+                >
                   {title}
                 </h3>
-                <p className="mt-1 text-xs text-[#998da4]">{detail}</p>
+                <p
+                  className={cn("mt-1 text-xs", theme.colors.pluginDetailText)}
+                >
+                  {detail}
+                </p>
               </div>
               <ArrowRight
                 size={15}
-                className="ml-auto hidden text-[#b28dbd] transition-transform group-hover:translate-x-1 sm:block"
+                className={cn(
+                  "ml-auto hidden transition-transform group-hover:translate-x-1 sm:block",
+                  theme.colors.eyebrowText,
+                )}
                 aria-hidden
               />
             </a>
           ))}
         </div>
-        <p className="mt-4 text-xs text-[#918699]">
+        <p className={cn("mt-4 text-xs", theme.colors.captionText)}>
           Plugin availability varies by plan.{" "}
           <a
             href={urls.getPricingUrl()}
-            className="text-[#c9a0d4] underline underline-offset-4"
+            className={cn(
+              "underline underline-offset-4",
+              theme.colors.underlinedLinkText,
+            )}
           >
             Compare plans
           </a>
@@ -438,17 +631,27 @@ export default function SdkFeatures() {
         aria-label="Developer foundations"
         className="mx-auto grid max-w-[1132px] gap-8 px-4 py-12 md:grid-cols-2 md:gap-14 md:py-16"
       >
-        <div className="border-t border-white/10 pt-7">
+        <div className={cn("pt-7", theme.cards.divider)}>
           <Braces
             size={25}
             strokeWidth={1.5}
-            className="mb-4 text-[#c68bd6]"
+            className={cn("mb-4", theme.colors.icon)}
             aria-hidden
           />
-          <h2 className="text-xl font-semibold tracking-tight text-white">
+          <h2
+            className={cn(
+              "text-xl font-semibold tracking-tight",
+              theme.colors.primaryText,
+            )}
+          >
             Fits the stack you already use.
           </h2>
-          <p className="mb-4 mt-3 text-sm leading-[1.8] text-[#aaa2b2]">
+          <p
+            className={cn(
+              "mb-4 mt-3 text-sm leading-[1.8]",
+              theme.colors.mutedText,
+            )}
+          >
             Use the React integration or the JavaScript SDK with your framework
             of choice. Connect the editor to your application through
             configuration, events, and APIs.
@@ -457,17 +660,27 @@ export default function SdkFeatures() {
             Explore integration examples
           </DocsLink>
         </div>
-        <div className="border-t border-white/10 pt-7">
+        <div className={cn("pt-7", theme.cards.divider)}>
           <Github
             size={25}
             strokeWidth={1.5}
-            className="mb-4 text-[#c68bd6]"
+            className={cn("mb-4", theme.colors.icon)}
             aria-hidden
           />
-          <h2 className="text-xl font-semibold tracking-tight text-white">
+          <h2
+            className={cn(
+              "text-xl font-semibold tracking-tight",
+              theme.colors.primaryText,
+            )}
+          >
             An open-source core. A product-ready SDK.
           </h2>
-          <p className="mb-4 mt-3 text-sm leading-[1.8] text-[#aaa2b2]">
+          <p
+            className={cn(
+              "mb-4 mt-3 text-sm leading-[1.8]",
+              theme.colors.mutedText,
+            )}
+          >
             Studio SDK builds on the open-source GrapesJS framework, adding a
             polished editor UI, Studio plugins, and support from the team behind
             the core.
@@ -482,14 +695,28 @@ export default function SdkFeatures() {
         aria-labelledby="sdk-start-heading"
         className="mx-auto max-w-[1132px] px-4 pb-20 pt-12 md:pb-28"
       >
-        <div className="rounded-2xl border border-[#c06cce]/25 bg-[radial-gradient(ellipse_at_top,#48234e_0%,#1c1121_65%,#130d17_100%)] px-6 py-12 text-center md:py-16">
+        <div
+          className={cn(
+            "rounded-2xl px-6 py-12 text-center md:py-16",
+            theme.cards.border,
+            theme.cards.bg,
+          )}
+        >
           <h2
             id="sdk-start-heading"
-            className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-[40px]"
+            className={cn(
+              "text-3xl font-semibold leading-tight tracking-tight md:text-[40px]",
+              theme.colors.primaryText,
+            )}
           >
             Build your first editor. Make it yours.
           </h2>
-          <p className="mx-auto mb-8 mt-4 max-w-lg text-base leading-relaxed text-[#c0b2c6]">
+          <p
+            className={cn(
+              "mx-auto mb-8 mt-4 max-w-lg text-base leading-relaxed",
+              theme.colors.ctaText,
+            )}
+          >
             Try Studio SDK in your app and explore the experience you can give
             your users. Start on the free plan.
           </p>

@@ -37,6 +37,7 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { theme } from "./theme";
 
 type DemoState = { step: number; reduced: boolean; running: boolean };
 
@@ -76,14 +77,20 @@ function Illustration({
       data-step={step}
       data-running={running}
       className={cn(
-        "overflow-hidden rounded-xl border border-white/[0.08] bg-[#15111c]",
+        "overflow-hidden rounded-xl",
+        theme.illustrations.shell,
         className,
       )}
     >
       <div role="img" aria-label={label}>
         <div aria-hidden>{children({ step, reduced, running })}</div>
       </div>
-      <div className="flex min-h-11 items-center gap-2 border-t border-white/[0.07] bg-[#1c1623] px-3 py-2">
+      <div
+        className={cn(
+          "flex min-h-11 items-center gap-2 px-3 py-2",
+          theme.illustrations.controls,
+        )}
+      >
         <div className="flex shrink-0 gap-1">
           {steps.map((name, index) => (
             <button
