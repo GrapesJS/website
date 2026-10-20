@@ -556,28 +556,31 @@ export function AiWorkflowIllustration({
 
 const themes = [
   {
-    label: "Your colors, on a dark interface",
-    bg: "#241637",
-    raised: "#35234a",
-    border: "#624480",
-    text: "#d7c5e7",
-    accent: "#b36aff",
+    label: "A purple accent on a dark interface",
+    bg: "#211e29",
+    raised: "#2c2836",
+    border: "#46414f",
+    text: "#bcb6c7",
+    accent: "#8750e8",
+    accentText: "#ffffff",
   },
   {
-    label: "A vivid lime palette",
-    bg: "#20271d",
-    raised: "#303e29",
-    border: "#536a45",
-    text: "#ccddc1",
+    label: "A lime accent on a dark interface",
+    bg: "#20231f",
+    raised: "#2a2e28",
+    border: "#42483e",
+    text: "#bac3b5",
     accent: "#adfa60",
+    accentText: "#192315",
   },
   {
-    label: "The same editor, in a light pink theme",
-    bg: "#fff1fa",
-    raised: "#f8d9ef",
-    border: "#dfabd0",
-    text: "#80506f",
-    accent: "#ff30ad",
+    label: "A pink accent on a dark interface",
+    bg: "#251f25",
+    raised: "#302830",
+    border: "#494049",
+    text: "#c5b7c2",
+    accent: "#cc328c",
+    accentText: "#ffffff",
   },
 ];
 
@@ -599,6 +602,35 @@ export function ThemeIllustration({
               theme.illustrations.pairedViewport,
             )}
           >
+            <div className="mb-5 flex items-center justify-center gap-3">
+              {themes.map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  data-theme-swatch={index}
+                  data-active={step === index}
+                  className="flex h-6 w-10 items-center justify-center rounded-full"
+                  style={{
+                    backgroundColor: item.accent,
+                    color: item.accentText,
+                  }}
+                  animate={{
+                    scale: step === index ? 1.1 : 1,
+                    boxShadow:
+                      step === index
+                        ? "0 0 0 3px #15111c, 0 0 0 4px #ffffffb3"
+                        : "0 0 0 3px #15111c00, 0 0 0 4px #ffffff00",
+                  }}
+                  transition={{ duration: reduced ? 0 : 0.25 }}
+                >
+                  <motion.span
+                    animate={{ opacity: step === index ? 1 : 0 }}
+                    transition={{ duration: reduced ? 0 : 0.15 }}
+                  >
+                    <Check size={13} strokeWidth={2.5} />
+                  </motion.span>
+                </motion.div>
+              ))}
+            </div>
             <div
               className={cn(
                 "overflow-hidden rounded-md border border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] [--editor-unit:7px]",
@@ -611,20 +643,20 @@ export function ThemeIllustration({
                   "--editor-border": palette.border,
                   "--editor-text": palette.text,
                   "--editor-accent": palette.accent,
-                  "--editor-accent-text": "#25182e",
+                  "--editor-accent-text": palette.accentText,
                 } as CSSProperties
               }
             >
               <div className="flex h-[calc(3*var(--editor-unit))] items-center gap-[calc(0.8*var(--editor-unit))] border-b border-[color:var(--editor-border)] px-[calc(0.8*var(--editor-unit))] text-[calc(0.85*var(--editor-unit))]">
                 <span
-                  className="flex size-[calc(1.5*var(--editor-unit))] items-center justify-center rounded-sm font-semibold text-[#25182e]"
+                  className="flex size-[calc(1.5*var(--editor-unit))] items-center justify-center rounded-sm font-semibold text-[color:var(--editor-accent-text)]"
                   style={{ background: palette.accent }}
                 >
                   Y
                 </span>
                 <span className="font-semibold">YourBrand</span>
                 <span
-                  className="ml-auto flex h-[calc(1.8*var(--editor-unit))] items-center rounded-sm px-[calc(0.8*var(--editor-unit))] text-[calc(0.75*var(--editor-unit))] font-medium text-[#25182e]"
+                  className="ml-auto flex h-[calc(1.8*var(--editor-unit))] items-center rounded-sm px-[calc(0.8*var(--editor-unit))] text-[calc(0.75*var(--editor-unit))] font-medium text-[color:var(--editor-accent-text)]"
                   style={{ background: palette.accent }}
                 >
                   Publish
@@ -664,18 +696,6 @@ export function ThemeIllustration({
                 </div>
                 <StylesPanel compact withSelectors={false} />
               </div>
-            </div>
-            <div className="mt-4 flex items-center justify-center gap-3">
-              {[palette.bg, palette.raised, palette.accent, palette.border].map(
-                (color, index) => (
-                  <motion.div
-                    key={index}
-                    animate={{ backgroundColor: color }}
-                    transition={{ duration: reduced ? 0 : 0.5 }}
-                    className="size-5 rounded-full border border-white/15"
-                  />
-                ),
-              )}
             </div>
           </div>
         );
