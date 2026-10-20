@@ -4,6 +4,7 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
+import SectionEyebrow from "../_components/SectionEyebrow";
 import WindowShell from "../_components/WindowShell";
 import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import SdkFeatures from "../_components/sdk/SdkFeatures";
@@ -158,14 +159,9 @@ export default function SDKPage() {
         <hr className="relative mt-[120px] h-0 w-full overflow-visible border-0 bg-none before:pointer-events-none before:absolute before:top-0 before:z-0 before:h-[1000px] before:w-full before:-translate-y-1/2 before:bg-[linear-gradient(180deg,var(--transparentColor)_20%,var(--backgroundColor)_40%,var(--backgroundColor)_50%,var(--transparentColor)_80%)] before:bg-no-repeat before:content-[''] max-[640px]:mt-0 max-[640px]:before:bg-[linear-gradient(180deg,var(--transparentColor)_35%,var(--backgroundColor)_50%,var(--transparentColor)_80%)]" />
 
         <section className={clsSection}>
-          <div className="flex flex-col items-center">
-            <div className="z-[1]">
-              <h2 className="px-6 py-3 text-center text-xl font-bold leading-[27.32px] tracking-[0.11em] text-[color:var(--activeHighlightColor)]">
-                POWERING SOLUTIONS FOR
-              </h2>
-              <hr className="h-px w-full border-0 bg-[linear-gradient(90deg,var(--transparentColor)_0%,#caa4ea_49.5%,var(--transparentColor)_100%)]" />
-            </div>
-          </div>
+          <SectionEyebrow as="h2" className="z-[1]">
+            POWERING SOLUTIONS FOR
+          </SectionEyebrow>
           <div className="relative w-full overflow-hidden [--logo-mask:linear-gradient(90deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-image:var(--logo-mask)] [mask-image:var(--logo-mask)]">
             <div className="flex w-max animate-logo-marquee will-change-transform motion-reduce:animate-none">
               {[0, 1].map((copyIndex) => (

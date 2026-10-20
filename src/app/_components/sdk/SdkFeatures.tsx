@@ -17,6 +17,7 @@ import {
 import urls from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import CTALink from "../CTALink";
+import SectionEyebrow from "../SectionEyebrow";
 import {
   AiWorkflowIllustration,
   EditorCompositionIllustration,
@@ -162,14 +163,9 @@ export default function SdkFeatures() {
         className="mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
       >
         <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <p
-            className={cn(
-              "mb-4 text-xs font-semibold uppercase tracking-[0.2em]",
-              theme.colors.accentText,
-            )}
-          >
+          <SectionEyebrow className="mb-4">
             Built to become part of your product
-          </p>
+          </SectionEyebrow>
           <h2
             id="sdk-features-heading"
             className={cn(
@@ -456,14 +452,9 @@ export default function SdkFeatures() {
         className="mx-auto max-w-[1132px] px-4 py-16 md:py-20"
       >
         <div className="mb-10 max-w-2xl">
-          <p
-            className={cn(
-              "mb-4 text-xs font-semibold uppercase tracking-[0.2em]",
-              theme.colors.accentText,
-            )}
-          >
+          <SectionEyebrow className="mb-4">
             The details are built in
-          </p>
+          </SectionEyebrow>
           <h2
             id="sdk-toolkit-heading"
             className={cn(
@@ -528,14 +519,9 @@ export default function SdkFeatures() {
       >
         <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <p
-              className={cn(
-                "mb-4 text-xs font-semibold uppercase tracking-[0.2em]",
-                theme.colors.accentText,
-              )}
-            >
+            <SectionEyebrow className="mb-4">
               Keep building on top
-            </p>
+            </SectionEyebrow>
             <h2
               id="sdk-plugins-heading"
               className={cn(
