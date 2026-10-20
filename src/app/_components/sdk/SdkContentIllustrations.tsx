@@ -11,7 +11,6 @@ import {
   Headphones,
   LampDesk,
   LayoutTemplate,
-  Monitor,
   MousePointer2,
   Package,
   Search,
@@ -36,10 +35,12 @@ import { theme } from "./theme";
 
 function FeatureEditor({
   activeIndex,
+  simplifiedSidebar = false,
   className,
   children,
 }: {
   activeIndex: number;
+  simplifiedSidebar?: boolean;
   className?: string;
   children: ReactNode;
 }) {
@@ -52,7 +53,11 @@ function FeatureEditor({
         className,
       )}
     >
-      <EditorSidebar activeIndex={activeIndex} />
+      <EditorSidebar
+        activeIndex={activeIndex}
+        withDataSources={!simplifiedSidebar}
+        withAI={!simplifiedSidebar}
+      />
       <div className="flex min-h-0 min-w-0 flex-col">{children}</div>
     </div>
   );
@@ -64,19 +69,6 @@ function PanelHeader({ children }: { children: ReactNode }) {
       {children}
       <X size={12} />
     </div>
-  );
-}
-
-function CompactToolbar() {
-  return (
-    <CanvasToolbar
-      withDevice={false}
-      rightContent={
-        <span className="flex items-center gap-1">
-          <Monitor size={9} /> Desktop
-        </span>
-      }
-    />
   );
 }
 
@@ -128,6 +120,7 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
   return (
     <FeatureEditor
       activeIndex={0}
+      simplifiedSidebar
       className={theme.illustrations.pairedViewport}
     >
       <div className="relative grid h-full min-h-0 grid-cols-[42%_minmax(0,1fr)]">
@@ -149,7 +142,7 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
               <Search size={9} /> Search...
             </div>
           </div>
-          <PanelSection label="Basic" open />
+          <PanelSection label="Basic" open withIndicator={false} />
           <div className="grid grid-cols-2 gap-1.5 p-2">
             {[
               { icon: Columns2, label: "Columns" },
@@ -166,7 +159,7 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
               </div>
             ))}
           </div>
-          <PanelSection label="Your components" open />
+          <PanelSection label="Your components" open withIndicator={false} />
           <div className="space-y-2 p-2 pb-1">
             <div
               className={cn(
@@ -189,7 +182,6 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
           </div>
         </div>
         <div className="flex min-h-0 min-w-0 flex-col">
-          <CompactToolbar />
           <div className={theme.illustrations.templateCanvas}>
             <div className="h-full rounded-sm bg-[#17121e] p-[10%] text-[#f1e7f7]">
               <div className="text-[8px] font-bold">
@@ -280,19 +272,19 @@ const brandStyles = [
     primary: "#8b5cf6",
     secondary: "#30213f",
     accent: "#d8b4fe",
-    font: "Arial",
+    fontSize: 16,
   },
   {
     primary: "#ba4a9c",
     secondary: "#30213f",
     accent: "#f0b1df",
-    font: "Arial",
+    fontSize: 16,
   },
   {
     primary: "#ba4a9c",
     secondary: "#30213f",
     accent: "#f0b1df",
-    font: "Georgia",
+    fontSize: 18,
   },
 ];
 
@@ -334,12 +326,13 @@ function GlobalStylesFrame({ step }: IllustrationState) {
   return (
     <FeatureEditor
       activeIndex={2}
+      simplifiedSidebar
       className={theme.illustrations.pairedViewport}
     >
       <div className="grid h-full min-h-0 grid-cols-[44%_minmax(0,1fr)]">
         <div className={theme.illustrations.editorPanel}>
           <PanelHeader>Global Styles</PanelHeader>
-          <PanelSection label="Colors" open />
+          <PanelSection label="Colors" open withIndicator={false} />
           <div className="py-1">
             <StyleValue
               label="Primary"
@@ -359,34 +352,29 @@ function GlobalStylesFrame({ step }: IllustrationState) {
               active={step === 1}
             />
           </div>
-          <PanelSection label="Body" open />
+          <PanelSection label="Body" open withIndicator={false} />
           <div className="py-1">
             <StyleValue label="Background" value="#17121e" color="#17121e" />
-            <StyleValue label="Font Size" value="16" />
-            <StyleValue label="Line Height" value="1.65" />
             <StyleValue
-              label="Font Family"
-              value={brand.font}
+              label="Font Size"
+              value={String(brand.fontSize)}
               active={step === 2}
             />
+            <StyleValue label="Line Height" value="1.65" />
+            <StyleValue label="Font Family" value="Arial" />
           </div>
-          <PanelSection label="Heading" open />
+          <PanelSection label="Heading" open withIndicator={false} />
           <div className="py-1">
             <StyleValue
               label="Color"
               value={brand.accent}
               color={brand.accent}
             />
-            <StyleValue
-              label="Font Family"
-              value={brand.font}
-              active={step === 2}
-            />
+            <StyleValue label="Font Family" value="Arial" />
             <StyleValue label="Weight" value="600" />
           </div>
         </div>
         <div className="flex min-h-0 min-w-0 flex-col">
-          <CompactToolbar />
           <div className={theme.illustrations.templateCanvas}>
             <div
               className="h-full rounded-sm bg-[#17121e] p-[10%] text-[#f1e7f7]"
@@ -394,7 +382,7 @@ function GlobalStylesFrame({ step }: IllustrationState) {
                 {
                   "--brand-primary": brand.primary,
                   "--brand-accent": brand.accent,
-                  fontFamily: brand.font,
+                  "--brand-font-size": `${brand.fontSize / 2}px`,
                 } as CSSProperties
               }
             >
@@ -409,7 +397,7 @@ function GlobalStylesFrame({ step }: IllustrationState) {
                   Every detail.
                 </span>
               </div>
-              <p className="mt-3 text-[8px] leading-relaxed text-[#b6a9c1]">
+              <p className="mt-3 text-[length:var(--brand-font-size)] leading-relaxed text-[#b6a9c1] transition-[font-size] duration-500 motion-reduce:transition-none">
                 A shared style for everything you create.
               </p>
               <div className="mt-4 inline-block rounded-sm bg-[color:var(--brand-primary)] px-2 py-1.5 text-[7px] text-white transition-colors duration-500 motion-reduce:transition-none">
@@ -446,7 +434,7 @@ export function GlobalStylesIllustration({
       steps={[
         "Start with shared brand styles",
         "Update shared brand colors across the page",
-        "Apply shared typography",
+        "Adjust the shared font size across the page",
       ]}
       withControls={withControls}
       className="[container-type:inline-size]"

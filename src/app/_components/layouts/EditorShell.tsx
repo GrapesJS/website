@@ -126,10 +126,12 @@ export function EditorSidebar({
   activeIndex = 5,
   withAssets = true,
   withDataSources = true,
+  withAI = true,
 }: {
   activeIndex?: number;
   withAssets?: boolean;
   withDataSources?: boolean;
+  withAI?: boolean;
 } = {}) {
   return (
     <div className="flex min-h-0 flex-col items-center border-r-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] py-[calc(0.45*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]">
@@ -138,7 +140,8 @@ export function EditorSidebar({
           (Icon, index) => {
             if (
               (!withAssets && Icon === ImageIcon) ||
-              (!withDataSources && Icon === Database)
+              (!withDataSources && Icon === Database) ||
+              (!withAI && Icon === Sparkles)
             )
               return null;
             return (
@@ -235,15 +238,17 @@ export function PropertyField({
 export function PanelSection({
   label,
   open,
+  withIndicator = true,
 }: {
   label: string;
   open?: boolean;
+  withIndicator?: boolean;
 }) {
   return (
     <div className="flex h-[calc(1.8*var(--editor-unit,1cqw))] items-center justify-between border-y-[calc(0.025*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-[calc(0.65*var(--editor-unit,1cqw))] text-[calc(0.8*var(--editor-unit,1cqw))]">
       <span className="flex items-center gap-[calc(0.35*var(--editor-unit,1cqw))]">
         {label}
-        {open && (
+        {open && withIndicator && (
           <span className="size-[calc(0.23*var(--editor-unit,1cqw))] rounded-full bg-[#ae88ed]" />
         )}
       </span>

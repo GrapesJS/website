@@ -37,7 +37,7 @@ export const theme = {
       "bg-[#211928]/30 bg-[radial-gradient(#b694c826_0.7px,transparent_0.7px)] [background-size:12px_12px]",
     applicationNode: "rounded-lg border border-[#bc87d6]/20 bg-[#241b2d]/70",
     editorFrame:
-      "grid grid-cols-[24px_minmax(0,1fr)] overflow-hidden [--editor-unit:clamp(8px,2.4cqw,13px)]",
+      "grid grid-cols-[calc(2.8*var(--editor-unit))_minmax(0,1fr)] overflow-hidden [--editor-unit:clamp(8px,2.4cqw,13px)]",
     editorPanel:
       "min-w-0 overflow-hidden border-r border-[color:var(--editor-border)] bg-[color:var(--editor-bg)]",
     panelHeader:
