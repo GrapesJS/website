@@ -4,18 +4,19 @@ import type { CSSProperties, ReactNode } from "react";
 import { motion } from "motion/react";
 import {
   Backpack,
-  Check,
   ChevronDown,
-  CodeXml,
   Columns2,
   Headphones,
+  Keyboard,
   LampDesk,
   LayoutTemplate,
   MousePointer2,
   Package,
   Search,
   Sparkles,
+  Speaker,
   Type,
+  Watch,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -469,6 +470,38 @@ const customerOffers = [
     offer: "15% off",
     icon: LampDesk,
   },
+  {
+    name: "Noah Reed",
+    firstName: "Noah",
+    product: "Wireless keyboard",
+    price: "$99",
+    offer: "10% off",
+    icon: Keyboard,
+  },
+  {
+    name: "Emma Wilson",
+    firstName: "Emma",
+    product: "Smartwatch",
+    price: "$149",
+    offer: "25% off",
+    icon: Watch,
+  },
+  {
+    name: "Oliver Brooks",
+    firstName: "Oliver",
+    product: "Portable speaker",
+    price: "$79",
+    offer: "Free delivery",
+    icon: Speaker,
+  },
+  {
+    name: "Sofia Patel",
+    firstName: "Sofia",
+    product: "Travel backpack",
+    price: "$119",
+    offer: "15% off",
+    icon: Backpack,
+  },
 ];
 
 function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
@@ -476,7 +509,7 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
   const ProductIcon = step === 0 ? Package : record.icon;
   return (
     <FeatureEditor activeIndex={4}>
-      <div className="grid min-w-0 sm:h-[440px] sm:grid-cols-[34%_minmax(0,1fr)]">
+      <div className="grid min-w-0 sm:h-[440px] sm:grid-cols-[42%_minmax(0,1fr)]">
         <div
           className={cn(
             theme.illustrations.editorPanel,
@@ -488,7 +521,9 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
             <span className="flex items-center gap-1.5">
               <ChevronDown size={10} /> Customer offers
             </span>
-            <span className="text-[#887e96]">3 records</span>
+            <span className="text-[#887e96]">
+              {customerOffers.length} records
+            </span>
           </div>
           <table className="w-full table-fixed text-left text-[8px] lg:text-[9px]">
             <caption className="sr-only">
@@ -496,8 +531,9 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
             </caption>
             <thead className="bg-[color:var(--editor-raised)] text-[#c4b6d1]">
               <tr>
-                <th className="w-[29%] px-2 py-2 font-normal">Customer</th>
-                <th className="w-[43%] px-2 py-2 font-normal">Product</th>
+                <th className="w-[26%] px-2 py-2 font-normal">Customer</th>
+                <th className="w-[34%] px-2 py-2 font-normal">Product</th>
+                <th className="w-[14%] px-1.5 py-2 font-normal">Price</th>
                 <th className="px-2 py-2 font-normal">Offer</th>
               </tr>
             </thead>
@@ -521,46 +557,15 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
                   >
                     {item.name}
                   </td>
-                  <td className="px-2 py-2.5">
-                    {item.product}
-                    <span className="mt-0.5 block text-[#8f849f]">
-                      {item.price}
-                    </span>
+                  <td className="px-2 py-2.5">{item.product}</td>
+                  <td className="whitespace-nowrap px-1.5 py-2.5 text-[#b9a5ca]">
+                    {item.price}
                   </td>
                   <td className="px-2 py-2.5">{item.offer}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className="p-3">
-            <div className="mb-2 flex items-center gap-1.5 text-[9px]">
-              <CodeXml size={11} />
-              Your template syntax
-            </div>
-            <div className="mb-2 text-[8px] text-[#95879f]">
-              Configured importer · Handlebars
-            </div>
-            <pre className="overflow-hidden whitespace-pre-wrap break-words rounded-sm bg-[#191520] p-2 font-mono text-[9px] leading-[1.7] text-[#c3a5da]">
-              <code>
-                {
-                  "Hi {{ customer.firstName }},\n{{ product.name }}\n{{ product.price }} · {{ offer }}"
-                }
-              </code>
-            </pre>
-            <div className="mt-2 flex items-center gap-1.5 text-[8px] text-[#b4a6c1]">
-              {step > 0 ? (
-                <>
-                  <Check size={10} className="text-[#9ec0ac]" />
-                  Editable data fields
-                </>
-              ) : (
-                <>
-                  <CodeXml size={10} />
-                  Import template bindings
-                </>
-              )}
-            </div>
-          </div>
         </div>
         <div className="flex min-h-0 min-w-0 flex-col">
           <div className="[--editor-unit:16px]">
@@ -664,12 +669,12 @@ export function DataSourcesIllustration({
     <Illustration
       label="Preview personalized newsletters with your data"
       steps={[
-        "Import your template syntax",
-        "Preview Ava’s offer",
-        "Preview Leo’s offer",
-        "Preview Mia’s offer",
+        "Start with reusable data fields",
+        ...customerOffers.map(
+          (record) => `Preview ${record.firstName}’s offer`,
+        ),
       ]}
-      stepDurations={[2400, 2800, 2800, 2800]}
+      stepDurations={[2400, ...customerOffers.map(() => 2800)]}
       interactive
       withControls={withControls}
       className="[container-type:inline-size]"

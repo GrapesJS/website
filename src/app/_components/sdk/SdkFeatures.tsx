@@ -488,17 +488,12 @@ export default function SdkFeatures() {
           <IllustratedFeatureCard
             wide
             label="Data sources & template engines"
-            title="One template. A personal preview for every customer."
+            title="One template. A personal preview for every record."
             description="Connect content to your application data, then preview different records on the canvas. Configure import and export for your template syntax to keep personalized newsletters editable."
             links={
-              <>
-                <DocsLink href="configuration/datasources/overview">
-                  Explore data sources
-                </DocsLink>
-                <DocsLink href="configuration/datasources/template-engines">
-                  Template engine integration
-                </DocsLink>
-              </>
+              <DocsLink href="configuration/datasources/overview">
+                Explore data sources
+              </DocsLink>
             }
           >
             <DataSourcesIllustration />
