@@ -18,6 +18,8 @@ export const theme = {
   cards: {
     eyebrow: "text-xs font-bold uppercase tracking-[0.16em]",
     bg: "bg-gradient-to-br from-[#322031]/30 to-[#1d1522]/50 backdrop-blur-[5px]",
+    topGlow:
+      "pointer-events-none absolute left-1/2 top-0 -z-10 size-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,var(--activeBaseColor)_0%,transparent_70%)] opacity-60",
     border: "border border-white/10",
     divider: "border-t border-white/10",
     hover: "transition-colors hover:border-[#b66bc4]/50 hover:bg-[#211529]/50",

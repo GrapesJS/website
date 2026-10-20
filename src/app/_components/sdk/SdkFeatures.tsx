@@ -687,11 +687,12 @@ export default function SdkFeatures() {
       >
         <div
           className={cn(
-            "rounded-2xl px-6 py-12 text-center md:py-16",
+            "relative isolate overflow-hidden rounded-2xl px-6 py-12 text-center md:py-16",
             theme.cards.border,
             theme.cards.bg,
           )}
         >
+          <div aria-hidden className={theme.cards.topGlow} />
           <h2
             id="sdk-start-heading"
             className={cn(
