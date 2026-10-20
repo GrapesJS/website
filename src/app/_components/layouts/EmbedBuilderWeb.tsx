@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
-import { MotionConfig } from "motion/react";
+import { cn } from "@/lib/utils";
 import {
   ArrowUp,
   Bell,
@@ -40,11 +39,11 @@ import {
   Undo2,
   X,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { MotionConfig } from "motion/react";
+import { useRef, type ReactNode } from "react";
 import {
   BrandLandingPage,
   DemoConversation,
-  DemoPlaybackControls,
   demoSteps,
   useBuilderDemo,
 } from "./EmbedBuilderWebDemo";
@@ -476,7 +475,9 @@ function StylesPanel({
           <Plus className="mx-[0.3cqw] size-[0.85cqw] text-[#b494f4]" />
           <span className="flex items-center gap-[0.25cqw] rounded-[0.15cqw] bg-[#f6c7e6] px-[0.3cqw] py-[0.1cqw] text-[0.55cqw] text-[#5c314f]">
             {brand
-              ? selected ? "hero-title" : "landing-page"
+              ? selected
+                ? "hero-title"
+                : "landing-page"
               : "gjs-text-blue"}
             <EllipsisVertical className="size-[0.6cqw]" />
           </span>
@@ -589,7 +590,6 @@ export default function EmbedBuilderWeb({ className }: EmbedBuilderWebProps) {
             </div>
           </div>
         </div>
-        <DemoPlaybackControls demo={demo} />
       </div>
     </MotionConfig>
   );

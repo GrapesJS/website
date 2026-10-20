@@ -4,7 +4,6 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import { Tabs } from "../_components/Tabs";
 import WindowShell from "../_components/WindowShell";
 import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import "../home.css";
@@ -98,7 +97,11 @@ export default function SDKPage() {
 
           {/* <StarOnGH /> */}
 
-          <Tabs
+          <WindowShell>
+            <EmbedBuilderWeb />
+          </WindowShell>
+
+          {/* <Tabs
             tabs={[
               {
                 id: "editorImage3",
@@ -125,23 +128,23 @@ export default function SDKPage() {
                   </WindowShell>
                 ),
               },
-              // {
-              //   id: "editorImage2",
-              //   label: "Document Builder",
-              //   content: (
-              //     <WindowShell>
-              //       <img
-              //         className="w-full"
-              //         src="/assets/images/document.webp"
-              //         alt="GrapesJS Document Demo"
-              //         loading="lazy"
-              //         decoding="async"
-              //       />
-              //     </WindowShell>
-              //   ),
-              // },
+              {
+                id: "editorImage2",
+                label: "Document Builder",
+                content: (
+                  <WindowShell>
+                    <img
+                      className="w-full"
+                      src="/assets/images/document.webp"
+                      alt="GrapesJS Document Demo"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </WindowShell>
+                ),
+              },
             ]}
-          />
+          /> */}
         </section>
 
         <hr className={styles.shadowSeparator} />
