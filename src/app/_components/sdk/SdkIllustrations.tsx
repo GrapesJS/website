@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import {
   ArrowDownToLine,
   ArrowRight,
-  ArrowUp,
   Braces,
   Check,
   Database,
@@ -13,7 +12,7 @@ import {
   Globe,
   Image,
   Mail,
-  MousePointer2,
+  LoaderCircle,
   Palette,
   Pause,
   Play,
@@ -39,6 +38,10 @@ import { theme } from "./theme";
 import {
   CanvasToolbar,
   ChatPanelHeader,
+  ChatBrandDetails,
+  ChatComposer,
+  ChatMessage,
+  ChatToolCard,
   EditorSidebar,
   PagesPanel,
   PropertyField,
@@ -88,7 +91,7 @@ function Illustration({
       data-step={step}
       data-running={running}
       className={cn(
-        "overflow-hidden rounded-lg",
+        "overflow-hidden rounded-lg pointer-events-none select-none",
         theme.illustrations.shell,
         className,
       )}
@@ -99,7 +102,7 @@ function Illustration({
       {withControls && (
         <div
           className={cn(
-            "flex min-h-11 items-center gap-2 px-3 py-2",
+            "pointer-events-auto flex min-h-11 items-center gap-2 px-3 py-2",
             theme.illustrations.controls,
           )}
         >
@@ -397,8 +400,7 @@ const aiSteps = [
   "AI edits. Users stay in control.",
 ];
 
-const AI_PROMPT =
-  "Create a launch section using our brand colors and latest product details.";
+const AI_PROMPT = "Create a landing page using our brand design system.";
 
 function AiWorkflowFrame({ step, reduced, running }: DemoState) {
   const [typed, setTyped] = useState(0);
@@ -415,103 +417,61 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
   const draft = running ? AI_PROMPT.slice(0, typed) : AI_PROMPT;
 
   return (
-    <div className="flex h-[390px] flex-col p-4 [container-type:inline-size] sm:h-[350px] sm:p-5">
-      <div
-        className={cn(
-          "-mx-4 -mt-4 mb-4 [--editor-unit:12px] sm:-mx-5 sm:-mt-5",
-          editorShellTheme,
-        )}
-      >
-        <ChatPanelHeader />
-      </div>
-      <div className="relative min-h-0 flex-1">
+    <div
+      className={cn(
+        editorShellTheme,
+        editorShellText,
+        "flex h-[460px] flex-col text-[calc(0.72*var(--editor-unit))] leading-[1.45] [--editor-unit:18px] sm:h-[420px]",
+      )}
+    >
+      <ChatPanelHeader />
+      <div className="relative min-h-0 flex-1 overflow-hidden p-[calc(0.5*var(--editor-unit))]">
         <AnimatePresence initial={false}>
           {step > 0 && (
             <motion.div
               key="conversation"
-              className="absolute inset-0"
-              initial={{ opacity: 0, y: reduced ? 0 : 8 }}
+              className="absolute inset-[calc(0.5*var(--editor-unit))] space-y-[calc(0.65*var(--editor-unit))]"
+              initial={{ opacity: 0, y: reduced ? 0 : 5 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.25 }}
             >
-              <div className="rounded-[3px] bg-[#8b5cf6] px-2.5 py-2 text-[11px] leading-relaxed text-white">
-                {AI_PROMPT}
-              </div>
-              <div className="ml-2 mt-3 flex items-start gap-2">
-                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#a768bd]/20 text-[#c998dc]">
-                  <Sparkles size={11} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="mb-2 text-[10px] text-[#a795b4]">
-                    I’ll use your brand and product information.
-                  </div>
-                  <div className="flex items-center gap-2 rounded-md border border-[#a66fc3]/20 bg-[#2b2035] px-2.5 py-2 text-[10px] text-[#bfa3d0]">
-                    <Braces size={11} />
-                    <code>get_brand_context</code>
-                    <Check size={12} className="ml-auto text-[#a8c5b0]" />
-                  </div>
-                  <div className="mt-2 flex items-center gap-2 text-[8px] text-[#8e7a9a]">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#a87cc7]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#e0caef]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#47255d]" />
-                    <span>Brand palette & product data loaded</span>
-                  </div>
-                  <AnimatePresence initial={false}>
-                    {step === 2 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: reduced ? 0 : 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: reduced ? 0 : 0.25 }}
-                        className="mt-3 flex items-center gap-3 rounded-lg bg-[#23172e] px-3 py-2.5 text-[#eadcf2]"
-                      >
-                        <span className="text-[16px] font-semibold leading-tight tracking-tight">
-                          Meet your next
-                          <br />
-                          bright idea.
-                        </span>
-                        <span className="ml-auto rounded bg-[#8e5ab0] px-2 py-1.5 text-[7px] text-white">
-                          Get started
-                        </span>
-                        <MousePointer2 size={14} className="-mb-4" />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
+              <ChatMessage user>{AI_PROMPT}</ChatMessage>
+              <ChatMessage>
+                I’ll fetch your brand guidelines, then build a page to match.
+              </ChatMessage>
+              <ChatToolCard
+                label="Fetch brand design system"
+                done={step === 2 || reduced}
+                status={
+                  <LoaderCircle
+                    className="size-[calc(0.75*var(--editor-unit))] animate-[spin_0.5s_linear_infinite] text-[#b597fa]"
+                    style={{
+                      animationPlayState: running ? "running" : "paused",
+                    }}
+                  />
+                }
+              >
+                <ChatBrandDetails />
+              </ChatToolCard>
+              {step === 2 && (
+                <>
+                  <ChatToolCard label="Create landing page" done />
+                  <ChatMessage>
+                    Your page is ready. Let’s make it yours.
+                  </ChatMessage>
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
-        {step === 0 && (
-          <div className="flex h-full flex-col items-center justify-center gap-3 text-[#5d466a]">
-            <div className="rounded-2xl border border-[#9564ad]/15 bg-[#9564ad]/5 p-4">
-              <Sparkles size={27} strokeWidth={1} />
-            </div>
-            <span className="text-[10px] text-[#8d749b]">
-              What will your users create next?
-            </span>
-          </div>
-        )}
       </div>
-      <div className="mt-3 flex shrink-0 items-center gap-2 rounded-lg border border-white/10 px-3 py-2.5 text-[10px] text-[#796785]">
-        <span
-          className={cn(
-            "min-w-0 flex-1 leading-relaxed",
-            step === 0 && "text-[#c2a9d1]",
-          )}
-          data-ai-draft
-        >
-          {step === 0 ? draft : "Ask for a change…"}
-          {step === 0 && (
-            <span className="ml-0.5 inline-block h-2.5 w-px bg-[#bc8ad6]" />
-          )}
-        </span>
-        <ArrowUp
-          size={17}
-          className="shrink-0 rounded-full bg-[#754990] p-0.5 text-[#e4c7f1]"
-        />
-      </div>
+      <ChatComposer
+        draft={step === 0 ? draft : ""}
+        caret={
+          <span className="ml-[calc(0.08*var(--editor-unit))] inline-block h-[calc(0.75*var(--editor-unit))] w-px bg-[#c9b4f2] align-[-1px]" />
+        }
+      />
     </div>
   );
 }

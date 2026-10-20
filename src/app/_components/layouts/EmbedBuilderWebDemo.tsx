@@ -1,13 +1,18 @@
 "use client";
 
-import { ChatPanelHeader } from "./EditorShell";
+import {
+  ChatBrandDetails,
+  ChatComposer,
+  ChatMessage,
+  ChatPanelHeader,
+  ChatSendButton,
+  ChatToolCard,
+} from "./EditorShell";
 
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
-  ArrowUp,
   Bold,
-  Check,
   ChevronDown,
   CircleCheck,
   Crosshair,
@@ -15,11 +20,9 @@ import {
   Italic,
   Link,
   LoaderCircle,
-  Mic,
   MousePointer2,
   Pause,
   Play,
-  Plus,
   RotateCcw,
   Sparkles,
   TextCursor,
@@ -190,12 +193,8 @@ function ChatEntry({
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className={cn(
-        user &&
-          "rounded-[0.2cqw] bg-[#8b5cf6] px-[0.45cqw] py-[0.4cqw] text-white",
-      )}
     >
-      {children}
+      <ChatMessage user={user}>{children}</ChatMessage>
     </motion.div>
   );
 }
@@ -214,20 +213,17 @@ function ToolCall({
   const rotate = useTransform(demo.time, (value) => value * 720);
   return (
     <ChatEntry>
-      <div className="overflow-hidden rounded-[0.2cqw] bg-[color:var(--editor-raised)]">
-        <div className="flex h-[1.75cqw] items-center gap-[0.4cqw] px-[0.45cqw]">
-          {done ? (
-            <Check className="size-[0.75cqw] text-[#cbb2e8]" />
-          ) : (
-            <motion.span style={{ rotate }} className="flex text-[#b597fa]">
-              <LoaderCircle className="size-[0.75cqw]" />
-            </motion.span>
-          )}
-          <span className="flex-1">{label}</span>
-          <ChevronDown className="size-[0.7cqw]" />
-        </div>
-        {done && children}
-      </div>
+      <ChatToolCard
+        label={label}
+        done={done}
+        status={
+          <motion.span style={{ rotate }} className="flex text-[#b597fa]">
+            <LoaderCircle className="size-[0.75cqw]" />
+          </motion.span>
+        }
+      >
+        {children}
+      </ChatToolCard>
     </ChatEntry>
   );
 }
@@ -259,16 +255,7 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
               done={step >= demoSteps.brandReady}
               demo={demo}
             >
-              <div className="flex items-center gap-[0.35cqw] border-t-[0.05cqw] border-white/5 px-[0.45cqw] py-[0.4cqw] text-[0.6cqw]">
-                {["#17121e", "#d8b4fe", "#8b5cf6"].map((color) => (
-                  <span
-                    key={color}
-                    style={{ backgroundColor: color }}
-                    className="size-[0.7cqw] rounded-[0.12cqw] ring-[0.05cqw] ring-white/10"
-                  />
-                ))}
-                <span className="ml-auto">Arial · Rounded</span>
-              </div>
+              <ChatBrandDetails />
             </ToolCall>
           </>
         )}
@@ -351,9 +338,10 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
   });
 
   return (
-    <div className="shrink-0 border-t-[0.05cqw] border-[color:var(--editor-border)] p-[0.5cqw]">
-      <div className="flex h-[6.6cqw] flex-col rounded-[0.45cqw] border-[0.05cqw] border-[color:var(--editor-border)] p-[0.45cqw]">
-        {step >= demoSteps.hover && (
+    <ChatComposer
+      draft={draft}
+      context={
+        step >= demoSteps.hover && (
           <div className="flex items-center gap-[0.5cqw]">
             <Crosshair className="size-[0.8cqw]" />
             <span className="flex items-center gap-[0.3cqw] rounded-[0.15cqw] bg-[#3998df] px-[0.35cqw] py-[0.1cqw] text-white">
@@ -361,38 +349,20 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
               <X className="size-[0.7cqw]" />
             </span>
           </div>
-        )}
-        <div className="mt-[0.4cqw] leading-[1.45]">
-          <span
-            data-demo-draft
-            className={draft ? "text-[#e3e0ea]" : "text-[#8d849b]"}
-          >
-            {draft || "Ask anything..."}
-          </span>
-          {draft && (
-            <motion.span
-              style={{ opacity: caretOpacity }}
-              className="ml-[0.08cqw] inline-block h-[0.75cqw] w-[0.05cqw] bg-[#c9b4f2] align-[-0.08cqw]"
-            />
-          )}
-        </div>
-        <div className="mt-auto flex items-center gap-[0.85cqw]">
-          <Plus className="size-[0.95cqw]" />
-          <Mic className="ml-auto size-[0.9cqw]" />
-          <motion.span
-            style={{ scale: sendScale }}
-            className={cn(
-              "flex size-[1.6cqw] items-center justify-center rounded-full",
-              draft
-                ? "bg-[#8b5cf6] text-white"
-                : "bg-[#8b5cf6]/50 text-[#b69ae6]",
-            )}
-          >
-            <ArrowUp className="size-[1.05cqw]" />
-          </motion.span>
-        </div>
-      </div>
-    </div>
+        )
+      }
+      caret={
+        <motion.span
+          style={{ opacity: caretOpacity }}
+          className="ml-[0.08cqw] inline-block h-[0.75cqw] w-[0.05cqw] bg-[#c9b4f2] align-[-0.08cqw]"
+        />
+      }
+      sendControl={
+        <motion.span style={{ scale: sendScale }}>
+          <ChatSendButton active={!!draft} />
+        </motion.span>
+      }
+    />
   );
 }
 

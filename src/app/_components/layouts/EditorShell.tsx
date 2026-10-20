@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import {
+  ArrowUp,
+  Check,
   ChevronDown,
   ChevronRight,
   ChevronUp,
@@ -13,6 +15,7 @@ import {
   Layers,
   Maximize,
   Menu,
+  Mic,
   Monitor,
   MoveVertical,
   PanelTop,
@@ -362,6 +365,114 @@ export function ChatPanelHeader() {
       <span className="flex-1">AI Assistant</span>
       <Trash2 className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
       <X className="ml-[calc(0.35*var(--editor-unit,1cqw))] size-[calc(0.95*var(--editor-unit,1cqw))]" />
+    </div>
+  );
+}
+
+export function ChatMessage({
+  children,
+  user = false,
+}: {
+  children: ReactNode;
+  user?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        user &&
+          "rounded-[calc(0.2*var(--editor-unit,1cqw))] bg-[#8b5cf6] px-[calc(0.45*var(--editor-unit,1cqw))] py-[calc(0.4*var(--editor-unit,1cqw))] font-semibold text-white",
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function ChatToolCard({
+  label,
+  done,
+  status,
+  children,
+}: {
+  label: string;
+  done: boolean;
+  status?: ReactNode;
+  children?: ReactNode;
+}) {
+  return (
+    <div className="overflow-hidden rounded-[calc(0.2*var(--editor-unit,1cqw))] bg-[color:var(--editor-raised)]">
+      <div className="flex h-[calc(1.75*var(--editor-unit,1cqw))] items-center gap-[calc(0.4*var(--editor-unit,1cqw))] px-[calc(0.45*var(--editor-unit,1cqw))]">
+        {done ? (
+          <Check className="size-[calc(0.75*var(--editor-unit,1cqw))] text-[#cbb2e8]" />
+        ) : (
+          status
+        )}
+        <span className="min-w-0 flex-1 truncate">{label}</span>
+        <ChevronDown className="size-[calc(0.7*var(--editor-unit,1cqw))]" />
+      </div>
+      {done && children}
+    </div>
+  );
+}
+
+export function ChatBrandDetails() {
+  return (
+    <div className="flex items-center gap-[calc(0.35*var(--editor-unit,1cqw))] border-t-[calc(0.05*var(--editor-unit,1cqw))] border-white/5 px-[calc(0.45*var(--editor-unit,1cqw))] py-[calc(0.4*var(--editor-unit,1cqw))] text-[calc(0.6*var(--editor-unit,1cqw))]">
+      {["#17121e", "#d8b4fe", "#8b5cf6"].map((color) => (
+        <span
+          key={color}
+          style={{ backgroundColor: color }}
+          className="size-[calc(0.7*var(--editor-unit,1cqw))] rounded-[calc(0.12*var(--editor-unit,1cqw))] ring-[calc(0.05*var(--editor-unit,1cqw))] ring-white/10"
+        />
+      ))}
+      <span className="ml-auto">Arial · Rounded</span>
+    </div>
+  );
+}
+
+export function ChatSendButton({ active }: { active: boolean }) {
+  return (
+    <span
+      className={cn(
+        "flex size-[calc(1.6*var(--editor-unit,1cqw))] items-center justify-center rounded-full",
+        active ? "bg-[#8b5cf6] text-white" : "bg-[#8b5cf6]/50 text-[#b69ae6]",
+      )}
+    >
+      <ArrowUp className="size-[calc(1.05*var(--editor-unit,1cqw))]" />
+    </span>
+  );
+}
+
+export function ChatComposer({
+  draft,
+  context,
+  caret,
+  sendControl,
+}: {
+  draft?: string;
+  context?: ReactNode;
+  caret?: ReactNode;
+  sendControl?: ReactNode;
+}) {
+  return (
+    <div className="shrink-0 border-t-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] p-[calc(0.5*var(--editor-unit,1cqw))]">
+      <div className="flex h-[calc(6.6*var(--editor-unit,1cqw))] flex-col rounded-[calc(0.45*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] p-[calc(0.45*var(--editor-unit,1cqw))]">
+        {context}
+        <div className="mt-[calc(0.4*var(--editor-unit,1cqw))] leading-[1.45]">
+          <span
+            data-demo-draft
+            className={draft ? "text-[#e3e0ea]" : "text-[#8d849b]"}
+          >
+            {draft || "Ask anything..."}
+          </span>
+          {draft && caret}
+        </div>
+        <div className="mt-auto flex items-center gap-[calc(0.85*var(--editor-unit,1cqw))]">
+          <Plus className="size-[calc(0.95*var(--editor-unit,1cqw))]" />
+          <Mic className="ml-auto size-[calc(0.9*var(--editor-unit,1cqw))]" />
+          {sendControl ?? <ChatSendButton active={!!draft} />}
+        </div>
+      </div>
     </div>
   );
 }

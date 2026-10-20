@@ -4,7 +4,7 @@ export const theme = {
     primaryText: "text-white",
     headingText: "text-[#eee8f1]",
     secondaryText: "text-[#b8afc0]",
-    mutedText: "text-[#aaa2b2]",
+    mutedText: "text-[#c6c2ca]",
     subtleText: "text-[#a59bad]",
     captionText: "text-[#918699]",
     eyebrowText: "text-[color:var(--activeHighlightColor)]",
