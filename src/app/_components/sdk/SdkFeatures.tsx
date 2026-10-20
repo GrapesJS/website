@@ -137,8 +137,8 @@ const plugins = [
   {
     icon: Type,
     title: "Rich text editing",
-    detail: "TinyMCE integration",
-    href: "rte/tinymce",
+    detail: "ProseMirror integration",
+    href: "rte/prosemirror",
   },
   {
     icon: Image,
@@ -479,7 +479,12 @@ export default function SdkFeatures() {
             <a
               key={title}
               href={`${docs}/${href}`}
-              className={cn("group rounded-lg pt-6", theme.cards.divider)}
+              className={cn(
+                "group rounded-lg p-6",
+                theme.cards.border,
+                theme.cards.bg,
+                theme.cards.hover,
+              )}
             >
               <Icon
                 size={23}
@@ -589,25 +594,13 @@ export default function SdkFeatures() {
             </a>
           ))}
         </div>
-        <p className={cn("mt-4 text-xs", theme.colors.captionText)}>
-          Plugin availability varies by plan.{" "}
-          <a
-            href={urls.getPricingUrl()}
-            className={cn(
-              "underline underline-offset-4",
-              theme.colors.underlinedLinkText,
-            )}
-          >
-            Compare plans
-          </a>
-        </p>
       </section>
 
       <section
         aria-label="Developer foundations"
         className="mx-auto grid max-w-[1132px] gap-8 px-4 py-12 md:grid-cols-2 md:gap-14 md:py-16"
       >
-        <div className={cn("pt-7", theme.cards.divider)}>
+        <div className={cn(cardClass, "p-6 md:p-8")}>
           <Braces
             size={25}
             strokeWidth={1.5}
@@ -636,7 +629,7 @@ export default function SdkFeatures() {
             Explore integration examples
           </DocsLink>
         </div>
-        <div className={cn("pt-7", theme.cards.divider)}>
+        <div className={cn(cardClass, "p-6 md:p-8")}>
           <Github
             size={25}
             strokeWidth={1.5}
@@ -702,7 +695,7 @@ export default function SdkFeatures() {
               Get started for free
             </CTALink>
             <CTALink href={urls.getGettingStartedDocsUrl()} variant="tertiary">
-              Read the integration docs
+              Read the Docs
             </CTALink>
           </div>
         </div>
