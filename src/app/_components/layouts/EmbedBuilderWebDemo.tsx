@@ -198,7 +198,7 @@ function ToolCall({
   const rotate = useTransform(demo.time, (value) => value * 720);
   return (
     <ChatEntry>
-      <div className="overflow-hidden rounded-[0.2cqw] bg-[#26272a]">
+      <div className="overflow-hidden rounded-[0.2cqw] bg-[color:var(--editor-raised)]">
         <div className="flex h-[1.75cqw] items-center gap-[0.4cqw] px-[0.45cqw]">
           {done ? (
             <Check className="size-[0.75cqw] text-[#cbb2e8]" />
@@ -220,8 +220,8 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
   const { step, time, reducedMotion } = demo;
   const opacity = useTransform(time, [0, 0.4, DURATION - 0.7, DURATION], [0, 1, 1, 0]);
   return (
-    <div className="flex min-h-0 min-w-0 flex-col border-r-[0.05cqw] border-[#3c3d43] bg-[#18191b] text-[0.72cqw] text-[#a1a6b0]">
-      <div className="flex h-[2.1cqw] shrink-0 items-center gap-[0.45cqw] border-b-[0.05cqw] border-[#3c3d43] px-[0.5cqw]">
+    <div className="flex min-h-0 min-w-0 flex-col border-r-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] text-[0.72cqw] text-[color:var(--editor-text)]">
+      <div className="flex h-[2.1cqw] shrink-0 items-center gap-[0.45cqw] border-b-[0.05cqw] border-[color:var(--editor-border)] px-[0.5cqw]">
         <Sparkles className="size-[0.95cqw] fill-current" strokeWidth={1} />
         <span className="flex-1">AI Assistant</span>
         <Trash2 className="size-[0.85cqw]" />
@@ -297,8 +297,8 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
   });
 
   return (
-    <div className="shrink-0 border-t-[0.05cqw] border-[#3c3d43] p-[0.5cqw]">
-      <div className="flex h-[6.6cqw] flex-col rounded-[0.45cqw] border-[0.05cqw] border-[#3c3d43] p-[0.45cqw]">
+    <div className="shrink-0 border-t-[0.05cqw] border-[color:var(--editor-border)] p-[0.5cqw]">
+      <div className="flex h-[6.6cqw] flex-col rounded-[0.45cqw] border-[0.05cqw] border-[color:var(--editor-border)] p-[0.45cqw]">
         {step >= demoSteps.hover && (
           <div className="flex items-center gap-[0.5cqw]">
             <Crosshair className="size-[0.8cqw]" />
@@ -308,7 +308,7 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
           </div>
         )}
         <div className="mt-[0.4cqw] leading-[1.45]">
-          <span data-demo-draft className={draft ? "text-[#e3e0ea]" : "text-[#777b82]"}>
+          <span data-demo-draft className={draft ? "text-[#e3e0ea]" : "text-[#8d849b]"}>
             {draft || "Ask anything..."}
           </span>
           {draft && <motion.span style={{ opacity: caretOpacity }} className="ml-[0.08cqw] inline-block h-[0.75cqw] w-[0.05cqw] bg-[#c9b4f2] align-[-0.08cqw]" />}
@@ -388,7 +388,7 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
         )}
         {editing && <motion.span style={{ opacity: caretOpacity }} className="absolute -right-[0.08cqw] top-[8%] h-[85%] w-[0.06cqw] bg-[#4c2368]" />}
         {step >= demoSteps.select && step < demoSteps.typed && (
-          <motion.span initial={{ opacity: 0, y: 3 }} animate={{ opacity: 1, y: 0 }} className="absolute -left-[0.1cqw] -top-[1.9cqw] flex h-[1.5cqw] items-center gap-[0.65cqw] rounded-[0.2cqw] border-[0.05cqw] border-[#41434a] bg-[#202124] px-[0.5cqw] tracking-normal text-white shadow-lg">
+          <motion.span initial={{ opacity: 0, y: 3 }} animate={{ opacity: 1, y: 0 }} className="absolute -left-[0.1cqw] -top-[1.9cqw] flex h-[1.5cqw] items-center gap-[0.65cqw] rounded-[0.2cqw] border-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-[0.5cqw] tracking-normal text-white shadow-lg">
             <Bold className="size-[0.7cqw]" /><Italic className="size-[0.7cqw]" /><Link className="size-[0.7cqw]" />
             <span className="border-b-[0.12cqw] border-[#d8b4fe] text-[0.7cqw] font-medium leading-none">A</span>
             <ChevronDown className="size-[0.6cqw]" />
@@ -515,7 +515,7 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
 export function DemoPlaybackControls({ demo }: { demo: BuilderDemo }) {
   if (demo.reducedMotion) return null;
   return (
-    <div className="absolute bottom-[4%] right-[2%] z-30 flex gap-0.5 rounded-full border border-white/10 bg-[#18191b]/90 p-0.5 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 sm:gap-1 sm:p-1 [@media(hover:none)]:opacity-100">
+    <div className="absolute bottom-[4%] right-[2%] z-30 flex gap-0.5 rounded-full border border-white/10 bg-[color:var(--editor-bg)] p-0.5 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 sm:gap-1 sm:p-1 [@media(hover:none)]:opacity-100">
       <button type="button" onClick={demo.togglePaused} aria-label={demo.paused ? "Play illustration" : "Pause illustration"} className="flex size-5 items-center justify-center rounded-full text-white/80 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#b494f4] sm:size-7">
         {demo.paused ? <Play className="size-3 sm:size-3.5" /> : <Pause className="size-3 sm:size-3.5" />}
       </button>

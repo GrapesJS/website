@@ -143,7 +143,7 @@ const layerRows = [
 // Retained for layouts that show the page and layer managers.
 function PagesPanel() {
   return (
-    <div className="min-w-0 border-r-[0.075cqw] border-[#494251] bg-[#201e2a]">
+    <div className="min-w-0 border-r-[0.075cqw] border-[#494251] bg-[color:var(--editor-bg)]">
       <div className="flex h-[2.1cqw] items-center gap-[0.45cqw] px-[0.7cqw] text-[0.8cqw] font-semibold">
         <FileStack className="size-[0.85cqw]" />
         <span className="flex-1">Pages</span>
@@ -195,7 +195,7 @@ function PagesPanel() {
 
 function EditorSidebar() {
   return (
-    <div className="flex min-h-0 flex-col items-center border-r-[0.05cqw] border-[#3c3d43] bg-[#18191b] py-[0.45cqw] text-[#a1a6b0]">
+    <div className="flex min-h-0 flex-col items-center border-r-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] py-[0.45cqw] text-[color:var(--editor-text)]">
       <div className="flex flex-col items-center gap-[0.5cqw]">
         {[SquarePlus, Layers, SwatchBook, ImageIcon, Database, Sparkles].map(
           (Icon, index) => (
@@ -221,7 +221,7 @@ function EditorSidebar() {
 
 function ConversationAction({ children }: { children: ReactNode }) {
   return (
-    <div className="flex h-[1.65cqw] items-center gap-[0.45cqw] rounded-[0.18cqw] bg-[#26272a] px-[0.5cqw]">
+    <div className="flex h-[1.65cqw] items-center gap-[0.45cqw] rounded-[0.18cqw] bg-[color:var(--editor-raised)] px-[0.5cqw]">
       <Check className="size-[0.8cqw]" />
       <span className="flex-1">{children}</span>
       <ChevronDown className="size-[0.75cqw]" />
@@ -231,8 +231,8 @@ function ConversationAction({ children }: { children: ReactNode }) {
 
 function AIChatPanel() {
   return (
-    <div className="flex min-h-0 min-w-0 flex-col border-r-[0.05cqw] border-[#3c3d43] bg-[#18191b] text-[0.72cqw] text-[#a1a6b0]">
-      <div className="flex h-[2.1cqw] shrink-0 items-center gap-[0.45cqw] border-b-[0.05cqw] border-[#3c3d43] px-[0.5cqw]">
+    <div className="flex min-h-0 min-w-0 flex-col border-r-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] text-[0.72cqw] text-[color:var(--editor-text)]">
+      <div className="flex h-[2.1cqw] shrink-0 items-center gap-[0.45cqw] border-b-[0.05cqw] border-[color:var(--editor-border)] px-[0.5cqw]">
         <Sparkles className="size-[0.95cqw] fill-current" strokeWidth={1} />
         <span className="flex-1">AI Assistant</span>
         <Trash2 className="size-[0.85cqw]" />
@@ -272,8 +272,8 @@ function AIChatPanel() {
           waitlist buttons.
         </p>
       </div>
-      <div className="shrink-0 border-t-[0.05cqw] border-[#3c3d43] p-[0.5cqw]">
-        <div className="flex h-[6.6cqw] flex-col rounded-[0.45cqw] border-[0.05cqw] border-[#3c3d43] p-[0.45cqw]">
+      <div className="shrink-0 border-t-[0.05cqw] border-[color:var(--editor-border)] p-[0.5cqw]">
+        <div className="flex h-[6.6cqw] flex-col rounded-[0.45cqw] border-[0.05cqw] border-[color:var(--editor-border)] p-[0.45cqw]">
           <div className="flex items-center gap-[0.5cqw]">
             <Crosshair className="size-[0.8cqw]" />
             <span className="flex items-center gap-[0.3cqw] rounded-[0.15cqw] bg-[#3998df] px-[0.35cqw] py-[0.1cqw] text-white">
@@ -282,7 +282,7 @@ function AIChatPanel() {
               <X className="ml-[0.2cqw] size-[0.75cqw]" />
             </span>
           </div>
-          <span className="mt-[0.45cqw] text-[#777b82]">Ask anything...</span>
+          <span className="mt-[0.45cqw] text-[#8d849b]">Ask anything...</span>
           <div className="mt-auto flex items-center gap-[0.85cqw]">
             <Plus className="size-[0.95cqw]" />
             <Mic className="ml-auto size-[0.9cqw]" />
@@ -298,12 +298,12 @@ function AIChatPanel() {
 
 function CanvasToolbar() {
   return (
-    <div className="relative flex h-[2.1cqw] shrink-0 items-center justify-between border-b-[0.05cqw] border-[#3c3d43] bg-[#18191b] px-[0.45cqw] text-[#a1a6b0]">
-      <div className="flex h-[1.6cqw] items-center gap-[0.4cqw] rounded-[0.18cqw] border-[0.05cqw] border-[#3c3d43] px-[0.5cqw] text-[0.75cqw]">
+    <div className="relative flex h-[2.1cqw] shrink-0 items-center justify-between border-b-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-[0.45cqw] text-[color:var(--editor-text)]">
+      <div className="flex h-[1.6cqw] items-center gap-[0.4cqw] rounded-[0.18cqw] border-[0.05cqw] border-[color:var(--editor-border)] px-[0.5cqw] text-[0.75cqw]">
         <CodeXml className="size-[0.85cqw]" />
         <span>Code</span>
       </div>
-      <div className="absolute left-1/2 flex h-[1.5cqw] -translate-x-1/2 items-center gap-[0.4cqw] rounded-[0.2cqw] border-[0.05cqw] border-[#3c3d43] px-[0.5cqw]">
+      <div className="absolute left-1/2 flex h-[1.5cqw] -translate-x-1/2 items-center gap-[0.4cqw] rounded-[0.2cqw] border-[0.05cqw] border-[color:var(--editor-border)] px-[0.5cqw]">
         <Monitor className="size-[0.85cqw]" />
         <span>Desktop</span>
         <ChevronDown className="size-[0.7cqw]" />
@@ -332,7 +332,7 @@ function WaitlistButton({ className }: { className?: string }) {
 
 function LandingPageCanvas() {
   return (
-    <div className="flex min-w-0 flex-col overflow-hidden bg-[#27272a]">
+    <div className="flex min-w-0 flex-col overflow-hidden bg-[color:var(--editor-canvas)]">
       <CanvasToolbar />
       <div className="relative m-[0.65cqw] min-h-0 flex-1 overflow-hidden rounded-[0.2cqw] bg-[linear-gradient(165deg,#18051e_0%,#351039_45%,#501e58_100%)] text-white">
         <div className="flex h-[4.7cqw] items-center justify-between px-[1.8cqw]">
@@ -416,7 +416,7 @@ function PropertyField({
         {label}
         {highlighted && <span className="ml-[0.35cqw]">×</span>}
       </div>
-      <div className="flex h-[1.6cqw] min-w-0 items-center gap-[0.3cqw] rounded-[0.18cqw] border-[0.05cqw] border-[#3c3d43] px-[0.45cqw] text-[#a1a6b0]">
+      <div className="flex h-[1.6cqw] min-w-0 items-center gap-[0.3cqw] rounded-[0.18cqw] border-[0.05cqw] border-[color:var(--editor-border)] px-[0.45cqw] text-[color:var(--editor-text)]">
         {adjustable && (
           <MoveVertical className="size-[0.65cqw] text-[#6c6679]" />
         )}
@@ -431,7 +431,7 @@ function PropertyField({
 
 function PanelSection({ label, open }: { label: string; open?: boolean }) {
   return (
-    <div className="flex h-[1.8cqw] items-center justify-between border-y-[0.025cqw] border-[#3c3d43] bg-[#26272a] px-[0.65cqw] text-[0.8cqw]">
+    <div className="flex h-[1.8cqw] items-center justify-between border-y-[0.025cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-[0.65cqw] text-[0.8cqw]">
       <span className="flex items-center gap-[0.35cqw]">
         {label}
         {open && <span className="size-[0.23cqw] rounded-full bg-[#ae88ed]" />}
@@ -453,8 +453,8 @@ function StylesPanel({
   selected?: boolean;
 } = {}) {
   return (
-    <div className="min-w-0 overflow-hidden border-l-[0.05cqw] border-[#3c3d43] bg-[#18191b] text-[#a1a6b0]">
-      <div className="flex h-[2.1cqw] border-b-[0.05cqw] border-[#3c3d43] font-semibold">
+    <div className="min-w-0 overflow-hidden border-l-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] text-[color:var(--editor-text)]">
+      <div className="flex h-[2.1cqw] border-b-[0.05cqw] border-[color:var(--editor-border)] font-semibold">
         <div className="flex w-1/2 items-center justify-center border-b-[0.08cqw] border-[#b494f4] text-[#b494f4]">
           Styles
         </div>
@@ -564,7 +564,7 @@ export default function EmbedBuilderWeb({ className }: EmbedBuilderWebProps) {
         ref={ref}
         data-demo-step={demo.step}
         className={cn(
-          "group relative isolate aspect-[1172/621] w-full overflow-hidden bg-[#24212b] [container-type:inline-size]",
+          "group relative isolate aspect-[1172/621] w-full overflow-hidden bg-[#24212b] [container-type:inline-size] [--editor-bg:#201e2a] [--editor-raised:#2b2739] [--editor-canvas:#292534] [--editor-border:#494251] [--editor-text:#a7a4b3]",
           className,
         )}
       >
@@ -581,7 +581,7 @@ export default function EmbedBuilderWeb({ className }: EmbedBuilderWebProps) {
             <div className="absolute bottom-[2.6%] left-[16.7%] right-[1.35%] top-[10.1%] grid grid-cols-[2.8%_19.7%_minmax(0,1fr)_16.4%] overflow-hidden shadow-[0_0_0.6cqw_#16131c22]">
               <EditorSidebar />
               <DemoConversation demo={demo} />
-              <div className="flex min-w-0 flex-col overflow-hidden bg-[#27272a]">
+              <div className="flex min-w-0 flex-col overflow-hidden bg-[color:var(--editor-canvas)]">
                 <CanvasToolbar />
                 <BrandLandingPage demo={demo} />
               </div>
