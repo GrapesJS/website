@@ -49,21 +49,26 @@ import {
 export type IllustrationProps = { withControls?: boolean };
 
 type DemoState = { step: number; reduced: boolean; running: boolean };
+export type IllustrationState = DemoState & {
+  selectStep: (step: number) => void;
+};
 
 /** Only the visible illustrations run. Manual steps remain available with reduced motion. */
-function Illustration({
+export function Illustration({
   label,
   steps,
   children,
   className,
   withControls = false,
   stepDurations,
+  interactive = false,
 }: IllustrationProps & {
   label: string;
   steps: string[];
-  children: (state: DemoState) => ReactNode;
+  children: (state: IllustrationState) => ReactNode;
   className?: string;
   stepDurations?: readonly number[];
+  interactive?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const visible = useInView(ref, { amount: 0.3 });
@@ -95,8 +100,18 @@ function Illustration({
         className,
       )}
     >
-      <div role="img" aria-label={label}>
-        <div aria-hidden>{children({ step, reduced, running })}</div>
+      <div role={interactive ? "group" : "img"} aria-label={label}>
+        <div aria-hidden={interactive ? undefined : true}>
+          {children({
+            step,
+            reduced,
+            running,
+            selectStep: (nextStep) => {
+              setStep(nextStep);
+              setPaused(true);
+            },
+          })}
+        </div>
       </div>
       {withControls && (
         <div

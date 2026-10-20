@@ -26,6 +26,11 @@ import {
   ThemeIllustration,
 } from "./SdkIllustrations";
 import { theme } from "./theme";
+import {
+  CustomBlocksIllustration,
+  DataSourcesIllustration,
+  GlobalStylesIllustration,
+} from "./SdkContentIllustrations";
 
 const docs = "https://app.grapesjs.com/docs-sdk";
 const linkClass = cn(theme.links.base, theme.colors.linkText);
@@ -46,6 +51,55 @@ function DocsLink({
     <a href={`${docs}/${href}`} className={linkClass}>
       {children} <ArrowRight size={15} aria-hidden />
     </a>
+  );
+}
+
+function IllustratedFeatureCard({
+  label,
+  title,
+  description,
+  links,
+  children,
+  wide = false,
+}: {
+  label: string;
+  title: string;
+  description: string;
+  links: React.ReactNode;
+  children: React.ReactNode;
+  wide?: boolean;
+}) {
+  return (
+    <article
+      className={cn(cardClass, "flex flex-col", wide && "md:col-span-2")}
+    >
+      <div className="flex-1 p-6 md:p-8">
+        <p
+          className={cn("mb-3", theme.cards.eyebrow, theme.colors.eyebrowText)}
+        >
+          {label}
+        </p>
+        <h3
+          className={cn(
+            "text-2xl font-semibold leading-tight tracking-tight",
+            wide ? "md:text-[30px]" : "md:text-[28px]",
+            theme.colors.primaryText,
+          )}
+        >
+          {title}
+        </h3>
+        <p
+          className={cn(
+            "mb-5 mt-4 max-w-[760px] text-base leading-relaxed",
+            theme.colors.secondaryText,
+          )}
+        >
+          {description}
+        </p>
+        <div className="flex flex-wrap gap-x-6 gap-y-3">{links}</div>
+      </div>
+      <div className="px-3 pb-3 md:px-5 md:pb-5">{children}</div>
+    </article>
   );
 }
 
@@ -404,6 +458,51 @@ export default function SdkFeatures() {
               </div>
             </div>
           </article>
+
+          <IllustratedFeatureCard
+            label="Custom blocks & components"
+            title="Give users building blocks made for your product."
+            description="Combine built-in blocks with your own components, from product cards to branded sections. Choose what users can add and how each block behaves."
+            links={
+              <DocsLink href="configuration/blocks">
+                Explore custom blocks
+              </DocsLink>
+            }
+          >
+            <CustomBlocksIllustration />
+          </IllustratedFeatureCard>
+
+          <IllustratedFeatureCard
+            label="Global styles"
+            title="Start every project with your design system."
+            description="Define shared colors, typography, and styles in your templates. Give users one place to manage their brand and update the elements that use it."
+            links={
+              <DocsLink href="configuration/global-styles">
+                Explore global styles
+              </DocsLink>
+            }
+          >
+            <GlobalStylesIllustration />
+          </IllustratedFeatureCard>
+
+          <IllustratedFeatureCard
+            wide
+            label="Data sources & template engines"
+            title="One template. A personal preview for every customer."
+            description="Connect content to your application data, then preview different records on the canvas. Configure import and export for your template syntax to keep personalized newsletters editable."
+            links={
+              <>
+                <DocsLink href="configuration/datasources/overview">
+                  Explore data sources
+                </DocsLink>
+                <DocsLink href="configuration/datasources/template-engines">
+                  Template engine integration
+                </DocsLink>
+              </>
+            }
+          >
+            <DataSourcesIllustration />
+          </IllustratedFeatureCard>
 
           <article
             className={`${cardClass} grid md:col-span-2 md:grid-cols-[1fr_1.05fr]`}

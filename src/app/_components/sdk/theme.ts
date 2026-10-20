@@ -36,5 +36,15 @@ export const theme = {
     applicationCanvas:
       "bg-[#211928]/30 bg-[radial-gradient(#b694c826_0.7px,transparent_0.7px)] [background-size:12px_12px]",
     applicationNode: "rounded-lg border border-[#bc87d6]/20 bg-[#241b2d]/70",
+    editorFrame:
+      "grid grid-cols-[24px_minmax(0,1fr)] overflow-hidden [--editor-unit:clamp(8px,2.4cqw,13px)]",
+    editorPanel:
+      "min-w-0 overflow-hidden border-r border-[color:var(--editor-border)] bg-[color:var(--editor-bg)]",
+    panelHeader:
+      "flex h-8 shrink-0 items-center justify-between border-b border-[color:var(--editor-border)] px-2 text-[11px]",
+    panelInput:
+      "flex min-w-0 items-center gap-1 rounded-sm border border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-1.5 py-1",
+    templateCanvas:
+      "min-h-0 min-w-0 flex-1 overflow-hidden bg-[color:var(--editor-canvas)] p-3",
   },
 } as const;

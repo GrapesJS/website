@@ -164,26 +164,32 @@ export function EditorSidebar({
   );
 }
 
-export function CanvasToolbar() {
+export function CanvasToolbar({
+  rightContent,
+  withDevice = true,
+}: { rightContent?: ReactNode; withDevice?: boolean } = {}) {
   return (
     <div className="relative flex h-[calc(2.1*var(--editor-unit,1cqw))] shrink-0 items-center justify-between border-b-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-[calc(0.45*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]">
       <div className="flex h-[calc(1.6*var(--editor-unit,1cqw))] items-center gap-[calc(0.4*var(--editor-unit,1cqw))] rounded-[calc(0.18*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] px-[calc(0.5*var(--editor-unit,1cqw))] text-[calc(0.75*var(--editor-unit,1cqw))]">
         <CodeXml className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
         <span>Code</span>
       </div>
-      <div className="absolute left-1/2 flex h-[calc(1.5*var(--editor-unit,1cqw))] -translate-x-1/2 items-center gap-[calc(0.4*var(--editor-unit,1cqw))] rounded-[calc(0.2*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] px-[calc(0.5*var(--editor-unit,1cqw))]">
-        <Monitor className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
-        <span>Desktop</span>
-        <ChevronDown className="size-[calc(0.7*var(--editor-unit,1cqw))]" />
-      </div>
+      {withDevice && (
+        <div className="absolute left-1/2 flex h-[calc(1.5*var(--editor-unit,1cqw))] -translate-x-1/2 items-center gap-[calc(0.4*var(--editor-unit,1cqw))] rounded-[calc(0.2*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] px-[calc(0.5*var(--editor-unit,1cqw))]">
+          <Monitor className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
+          <span>Desktop</span>
+          <ChevronDown className="size-[calc(0.7*var(--editor-unit,1cqw))]" />
+        </div>
+      )}
       <div className="flex items-center gap-[calc(0.75*var(--editor-unit,1cqw))]">
-        {[Maximize, Save, Undo2, Redo2, Play].map((Icon, index) => (
-          <Icon
-            key={index}
-            className="size-[calc(0.85*var(--editor-unit,1cqw))]"
-            strokeWidth={2.1}
-          />
-        ))}
+        {rightContent ??
+          [Maximize, Save, Undo2, Redo2, Play].map((Icon, index) => (
+            <Icon
+              key={index}
+              className="size-[calc(0.85*var(--editor-unit,1cqw))]"
+              strokeWidth={2.1}
+            />
+          ))}
       </div>
     </div>
   );
