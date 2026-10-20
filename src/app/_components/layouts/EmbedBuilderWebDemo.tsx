@@ -1,5 +1,7 @@
 "use client";
 
+import { ChatPanelHeader } from "./EditorShell";
+
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
@@ -21,7 +23,6 @@ import {
   RotateCcw,
   Sparkles,
   TextCursor,
-  Trash2,
   Type,
   X,
 } from "lucide-react";
@@ -53,7 +54,7 @@ const DURATION = 32.6;
 const BRAND_PROMPT =
   "Create a landing page following our company’s brand design system.";
 const COMPANY_PROMPT =
-  "Fill it with content for Lumio, a collaborative workspace for creative teams.";
+  "Fill it with content for YourBrand, a collaborative workspace for creative teams.";
 
 export const demoSteps = {
   promptSent: 1,
@@ -240,12 +241,7 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
   );
   return (
     <div className="flex min-h-0 min-w-0 flex-col border-r-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] text-[0.72cqw] text-[color:var(--editor-text)]">
-      <div className="flex h-[2.1cqw] shrink-0 items-center gap-[0.45cqw] border-b-[0.05cqw] border-[color:var(--editor-border)] px-[0.5cqw]">
-        <Sparkles className="size-[0.95cqw] fill-current" strokeWidth={1} />
-        <span className="flex-1">AI Assistant</span>
-        <Trash2 className="size-[0.85cqw]" />
-        <X className="ml-[0.35cqw] size-[0.95cqw]" />
-      </div>
+      <ChatPanelHeader />
       <motion.div
         style={{ opacity: reducedMotion ? 1 : opacity }}
         className="min-h-0 flex-1 space-y-[0.65cqw] overflow-hidden px-[0.5cqw] py-[0.5cqw] leading-[1.45]"
@@ -264,7 +260,7 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
               demo={demo}
             >
               <div className="flex items-center gap-[0.35cqw] border-t-[0.05cqw] border-white/5 px-[0.45cqw] py-[0.4cqw] text-[0.6cqw]">
-                {["#4c2368", "#d8b4fe", "#faf7fd"].map((color) => (
+                {["#17121e", "#d8b4fe", "#8b5cf6"].map((color) => (
                   <span
                     key={color}
                     style={{ backgroundColor: color }}
@@ -292,7 +288,7 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
         {step >= demoSteps.updateCopy && (
           <>
             <ChatEntry>
-              I’ll tailor the copy to Lumio’s product and audience.
+              I’ll tailor the copy to YourBrand’s product and audience.
             </ChatEntry>
             <ToolCall
               label="Update page copy"
@@ -517,7 +513,7 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
       />
       <br />
       {personalized ? "More " : "to "}
-      <span className="relative inline-block whitespace-nowrap text-[#a26bc2]">
+      <span className="relative inline-block whitespace-nowrap text-[#c99be6]">
         <span>
           {step >= demoSteps.typed
             ? replacement
@@ -538,7 +534,7 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
         {editing && (
           <motion.span
             style={{ opacity: caretOpacity }}
-            className="absolute -right-[0.08cqw] top-[8%] h-[85%] w-[0.06cqw] bg-[#4c2368]"
+            className="absolute -right-[0.08cqw] top-[8%] h-[85%] w-[0.06cqw] bg-[#8351a4]"
           />
         )}
         {step >= demoSteps.select && step < demoSteps.typed && (
@@ -578,14 +574,14 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
 
 function WorkspacePreview() {
   return (
-    <div className="relative h-[13.3cqw] rounded-[0.85cqw] bg-[#eadff3] p-[1.15cqw]">
+    <div className="relative h-[13.3cqw] rounded-[0.85cqw] bg-[#352342] p-[1.15cqw]">
       <div className="absolute -right-[0.2cqw] top-[1.6cqw] h-[2.3cqw] w-[5.8cqw] rotate-[8deg] rounded-[0.35cqw] bg-[#d8b4fe] shadow-sm" />
-      <div className="relative h-full overflow-hidden rounded-[0.4cqw] bg-white shadow-[0_0.6cqw_1.5cqw_#4c236820]">
-        <div className="flex h-[1.7cqw] items-center gap-[0.2cqw] border-b border-[#f1eaf7] px-[0.6cqw]">
+      <div className="relative h-full overflow-hidden rounded-[0.4cqw] bg-[#23192e] shadow-[0_0.6cqw_1.5cqw_#4c236820]">
+        <div className="flex h-[1.7cqw] items-center gap-[0.2cqw] border-b border-[#493252] px-[0.6cqw]">
           {[0, 1, 2].map((index) => (
             <span
               key={index}
-              className="size-[0.22cqw] rounded-full bg-[#d8c8e3]"
+              className="size-[0.22cqw] rounded-full bg-[#735280]"
             />
           ))}
           <span className="ml-auto text-[0.4cqw] text-[#96829f]">
@@ -593,12 +589,12 @@ function WorkspacePreview() {
           </span>
         </div>
         <div className="flex h-[calc(100%-1.7cqw)]">
-          <div className="w-[2.2cqw] shrink-0 space-y-[0.75cqw] bg-[#f8f3fc] px-[0.65cqw] py-[0.8cqw]">
+          <div className="w-[2.2cqw] shrink-0 space-y-[0.75cqw] bg-[#1e1527] px-[0.65cqw] py-[0.8cqw]">
             <BrandMark className="size-[0.7cqw]" />
             {[0, 1, 2, 3].map((index) => (
               <span
                 key={index}
-                className="block size-[0.55cqw] rounded-[0.1cqw] bg-[#e2d4ed]"
+                className="block size-[0.55cqw] rounded-[0.1cqw] bg-[#4e365e]"
               />
             ))}
           </div>
@@ -608,7 +604,7 @@ function WorkspacePreview() {
               <Ellipsis className="size-[0.7cqw]" />
             </div>
             <div className="mt-[0.6cqw] flex gap-[0.25cqw] text-[0.38cqw] text-[#a291ad]">
-              <span className="rounded-full bg-[#f1e7f9] px-[0.4cqw] py-[0.2cqw] text-[#79508d]">
+              <span className="rounded-full bg-[#3a244b] px-[0.4cqw] py-[0.2cqw] text-[#c5a4dc]">
                 Overview
               </span>
               <span className="px-[0.4cqw] py-[0.2cqw]">Projects</span>
@@ -618,16 +614,16 @@ function WorkspacePreview() {
               {["Brand refresh", "The next big idea"].map((label, index) => (
                 <div
                   key={label}
-                  className="rounded-[0.35cqw] border-[0.05cqw] border-[#ece1f2] p-[0.5cqw]"
+                  className="rounded-[0.35cqw] border-[0.05cqw] border-[#46304f] p-[0.5cqw]"
                 >
                   <span
                     className={cn(
                       "mb-[0.5cqw] block h-[1.5cqw] rounded-[0.2cqw]",
-                      index === 0 ? "bg-[#ebdcf6]" : "bg-[#f1e4f3]",
+                      index === 0 ? "bg-[#44304f]" : "bg-[#3b294b]",
                     )}
                   />
                   <span className="text-[0.46cqw] font-semibold">{label}</span>
-                  <div className="mt-[0.45cqw] h-[0.2cqw] rounded-full bg-[#f1eaf7]">
+                  <div className="mt-[0.45cqw] h-[0.2cqw] rounded-full bg-[#3f2d4b]">
                     <div className="h-full w-2/3 rounded-full bg-[#b28acc]" />
                   </div>
                   <div className="mt-[0.6cqw] flex -space-x-[0.13cqw]">
@@ -635,7 +631,7 @@ function WorkspacePreview() {
                       <span
                         key={color}
                         style={{ backgroundColor: color }}
-                        className="size-[0.65cqw] rounded-full ring-[0.08cqw] ring-white"
+                        className="size-[0.65cqw] rounded-full ring-[0.08cqw] ring-[#23192e]"
                       />
                     ))}
                   </div>
@@ -645,7 +641,7 @@ function WorkspacePreview() {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-[0.65cqw] -left-[0.75cqw] flex items-center gap-[0.4cqw] rounded-[0.4cqw] border-[0.05cqw] border-[#e9dbf1] bg-white px-[0.65cqw] py-[0.5cqw] text-[0.48cqw] shadow-[0_0.3cqw_1cqw_#4c236812]">
+      <div className="absolute -bottom-[0.65cqw] -left-[0.75cqw] flex items-center gap-[0.4cqw] rounded-[0.4cqw] border-[0.05cqw] border-[#50375d] bg-[#23192e] px-[0.65cqw] py-[0.5cqw] text-[0.48cqw] shadow-[0_0.3cqw_1cqw_#4c236812]">
         <CircleCheck className="size-[0.8cqw] text-[#9a6fb7]" /> A little more
         space to create.
       </div>
@@ -674,7 +670,7 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
         ["Grow your vision", "Build something that matters."],
       ];
   return (
-    <div className="relative m-[0.65cqw] min-h-0 flex-1 overflow-hidden rounded-[0.2cqw] bg-[#faf7fd] text-[#4c2368]">
+    <div className="relative m-[0.65cqw] min-h-0 flex-1 overflow-hidden rounded-[0.2cqw] bg-[#17121e] text-[#f3eaf8]">
       {step < demoSteps.navigation && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-[0.7cqw] text-[#a08caa]">
           <Sparkles className="size-[1.7cqw] text-[#c4acd1]" />
@@ -689,14 +685,14 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
           section="navigation"
           show={step >= demoSteps.navigation}
           {...revealProps}
-          className="flex h-[3.9cqw] items-center justify-between border-b-[0.05cqw] border-[#ebe1f0] px-[2.2cqw]"
+          className="flex h-[3.9cqw] items-center justify-between border-b-[0.05cqw] border-[#35243f] px-[2.2cqw]"
         >
           <div className="flex items-center gap-[0.45cqw] text-[1.1cqw] font-semibold tracking-[-0.04cqw]">
             <BrandMark />
             <CopySwap
               changed={step >= demoSteps.companyName}
               before="Your brand"
-              after="lumio"
+              after="YourBrand"
             />
           </div>
           <div className="flex items-center gap-[1.2cqw] text-[0.58cqw]">
@@ -704,7 +700,7 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
             <span>Why us</span>
             <span>Stories</span>
           </div>
-          <span className="flex h-[1.55cqw] items-center gap-[0.6cqw] rounded-full bg-[#4c2368] px-[0.8cqw] text-[0.56cqw] text-white">
+          <span className="flex h-[1.55cqw] items-center gap-[0.6cqw] rounded-full bg-[#8351a4] px-[0.8cqw] text-[0.56cqw] text-white">
             Get started <ArrowRight className="size-[0.6cqw]" />
           </span>
         </Reveal>
@@ -724,15 +720,15 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
               />
             </div>
             <EditableHeadline demo={demo} />
-            <p className="mt-[0.9cqw] min-h-[2.9cqw] max-w-[20cqw] text-[0.72cqw] leading-[1.6] tracking-normal text-[#94839f]">
+            <p className="mt-[0.9cqw] min-h-[2.9cqw] max-w-[20cqw] text-[0.72cqw] leading-[1.6] tracking-normal text-[#b9a7c6]">
               <CopySwap
                 changed={step >= demoSteps.description}
                 before="Turn your boldest ideas into something extraordinary. One place to get started."
-                after="Lumio brings projects, feedback, and your team into one calm, connected workspace."
+                after="YourBrand brings projects, feedback, and your team into one calm, connected workspace."
               />
             </p>
             <div className="mt-[1cqw] flex items-center gap-[0.75cqw]">
-              <span className="flex h-[1.9cqw] items-center gap-[0.7cqw] rounded-full bg-[#4c2368] px-[0.9cqw] text-[0.61cqw] text-white">
+              <span className="flex h-[1.9cqw] items-center gap-[0.7cqw] rounded-full bg-[#8351a4] px-[0.9cqw] text-[0.61cqw] text-white">
                 <CopySwap
                   changed={step >= demoSteps.description}
                   before="Get started"
@@ -740,7 +736,7 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
                 />
                 <ArrowRight className="size-[0.7cqw]" />
               </span>
-              <span className="text-[0.5cqw] text-[#a18fab]">
+              <span className="text-[0.5cqw] text-[#b2a0bd]">
                 Free to start. Room to grow.
               </span>
             </div>
@@ -751,13 +747,13 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
           section="proof"
           show={step >= demoSteps.proof}
           {...revealProps}
-          className="flex h-[3.3cqw] items-center justify-between border-y-[0.05cqw] border-[#ebe1f0] px-[2.2cqw] text-[#a28ead]"
+          className="flex h-[3.3cqw] items-center justify-between border-y-[0.05cqw] border-[#35243f] px-[2.2cqw] text-[#a28ead]"
         >
           <span className="max-w-[10cqw] text-[0.53cqw] leading-[1.5]">
             A little less chaos.
             <br />A lot more possibility.
           </span>
-          {["Layers", "Capsule", "Quotient", "Sisyphus"].map((name) => (
+          {["Design", "Marketing", "Product", "Engineering"].map((name) => (
             <span
               key={name}
               className="text-[0.83cqw] font-semibold tracking-[-0.03cqw]"
@@ -785,11 +781,11 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
               <motion.div
                 key={index}
                 animate={{
-                  backgroundColor: personalized ? "#f1eaf8" : "#f5eff9",
+                  backgroundColor: personalized ? "#2b1c37" : "#25192f",
                 }}
-                className="h-[6.2cqw] rounded-[0.6cqw] border-[0.05cqw] border-[#e8daef] p-[0.8cqw]"
+                className="h-[6.2cqw] rounded-[0.6cqw] border-[0.05cqw] border-[#46304f] p-[0.8cqw]"
               >
-                <span className="mb-[0.75cqw] flex size-[1.2cqw] items-center justify-center rounded-[0.35cqw] bg-[#e6d6f2] text-[0.55cqw]">
+                <span className="mb-[0.75cqw] flex size-[1.2cqw] items-center justify-center rounded-[0.35cqw] bg-[#4b305e] text-[0.55cqw]">
                   0{index + 1}
                 </span>
                 <motion.div
@@ -798,7 +794,7 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
                   animate={{ opacity: 1 }}
                 >
                   <span className="text-[0.75cqw] font-semibold">{title}</span>
-                  <p className="mt-[0.35cqw] text-[0.52cqw] leading-[1.5] text-[#a18aad]">
+                  <p className="mt-[0.35cqw] text-[0.52cqw] leading-[1.5] text-[#baa5c8]">
                     {description}
                   </p>
                 </motion.div>
@@ -810,7 +806,7 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
           section="footer"
           show={step >= demoSteps.footer}
           {...revealProps}
-          className="mx-[2.2cqw] mt-[0.3cqw] flex h-[6.3cqw] items-center justify-between rounded-[0.7cqw] bg-[#4c2368] px-[1.5cqw] text-[#faf7fd]"
+          className="mx-[2.2cqw] mt-[0.3cqw] flex h-[6.3cqw] items-center justify-between rounded-[0.7cqw] bg-[#33213f] px-[1.5cqw] text-[#f4eaf9]"
         >
           <div>
             <span className="text-[1.35cqw] font-medium leading-[1.15] tracking-[-0.05cqw]">
@@ -822,15 +818,15 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
               <CopySwap
                 changed={personalized}
                 before="Your best work is still ahead."
-                after="A calmer way to create. That’s Lumio."
+                after="A calmer way to create. That’s YourBrand."
               />
             </p>
           </div>
-          <span className="flex h-[1.9cqw] items-center gap-[0.7cqw] rounded-full bg-[#d8b4fe] px-[0.9cqw] text-[0.6cqw] font-medium text-[#4c2368]">
+          <span className="flex h-[1.9cqw] items-center gap-[0.7cqw] rounded-full bg-[#d8b4fe] px-[0.9cqw] text-[0.6cqw] font-medium text-[#352044]">
             <CopySwap
               changed={personalized}
               before="Let’s get started"
-              after="Try Lumio free"
+              after="Try YourBrand free"
             />
             <ArrowRight className="size-[0.65cqw]" />
           </span>

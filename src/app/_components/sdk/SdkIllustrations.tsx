@@ -7,27 +7,19 @@ import {
   ArrowUp,
   Braces,
   Check,
-  ChevronDown,
-  Code2,
   Database,
-  File,
   FileJson,
   FileText,
   Globe,
   Image,
-  Layers,
   Mail,
-  Monitor,
-  MoreHorizontal,
   MousePointer2,
   Palette,
   Pause,
   Play,
-  Plus,
   Server,
   Sparkles,
   Square,
-  Undo2,
 } from "lucide-react";
 import {
   AnimatePresence,
@@ -36,8 +28,26 @@ import {
   usePageInView,
   useReducedMotion,
 } from "motion/react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type CSSProperties,
+} from "react";
 import { theme } from "./theme";
+import {
+  CanvasToolbar,
+  ChatPanelHeader,
+  EditorSidebar,
+  PagesPanel,
+  PropertyField,
+  StylesPanel,
+  editorShellText,
+  editorShellTheme,
+} from "../layouts/EditorShell";
+
+export type IllustrationProps = { withControls?: boolean };
 
 type DemoState = { step: number; reduced: boolean; running: boolean };
 
@@ -47,7 +57,8 @@ function Illustration({
   steps,
   children,
   className,
-}: {
+  withControls = false,
+}: IllustrationProps & {
   label: string;
   steps: string[];
   children: (state: DemoState) => ReactNode;
@@ -77,7 +88,7 @@ function Illustration({
       data-step={step}
       data-running={running}
       className={cn(
-        "overflow-hidden rounded-xl",
+        "overflow-hidden rounded-lg",
         theme.illustrations.shell,
         className,
       )}
@@ -85,66 +96,54 @@ function Illustration({
       <div role="img" aria-label={label}>
         <div aria-hidden>{children({ step, reduced, running })}</div>
       </div>
-      <div
-        className={cn(
-          "flex min-h-11 items-center gap-2 px-3 py-2",
-          theme.illustrations.controls,
-        )}
-      >
-        <div className="flex shrink-0 gap-1">
-          {steps.map((name, index) => (
+      {withControls && (
+        <div
+          className={cn(
+            "flex min-h-11 items-center gap-2 px-3 py-2",
+            theme.illustrations.controls,
+          )}
+        >
+          <div className="flex shrink-0 gap-1">
+            {steps.map((name, index) => (
+              <button
+                key={name}
+                type="button"
+                aria-label={`${label}: ${name}`}
+                aria-pressed={step === index}
+                onClick={() => {
+                  setStep(index);
+                  setPaused(true);
+                }}
+                className="flex h-7 w-6 items-center justify-center rounded-md hover:bg-white/5"
+              >
+                <span
+                  className={cn(
+                    "h-1.5 rounded-full transition-all",
+                    index === step ? "w-4 bg-[#c28bda]" : "w-1.5 bg-[#5d4c69]",
+                  )}
+                />
+              </button>
+            ))}
+          </div>
+          <span className="min-w-0 flex-1 text-[10px] font-medium leading-snug text-[#a99ab4] sm:text-[11px]">
+            {steps[step]}
+          </span>
+          {!reduced && (
             <button
-              key={name}
               type="button"
-              aria-label={`${label}: ${name}`}
-              aria-pressed={step === index}
-              onClick={() => {
-                setStep(index);
-                setPaused(true);
-              }}
-              className="flex h-7 w-6 items-center justify-center rounded-md hover:bg-white/5"
+              onClick={() => setPaused((value) => !value)}
+              aria-label={`${paused ? "Play" : "Pause"} ${label.toLowerCase()}`}
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[#b9aac4] transition-colors hover:bg-white/10 hover:text-white"
             >
-              <span
-                className={cn(
-                  "h-1.5 rounded-full transition-all",
-                  index === step ? "w-4 bg-[#c28bda]" : "w-1.5 bg-[#5d4c69]",
-                )}
-              />
+              {paused ? (
+                <Play size={12} aria-hidden />
+              ) : (
+                <Pause size={12} aria-hidden />
+              )}
             </button>
-          ))}
+          )}
         </div>
-        <span className="min-w-0 flex-1 text-[10px] font-medium leading-snug text-[#a99ab4] sm:text-[11px]">
-          {steps[step]}
-        </span>
-        {!reduced && (
-          <button
-            type="button"
-            onClick={() => setPaused((value) => !value)}
-            aria-label={`${paused ? "Play" : "Pause"} ${label.toLowerCase()}`}
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[#b9aac4] transition-colors hover:bg-white/10 hover:text-white"
-          >
-            {paused ? (
-              <Play size={12} aria-hidden />
-            ) : (
-              <Pause size={12} aria-hidden />
-            )}
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function WindowBar({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex h-9 items-center gap-3 border-b border-white/[0.07] px-4">
-      <div className="flex gap-1">
-        <i className="h-1.5 w-1.5 rounded-full bg-[#795c83]" />
-        <i className="h-1.5 w-1.5 rounded-full bg-[#5d4968]" />
-        <i className="h-1.5 w-1.5 rounded-full bg-[#493951]" />
-      </div>
-      <span className="text-[10px] text-[#a391ad]">{children}</span>
-      <MoreHorizontal size={13} className="ml-auto text-[#7c6889]" />
+      )}
     </div>
   );
 }
@@ -160,7 +159,7 @@ function Line({
     <div
       className={cn(
         "h-1.5 rounded-full",
-        light ? "bg-[#d4c8df]" : "bg-[#5e496c]/50",
+        light ? "bg-[#715c80]/60" : "bg-[#5e496c]/50",
       )}
       style={{ width }}
     />
@@ -170,7 +169,7 @@ function Line({
 function MiniLanding({
   selected = false,
   className,
-  accent = "#9866be",
+  accent = "#c49cde",
 }: {
   selected?: boolean;
   className?: string;
@@ -179,13 +178,13 @@ function MiniLanding({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded bg-[#faf7fc] p-[8%] text-[#382342]",
+        "relative overflow-hidden rounded bg-[#17121e] p-[8%] text-[#f3eaf8]",
         className,
       )}
     >
       <div className="mb-[12%] flex items-center justify-between">
         <span className="text-[9px] font-bold tracking-tight">
-          lumio<span style={{ color: accent }}>.</span>
+          YourBrand<span style={{ color: accent }}>.</span>
         </span>
         <div className="flex w-[42%] gap-2">
           <Line light />
@@ -220,14 +219,14 @@ function MiniLanding({
         <Line width="70%" light />
       </div>
       <div
-        className="inline-flex items-center gap-3 rounded px-3 py-1.5 text-[7px] font-semibold text-white"
+        className="inline-flex items-center gap-3 rounded px-3 py-1.5 text-[7px] font-semibold text-[#211629]"
         style={{ background: accent }}
       >
         Start creating <ArrowRight size={8} />
       </div>
       <div className="mt-[12%] grid grid-cols-3 gap-2">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="rounded bg-[#ece2f2] p-2">
+          <div key={i} className="rounded bg-[#2a1e35] p-2">
             <div
               className="mb-2 h-3 w-3 rounded-sm"
               style={{ background: accent, opacity: 0.5 }}
@@ -279,7 +278,6 @@ function LayoutCode({ step, reduced }: { step: number; reduced: boolean }) {
   ];
   return (
     <div className="flex h-full flex-col">
-      <WindowBar>Editor.tsx</WindowBar>
       <div className="flex-1 py-6 font-mono text-[clamp(8px,1.08cqw,12px)] leading-[2.25] text-[#bca8cc]">
         <AnimatePresence initial={false} mode="popLayout">
           {lines.map(({ text, indent, changed }) => (
@@ -303,49 +301,32 @@ function LayoutCode({ step, reduced }: { step: number; reduced: boolean }) {
           ))}
         </AnimatePresence>
       </div>
-      <div className="flex items-center gap-1.5 px-4 pb-4 text-[10px] text-[#877294]">
-        <Braces size={12} /> React layout components
-      </div>
     </div>
   );
 }
 
 function LayoutPreview({ step, reduced }: { step: number; reduced: boolean }) {
   return (
-    <div className="flex h-full min-h-[280px] flex-col border-t border-white/[0.07] bg-[#262031] md:border-l md:border-t-0">
-      <div className="flex h-9 shrink-0 items-center gap-2 border-b border-white/[0.07] px-3 text-[10px] text-[#a391ad]">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#ad85c7]" />
-        Editor preview
-        <span className="ml-auto flex items-center gap-1 text-[8px]">
-          <Check size={10} /> Updated
-        </span>
-      </div>
-      <motion.div
-        animate={{ backgroundColor: step === 2 ? "#382345" : "#2d2638" }}
-        transition={{ duration: reduced ? 0 : 0.4 }}
-        className="flex h-10 shrink-0 items-center gap-2 border-b border-white/10 px-3 text-[#cbb6d8]"
-      >
-        {step === 2 ? (
-          <>
-            <span className="flex h-5 w-5 items-center justify-center rounded-md bg-[#b987d2] text-[10px] font-bold text-[#36213f]">
-              L
-            </span>
-            <span className="text-[10px] font-semibold">Lumio Studio</span>
-            <span className="ml-auto rounded bg-[#b987d2] px-2 py-1 text-[8px] font-semibold text-[#312039]">
-              Publish
-            </span>
-          </>
-        ) : (
-          <>
-            <Plus size={13} />
-            <Undo2 size={12} />
-            <span className="mx-auto flex items-center gap-1 text-[9px]">
-              <Monitor size={11} /> Desktop <ChevronDown size={9} />
-            </span>
-            <Code2 size={13} />
-          </>
-        )}
-      </motion.div>
+    <div
+      className={cn(
+        "flex h-full min-h-[280px] min-w-0 flex-col overflow-hidden border-t border-[color:var(--editor-border)] bg-[color:var(--editor-canvas)] [--editor-unit:9px] md:border-l md:border-t-0",
+        editorShellTheme,
+        editorShellText,
+      )}
+    >
+      {step === 2 ? (
+        <div className="flex h-[30px] shrink-0 items-center gap-2 border-b border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-2.5 text-[9px] text-[color:var(--editor-text)]">
+          <span className="flex size-4 items-center justify-center rounded-sm bg-[#b494f4] text-[9px] font-semibold text-[#261b35]">
+            Y
+          </span>
+          <span className="font-semibold">YourBrand</span>
+          <span className="ml-auto rounded-sm bg-[#8b5cf6] px-2 py-1 text-[8px] text-white">
+            Publish
+          </span>
+        </div>
+      ) : (
+        <CanvasToolbar />
+      )}
       <div className="flex min-h-0 flex-1">
         <AnimatePresence initial={false}>
           {step > 0 && (
@@ -355,65 +336,51 @@ function LayoutPreview({ step, reduced }: { step: number; reduced: boolean }) {
               animate={{ width: "28%", opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.4 }}
-              className="overflow-hidden border-r border-white/10 bg-[#211a2b]"
+              className="overflow-hidden bg-[color:var(--editor-bg)]"
             >
-              <div className="min-w-[86px] p-3 text-[9px] text-[#c4adce]">
-                {step === 2 ? (
-                  <>
-                    <span className="mb-4 flex items-center gap-1.5 font-semibold">
-                      <Palette size={11} /> Your brand
-                    </span>
-                    <span className="text-[8px] text-[#8d779a]">
-                      Brand colors
-                    </span>
-                    <div className="mb-5 mt-2 flex gap-1">
-                      {["#ba8dd3", "#694187", "#eee3f4"].map((c) => (
-                        <div
-                          key={c}
-                          className="h-4 w-4 rounded"
-                          style={{ background: c }}
+              {step === 2 ? (
+                <div className="h-full min-w-[88px] space-y-3 border-r border-[color:var(--editor-border)] p-2 text-[8px]">
+                  <div className="flex items-center gap-1.5 font-semibold">
+                    <Palette size={10} /> Your brand
+                  </div>
+                  <div>
+                    <div className="mb-2">Brand colors</div>
+                    <div className="flex gap-1">
+                      {["#c49cde", "#8b5cf6", "#17121e"].map((color) => (
+                        <span
+                          key={color}
+                          className="size-3.5 rounded-sm border border-white/10"
+                          style={{ background: color }}
                         />
                       ))}
                     </div>
-                    <span className="text-[8px] text-[#8d779a]">
-                      Typography
-                    </span>
-                    <div className="mt-2 rounded border border-white/10 p-2">
-                      Aa <span className="text-[8px]">Manrope</span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <span className="mb-4 block font-semibold">Pages</span>
-                    {["Home", "About", "Contact"].map((p, i) => (
-                      <div
-                        key={p}
-                        className={cn(
-                          "mb-2 flex items-center gap-1.5 rounded p-1.5",
-                          !i && "bg-[#a46db8]/20 text-[#d8b3e9]",
-                        )}
-                      >
-                        <File size={9} />
-                        {p}
-                      </div>
-                    ))}
-                  </>
-                )}
-              </div>
+                  </div>
+                  <PropertyField label="Typeface">Manrope</PropertyField>
+                  <PropertyField label="Radius">8 px</PropertyField>
+                </div>
+              ) : (
+                <PagesPanel withLayers={false} />
+              )}
             </motion.div>
           )}
         </AnimatePresence>
-        <motion.div layout={!reduced} className="min-w-0 flex-1 p-4">
-          <MiniLanding className="mx-auto h-full max-w-[300px]" />
+        <motion.div layout={!reduced} className="min-w-0 flex-1 p-3">
+          <MiniLanding className="mx-auto h-full max-w-[320px]" />
         </motion.div>
       </div>
     </div>
   );
 }
 
-export function EditorCompositionIllustration() {
+export function EditorCompositionIllustration({
+  withControls = false,
+}: IllustrationProps = {}) {
   return (
-    <Illustration label="Compose your editor UI" steps={layoutSteps}>
+    <Illustration
+      withControls={withControls}
+      label="Compose your editor UI"
+      steps={layoutSteps}
+    >
       {({ step, reduced }) => (
         <div className="grid [container-type:inline-size] md:h-[340px] md:grid-cols-[1fr_1.1fr]">
           <LayoutCode step={step} reduced={reduced} />
@@ -449,11 +416,13 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
 
   return (
     <div className="flex h-[390px] flex-col p-4 [container-type:inline-size] sm:h-[350px] sm:p-5">
-      <div className="mb-4 flex items-center gap-2 text-[11px] font-medium text-[#d2bbde]">
-        <Sparkles size={14} className="text-[#c08adc]" /> Lumio assistant{" "}
-        <span className="ml-auto text-[8px] font-normal text-[#8f799b]">
-          Your tools. Your context.
-        </span>
+      <div
+        className={cn(
+          "-mx-4 -mt-4 mb-4 [--editor-unit:12px] sm:-mx-5 sm:-mt-5",
+          editorShellTheme,
+        )}
+      >
+        <ChatPanelHeader />
       </div>
       <div className="relative min-h-0 flex-1">
         <AnimatePresence initial={false}>
@@ -466,7 +435,7 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
               exit={{ opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.25 }}
             >
-              <div className="ml-7 rounded-xl rounded-tr-sm border border-[#ba7cd5]/20 bg-[#74428b]/30 p-3 text-[11px] leading-relaxed text-[#e0cce9]">
+              <div className="rounded-[3px] bg-[#8b5cf6] px-2.5 py-2 text-[11px] leading-relaxed text-white">
                 {AI_PROMPT}
               </div>
               <div className="ml-2 mt-3 flex items-start gap-2">
@@ -495,7 +464,7 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: reduced ? 0 : 0.25 }}
-                        className="mt-3 flex items-center gap-3 rounded-lg bg-[#f3ebf8] px-3 py-2.5 text-[#4c2a5d]"
+                        className="mt-3 flex items-center gap-3 rounded-lg bg-[#23172e] px-3 py-2.5 text-[#eadcf2]"
                       >
                         <span className="text-[16px] font-semibold leading-tight tracking-tight">
                           Meet your next
@@ -503,7 +472,7 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
                           bright idea.
                         </span>
                         <span className="ml-auto rounded bg-[#8e5ab0] px-2 py-1.5 text-[7px] text-white">
-                          Explore Lumio
+                          Get started
                         </span>
                         <MousePointer2 size={14} className="-mb-4" />
                       </motion.div>
@@ -547,9 +516,15 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
   );
 }
 
-export function AiWorkflowIllustration() {
+export function AiWorkflowIllustration({
+  withControls = false,
+}: IllustrationProps = {}) {
   return (
-    <Illustration label="AI connected to your product" steps={aiSteps}>
+    <Illustration
+      withControls={withControls}
+      label="AI connected to your product"
+      steps={aiSteps}
+    >
       {(state) => <AiWorkflowFrame {...state} />}
     </Illustration>
   );
@@ -557,130 +532,112 @@ export function AiWorkflowIllustration() {
 
 const themes = [
   {
-    name: "Lumio",
-    label: "A soft, branded workspace",
-    bg: "#30213f",
-    surface: "#3c2b4c",
-    text: "#dfc9ed",
-    muted: "#846a96",
-    accent: "#be94df",
-    paper: "#f5edf9",
-    brand: "#8e5aaf",
+    label: "Your colors, on a dark interface",
+    bg: "#201e2a",
+    raised: "#2b2739",
+    border: "#494251",
+    text: "#a7a4b3",
+    accent: "#c49cde",
   },
   {
-    name: "Forma",
-    label: "A clean, light interface",
-    bg: "#eeedf4",
-    surface: "#ffffff",
-    text: "#434052",
-    muted: "#b2adbf",
-    accent: "#7960bc",
-    paper: "#ffffff",
-    brand: "#7960bc",
+    label: "The same editor, in a light theme",
+    bg: "#f5f4f8",
+    raised: "#eae7f0",
+    border: "#d4d0dc",
+    text: "#655c71",
+    accent: "#bba6ed",
   },
   {
-    name: "Orbit",
-    label: "A focused, dark workspace",
-    bg: "#202231",
-    surface: "#2d3043",
-    text: "#d2d5e8",
-    muted: "#666c88",
-    accent: "#a6aff8",
-    paper: "#f2f2fa",
-    brand: "#666fb6",
+    label: "A different palette, still your product",
+    bg: "#202635",
+    raised: "#2c3446",
+    border: "#414c62",
+    text: "#a3b1c8",
+    accent: "#a6b6f6",
   },
 ];
 
-export function ThemeIllustration() {
+export function ThemeIllustration({
+  withControls = false,
+}: IllustrationProps = {}) {
   return (
     <Illustration
+      withControls={withControls}
       label="Theme the editor to your brand"
-      steps={themes.map((theme) => theme.label)}
+      steps={themes.map((item) => item.label)}
     >
       {({ step, reduced }) => {
-        const theme = themes[step];
+        const palette = themes[step];
         return (
-          <div className="flex h-[390px] flex-col justify-center p-4 [container-type:inline-size] sm:h-[350px] sm:p-5">
-            <motion.div
-              animate={{ backgroundColor: theme.bg, color: theme.text }}
-              transition={{ duration: reduced ? 0 : 0.5 }}
-              className="overflow-hidden rounded-lg border border-white/10 shadow-xl"
+          <div className="flex h-[390px] flex-col justify-center p-4 sm:h-[350px] sm:p-5">
+            <div
+              className={cn(
+                "overflow-hidden rounded-md border border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] [--editor-unit:7px]",
+                editorShellText,
+              )}
+              style={
+                {
+                  "--editor-bg": palette.bg,
+                  "--editor-raised": palette.raised,
+                  "--editor-border": palette.border,
+                  "--editor-text": palette.text,
+                } as CSSProperties
+              }
             >
-              <motion.div
-                animate={{ backgroundColor: theme.surface }}
-                transition={{ duration: reduced ? 0 : 0.5 }}
-                className="flex h-9 items-center gap-2 border-b border-current/10 px-3 text-[10px]"
-              >
+              <div className="flex h-7 items-center gap-2 border-b border-[color:var(--editor-border)] px-2 text-[8px]">
                 <span
-                  className="flex h-4 w-4 items-center justify-center rounded text-[8px] font-bold"
-                  style={{ background: theme.accent, color: theme.bg }}
+                  className="flex size-3.5 items-center justify-center rounded-sm font-semibold text-[#25182e]"
+                  style={{ background: palette.accent }}
                 >
-                  {theme.name[0]}
+                  Y
                 </span>
-                <span className="font-semibold">{theme.name} Studio</span>
+                <span className="font-semibold">YourBrand</span>
                 <span
-                  className="ml-auto rounded px-2 py-1 text-[7px] font-semibold"
-                  style={{ background: theme.accent, color: theme.bg }}
+                  className="ml-auto rounded-sm px-2 py-1 text-[7px] font-medium text-[#25182e]"
+                  style={{ background: palette.accent }}
                 >
                   Publish
                 </span>
-              </motion.div>
-              <div className="flex h-[173px]">
-                <div className="flex w-9 shrink-0 flex-col items-center gap-4 border-r border-current/10 pt-3">
-                  <Plus size={12} />
-                  <Layers size={12} />
-                  <Palette size={12} style={{ color: theme.accent }} />
-                  <Image size={12} />
-                </div>
-                <div className="flex-1 p-3">
-                  <div
-                    className="h-full rounded p-4"
-                    style={{ background: theme.paper }}
-                  >
-                    <div
-                      className="mb-3 text-[7px] font-bold uppercase tracking-[0.16em]"
-                      style={{ color: theme.brand }}
-                    >
-                      Made for your brand
-                    </div>
-                    <div
-                      className="text-[clamp(15px,4.5cqw,22px)] font-semibold leading-tight tracking-tight"
-                      style={{ color: theme.brand }}
-                    >
-                      A familiar place
-                      <br />
-                      to create.
-                    </div>
-                    <div className="mt-3 w-[75%] space-y-1.5">
-                      <Line light />
-                      <Line width="65%" light />
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[24%] border-l border-current/10 p-2 text-[7px]">
-                  <span className="font-semibold">Styles</span>
-                  <div className="mt-4 space-y-4">
-                    {["Layout", "Typography", "Background"].map((label) => (
-                      <div
-                        key={label}
-                        className="flex items-center justify-between gap-1"
-                      >
-                        {label}
-                        <ChevronDown size={7} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
-            </motion.div>
+              <div className="grid h-[215px] grid-cols-[22px_minmax(0,1fr)_27%] overflow-hidden">
+                <EditorSidebar activeIndex={2} />
+                <div className="flex min-w-0 flex-col overflow-hidden bg-[color:var(--editor-raised)]">
+                  <CanvasToolbar />
+                  <div className="min-h-0 flex-1 p-2">
+                    <div className="flex h-full flex-col justify-center overflow-hidden rounded-sm bg-[#17121e] p-[10%] text-[#f3eaf8]">
+                      <div
+                        className="mb-3 text-[7px] font-semibold"
+                        style={{ color: palette.accent }}
+                      >
+                        YourBrand
+                      </div>
+                      <div className="text-[clamp(14px,2vw,21px)] font-semibold leading-tight tracking-tight">
+                        A familiar place
+                        <br />
+                        to create.
+                      </div>
+                      <div className="mt-3 space-y-1.5">
+                        <Line light />
+                        <Line width="65%" light />
+                      </div>
+                      <div
+                        className="mt-4 h-4 w-1/2 shrink-0 rounded-sm"
+                        style={{ background: palette.accent }}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <StylesPanel brand compact selected color="#f3eaf8" />
+              </div>
+            </div>
             <div className="mt-4 flex items-center justify-center gap-3">
-              {[theme.bg, theme.surface, theme.accent, theme.paper].map(
-                (color, i) => (
+              {[palette.bg, palette.raised, palette.accent, palette.border].map(
+                (color, index) => (
                   <motion.div
-                    key={i}
+                    key={index}
                     animate={{ backgroundColor: color }}
                     transition={{ duration: reduced ? 0 : 0.5 }}
-                    className="h-5 w-5 rounded-full border border-white/15"
+                    className="size-5 rounded-full border border-white/15"
                   />
                 ),
               )}
@@ -711,9 +668,12 @@ const formats = [
   },
 ];
 
-export function ProjectTypesIllustration() {
+export function ProjectTypesIllustration({
+  withControls = false,
+}: IllustrationProps = {}) {
   return (
     <Illustration
+      withControls={withControls}
       label="One SDK for every content format"
       steps={["Web projects", "Email projects", "Document projects"]}
     >
@@ -751,15 +711,15 @@ export function ProjectTypesIllustration() {
                   {type === "web" ? (
                     <MiniLanding className="h-full" />
                   ) : type === "email" ? (
-                    <div className="mx-auto h-full w-[90%] overflow-hidden rounded-sm bg-[#faf7fc] text-center">
+                    <div className="mx-auto h-full w-[90%] overflow-hidden rounded-sm bg-[#17121e] text-center">
                       <div className="bg-[#633c7c] py-2 text-[7px] font-semibold tracking-widest text-[#edddf7]">
-                        THE LUMIO LETTER
+                        YOURBRAND / NEWSLETTER
                       </div>
                       <div className="p-3">
-                        <div className="mx-auto mb-2 h-9 w-9 rounded-full bg-[#e2d0ee] sm:mb-4 sm:h-14 sm:w-14">
+                        <div className="mx-auto mb-2 h-9 w-9 rounded-full bg-[#3b254b] sm:mb-4 sm:h-14 sm:w-14">
                           <Sparkles className="h-full w-full p-2.5 text-[#9e74b9] sm:p-4" />
                         </div>
-                        <div className="mb-3 text-[9px] font-semibold leading-tight text-[#4d2e5d] sm:text-[13px]">
+                        <div className="mb-3 text-[9px] font-semibold leading-tight text-[#eee1f7] sm:text-[13px]">
                           Good ideas.
                           <br />
                           Right in your inbox.
@@ -772,14 +732,14 @@ export function ProjectTypesIllustration() {
                       </div>
                     </div>
                   ) : (
-                    <div className="mx-auto h-full w-[83%] rounded-sm bg-[#faf7fc] p-3 sm:p-5">
+                    <div className="mx-auto h-full w-[83%] rounded-sm bg-[#17121e] p-3 sm:p-5">
                       <div className="mb-3 flex items-center justify-between">
                         <div className="h-3 w-3 rounded bg-[#9566ad]" />
                         <span className="text-[5px] text-[#917b9e] sm:text-[7px]">
-                          LUMIO / 2026
+                          YourBrand / 2026
                         </span>
                       </div>
-                      <div className="mb-2 text-[9px] font-semibold text-[#4d2e5d] sm:text-[14px]">
+                      <div className="mb-2 text-[9px] font-semibold text-[#eee1f7] sm:text-[14px]">
                         A brighter
                         <br />
                         way forward.
@@ -789,7 +749,7 @@ export function ProjectTypesIllustration() {
                         <Line light />
                         <Line width="60%" light />
                       </div>
-                      <div className="mt-3 rounded bg-[#ede3f3] p-2">
+                      <div className="mt-3 rounded bg-[#2b1e36] p-2">
                         <div className="space-y-1.5">
                           <Line light />
                           <Line width="80%" light />
@@ -821,9 +781,12 @@ const storageSteps = [
   "Publish to your own destination",
 ];
 
-export function StorageIllustration() {
+export function StorageIllustration({
+  withControls = false,
+}: IllustrationProps = {}) {
   return (
     <Illustration
+      withControls={withControls}
       label="Keep your content on your infrastructure"
       steps={storageSteps}
     >

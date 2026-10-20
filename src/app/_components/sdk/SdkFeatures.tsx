@@ -210,7 +210,7 @@ export default function SdkFeatures() {
                     theme.colors.primaryText,
                   )}
                 >
-                  Compose the editor your product needs.
+                  Start with our UI. Make it your own.
                 </h3>
                 <p
                   className={cn(
@@ -218,15 +218,14 @@ export default function SdkFeatures() {
                     theme.colors.secondaryText,
                   )}
                 >
-                  Install Studio SDK in your codebase, without loading the
-                  editor from an external domain. Arrange built-in panels,
-                  replace toolbars, and bring your own UI components into the
-                  same layout.
+                  Arrange built-in panels, adjust the layout, and add your own
+                  components. The editor runs inside your application, so it can
+                  work alongside the UI you already have.
                 </p>
               </div>
               <div className="shrink-0 md:pb-1">
-                <DocsLink href="configuration/layout/overview#react-layout-components">
-                  Explore React layouts
+                <DocsLink href="configuration/layout/overview">
+                  Explore Layout Components
                 </DocsLink>
               </div>
             </div>
@@ -267,15 +266,6 @@ export default function SdkFeatures() {
               <DocsLink href="plugins/ai/overview">
                 Explore AI integration
               </DocsLink>
-              <p
-                className={cn(
-                  "mt-3 text-xs leading-relaxed",
-                  theme.colors.captionText,
-                )}
-              >
-                AI Chat on Startup and above. Custom AI backends on Business and
-                above.
-              </p>
             </div>
             <div className="px-3 pb-3 md:px-5 md:pb-5">
               <AiWorkflowIllustration />
