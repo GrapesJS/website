@@ -17,7 +17,7 @@ export const theme = {
   },
   cards: {
     eyebrow: "text-xs font-bold uppercase tracking-[0.16em]",
-    bg: "bg-[#1d1522]/50 backdrop-blur-[10px]",
+    bg: "bg-gradient-to-br from-[#322031]/30 to-[#1d1522]/50 backdrop-blur-[5px]",
     border: "border border-white/10",
     divider: "border-t border-white/10",
     hover: "transition-colors hover:border-[#b66bc4]/50 hover:bg-[#211529]/50",
