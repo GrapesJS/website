@@ -124,26 +124,40 @@ export function PagesPanel({
 
 export function EditorSidebar({
   activeIndex = 5,
-}: { activeIndex?: number } = {}) {
+  withAssets = true,
+  withDataSources = true,
+}: {
+  activeIndex?: number;
+  withAssets?: boolean;
+  withDataSources?: boolean;
+} = {}) {
   return (
     <div className="flex min-h-0 flex-col items-center border-r-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] py-[calc(0.45*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]">
       <div className="flex flex-col items-center gap-[calc(0.5*var(--editor-unit,1cqw))]">
         {[SquarePlus, Layers, SwatchBook, ImageIcon, Database, Sparkles].map(
-          (Icon, index) => (
-            <span
-              key={index}
-              className={cn(
-                "flex h-[calc(1.65*var(--editor-unit,1cqw))] w-[calc(2*var(--editor-unit,1cqw))] items-center justify-center rounded-[calc(0.18*var(--editor-unit,1cqw))]",
-                index === activeIndex && "bg-[#8b5cf6] text-white",
-              )}
-            >
-              <Icon
-                className="size-[calc(0.95*var(--editor-unit,1cqw))]"
-                fill={Icon === Sparkles ? "currentColor" : "none"}
-                strokeWidth={1.8}
-              />
-            </span>
-          ),
+          (Icon, index) => {
+            if (
+              (!withAssets && Icon === ImageIcon) ||
+              (!withDataSources && Icon === Database)
+            )
+              return null;
+            return (
+              <span
+                key={index}
+                className={cn(
+                  "flex h-[calc(1.65*var(--editor-unit,1cqw))] w-[calc(2*var(--editor-unit,1cqw))] items-center justify-center rounded-[calc(0.18*var(--editor-unit,1cqw))]",
+                  index === activeIndex &&
+                    "bg-[color:var(--editor-accent,#8b5cf6)] text-[color:var(--editor-accent-text,#fff)]",
+                )}
+              >
+                <Icon
+                  className="size-[calc(0.95*var(--editor-unit,1cqw))]"
+                  fill={Icon === Sparkles ? "currentColor" : "none"}
+                  strokeWidth={1.8}
+                />
+              </span>
+            );
+          },
         )}
       </div>
     </div>
@@ -240,63 +254,67 @@ export function StylesPanel({
   brand = false,
   selected = false,
   compact = false,
+  withSelectors = true,
   color,
 }: {
   brand?: boolean;
   selected?: boolean;
   compact?: boolean;
+  withSelectors?: boolean;
   color?: string;
 } = {}) {
   return (
     <div className="min-w-0 overflow-hidden border-l-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] text-[color:var(--editor-text)]">
       <div className="flex h-[calc(2.1*var(--editor-unit,1cqw))] border-b-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] font-semibold">
-        <div className="flex w-1/2 items-center justify-center border-b-[calc(0.08*var(--editor-unit,1cqw))] border-[#b494f4] text-[#b494f4]">
+        <div className="flex w-1/2 items-center justify-center border-b-[calc(0.08*var(--editor-unit,1cqw))] border-[color:var(--editor-accent,#b494f4)] text-[color:var(--editor-accent,#b494f4)]">
           Styles
         </div>
         <div className="flex w-1/2 items-center justify-center">Properties</div>
       </div>
-      <div className="px-[calc(0.6*var(--editor-unit,1cqw))] pb-[calc(0.35*var(--editor-unit,1cqw))] pt-[calc(0.4*var(--editor-unit,1cqw))]">
-        <div className="mb-[calc(0.45*var(--editor-unit,1cqw))] flex h-[calc(1.55*var(--editor-unit,1cqw))] items-center gap-[calc(0.65*var(--editor-unit,1cqw))]">
-          <span>Selection</span>
-          <Layers className="size-[calc(0.8*var(--editor-unit,1cqw))]" />
-          <span className="ml-auto flex h-[calc(1.3*var(--editor-unit,1cqw))] items-center gap-[calc(0.25*var(--editor-unit,1cqw))] rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#45404e] px-[calc(0.3*var(--editor-unit,1cqw))] text-[calc(0.6*var(--editor-unit,1cqw))]">
-            - State -
-            <ChevronDown className="size-[calc(0.6*var(--editor-unit,1cqw))]" />
-          </span>
-        </div>
-        <div className="mb-[calc(0.45*var(--editor-unit,1cqw))] flex h-[calc(1.45*var(--editor-unit,1cqw))] items-center rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#595160]">
-          <span className="flex h-full w-[calc(1.4*var(--editor-unit,1cqw))] items-center justify-center border-r-[calc(0.05*var(--editor-unit,1cqw))] border-[#45404e]">
-            <Tag className="size-[calc(0.75*var(--editor-unit,1cqw))] fill-current" />
-          </span>
-          <Plus className="mx-[calc(0.3*var(--editor-unit,1cqw))] size-[calc(0.85*var(--editor-unit,1cqw))] text-[#b494f4]" />
-          <span className="flex items-center gap-[calc(0.25*var(--editor-unit,1cqw))] rounded-[calc(0.15*var(--editor-unit,1cqw))] bg-[#f6c7e6] px-[calc(0.3*var(--editor-unit,1cqw))] py-[calc(0.1*var(--editor-unit,1cqw))] text-[calc(0.55*var(--editor-unit,1cqw))] text-[#5c314f]">
-            {brand
-              ? selected
-                ? "hero-title"
-                : "landing-page"
-              : "gjs-text-blue"}
-            <EllipsisVertical className="size-[calc(0.6*var(--editor-unit,1cqw))]" />
-          </span>
-        </div>
-        <div className="mb-[calc(0.45*var(--editor-unit,1cqw))] flex h-[calc(1.45*var(--editor-unit,1cqw))] items-center rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#595160]">
-          <span className="mr-[calc(0.4*var(--editor-unit,1cqw))] flex h-full w-[calc(1.4*var(--editor-unit,1cqw))] items-center justify-center rounded-l-[calc(0.1*var(--editor-unit,1cqw))] bg-[#a988ee] text-white">
-            <Frame className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
-          </span>
-          <span className="rounded-[calc(0.1*var(--editor-unit,1cqw))] bg-[#4b9dce] px-[calc(0.3*var(--editor-unit,1cqw))] py-[calc(0.05*var(--editor-unit,1cqw))] text-[calc(0.6*var(--editor-unit,1cqw))] text-white">
-            {brand ? (selected ? "Heading" : "Body") : "Text"}
-          </span>
-        </div>
-        <div className="flex h-[calc(1.5*var(--editor-unit,1cqw))] items-center justify-between">
-          {[Crosshair, Frame, CodeXml].map((Icon, index) => (
-            <span
-              key={index}
-              className="flex size-[calc(1.45*var(--editor-unit,1cqw))] items-center justify-center rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#393441]"
-            >
-              <Icon className="size-[calc(0.8*var(--editor-unit,1cqw))]" />
+      {withSelectors && (
+        <div className="px-[calc(0.6*var(--editor-unit,1cqw))] pb-[calc(0.35*var(--editor-unit,1cqw))] pt-[calc(0.4*var(--editor-unit,1cqw))]">
+          <div className="mb-[calc(0.45*var(--editor-unit,1cqw))] flex h-[calc(1.55*var(--editor-unit,1cqw))] items-center gap-[calc(0.65*var(--editor-unit,1cqw))]">
+            <span>Selection</span>
+            <Layers className="size-[calc(0.8*var(--editor-unit,1cqw))]" />
+            <span className="ml-auto flex h-[calc(1.3*var(--editor-unit,1cqw))] items-center gap-[calc(0.25*var(--editor-unit,1cqw))] rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#45404e] px-[calc(0.3*var(--editor-unit,1cqw))] text-[calc(0.6*var(--editor-unit,1cqw))]">
+              - State -
+              <ChevronDown className="size-[calc(0.6*var(--editor-unit,1cqw))]" />
             </span>
-          ))}
+          </div>
+          <div className="mb-[calc(0.45*var(--editor-unit,1cqw))] flex h-[calc(1.45*var(--editor-unit,1cqw))] items-center rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#595160]">
+            <span className="flex h-full w-[calc(1.4*var(--editor-unit,1cqw))] items-center justify-center border-r-[calc(0.05*var(--editor-unit,1cqw))] border-[#45404e]">
+              <Tag className="size-[calc(0.75*var(--editor-unit,1cqw))] fill-current" />
+            </span>
+            <Plus className="mx-[calc(0.3*var(--editor-unit,1cqw))] size-[calc(0.85*var(--editor-unit,1cqw))] text-[#b494f4]" />
+            <span className="flex items-center gap-[calc(0.25*var(--editor-unit,1cqw))] rounded-[calc(0.15*var(--editor-unit,1cqw))] bg-[#f6c7e6] px-[calc(0.3*var(--editor-unit,1cqw))] py-[calc(0.1*var(--editor-unit,1cqw))] text-[calc(0.55*var(--editor-unit,1cqw))] text-[#5c314f]">
+              {brand
+                ? selected
+                  ? "hero-title"
+                  : "landing-page"
+                : "gjs-text-blue"}
+              <EllipsisVertical className="size-[calc(0.6*var(--editor-unit,1cqw))]" />
+            </span>
+          </div>
+          <div className="mb-[calc(0.45*var(--editor-unit,1cqw))] flex h-[calc(1.45*var(--editor-unit,1cqw))] items-center rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#595160]">
+            <span className="mr-[calc(0.4*var(--editor-unit,1cqw))] flex h-full w-[calc(1.4*var(--editor-unit,1cqw))] items-center justify-center rounded-l-[calc(0.1*var(--editor-unit,1cqw))] bg-[#a988ee] text-white">
+              <Frame className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
+            </span>
+            <span className="rounded-[calc(0.1*var(--editor-unit,1cqw))] bg-[#4b9dce] px-[calc(0.3*var(--editor-unit,1cqw))] py-[calc(0.05*var(--editor-unit,1cqw))] text-[calc(0.6*var(--editor-unit,1cqw))] text-white">
+              {brand ? (selected ? "Heading" : "Body") : "Text"}
+            </span>
+          </div>
+          <div className="flex h-[calc(1.5*var(--editor-unit,1cqw))] items-center justify-between">
+            {[Crosshair, Frame, CodeXml].map((Icon, index) => (
+              <span
+                key={index}
+                className="flex size-[calc(1.45*var(--editor-unit,1cqw))] items-center justify-center rounded-[calc(0.15*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[#393441]"
+              >
+                <Icon className="size-[calc(0.8*var(--editor-unit,1cqw))]" />
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       {["Layout", "Size", "Space", "Position"].map((label) => (
         <PanelSection key={label} label={label} />
       ))}
@@ -456,7 +474,7 @@ export function ChatComposer({
 }) {
   return (
     <div className="shrink-0 border-t-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] p-[calc(0.5*var(--editor-unit,1cqw))]">
-      <div className="flex h-[calc(6.6*var(--editor-unit,1cqw))] flex-col rounded-[calc(0.45*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] p-[calc(0.45*var(--editor-unit,1cqw))]">
+      <div className="flex h-[var(--editor-composer-height,calc(6.6*var(--editor-unit,1cqw)))] flex-col rounded-[calc(0.45*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] p-[calc(0.45*var(--editor-unit,1cqw))]">
         {context}
         <div className="mt-[calc(0.4*var(--editor-unit,1cqw))] leading-[1.45]">
           <span

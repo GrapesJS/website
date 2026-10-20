@@ -289,7 +289,7 @@ export default function SdkFeatures() {
                   theme.colors.primaryText,
                 )}
               >
-                Make it feel like it was always yours.
+                An editor that matches your brand.
               </h3>
               <p
                 className={cn(

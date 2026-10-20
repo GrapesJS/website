@@ -465,7 +465,8 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
         editorShellTheme,
         editorShellText,
         theme.illustrations.chatSurfaces,
-        "flex h-[460px] flex-col text-[calc(0.72*var(--editor-unit))] leading-[1.45] [--editor-unit:18px] sm:h-[420px]",
+        theme.illustrations.pairedViewport,
+        "flex flex-col text-[calc(0.72*var(--editor-unit))] leading-[1.45] [--editor-unit:18px] [--editor-composer-height:94px]",
       )}
     >
       <ChatPanelHeader />
@@ -556,27 +557,27 @@ export function AiWorkflowIllustration({
 const themes = [
   {
     label: "Your colors, on a dark interface",
-    bg: "#201e2a",
-    raised: "#2b2739",
-    border: "#494251",
-    text: "#a7a4b3",
-    accent: "#c49cde",
+    bg: "#241637",
+    raised: "#35234a",
+    border: "#624480",
+    text: "#d7c5e7",
+    accent: "#b36aff",
   },
   {
-    label: "The same editor, in a light theme",
-    bg: "#f5f4f8",
-    raised: "#eae7f0",
-    border: "#d4d0dc",
-    text: "#655c71",
-    accent: "#bba6ed",
+    label: "A vivid lime palette",
+    bg: "#20271d",
+    raised: "#303e29",
+    border: "#536a45",
+    text: "#ccddc1",
+    accent: "#adfa60",
   },
   {
-    label: "A different palette, still your product",
-    bg: "#202635",
-    raised: "#2c3446",
-    border: "#414c62",
-    text: "#a3b1c8",
-    accent: "#a6b6f6",
+    label: "The same editor, in a light pink theme",
+    bg: "#fff1fa",
+    raised: "#f8d9ef",
+    border: "#dfabd0",
+    text: "#80506f",
+    accent: "#ff30ad",
   },
 ];
 
@@ -592,7 +593,12 @@ export function ThemeIllustration({
       {({ step, reduced }) => {
         const palette = themes[step];
         return (
-          <div className="flex h-[390px] flex-col justify-center p-4 sm:h-[350px] sm:p-5">
+          <div
+            className={cn(
+              "flex flex-col justify-center p-4 sm:p-5",
+              theme.illustrations.pairedViewport,
+            )}
+          >
             <div
               className={cn(
                 "overflow-hidden rounded-md border border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] [--editor-unit:7px]",
@@ -604,26 +610,32 @@ export function ThemeIllustration({
                   "--editor-raised": palette.raised,
                   "--editor-border": palette.border,
                   "--editor-text": palette.text,
+                  "--editor-accent": palette.accent,
+                  "--editor-accent-text": "#25182e",
                 } as CSSProperties
               }
             >
-              <div className="flex h-7 items-center gap-2 border-b border-[color:var(--editor-border)] px-2 text-[8px]">
+              <div className="flex h-[calc(3*var(--editor-unit))] items-center gap-[calc(0.8*var(--editor-unit))] border-b border-[color:var(--editor-border)] px-[calc(0.8*var(--editor-unit))] text-[calc(0.85*var(--editor-unit))]">
                 <span
-                  className="flex size-3.5 items-center justify-center rounded-sm font-semibold text-[#25182e]"
+                  className="flex size-[calc(1.5*var(--editor-unit))] items-center justify-center rounded-sm font-semibold text-[#25182e]"
                   style={{ background: palette.accent }}
                 >
                   Y
                 </span>
                 <span className="font-semibold">YourBrand</span>
                 <span
-                  className="ml-auto rounded-sm px-2 py-1 text-[7px] font-medium text-[#25182e]"
+                  className="ml-auto flex h-[calc(1.8*var(--editor-unit))] items-center rounded-sm px-[calc(0.8*var(--editor-unit))] text-[calc(0.75*var(--editor-unit))] font-medium text-[#25182e]"
                   style={{ background: palette.accent }}
                 >
                   Publish
                 </span>
               </div>
-              <div className="grid h-[215px] grid-cols-[22px_minmax(0,1fr)_27%] overflow-hidden">
-                <EditorSidebar activeIndex={2} />
+              <div className="grid h-[270px] grid-cols-[22px_minmax(0,1fr)_27%] overflow-hidden">
+                <EditorSidebar
+                  activeIndex={2}
+                  withAssets={false}
+                  withDataSources={false}
+                />
                 <div className="flex min-w-0 flex-col overflow-hidden bg-[color:var(--editor-raised)]">
                   <CanvasToolbar />
                   <div className="min-h-0 flex-1 p-2">
@@ -650,7 +662,7 @@ export function ThemeIllustration({
                     </div>
                   </div>
                 </div>
-                <StylesPanel brand compact selected color="#f3eaf8" />
+                <StylesPanel compact withSelectors={false} />
               </div>
             </div>
             <div className="mt-4 flex items-center justify-center gap-3">
@@ -664,9 +676,6 @@ export function ThemeIllustration({
                   />
                 ),
               )}
-              <span className="ml-1 font-mono text-[9px] text-[#9d87ab]">
-                customTheme
-              </span>
             </div>
           </div>
         );

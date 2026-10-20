@@ -3,7 +3,7 @@ export const theme = {
   colors: {
     primaryText: "text-white",
     headingText: "text-[#eee8f1]",
-    secondaryText: "text-[#b8afc0]",
+    secondaryText: "text-[#cbc4d1]",
     mutedText: "text-[#c6c2ca]",
     subtleText: "text-[#a59bad]",
     captionText: "text-[#918699]",
@@ -28,6 +28,7 @@ export const theme = {
   },
   illustrations: {
     shell: "border border-white/[0.08] bg-[#15111c]/50",
+    pairedViewport: "h-[440px] sm:h-[420px]",
     controls: "border-t border-white/[0.07] bg-[#1c1623]/50",
     chatSurfaces: "[--editor-bg:#201e2a80] [--editor-raised:#2b273980]",
   },
