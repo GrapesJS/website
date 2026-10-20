@@ -1,5 +1,5 @@
 import urls from "@/lib/urls";
-import cn from "classnames";
+import { cn } from "@/lib/utils";
 import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
@@ -7,11 +7,11 @@ import Header from "../_components/Header";
 import WindowShell from "../_components/WindowShell";
 import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import SdkFeatures from "../_components/sdk/SdkFeatures";
-import "../home.css";
-import styles from "../styles.module.css";
 
 const clsFullWhite = "!brightness-0 !invert";
 const clsSmallLogo = "!h-[40px]";
+const clsSection =
+  "flex w-full flex-col items-center gap-6 px-4 pb-6 pt-[54px] [&>*]:max-w-[1100px]";
 
 const customers = [
   {
@@ -59,10 +59,15 @@ export default function SDKPage() {
   return (
     <>
       <Background sticky />
-      <main className={styles.home}>
+      <main className="absolute flex w-full flex-col items-center [&_*]:scroll-mt-[136px] [&_*]:[scrollbar-color:#9e7ea3_#00000030] [&_*]:[scrollbar-width:thin]">
         <Header isHome />
 
-        <section className={cn(styles.heroSection, styles.section)}>
+        <section
+          className={cn(
+            clsSection,
+            "relative mb-0 overflow-hidden pb-0 pt-[182px] before:absolute before:inset-0 before:z-[-1] before:bg-[radial-gradient(circle_at_top,#06040600_30.16%,#3d1844_71.62%,var(--activeBaseColor)_86.82%,var(--activeHighlightColor)_100%)] before:content-['']",
+          )}
+        >
           {/* <BadgeLink href={urls.getAiLandingUrl("heroBanner")}>
             <div className="flex flex-col md:flex-row items-center text-center gap-2.5 font-medium">
               <Icon
@@ -76,15 +81,17 @@ export default function SDKPage() {
               <span className="text-[#d97de9]"> Try It Now!</span>
             </div>
           </BadgeLink> */}
-          <h1 className={cn(styles.h1)}>AI visual editor for SaaS</h1>
-          <p className={cn(styles.p, "!max-w-[900px]")}>
+          <h1 className="text-center text-[4rem] font-bold leading-[72px] text-[color:var(--highEmphasisTextColor)] max-[640px]:text-[3rem] max-[640px]:leading-[normal] max-[480px]:text-[2rem]">
+            AI visual editor for SaaS
+          </h1>
+          <p className="!max-w-[900px] text-center text-xl font-normal leading-normal text-[color:var(--textColor)] max-[480px]:text-[1.2rem]">
             Embeddable drag-and-drop editor for building emails, landing pages,
             websites, and more. <br />
             Give your users AI-powered content creation tools directly from your
             app.
           </p>
 
-          <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]">
             <CTALink href={urls.getStudioEditorUrl()}>
               Create your Editor
             </CTALink>
@@ -148,30 +155,32 @@ export default function SDKPage() {
           /> */}
         </section>
 
-        <hr className={styles.shadowSeparator} />
+        <hr className="relative mt-[120px] h-0 w-full overflow-visible border-0 bg-none before:pointer-events-none before:absolute before:top-0 before:z-0 before:h-[1000px] before:w-full before:-translate-y-1/2 before:bg-[linear-gradient(180deg,var(--transparentColor)_20%,var(--backgroundColor)_40%,var(--backgroundColor)_50%,var(--transparentColor)_80%)] before:bg-no-repeat before:content-[''] max-[640px]:mt-0 max-[640px]:before:bg-[linear-gradient(180deg,var(--transparentColor)_35%,var(--backgroundColor)_50%,var(--transparentColor)_80%)]" />
 
-        <section className={styles.section}>
-          <div className={styles.specialHeadingContainer}>
+        <section className={clsSection}>
+          <div className="flex flex-col items-center">
             <div className="z-[1]">
-              <h2 className={styles.h2}>POWERING SOLUTIONS FOR</h2>
-              <hr className={styles.separator} />
+              <h2 className="px-6 py-3 text-center text-xl font-bold leading-[27.32px] tracking-[0.11em] text-[color:var(--activeHighlightColor)]">
+                POWERING SOLUTIONS FOR
+              </h2>
+              <hr className="h-px w-full border-0 bg-[linear-gradient(90deg,var(--transparentColor)_0%,#caa4ea_49.5%,var(--transparentColor)_100%)]" />
             </div>
           </div>
-          <div className={styles.logoMarquee}>
-            <div className={styles.logoMarqueeTrack}>
+          <div className="relative w-full overflow-hidden [--logo-mask:linear-gradient(90deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-image:var(--logo-mask)] [mask-image:var(--logo-mask)]">
+            <div className="flex w-max animate-logo-marquee will-change-transform motion-reduce:animate-none">
               {[0, 1].map((copyIndex) => (
                 <div
                   key={copyIndex}
-                  className={styles.logoMarqueeGroup}
+                  className="flex shrink-0 items-center gap-12 px-6 max-[640px]:gap-9"
                   aria-hidden={copyIndex === 1}
                 >
                   {customers.map(({ src, alt, className }) => (
                     <div
                       key={`${copyIndex}-${src}`}
-                      className={styles.logoMarqueeItem}
+                      className="flex min-w-[160px] items-center justify-center max-[640px]:min-w-[128px]"
                     >
                       <img
-                        className={cn(styles.userLogo, className)}
+                        className={cn("h-[54px] grayscale", className)}
                         src={src}
                         alt={alt}
                         loading="lazy"
