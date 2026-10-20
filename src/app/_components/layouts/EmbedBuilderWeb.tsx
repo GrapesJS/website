@@ -19,7 +19,6 @@ import {
   Hand,
   Image as ImageIcon,
   Layers,
-  LogOut,
   Maximize,
   Menu,
   Mic,
@@ -31,7 +30,6 @@ import {
   Plus,
   Redo2,
   Save,
-  Scan,
   Sparkles,
   SquareDashed,
   SquarePlus,
@@ -106,6 +104,9 @@ function ApplicationShell() {
       <div className="absolute left-[15.3%] right-0 top-0 flex h-[7.7%] items-center justify-between border-b-[0.075cqw] border-[#45404f] bg-[#1e1c28] px-[1.75cqw]">
         <div className="h-[1cqw] w-[14cqw] rounded-full bg-[#2b243e]" />
         <div className="flex items-center gap-[1.4cqw]">
+          <span className="flex h-[1.85cqw] items-center rounded-[0.2cqw] bg-[#8b5cf6] px-[0.8cqw] text-[0.8cqw] text-white">
+            Publish
+          </span>
           <div className="relative text-[#676372]">
             <Bell className="size-[1.55cqw]" strokeWidth={1.5} />
             <span className="absolute right-[0.1cqw] top-[0.3cqw] size-[0.45cqw] rounded-full bg-[#e53b36] ring-[0.13cqw] ring-[#1e1c28]" />
@@ -214,19 +215,6 @@ function EditorSidebar() {
           ),
         )}
       </div>
-      <div className="mt-auto flex flex-col items-center gap-[1.3cqw] pb-[0.15cqw]">
-        <LogOut className="size-[0.95cqw] rotate-180" />
-        <span className="flex size-[1.25cqw] items-center justify-center rounded-full bg-[#a1a6b0] text-[#18191b]">
-          <svg viewBox="0 0 24 24" fill="none" className="size-[0.95cqw]">
-            <path
-              d="m12 3-8 4.5v9L12 21l8-4.5V12l-8 4.5V12l4-2.3M4 7.5l8-4.5"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </div>
     </div>
   );
 }
@@ -321,12 +309,9 @@ function CanvasToolbar() {
         <ChevronDown className="size-[0.7cqw]" />
       </div>
       <div className="flex items-center gap-[0.75cqw]">
-        {[Scan, Maximize, Save, Undo2, Redo2, Play].map((Icon, index) => (
+        {[Maximize, Save, Undo2, Redo2, Play].map((Icon, index) => (
           <Icon key={index} className="size-[0.85cqw]" strokeWidth={2.1} />
         ))}
-        <span className="flex h-[1.65cqw] items-center rounded-[0.18cqw] bg-[#8b5cf6] px-[0.6cqw] text-[0.75cqw] text-white">
-          Publish
-        </span>
       </div>
     </div>
   );
@@ -526,10 +511,10 @@ function StylesPanel({
         <PropertyField label="Color" highlighted>
           <span
             className="size-[0.85cqw] shrink-0 rounded-[0.1cqw]"
-            style={{ backgroundColor: brand ? "#183f35" : "#c647dd" }}
+            style={{ backgroundColor: brand ? "#4c2368" : "#c647dd" }}
           />
           <span className="text-[0.6cqw]">
-            {brand ? "rgb(24, 63, 53)" : "rgb(198, 71, 221)"}
+            {brand ? "rgb(76, 35, 104)" : "rgb(198, 71, 221)"}
           </span>
         </PropertyField>
         <div className="grid grid-cols-2 gap-[0.3cqw]">
