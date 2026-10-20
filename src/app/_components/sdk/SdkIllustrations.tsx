@@ -421,6 +421,7 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
       className={cn(
         editorShellTheme,
         editorShellText,
+        theme.illustrations.chatSurfaces,
         "flex h-[460px] flex-col text-[calc(0.72*var(--editor-unit))] leading-[1.45] [--editor-unit:18px] sm:h-[420px]",
       )}
     >

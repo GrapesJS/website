@@ -380,7 +380,7 @@ export function ChatMessage({
     <div
       className={cn(
         user &&
-          "rounded-[calc(0.2*var(--editor-unit,1cqw))] bg-[#8b5cf6] px-[calc(0.45*var(--editor-unit,1cqw))] py-[calc(0.4*var(--editor-unit,1cqw))] font-semibold text-white",
+          "rounded-[calc(0.2*var(--editor-unit,1cqw))] bg-[#8b5cf6] px-[calc(0.45*var(--editor-unit,1cqw))] py-[calc(0.4*var(--editor-unit,1cqw))] font-normal text-white",
       )}
     >
       {children}

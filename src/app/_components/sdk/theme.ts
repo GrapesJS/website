@@ -29,5 +29,6 @@ export const theme = {
   illustrations: {
     shell: "border border-white/[0.08] bg-[#15111c]/50",
     controls: "border-t border-white/[0.07] bg-[#1c1623]/50",
+    chatSurfaces: "[--editor-bg:#201e2a80] [--editor-raised:#2b273980]",
   },
 } as const;
