@@ -2,12 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import {
-  ArrowDownToLine,
   ArrowRight,
   Braces,
   Check,
   Database,
-  FileJson,
   FileText,
   Globe,
   Image,
@@ -711,11 +709,11 @@ const formats = [
     extension: "HTML / CSS / JS",
     type: "web",
   },
-  { name: "Newsletter", icon: Mail, extension: "MJML → HTML", type: "email" },
+  { name: "Newsletter", icon: Mail, extension: "HTML / MJML", type: "email" },
   {
     name: "Document",
     icon: FileText,
-    extension: "Custom exports",
+    extension: "HTML / PDF",
     type: "document",
   },
 ];
@@ -731,15 +729,6 @@ export function ProjectTypesIllustration({
     >
       {({ step, reduced }) => (
         <div className="px-4 py-5 [container-type:inline-size] sm:px-7 sm:py-6">
-          <div className="mb-5 flex items-center justify-center gap-3">
-            <span className="flex items-center gap-2 rounded-lg border border-[#bc87d6]/25 bg-[#34213f] px-3 py-2 text-[10px] font-semibold text-[#dbb7ed]">
-              <FileJson size={14} /> Project JSON
-            </span>
-            <span className="h-px w-8 bg-[#664473]" />
-            <span className="text-[10px] text-[#947ca2]">
-              Your content, structured.
-            </span>
-          </div>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-5">
             {formats.map(({ name, icon: Icon, extension, type }, index) => (
               <motion.div
@@ -815,7 +804,6 @@ export function ProjectTypesIllustration({
                   )}
                 </div>
                 <div className="flex items-center justify-center gap-1 border-t border-white/[0.07] px-1 py-2 font-mono text-[6px] text-[#b491c5] sm:gap-2 sm:text-[9px]">
-                  <ArrowDownToLine className="h-2.5 w-2.5 shrink-0" />
                   {extension}
                 </div>
               </motion.div>
