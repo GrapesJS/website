@@ -170,9 +170,19 @@ export function EditorSidebar({
 export function CanvasToolbar({
   rightContent,
   withDevice = true,
-}: { rightContent?: ReactNode; withDevice?: boolean } = {}) {
+  className,
+}: {
+  rightContent?: ReactNode;
+  withDevice?: boolean;
+  className?: string;
+} = {}) {
   return (
-    <div className="relative flex h-[calc(2.1*var(--editor-unit,1cqw))] shrink-0 items-center justify-between border-b-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-[calc(0.45*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]">
+    <div
+      className={cn(
+        "relative flex h-[calc(2.1*var(--editor-unit,1cqw))] shrink-0 items-center justify-between border-b-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-[calc(0.45*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]",
+        className,
+      )}
+    >
       <div className="flex h-[calc(1.6*var(--editor-unit,1cqw))] items-center gap-[calc(0.4*var(--editor-unit,1cqw))] rounded-[calc(0.18*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] px-[calc(0.5*var(--editor-unit,1cqw))] text-[calc(0.75*var(--editor-unit,1cqw))]">
         <CodeXml className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
         <span>Code</span>

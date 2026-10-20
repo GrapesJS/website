@@ -570,6 +570,7 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
         <div className="flex min-h-0 min-w-0 flex-col">
           <div className="[--editor-unit:16px]">
             <CanvasToolbar
+              className={theme.illustrations.panelHeader}
               withDevice={false}
               rightContent={
                 <label className="pointer-events-auto flex items-center gap-2 text-[9px]">
