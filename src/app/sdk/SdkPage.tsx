@@ -1,16 +1,18 @@
 import urls from "@/lib/urls";
-import cn from "classnames";
+import { cn } from "@/lib/utils";
 import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import { Tabs } from "../_components/Tabs";
+import SectionEyebrow from "../_components/SectionEyebrow";
 import WindowShell from "../_components/WindowShell";
-import "../home.css";
-import styles from "../styles.module.css";
+import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
+import SdkFeatures from "../_components/sdk/SdkFeatures";
 
 const clsFullWhite = "!brightness-0 !invert";
 const clsSmallLogo = "!h-[40px]";
+const clsSection =
+  "flex w-full flex-col items-center gap-6 px-4 pb-6 pt-[54px] [&>*]:max-w-[1100px]";
 
 const customers = [
   {
@@ -58,10 +60,15 @@ export default function SDKPage() {
   return (
     <>
       <Background sticky />
-      <main className={styles.home}>
+      <main className="absolute flex w-full flex-col items-center [&_*]:scroll-mt-[136px] [&_*]:[scrollbar-color:#9e7ea3_#00000030] [&_*]:[scrollbar-width:thin]">
         <Header isHome />
 
-        <section className={cn(styles.heroSection, styles.section)}>
+        <section
+          className={cn(
+            clsSection,
+            "relative mb-0 overflow-hidden pb-0 pt-[182px] before:absolute before:inset-0 before:z-[-1] before:bg-[radial-gradient(circle_at_top,#06040600_30.16%,#3d1844_71.62%,var(--activeBaseColor)_86.82%,var(--activeHighlightColor)_100%)] before:content-['']",
+          )}
+        >
           {/* <BadgeLink href={urls.getAiLandingUrl("heroBanner")}>
             <div className="flex flex-col md:flex-row items-center text-center gap-2.5 font-medium">
               <Icon
@@ -75,42 +82,20 @@ export default function SDKPage() {
               <span className="text-[#d97de9]"> Try It Now!</span>
             </div>
           </BadgeLink> */}
-          <h1 className={cn(styles.h1)}>
-            Embedded visual editor for newsletters and websites
+          <h1 className="text-center text-[4rem] font-bold leading-[72px] text-[color:var(--highEmphasisTextColor)] max-[640px]:text-[3rem] max-[640px]:leading-[normal] max-[480px]:text-[2rem]">
+            AI visual editor for SaaS
           </h1>
-          <p className={cn(styles.p, "!max-w-[500px]")}>
-            Use it in{" "}
-            <a
-              href={urls.getChatGptAppUrl()}
-              className="text-white underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ChatGPT
-            </a>
-            ,{" "}
-            <a
-              href={urls.getAiPageUrl()}
-              className="text-white underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Grapes Studio
-            </a>
-            , or embed in your own app with our{" "}
-            <a
-              href={urls.getGettingStartedDocsUrl()}
-              className="text-white underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              SDK
-            </a>
-            .
+          <p className="!max-w-[900px] text-center text-xl font-normal leading-normal text-[color:var(--textColor)] max-[480px]:text-[1.2rem]">
+            Embeddable drag-and-drop editor for building emails, landing pages,
+            websites, and more. <br />
+            Give your users AI-powered content creation tools directly from your
+            app.
           </p>
 
-          <div className="flex flex-row gap-[16px] flex-wrap items-center justify-center pt-[50px] pb-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>Get Your Editor</CTALink>
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]">
+            <CTALink href={urls.getStudioEditorUrl()}>
+              Create your Editor
+            </CTALink>
             {/* <CTALink
               href={urls.getSdkLicensesUrl({ ref: "heroAccount" })}
               variant="tertiary"
@@ -121,7 +106,11 @@ export default function SDKPage() {
 
           {/* <StarOnGH /> */}
 
-          <Tabs
+          <WindowShell>
+            <EmbedBuilderWeb />
+          </WindowShell>
+
+          {/* <Tabs
             tabs={[
               {
                 id: "editorImage3",
@@ -144,60 +133,50 @@ export default function SDKPage() {
                 label: "Website Builder",
                 content: (
                   <WindowShell>
+                    <EmbedBuilderWeb />
+                  </WindowShell>
+                ),
+              },
+              {
+                id: "editorImage2",
+                label: "Document Builder",
+                content: (
+                  <WindowShell>
                     <img
                       className="w-full"
-                      src="/assets/images/html_builder.webp"
-                      alt="GrapesJS Studio SDK Webpage Demo"
-                      loading="eager"
-                      fetchPriority="high"
-                      decoding="sync"
+                      src="/assets/images/document.webp"
+                      alt="GrapesJS Document Demo"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </WindowShell>
                 ),
               },
-              // {
-              //   id: "editorImage2",
-              //   label: "Document Builder",
-              //   content: (
-              //     <WindowShell>
-              //       <img
-              //         className="w-full"
-              //         src="/assets/images/document.webp"
-              //         alt="GrapesJS Document Demo"
-              //         loading="lazy"
-              //         decoding="async"
-              //       />
-              //     </WindowShell>
-              //   ),
-              // },
             ]}
-          />
+          /> */}
         </section>
 
-        <hr className={styles.shadowSeparator} />
+        <hr className="relative mt-[120px] h-0 w-full overflow-visible border-0 bg-none before:pointer-events-none before:absolute before:top-0 before:z-0 before:h-[1000px] before:w-full before:-translate-y-1/2 before:bg-[linear-gradient(180deg,var(--transparentColor)_20%,var(--backgroundColor)_40%,var(--backgroundColor)_50%,var(--transparentColor)_80%)] before:bg-no-repeat before:content-[''] max-[640px]:mt-0 max-[640px]:before:bg-[linear-gradient(180deg,var(--transparentColor)_35%,var(--backgroundColor)_50%,var(--transparentColor)_80%)]" />
 
-        <section className={styles.section}>
-          <div className={styles.specialHeadingContainer}>
-            <div className="z-[1]">
-              <h2 className={styles.h2}>POWERING SOLUTIONS FOR</h2>
-              <hr className={styles.separator} />
-            </div>
-          </div>
-          <div className={styles.logoMarquee}>
-            <div className={styles.logoMarqueeTrack}>
+        <section className={clsSection}>
+          <SectionEyebrow as="h2" className="z-[1]">
+            POWERING SOLUTIONS FOR
+          </SectionEyebrow>
+          <div className="relative w-full overflow-hidden [--logo-mask:linear-gradient(90deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-image:var(--logo-mask)] [mask-image:var(--logo-mask)]">
+            <div className="flex w-max animate-logo-marquee will-change-transform motion-reduce:animate-none">
               {[0, 1].map((copyIndex) => (
                 <div
                   key={copyIndex}
-                  className={styles.logoMarqueeGroup}
+                  className="flex shrink-0 items-center gap-12 px-6 max-[640px]:gap-9"
                   aria-hidden={copyIndex === 1}
                 >
                   {customers.map(({ src, alt, className }) => (
                     <div
                       key={`${copyIndex}-${src}`}
-                      className={styles.logoMarqueeItem}
+                      className="flex min-w-[160px] items-center justify-center max-[640px]:min-w-[128px]"
                     >
                       <img
-                        className={cn(styles.userLogo, className)}
+                        className={cn("h-[54px] grayscale", className)}
                         src={src}
                         alt={alt}
                         loading="lazy"
@@ -211,341 +190,7 @@ export default function SDKPage() {
           </div>
         </section>
 
-        <section className={styles.section}>
-          <div className={styles.specialHeadingContainer}>
-            <h2 className={styles.h2} id="features">
-              FEATURES
-            </h2>
-            <hr className={styles.separator} />
-          </div>
-          <h3 className={cn(styles.h1)}>Create Your Perfect Visual Editor</h3>
-          <p className={cn(styles.p)}>
-            Build powerful, customizable visual editors with Studio SDK and
-            GrapesJS. Our versatile framework provides everything you need, from
-            drag-and-drop editing to responsive design.
-          </p>
-          <CTALink
-            href={urls.getSdkLicensesUrl({ ref: "featuresCta" })}
-            className="my-10"
-          >
-            Get Started for Free
-          </CTALink>
-
-          <section className={styles.card}>
-            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <h4 className={styles.h4}>Built-in and Customizable UI</h4>
-              <p className={cn(styles.p)}>
-                Accessible and enhanced UX for seamless user experience.
-              </p>
-            </div>
-            <img
-              loading="lazy"
-              src="assets/images/sdk-features/1.webp"
-              alt="SDK UI"
-            />
-          </section>
-          <section className={styles.card}>
-            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <h4 className={styles.h4}>Multi-Format Support</h4>
-              <p className={cn(styles.p)}>
-                Create newsletters, landing pages, websites, and documents.
-              </p>
-            </div>
-            <img
-              loading="lazy"
-              src="assets/images/sdk-features/2.webp"
-              alt="SDK UI"
-            />
-          </section>
-          <section className={styles.card}>
-            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <h4 className={styles.h4}>White Label Solution</h4>
-              <p className={cn(styles.p)}>
-                Style and customize your editor as you see fit.
-              </p>
-            </div>
-            <img
-              loading="lazy"
-              src="assets/images/sdk-features/3.webp"
-              alt="SDK UI"
-              className="pt-[36px]"
-            />
-          </section>
-          <div className={styles.homeResponsiveColumns}>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Additional Panels</h4>
-                <p className={cn(styles.p)}>
-                  Includes Style Catalog and Template Manager.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/sdk-features/4.webp"
-                alt="SDK UI"
-              />
-            </section>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Full Team Support</h4>
-                <p className={cn(styles.p)}>
-                  GrapesJS team provides dedicated assistance.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/sdk-features/5.webp"
-                alt="SDK support chat"
-              />
-            </section>
-          </div>
-          {/* <section className={cn("flex !flex-col !items-stretch")}>
-            <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-              <div className="flex items-center gap-[8px]">
-                <h4 className={styles.h4}>Ready to use elements</h4>
-                <span className={styles.comingSoonTag}>Coming Soon</span>
-              </div>
-              <p className={cn(styles.p)}>
-                Access pro components, templates, and prebuilt blocks.
-              </p>
-            </div>
-            <img
-              src="assets/images/sdk-features/6.webp"
-              alt="SDK UI"
-              className="h-[360px] object-cover !w-auto"
-            />
-          </section> */}
-
-          {/* Other SDK features */}
-          <div className={styles.homeResponsiveColumns}>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Flexible Data Hosting</h4>
-                <p className={cn(styles.p)}>
-                  No lock-in, choose between cloud or self-hosted options.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/sdk-features/7.webp"
-                alt="SDK UI"
-              />
-            </section>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Unlimited Access Features</h4>
-                <p className={cn(styles.p)}>
-                  Explore all SDK features at no cost.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/sdk-features/8.webp"
-                alt="SDK UI"
-              />
-            </section>
-
-            {/* Other Studio features */}
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Your Components</h4>
-                <p className={cn(styles.p)}>
-                  Create your custom components and allow your users drag & drop
-                  them around.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/studio-features/1.webp"
-                alt="SDK UI"
-              />
-            </section>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Limitless styling</h4>
-                <p className={cn(styles.p)}>
-                  From simple to advanced and responsive styling. Configurable
-                  for any CSS properties.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/studio-features/2.png"
-                alt="SDK UI"
-              />
-            </section>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Responsive design</h4>
-                <p className={cn(styles.p)}>
-                  All the tools you need to allow your users to create content
-                  that looks great on any device.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/studio-features/3.webp"
-                alt="SDK UI"
-              />
-            </section>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>Built-in Assets Manager</h4>
-                <p className={cn(styles.p)}>
-                  Keep track of your assets within the editor.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/studio-features/7.webp"
-                alt="SDK UI"
-              />
-            </section>
-            <div className={cn(styles.verticalCard, "gap-[24px]")}>
-              <section className={cn(styles.card, styles.verticalCard)}>
-                <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                  <h4 className={styles.h4}>Pages and Layers managers</h4>
-                  <p className={cn(styles.p)}>
-                    Organize your content with ease.
-                  </p>
-                </div>
-                <img
-                  loading="lazy"
-                  src="assets/images/studio-features/4.webp"
-                  alt="SDK UI"
-                />
-              </section>
-              <section className={cn(styles.card, styles.verticalCard)}>
-                <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                  <h4 className={styles.h4}>Symbols</h4>
-                  <p className={cn(styles.p)}>
-                    Create reusable components across pages.
-                  </p>
-                </div>
-                <img
-                  loading="lazy"
-                  src="assets/images/studio-features/5.webp"
-                  alt="SDK UI"
-                />
-              </section>
-            </div>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>
-                  The code is there when you need it
-                </h4>
-                <p className={cn(styles.p)}>
-                  GrapesJS outputs simple JSON and easily exports to any code
-                  and project (HTML/CSS/JS export built-in).
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/studio-features/6.webp"
-                alt="SDK UI"
-              />
-            </section>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <h4 className={styles.h4}>
-                  Extendable and customizable by design
-                </h4>
-                <p className={cn(styles.p)}>
-                  Create custom plugins and modify the editor's UI to match your
-                  specific requirements.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/studio-features/8.webp"
-                alt="SDK UI"
-              />
-            </section>
-            <section className={cn(styles.card, styles.verticalCard)}>
-              <div className="flex flex-col gap-[8px] p-[32px] flex-1">
-                <div className="flex items-center gap-[8px]">
-                  <h4 className={styles.h4}>
-                    Connect to External Data for Dynamic Content
-                  </h4>
-                  {/* <span className={styles.comingSoonTag}>Coming Soon</span> */}
-                </div>
-                <p className={cn(styles.p)}>
-                  Integrate your editor with external data sources to create
-                  dynamic and engaging experiences.
-                </p>
-              </div>
-              <img
-                loading="lazy"
-                src="assets/images/studio-features/9.webp"
-                alt="SDK UI"
-              />
-            </section>
-          </div>
-        </section>
-
-        <section className={cn(styles.section, "!py-20")}>
-          <h3 className={cn(styles.h1)}>Get started for free</h3>
-          <p className={cn(styles.p)}>
-            Join the thousands of companies & developers using our editor today
-          </p>
-          <CTALink href={urls.getSdkLicensesUrl({ ref: "preSponsorCta" })}>
-            Get Started for Free
-          </CTALink>
-        </section>
-
-        {/* <section className={cn("!pt-20 !pb-44", styles.section)}>
-          <div className={styles.specialHeadingContainer}>
-            <h2 className={styles.h2} id="gold-sponsors">
-              OUR GOLD SPONSORS
-            </h2>
-            <hr className={styles.separator} />
-          </div>
-          <div className={styles.logosContainer}>
-            <a className={styles.sponsorLink} href="https://www.braze.com">
-              <img
-                loading="lazy"
-                className={cn(styles.sponsorLogo, styles.brazeLogo)}
-                src="/assets/images/braze_logo.svg"
-                alt="Braze logo"
-              />
-            </a>
-            <a className={styles.sponsorLink} href="https://www.phreesia.com">
-              <img
-                loading="lazy"
-                className={cn(styles.sponsorLogo, styles.phreesiaLogo)}
-                src="/assets/images/phreesia_logo.webp"
-                alt="Phreesia logo"
-              />
-            </a>
-            <a
-              className={styles.sponsorLink}
-              href="https://veepn.com/vpn-apps/download-vpn-for-pc/"
-            >
-              <img
-                loading="lazy"
-                className={cn(styles.sponsorLogo, styles.veepnLogo)}
-                src="/assets/images/logo_veepn.webp"
-                alt="Download the Best Windows VPN for PC"
-              />
-            </a>
-          </div>
-          <div className={styles.specialHeadingContainer}>
-            <h2 className={styles.h2} id="sponsors">
-              OTHER SPONSORS
-            </h2>
-            <hr className={styles.separator} />
-          </div>
-          <div className={styles.scrollableContainer}>
-            <object
-              className={cn(styles.sponsorLogo, styles.openCollectiveLogo)}
-              aria-label="Backers"
-              type="image/svg+xml"
-              data="https://opencollective.com/grapesjs/tiers/sponsors.svg?avatarHeight=64&width=800"
-            >
-              Open Collective
-            </object>
-          </div>
-        </section> */}
+        <SdkFeatures />
 
         <Footer />
       </main>

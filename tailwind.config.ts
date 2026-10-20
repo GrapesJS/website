@@ -10,6 +10,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        "logo-marquee": "logo-marquee 40s linear infinite",
+      },
+      keyframes: {
+        "logo-marquee": {
+          from: { transform: "translate3d(0, 0, 0)" },
+          to: { transform: "translate3d(-50%, 0, 0)" },
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

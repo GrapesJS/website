@@ -53,6 +53,11 @@ const linkCategories: {
         href: urls.getAiPageUrl(),
       },
       {
+        id: "ChatGPT",
+        label: "ChatGPT Plugin",
+        href: urls.getChatGptAppUrl(),
+      },
+      {
         id: "SdkDocs",
         label: "Studio SDK Docs",
         href: urls.getGettingStartedDocsUrl(),
