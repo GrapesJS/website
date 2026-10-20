@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
-  Braces,
   Check,
   Database,
   FileText,
@@ -16,7 +15,6 @@ import {
   Play,
   Server,
   Sparkles,
-  Square,
 } from "lucide-react";
 import {
   AnimatePresence,
@@ -817,9 +815,61 @@ export function ProjectTypesIllustration({
 
 const storageSteps = [
   "Load an editable project",
-  "Save through your own backend",
+  "Save projects and assets",
+  "Projects and assets saved",
   "Publish to your own destination",
+  "Content published",
 ];
+
+const storageStage = {
+  load: 0,
+  saving: 1,
+  saved: 2,
+  publishing: 3,
+  published: 4,
+} as const;
+const storageStepDurations = [2600, 1500, 1600, 1500, 1800];
+
+function StorageFlow({ step, reduced, running }: DemoState) {
+  const loading = step === storageStage.load;
+  const saving = step <= storageStage.saved;
+  const path = "M 0 32 H 120";
+
+  return (
+    <div className="relative flex h-24 min-w-0 items-center">
+      <span className="absolute inset-x-0 top-1 text-center text-[8px] font-medium text-[#c5a7d7]">
+        {loading ? "Load" : saving ? "Save" : "Publish"}
+      </span>
+      <svg
+        viewBox="0 0 120 64"
+        preserveAspectRatio="none"
+        className="h-16 w-full overflow-visible"
+        fill="none"
+      >
+        <path
+          d={path}
+          stroke="#80658f"
+          strokeOpacity={0.35}
+          vectorEffect="non-scaling-stroke"
+        />
+        <motion.path
+          d={path}
+          stroke="#c6a0e2"
+          strokeWidth={1.5}
+          strokeDasharray="6 10"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+          animate={{ strokeDashoffset: running ? [0, loading ? 32 : -32] : 0 }}
+          transition={{
+            duration: reduced || !running ? 0 : 0.75,
+            repeat: running ? Infinity : 0,
+            ease: "linear",
+          }}
+        />
+      </svg>
+    </div>
+  );
+}
 
 export function StorageIllustration({
   withControls = false,
@@ -829,6 +879,8 @@ export function StorageIllustration({
       withControls={withControls}
       label="Keep your content on your infrastructure"
       steps={storageSteps}
+      stepDurations={storageStepDurations}
+      className={theme.illustrations.applicationCanvas}
     >
       {({ step, reduced, running }) => (
         <div className="flex h-[300px] flex-col justify-center px-3 py-6 sm:h-[280px] sm:px-7">
@@ -836,37 +888,31 @@ export function StorageIllustration({
             <span className="h-1.5 w-1.5 rounded-full bg-[#b08bc6]" /> YOUR
             APPLICATION
           </div>
-          <div className="flex items-center gap-2">
-            <div className="flex h-[90px] w-[30%] flex-col items-center justify-center gap-2 rounded-xl border border-[#bc87d6]/30 bg-[#35233f]">
-              <Square size={21} strokeWidth={1.3} className="text-[#cfa5e4]" />
+          <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(36px,0.5fr)_minmax(0,1.8fr)] items-center">
+            <div
+              className={cn(
+                "flex h-[90px] flex-col items-center justify-center gap-2",
+                theme.illustrations.applicationNode,
+              )}
+            >
+              <img
+                src="/assets/images/logos/grapesjs-logo-only.svg"
+                width={26}
+                height={28}
+                alt=""
+                className="h-7 w-auto opacity-90"
+              />
               <span className="text-[10px] font-medium text-[#d5bce1]">
                 Studio SDK
               </span>
-              <span className="font-mono text-[8px] text-[#8e719e]">
-                project.json
-              </span>
             </div>
-            <div className="relative flex min-w-3 flex-1 flex-col items-center">
-              <span className="absolute -top-5 text-[8px] text-[#ab85bf]">
-                {step === 0 ? "load" : step === 1 ? "save" : "export"}
-              </span>
-              <div className="h-px w-full bg-[#674675]" />
-              <motion.span
-                key={step}
-                initial={{ left: step === 0 ? "85%" : "0%", opacity: 0 }}
-                animate={{
-                  left: running ? (step === 0 ? "0%" : "85%") : "45%",
-                  opacity: running ? [0, 1, 1, 0] : 0.7,
-                }}
-                transition={{
-                  duration: reduced || !running ? 0 : 1.6,
-                  repeat: running ? 1 : 0,
-                  repeatDelay: 0.3,
-                }}
-                className="absolute -top-0.5 h-1.5 w-1.5 rounded-full bg-[#d6a2ef] shadow-[0_0_10px_#b788d4]"
-              />
-            </div>
-            <div className="w-[54%] rounded-xl border border-dashed border-[#846092]/60 p-2 sm:p-3">
+            <StorageFlow step={step} reduced={reduced} running={running} />
+            <div
+              className={cn(
+                "min-w-0 border-dashed p-2 sm:p-3",
+                theme.illustrations.applicationNode,
+              )}
+            >
               <div className="mb-3 flex items-center gap-1 text-[8px] font-medium text-[#c4a4d4] sm:text-[9px]">
                 <Server size={12} />
                 Your infrastructure
@@ -876,31 +922,74 @@ export function StorageIllustration({
                   { icon: Database, label: "Project storage" },
                   { icon: Image, label: "Asset storage" },
                   { icon: Globe, label: "Your publishing" },
-                ].map(({ icon: Icon, label }, index) => (
-                  <motion.div
-                    key={label}
-                    animate={{
-                      backgroundColor: (step === 2 ? index === 2 : index < 2)
-                        ? "#392544"
-                        : "#241a2d",
-                    }}
-                    transition={{ duration: reduced ? 0 : 0.4 }}
-                    className="flex items-center gap-2 rounded px-2 py-2 text-[9px] text-[#b89ac9]"
-                  >
-                    <Icon size={11} />
-                    {label}
-                    <Check size={10} className="ml-auto text-[#9ec0ac]" />
-                  </motion.div>
-                ))}
+                ].map(({ icon: Icon, label }, index) => {
+                  const working =
+                    index < 2
+                      ? step === storageStage.saving
+                      : step === storageStage.publishing;
+                  const done =
+                    index < 2
+                      ? step >= storageStage.saved
+                      : step === storageStage.published;
+                  return (
+                    <motion.div
+                      key={label}
+                      data-storage-item={label}
+                      data-storage-status={
+                        working ? "working" : done ? "done" : "idle"
+                      }
+                      animate={{
+                        backgroundColor:
+                          working || done ? "#392544" : "#241a2d",
+                      }}
+                      transition={{ duration: reduced ? 0 : 0.4 }}
+                      className="flex items-center gap-1.5 rounded px-2 py-2 text-[8px] text-[#b89ac9] sm:text-[9px]"
+                    >
+                      <Icon size={11} className="shrink-0" />
+                      <span className="min-w-0 flex-1 truncate">{label}</span>
+                      <motion.span
+                        className="flex size-2.5 shrink-0 items-center justify-center"
+                        style={{
+                          color: working
+                            ? "#f2aa62"
+                            : done
+                              ? "#9ec0ac"
+                              : "#6f617b",
+                        }}
+                        animate={{
+                          scale: working && running ? [1, 1.15, 1] : 1,
+                        }}
+                        transition={{
+                          duration: reduced || !running ? 0 : 0.6,
+                          repeat: working && running ? Infinity : 0,
+                        }}
+                      >
+                        {done ? (
+                          <Check size={10} />
+                        ) : (
+                          <span className="size-1.5 rounded-full bg-current" />
+                        )}
+                      </motion.span>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>
           <div className="mt-5 flex items-center gap-2 rounded-md border border-white/[0.06] px-3 py-2 font-mono text-[9px] text-[#ac8dbd]">
-            <Braces size={12} />
+            <span className="relative flex size-1.5 shrink-0">
+              <span
+                className={cn(
+                  "absolute inset-0 rounded-full bg-[#bf9ed8]/60",
+                  running && "animate-ping",
+                )}
+              />
+              <span className="relative size-1.5 rounded-full bg-[#bf9ed8]" />
+            </span>
             <span>
-              {step === 0
+              {step === storageStage.load
                 ? "onLoad: loadFromYourAPI"
-                : step === 1
+                : step <= storageStage.saved
                   ? "onSave: saveToYourAPI"
                   : "HTML / CSS / JS → your hosting"}
             </span>

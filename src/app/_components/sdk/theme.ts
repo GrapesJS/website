@@ -31,5 +31,8 @@ export const theme = {
     pairedViewport: "h-[440px] sm:h-[420px]",
     controls: "border-t border-white/[0.07] bg-[#1c1623]/50",
     chatSurfaces: "[--editor-bg:#201e2a80] [--editor-raised:#2b273980]",
+    applicationCanvas:
+      "bg-[#211928]/30 bg-[radial-gradient(#b694c826_0.7px,transparent_0.7px)] [background-size:12px_12px]",
+    applicationNode: "rounded-lg border border-[#bc87d6]/20 bg-[#241b2d]/70",
   },
 } as const;
