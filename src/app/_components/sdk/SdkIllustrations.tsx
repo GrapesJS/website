@@ -61,11 +61,13 @@ function Illustration({
   children,
   className,
   withControls = false,
+  stepDurations,
 }: IllustrationProps & {
   label: string;
   steps: string[];
   children: (state: DemoState) => ReactNode;
   className?: string;
+  stepDurations?: readonly number[];
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const visible = useInView(ref, { amount: 0.3 });
@@ -74,15 +76,16 @@ function Illustration({
   const [paused, setPaused] = useState(false);
   const [step, setStep] = useState(0);
   const running = visible && pageVisible && !paused && !reduced;
+  const stepDuration = stepDurations?.[step] ?? 3800;
 
   useEffect(() => {
     if (!running) return;
     const timer = window.setTimeout(
       () => setStep((value) => (value + 1) % steps.length),
-      3800,
+      stepDuration,
     );
     return () => window.clearTimeout(timer);
-  }, [running, step, steps.length]);
+  }, [running, step, stepDuration, steps.length]);
 
   return (
     <div
@@ -106,7 +109,7 @@ function Illustration({
             theme.illustrations.controls,
           )}
         >
-          <div className="flex shrink-0 gap-1">
+          <div className="flex max-w-[55%] shrink-0 flex-wrap gap-1">
             {steps.map((name, index) => (
               <button
                 key={name}
@@ -394,19 +397,59 @@ export function EditorCompositionIllustration({
   );
 }
 
+const aiStage = {
+  typing: 0,
+  sent: 1,
+  reply: 2,
+  fetchBrand: 3,
+  brandResult: 4,
+  createPage: 5,
+  pageResult: 6,
+  complete: 7,
+} as const;
+
 const aiSteps = [
-  "A request with your product context",
-  "Your tool connects the brand data",
-  "AI edits. Users stay in control.",
+  "Type your request",
+  "Send the user message",
+  "The assistant explains the next step",
+  "Fetch brand design system",
+  "Return the brand guidelines",
+  "Create landing page",
+  "Page creation completes",
+  "The assistant confirms the result",
 ];
 
+// Separate holds make each message, tool run, and result readable in order.
+const aiStepDurations = [2600, 650, 1100, 1400, 1100, 1500, 550, 3400];
+
 const AI_PROMPT = "Create a landing page using our brand design system.";
+
+function AiChatEntry({
+  show,
+  reduced,
+  children,
+}: {
+  show: boolean;
+  reduced: boolean;
+  children: ReactNode;
+}) {
+  if (!show) return null;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: reduced ? 0 : 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduced ? 0 : 0.2 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 function AiWorkflowFrame({ step, reduced, running }: DemoState) {
   const [typed, setTyped] = useState(0);
 
   useEffect(() => {
-    if (step !== 0 || !running) return;
+    if (step !== aiStage.typing || !running) return;
     setTyped(0);
     const timer = window.setInterval(() => {
       setTyped((value) => Math.min(value + 1, AI_PROMPT.length));
@@ -428,52 +471,70 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
       <ChatPanelHeader />
       <div className="relative min-h-0 flex-1 overflow-hidden p-[calc(0.5*var(--editor-unit))]">
         <AnimatePresence initial={false}>
-          {step > 0 && (
+          {step >= aiStage.sent && (
             <motion.div
               key="conversation"
               className="absolute inset-[calc(0.5*var(--editor-unit))] space-y-[calc(0.65*var(--editor-unit))]"
-              initial={{ opacity: 0, y: reduced ? 0 : 5 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: reduced ? 0 : 0.25 }}
             >
-              <ChatMessage user>{AI_PROMPT}</ChatMessage>
-              <ChatMessage>
-                I’ll fetch your brand guidelines, then build a page to match.
-              </ChatMessage>
-              <ChatToolCard
-                label="Fetch brand design system"
-                done={step === 2 || reduced}
-                status={
-                  <LoaderCircle
-                    className="size-[calc(0.75*var(--editor-unit))] animate-[spin_0.5s_linear_infinite] text-[#b597fa]"
-                    style={{
-                      animationPlayState: running ? "running" : "paused",
-                    }}
-                  />
-                }
-              >
-                <ChatBrandDetails />
-              </ChatToolCard>
-              {step === 2 && (
-                <>
-                  <ChatToolCard label="Create landing page" done />
-                  <ChatMessage>
-                    Your page is ready. Let’s make it yours.
-                  </ChatMessage>
-                </>
-              )}
+              <AiChatEntry show={step >= aiStage.sent} reduced={reduced}>
+                <ChatMessage user>{AI_PROMPT}</ChatMessage>
+              </AiChatEntry>
+              <AiChatEntry show={step >= aiStage.reply} reduced={reduced}>
+                <ChatMessage>
+                  I’ll fetch your brand guidelines, then build a page to match.
+                </ChatMessage>
+              </AiChatEntry>
+              <AiChatEntry show={step >= aiStage.fetchBrand} reduced={reduced}>
+                <ChatToolCard
+                  label="Fetch brand design system"
+                  done={step >= aiStage.brandResult}
+                  status={<AiToolSpinner running={running} />}
+                >
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    transition={{ duration: reduced ? 0 : 0.2 }}
+                  >
+                    <ChatBrandDetails />
+                  </motion.div>
+                </ChatToolCard>
+              </AiChatEntry>
+              <AiChatEntry show={step >= aiStage.createPage} reduced={reduced}>
+                <ChatToolCard
+                  label="Create landing page"
+                  done={step >= aiStage.pageResult}
+                  status={<AiToolSpinner running={running} />}
+                />
+              </AiChatEntry>
+              <AiChatEntry show={step >= aiStage.complete} reduced={reduced}>
+                <ChatMessage>
+                  Your page is ready. Let’s make it yours.
+                </ChatMessage>
+              </AiChatEntry>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
       <ChatComposer
-        draft={step === 0 ? draft : ""}
+        draft={step === aiStage.typing ? draft : ""}
         caret={
           <span className="ml-[calc(0.08*var(--editor-unit))] inline-block h-[calc(0.75*var(--editor-unit))] w-px bg-[#c9b4f2] align-[-1px]" />
         }
       />
     </div>
+  );
+}
+
+function AiToolSpinner({ running }: { running: boolean }) {
+  return (
+    <LoaderCircle
+      className="size-[calc(0.75*var(--editor-unit))] animate-[spin_0.5s_linear_infinite] text-[#b597fa]"
+      style={{ animationPlayState: running ? "running" : "paused" }}
+    />
   );
 }
 
@@ -485,6 +546,7 @@ export function AiWorkflowIllustration({
       withControls={withControls}
       label="AI connected to your product"
       steps={aiSteps}
+      stepDurations={aiStepDurations}
     >
       {(state) => <AiWorkflowFrame {...state} />}
     </Illustration>
