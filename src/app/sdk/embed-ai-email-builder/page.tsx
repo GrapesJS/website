@@ -68,48 +68,14 @@ export default function EmbedAiEmailBuilderPage() {
         primaryLabel="Embed the Builder"
         primaryPlacement="sdk-email-hero"
         secondaryHref={urls.getPricingUrl()}
-        secondaryLabel="Compare SDK plans"
-        preview={
-          <WindowShell>
-            <EmbedBuilderWeb isEmail />
-          </WindowShell>
-        }
+        secondaryLabel="Compare Plans"
       />
 
-      <section
-        aria-labelledby="email-time-saving-heading"
-        className="relative z-[1] mx-auto max-w-[1132px] px-5 pb-8 pt-20 text-center md:pt-28"
-      >
-        <SectionEyebrow className="mb-5">
-          YOUR PRODUCT, ON A FASTER TIMELINE
-        </SectionEyebrow>
-        <h2
-          id="email-time-saving-heading"
-          className={cn(
-            "text-3xl font-semibold leading-tight tracking-tight md:text-[46px]",
-            theme.colors.primaryText,
-          )}
-        >
-          Skip years of editor development.
-          <br />
-          <span className={theme.colors.accentText}>Launch in hours.</span>
-        </h2>
-        <p
-          className={cn(
-            "mx-auto mt-6 max-w-3xl text-base leading-8 md:text-lg",
-            theme.colors.mutedText,
-          )}
-        >
-          Put an established email builder into your app, with the editor UI,
-          AI, and reusable building blocks ready to adapt. Spend your
-          engineering time on the product your customers choose you for.
-        </p>
-        <div className="mx-auto mt-8 flex max-w-2xl flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-[#deb2e8]">
-          <span>Embed with React or JavaScript</span>
-          <span>Customize the experience</span>
-          <span>Build on a maintained SDK</span>
-        </div>
-      </section>
+      <div className="mx-auto max-w-[1132px] p-5">
+        <WindowShell>
+          <EmbedBuilderWeb isEmail />
+        </WindowShell>
+      </div>
 
       <SdkCustomerLogos />
 
@@ -123,22 +89,25 @@ export default function EmbedAiEmailBuilderPage() {
             BUILT FOR YOUR PRODUCT
           </SectionEyebrow>
           <h2
-            id="email-features-heading"
+            id="email-time-saving-heading"
             className={cn(
-              "text-3xl font-semibold leading-tight tracking-tight md:text-[42px]",
+              "text-3xl font-semibold leading-tight tracking-tight md:text-[46px]",
               theme.colors.primaryText,
             )}
           >
-            An AI email builder that feels like yours.
+            Skip years of editor development.
+            <br />
+            <span className={theme.colors.accentText}>Launch in hours.</span>
           </h2>
           <p
             className={cn(
-              "mx-auto mt-5 max-w-2xl text-base leading-relaxed md:text-lg",
+              "mx-auto mt-6 max-w-3xl text-base leading-8 md:text-lg",
               theme.colors.mutedText,
             )}
           >
-            Give users the freedom to create. Keep control of the interface,
-            reusable content, and data that shape every email.
+            Put an established email builder into your app, with the editor UI,
+            AI, and reusable building blocks ready to adapt. Spend your
+            engineering time on the product your customers choose you for.
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-2">

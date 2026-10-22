@@ -1,9 +1,11 @@
-import Hero from "@/app/_components/Hero";
 import CTALink from "@/app/_components/CTALink";
+import Hero from "@/app/_components/Hero";
+import { cn } from "@/lib/utils";
+import { theme } from "./theme";
 
 type SdkLandingHeroProps = {
   eyebrow?: string;
-  title: string;
+  title: React.ReactNode;
   description: string;
   primaryHref: string;
   primaryLabel: string;
@@ -12,7 +14,6 @@ type SdkLandingHeroProps = {
   secondaryLabel?: string;
   secondaryPlacement?: string;
   children?: React.ReactNode;
-  preview?: React.ReactNode;
 };
 
 export default function SdkLandingHero({
@@ -26,21 +27,26 @@ export default function SdkLandingHero({
   secondaryLabel,
   secondaryPlacement,
   children,
-  preview,
 }: SdkLandingHeroProps) {
   return (
     <Hero
       title={eyebrow}
       subTitle={title}
       mainHeadingAsH1
-      withBanner={!preview}
-      clsTitle="mx-auto max-w-[1000px] px-5 !text-4xl !leading-tight sm:!text-5xl lg:!text-[54px]"
+      withBanner={false}
+      skipSeparator
+      clsTitle="mx-auto max-w-2xl px-5 !text-4xl !leading-tight sm:!text-5xl lg:!text-[54px]"
     >
-      <div className="mx-auto max-w-3xl px-5 text-center">
-        <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/75 sm:text-xl">
+      <div className="mx-auto max-w-2xl px-5 text-center">
+        <p
+          className={cn(
+            "mx-auto mt-5 max-w-3xl text-lg sm:text-xl sm:leading-8",
+            theme.colors.secondaryText,
+          )}
+        >
           {description}
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <CTALink
             href={primaryHref}
             data-ph-capture-attribute-placement={primaryPlacement}
@@ -65,11 +71,6 @@ export default function SdkLandingHero({
           <div className="mt-5 text-sm text-white/55">{children}</div>
         )}
       </div>
-      {preview && (
-        <div className="mx-auto mt-14 w-full max-w-[1132px] px-5">
-          {preview}
-        </div>
-      )}
     </Hero>
   );
 }

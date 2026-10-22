@@ -2,12 +2,13 @@ import cn from "classnames";
 import Header from "../Header";
 import styles from "./styles.module.css";
 
-interface HeroProps extends React.HTMLProps<HTMLElement> {
-  title?: string;
-  subTitle?: string;
+interface HeroProps extends Omit<React.HTMLProps<HTMLElement>, "title"> {
+  title?: React.ReactNode;
+  subTitle?: React.ReactNode;
   clsTitle?: string;
   mainHeadingAsH1?: boolean;
   withBanner?: boolean;
+  skipSeparator?: boolean;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -18,6 +19,7 @@ const Hero: React.FC<HeroProps> = ({
   subTitle,
   mainHeadingAsH1 = false,
   withBanner = true,
+  skipSeparator,
   ...rest
 }) => (
   <>
@@ -57,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({
         </div>
       )}
     </section>
-    <hr className={styles.shadowSeparator} />
+    {!skipSeparator && <hr className={styles.shadowSeparator} />}
   </>
 );
 
