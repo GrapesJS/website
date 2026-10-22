@@ -61,6 +61,58 @@ const layerRows = [
   { name: "Footer section", depth: 1, icon: SquareDashed },
 ];
 
+const emailLayerRows = [
+  { name: "Email body", depth: 0, icon: PanelTop, open: true },
+  { name: "Header section", depth: 1, icon: SquareDashed, open: true },
+  { name: "Logo", depth: 2, icon: ImageIcon },
+  { name: "Content section", depth: 1, icon: SquareDashed, open: true },
+  { name: "Column", depth: 2, icon: SquareDashed, open: true },
+  { name: "Heading", depth: 3, icon: Type, selected: true },
+  { name: "Text", depth: 3, icon: Type },
+  { name: "Button", depth: 3, icon: SquareDashed },
+  { name: "Image", depth: 3, icon: ImageIcon },
+  { name: "Footer section", depth: 1, icon: SquareDashed, open: true },
+  { name: "Unsubscribe", depth: 2, icon: Type },
+];
+
+export function LayersPanel({ isEmail = false }: { isEmail?: boolean } = {}) {
+  return (
+    <div className="min-w-0 bg-[color:var(--editor-bg)]">
+      <div className="mt-[calc(0.75*var(--editor-unit,1cqw))] flex h-[calc(2.1*var(--editor-unit,1cqw))] items-center gap-[calc(0.5*var(--editor-unit,1cqw))] border-y-[calc(0.05*var(--editor-unit,1cqw))] border-[#35313f] px-[calc(0.7*var(--editor-unit,1cqw))] text-[calc(0.8*var(--editor-unit,1cqw))] font-semibold">
+        <Layers className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
+        <span className="flex-1">Layers</span>
+        <ChevronUp className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
+      </div>
+      <div className="pt-[calc(0.15*var(--editor-unit,1cqw))]">
+        {(isEmail ? emailLayerRows : layerRows).map(
+          ({ name, depth, icon: Icon, open, selected }) => (
+            <div
+              key={`${depth}-${name}`}
+              className={cn(
+                "flex h-[calc(1.55*var(--editor-unit,1cqw))] items-center gap-[calc(0.4*var(--editor-unit,1cqw))] whitespace-nowrap pr-[calc(0.3*var(--editor-unit,1cqw))]",
+                selected && "bg-[#a88af2]/20 text-[#c5adff]",
+              )}
+              style={{
+                paddingLeft: `calc(${0.45 + depth * 0.52} * var(--editor-unit, 1cqw))`,
+              }}
+            >
+              {open ? (
+                <ChevronDown className="size-[calc(0.65*var(--editor-unit,1cqw))]" />
+              ) : depth <= 1 ? (
+                <ChevronRight className="size-[calc(0.65*var(--editor-unit,1cqw))]" />
+              ) : (
+                <span className="w-[calc(0.65*var(--editor-unit,1cqw))] shrink-0" />
+              )}
+              <Icon className="size-[calc(0.75*var(--editor-unit,1cqw))]" />
+              <span>{name}</span>
+            </div>
+          ),
+        )}
+      </div>
+    </div>
+  );
+}
+
 // Retained for layouts that show the page and layer managers.
 export function PagesPanel({
   withLayers = true,
@@ -85,39 +137,7 @@ export function PagesPanel({
           <EllipsisVertical className="size-[calc(0.8*var(--editor-unit,1cqw))] opacity-70" />
         </div>
       ))}
-      {withLayers && (
-        <>
-          <div className="mt-[calc(0.75*var(--editor-unit,1cqw))] flex h-[calc(2.1*var(--editor-unit,1cqw))] items-center gap-[calc(0.5*var(--editor-unit,1cqw))] border-y-[calc(0.05*var(--editor-unit,1cqw))] border-[#35313f] px-[calc(0.7*var(--editor-unit,1cqw))] text-[calc(0.8*var(--editor-unit,1cqw))] font-semibold">
-            <Layers className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
-            <span className="flex-1">Layers</span>
-            <ChevronUp className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
-          </div>
-          <div className="pt-[calc(0.15*var(--editor-unit,1cqw))]">
-            {layerRows.map(({ name, depth, icon: Icon, open, selected }) => (
-              <div
-                key={`${depth}-${name}`}
-                className={cn(
-                  "flex h-[calc(1.55*var(--editor-unit,1cqw))] items-center gap-[calc(0.4*var(--editor-unit,1cqw))] whitespace-nowrap pr-[calc(0.3*var(--editor-unit,1cqw))]",
-                  selected && "bg-[#a88af2]/20 text-[#c5adff]",
-                )}
-                style={{
-                  paddingLeft: `calc(${0.45 + depth * 0.52} * var(--editor-unit, 1cqw))`,
-                }}
-              >
-                {open ? (
-                  <ChevronDown className="size-[calc(0.65*var(--editor-unit,1cqw))]" />
-                ) : depth <= 1 ? (
-                  <ChevronRight className="size-[calc(0.65*var(--editor-unit,1cqw))]" />
-                ) : (
-                  <span className="w-[calc(0.65*var(--editor-unit,1cqw))] shrink-0" />
-                )}
-                <Icon className="size-[calc(0.75*var(--editor-unit,1cqw))]" />
-                <span>{name}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+      {withLayers && <LayersPanel />}
     </div>
   );
 }
@@ -277,12 +297,14 @@ export function StylesPanel({
   compact = false,
   withSelectors = true,
   color,
+  isEmail = false,
 }: {
   brand?: boolean;
   selected?: boolean;
   compact?: boolean;
   withSelectors?: boolean;
   color?: string;
+  isEmail?: boolean;
 } = {}) {
   return (
     <div className="min-w-0 overflow-hidden border-l-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] text-[color:var(--editor-text)]">
@@ -310,8 +332,12 @@ export function StylesPanel({
             <span className="flex items-center gap-[calc(0.25*var(--editor-unit,1cqw))] rounded-[calc(0.15*var(--editor-unit,1cqw))] bg-[#f6c7e6] px-[calc(0.3*var(--editor-unit,1cqw))] py-[calc(0.1*var(--editor-unit,1cqw))] text-[calc(0.55*var(--editor-unit,1cqw))] text-[#5c314f]">
               {brand
                 ? selected
-                  ? "hero-title"
-                  : "landing-page"
+                  ? isEmail
+                    ? "email-heading"
+                    : "hero-title"
+                  : isEmail
+                    ? "email-body"
+                    : "landing-page"
                 : "gjs-text-blue"}
               <EllipsisVertical className="size-[calc(0.6*var(--editor-unit,1cqw))]" />
             </span>

@@ -112,6 +112,8 @@ function PricingButton({
   return (
     <a
       href={href}
+      data-ph-capture-attribute-placement="sdk-pricing"
+      data-ph-capture-attribute-cta={label}
       className={[
         buttonBaseClass,
         "w-full",

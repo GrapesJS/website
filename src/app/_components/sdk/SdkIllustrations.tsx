@@ -31,6 +31,8 @@ import {
   type CSSProperties,
 } from "react";
 import { theme } from "./theme";
+import EmailTemplatePreview from "../layouts/EmailTemplatePreview";
+import { getEditorDemoCopy } from "../layouts/editorDemoContent";
 import {
   CanvasToolbar,
   ChatPanelHeader,
@@ -40,13 +42,14 @@ import {
   ChatToolCard,
   EditorSidebar,
   PagesPanel,
+  LayersPanel,
   PropertyField,
   StylesPanel,
   editorShellText,
   editorShellTheme,
 } from "../layouts/EditorShell";
 
-export type IllustrationProps = { withControls?: boolean };
+export type IllustrationProps = { withControls?: boolean; isEmail?: boolean };
 
 type DemoState = { step: number; reduced: boolean; running: boolean };
 export type IllustrationState = DemoState & {
@@ -187,11 +190,21 @@ function MiniLanding({
   selected = false,
   className,
   accent = "#c49cde",
+  isEmail = false,
 }: {
   selected?: boolean;
   className?: string;
   accent?: string;
+  isEmail?: boolean;
 }) {
+  if (isEmail)
+    return (
+      <EmailTemplatePreview
+        className={className}
+        accent={accent}
+        selected={selected}
+      />
+    );
   return (
     <div
       className={cn(
@@ -269,7 +282,15 @@ const layoutSteps = [
   "Bring your own UI components",
 ];
 
-function LayoutCode({ step, reduced }: { step: number; reduced: boolean }) {
+function LayoutCode({
+  step,
+  reduced,
+  isEmail = false,
+}: {
+  step: number;
+  reduced: boolean;
+  isEmail?: boolean;
+}) {
   const lines = [
     { text: "<StudioEditor withComponents>", indent: 0 },
     {
@@ -282,7 +303,12 @@ function LayoutCode({ step, reduced }: { step: number; reduced: boolean }) {
       ? [
           { text: "<StudioSidebarLeft>", indent: 2, changed: true },
           {
-            text: step === 2 ? "<YourBrandPanel />" : "<StudioPanelPages />",
+            text:
+              step === 2
+                ? "<YourBrandPanel />"
+                : isEmail
+                  ? "<StudioPanelLayers />"
+                  : "<StudioPanelPages />",
             indent: 3,
             changed: true,
           },
@@ -322,7 +348,15 @@ function LayoutCode({ step, reduced }: { step: number; reduced: boolean }) {
   );
 }
 
-function LayoutPreview({ step, reduced }: { step: number; reduced: boolean }) {
+function LayoutPreview({
+  step,
+  reduced,
+  isEmail = false,
+}: {
+  step: number;
+  reduced: boolean;
+  isEmail?: boolean;
+}) {
   return (
     <div
       className={cn(
@@ -338,7 +372,7 @@ function LayoutPreview({ step, reduced }: { step: number; reduced: boolean }) {
           </span>
           <span className="font-semibold">YourBrand</span>
           <span className="ml-auto rounded-sm bg-[#8b5cf6] px-2 py-1 text-[8px] text-white">
-            Publish
+            {isEmail ? "Send" : "Publish"}
           </span>
         </div>
       ) : (
@@ -375,6 +409,8 @@ function LayoutPreview({ step, reduced }: { step: number; reduced: boolean }) {
                   <PropertyField label="Typeface">Manrope</PropertyField>
                   <PropertyField label="Radius">8 px</PropertyField>
                 </div>
+              ) : isEmail ? (
+                <LayersPanel isEmail />
               ) : (
                 <PagesPanel withLayers={false} />
               )}
@@ -382,7 +418,10 @@ function LayoutPreview({ step, reduced }: { step: number; reduced: boolean }) {
           )}
         </AnimatePresence>
         <motion.div layout={!reduced} className="min-w-0 flex-1 p-3">
-          <MiniLanding className="mx-auto h-full max-w-[320px]" />
+          <MiniLanding
+            isEmail={isEmail}
+            className="mx-auto h-full max-w-[320px]"
+          />
         </motion.div>
       </div>
     </div>
@@ -391,6 +430,7 @@ function LayoutPreview({ step, reduced }: { step: number; reduced: boolean }) {
 
 export function EditorCompositionIllustration({
   withControls = false,
+  isEmail = false,
 }: IllustrationProps = {}) {
   return (
     <Illustration
@@ -400,8 +440,8 @@ export function EditorCompositionIllustration({
     >
       {({ step, reduced }) => (
         <div className="grid [container-type:inline-size] md:h-[340px] md:grid-cols-[1fr_1.1fr]">
-          <LayoutCode step={step} reduced={reduced} />
-          <LayoutPreview step={step} reduced={reduced} />
+          <LayoutCode step={step} reduced={reduced} isEmail={isEmail} />
+          <LayoutPreview step={step} reduced={reduced} isEmail={isEmail} />
         </div>
       )}
     </Illustration>
@@ -433,8 +473,6 @@ const aiSteps = [
 // Separate holds make each message, tool run, and result readable in order.
 const aiStepDurations = [2600, 650, 1100, 1400, 1100, 1500, 550, 3400];
 
-const AI_PROMPT = "Create a landing page using our brand design system.";
-
 function AiChatEntry({
   show,
   reduced,
@@ -456,19 +494,26 @@ function AiChatEntry({
   );
 }
 
-function AiWorkflowFrame({ step, reduced, running }: DemoState) {
+function AiWorkflowFrame({
+  step,
+  reduced,
+  running,
+  isEmail = false,
+}: DemoState & { isEmail?: boolean }) {
+  const copy = getEditorDemoCopy(isEmail);
+  const prompt = copy.prompt;
   const [typed, setTyped] = useState(0);
 
   useEffect(() => {
     if (step !== aiStage.typing || !running) return;
     setTyped(0);
     const timer = window.setInterval(() => {
-      setTyped((value) => Math.min(value + 1, AI_PROMPT.length));
+      setTyped((value) => Math.min(value + 1, prompt.length));
     }, 34);
     return () => window.clearInterval(timer);
-  }, [step, running]);
+  }, [step, running, prompt]);
 
-  const draft = running ? AI_PROMPT.slice(0, typed) : AI_PROMPT;
+  const draft = running ? prompt.slice(0, typed) : prompt;
 
   return (
     <div
@@ -493,12 +538,10 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
               transition={{ duration: reduced ? 0 : 0.25 }}
             >
               <AiChatEntry show={step >= aiStage.sent} reduced={reduced}>
-                <ChatMessage user>{AI_PROMPT}</ChatMessage>
+                <ChatMessage user>{prompt}</ChatMessage>
               </AiChatEntry>
               <AiChatEntry show={step >= aiStage.reply} reduced={reduced}>
-                <ChatMessage>
-                  I’ll fetch your brand guidelines, then build a page to match.
-                </ChatMessage>
+                <ChatMessage>{copy.reply}</ChatMessage>
               </AiChatEntry>
               <AiChatEntry show={step >= aiStage.fetchBrand} reduced={reduced}>
                 <ChatToolCard
@@ -517,15 +560,13 @@ function AiWorkflowFrame({ step, reduced, running }: DemoState) {
               </AiChatEntry>
               <AiChatEntry show={step >= aiStage.createPage} reduced={reduced}>
                 <ChatToolCard
-                  label="Create landing page"
+                  label={copy.createTool}
                   done={step >= aiStage.pageResult}
                   status={<AiToolSpinner running={running} />}
                 />
               </AiChatEntry>
               <AiChatEntry show={step >= aiStage.complete} reduced={reduced}>
-                <ChatMessage>
-                  Your page is ready. Let’s make it yours.
-                </ChatMessage>
+                <ChatMessage>{copy.complete}</ChatMessage>
               </AiChatEntry>
             </motion.div>
           )}
@@ -552,15 +593,19 @@ function AiToolSpinner({ running }: { running: boolean }) {
 
 export function AiWorkflowIllustration({
   withControls = false,
+  isEmail = false,
 }: IllustrationProps = {}) {
+  const copy = getEditorDemoCopy(isEmail);
   return (
     <Illustration
       withControls={withControls}
       label="AI connected to your product"
-      steps={aiSteps}
+      steps={aiSteps.map((step) =>
+        step === "Create landing page" ? copy.createTool : step,
+      )}
       stepDurations={aiStepDurations}
     >
-      {(state) => <AiWorkflowFrame {...state} />}
+      {(state) => <AiWorkflowFrame {...state} isEmail={isEmail} />}
     </Illustration>
   );
 }

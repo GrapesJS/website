@@ -88,6 +88,8 @@ const Header: React.FC<HeaderProps> = ({ isHome, className, ...rest }) => {
                     <a
                       key={href}
                       href={href}
+                      data-ph-capture-attribute-placement="header"
+                      data-ph-capture-attribute-link={content}
                       target={target}
                       rel={
                         target === "_blank" ? "noopener noreferrer" : undefined

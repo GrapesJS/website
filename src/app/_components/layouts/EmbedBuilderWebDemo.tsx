@@ -10,6 +10,8 @@ import {
 } from "./EditorShell";
 
 import { cn } from "@/lib/utils";
+import EmailTemplatePreview from "./EmailTemplatePreview";
+import { getEditorDemoCopy } from "./editorDemoContent";
 import {
   ArrowRight,
   Bold,
@@ -54,10 +56,6 @@ const CUE_TIMES = [
   17.3, 17.75, 18.2, 18.65, 19.2, 20.9, 22, 22.8, 23.4, 24.6, 26.6, 28,
 ];
 const DURATION = 32.6;
-const BRAND_PROMPT =
-  "Create a landing page following our company’s brand design system.";
-const COMPANY_PROMPT =
-  "Fill it with content for YourBrand, a collaborative workspace for creative teams.";
 
 export const demoSteps = {
   promptSent: 1,
@@ -228,7 +226,14 @@ function ToolCall({
   );
 }
 
-export function DemoConversation({ demo }: { demo: BuilderDemo }) {
+export function DemoConversation({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
+  const copy = getEditorDemoCopy(isEmail);
   const { step, time, reducedMotion } = demo;
   const opacity = useTransform(
     time,
@@ -243,13 +248,11 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
         className="min-h-0 flex-1 space-y-[0.65cqw] overflow-hidden px-[0.5cqw] py-[0.5cqw] leading-[1.45]"
       >
         {step >= demoSteps.promptSent && (
-          <ChatEntry user>{BRAND_PROMPT}</ChatEntry>
+          <ChatEntry user>{copy.prompt}</ChatEntry>
         )}
         {step >= demoSteps.fetchBrand && (
           <>
-            <ChatEntry>
-              I’ll fetch your brand guidelines, then build a page to match.
-            </ChatEntry>
+            <ChatEntry>{copy.reply}</ChatEntry>
             <ToolCall
               label="Fetch brand design system"
               done={step >= demoSteps.brandReady}
@@ -261,16 +264,14 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
         )}
         {step >= demoSteps.createPage && (
           <ToolCall
-            label="Create landing page"
+            label={copy.createTool}
             done={step >= demoSteps.pageReady}
             demo={demo}
           />
         )}
-        {step >= demoSteps.pageReady && (
-          <ChatEntry>Your page is ready. Let’s make it yours.</ChatEntry>
-        )}
+        {step >= demoSteps.pageReady && <ChatEntry>{copy.complete}</ChatEntry>}
         {step >= demoSteps.companyPrompt && (
-          <ChatEntry user>{COMPANY_PROMPT}</ChatEntry>
+          <ChatEntry user>{copy.companyPrompt}</ChatEntry>
         )}
         {step >= demoSteps.updateCopy && (
           <>
@@ -278,24 +279,29 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
               I’ll tailor the copy to YourBrand’s product and audience.
             </ChatEntry>
             <ToolCall
-              label="Update page copy"
+              label={copy.updateTool}
               done={step >= demoSteps.copyReady}
               demo={demo}
             />
           </>
         )}
         {step >= demoSteps.copyReady && (
-          <ChatEntry>
-            Done. You can edit any text directly on the page.
-          </ChatEntry>
+          <ChatEntry>{copy.visualEdit}</ChatEntry>
         )}
       </motion.div>
-      <DraftComposer demo={demo} />
+      <DraftComposer demo={demo} isEmail={isEmail} />
     </div>
   );
 }
 
-function DraftComposer({ demo }: { demo: BuilderDemo }) {
+function DraftComposer({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
+  const { prompt: brandPrompt, companyPrompt } = getEditorDemoCopy(isEmail);
   const { step, time } = demo;
   const [draft, setDraft] = useState("");
   const draftRef = useRef("");
@@ -323,13 +329,13 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
   useMotionValueEvent(time, "change", (value) => {
     let next = "";
     if (value >= 0.45 && value < firstSend) {
-      const count = Math.floor(((value - 0.45) / 2.65) * BRAND_PROMPT.length);
-      next = BRAND_PROMPT.slice(0, Math.min(BRAND_PROMPT.length, count));
+      const count = Math.floor(((value - 0.45) / 2.65) * brandPrompt.length);
+      next = brandPrompt.slice(0, Math.min(brandPrompt.length, count));
     } else if (value >= companyStart && value < companySend) {
       const count = Math.floor(
-        ((value - companyStart) / 2.7) * COMPANY_PROMPT.length,
+        ((value - companyStart) / 2.7) * companyPrompt.length,
       );
-      next = COMPANY_PROMPT.slice(0, Math.min(COMPANY_PROMPT.length, count));
+      next = companyPrompt.slice(0, Math.min(companyPrompt.length, count));
     }
     if (next !== draftRef.current) {
       draftRef.current = next;
@@ -619,7 +625,13 @@ function WorkspacePreview() {
   );
 }
 
-export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
+export function BrandLandingPage({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
   const { step, time, reducedMotion } = demo;
   const opacity = useTransform(
     time,
@@ -639,6 +651,39 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
         ["Work together", "Bring your people closer."],
         ["Grow your vision", "Build something that matters."],
       ];
+  if (isEmail) {
+    return (
+      <div className="relative min-h-0 flex-1 overflow-hidden bg-[color:var(--editor-canvas)] p-[1cqw]">
+        <div className="mb-[0.7cqw] flex justify-between text-[0.55cqw] text-[#a7a4b3]">
+          <span>Welcome email</span>
+          <span>600 px · HTML / MJML</span>
+        </div>
+        {step < demoSteps.navigation ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-[0.7cqw] text-[#a08caa]">
+            <Sparkles className="size-[1.7cqw] text-[#c4acd1]" />
+            <span className="text-[0.8cqw]">Your next email starts here.</span>
+          </div>
+        ) : (
+          <motion.div
+            style={{ opacity: reducedMotion ? 1 : opacity }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mx-auto max-w-[30cqw] shadow-xl"
+          >
+            <EmailTemplatePreview
+              kind="welcome"
+              selected={step >= demoSteps.hover}
+              title={
+                step >= demoSteps.headline
+                  ? "Your next big idea starts here."
+                  : "Welcome to YourBrand."
+              }
+            />
+          </motion.div>
+        )}
+      </div>
+    );
+  }
   return (
     <div className="relative m-[0.65cqw] min-h-0 flex-1 overflow-hidden rounded-[0.2cqw] bg-[#17121e] text-[#f3eaf8]">
       {step < demoSteps.navigation && (

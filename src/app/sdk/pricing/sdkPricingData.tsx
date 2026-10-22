@@ -99,10 +99,11 @@ const extraDomainPricingTooltip =
 const aiChatTooltip = (
   <>
     <p>
-      Startup includes the AI Chat frontend plugin with messages routed through
-      our cloud backend, using our model choices and rechargeable credits.
-      Business and Enterprise can connect a custom AI backend, so you control
-      models, tools, and behavior.
+      Startup includes the AI Chat plugin. Use Studio's hosted models with
+      rechargeable credits, or add your own provider keys and model choices in
+      AI Settings; those model calls are billed by your provider. Business and
+      Enterprise can route deployed requests to a custom AI backend that you
+      operate.
     </p>
     <div className="flex flex-col gap-1">
       <PricingInfoLink href="https://app.grapesjs.com/docs-sdk/plugins/ai/overview">

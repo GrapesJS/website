@@ -39,6 +39,7 @@ import {
 type EmbedBuilderWebProps = {
   className?: string;
   withControls?: boolean;
+  isEmail?: boolean;
 };
 
 function AppLogo() {
@@ -66,7 +67,7 @@ function SiteLogo() {
   );
 }
 
-function ApplicationShell() {
+function ApplicationShell({ isEmail = false }: { isEmail?: boolean }) {
   return (
     <>
       <div className="absolute inset-y-0 left-0 w-[15.3%] border-r-[0.075cqw] border-[#45404f] bg-[#1e1c28]">
@@ -93,7 +94,7 @@ function ApplicationShell() {
         <div className="h-[1cqw] w-[14cqw] rounded-full bg-[#2b243e]" />
         <div className="flex items-center gap-[1.4cqw]">
           <span className="flex h-[1.85cqw] items-center rounded-[0.2cqw] bg-[#8b5cf6] px-[0.8cqw] text-[0.8cqw] text-white">
-            Publish
+            {isEmail ? "Send" : "Publish"}
           </span>
           <div className="relative text-[#676372]">
             <Bell className="size-[1.55cqw]" strokeWidth={1.5} />
@@ -261,6 +262,7 @@ function LandingPageCanvas() {
 export default function EmbedBuilderWeb({
   className,
   withControls = false,
+  isEmail = false,
 }: EmbedBuilderWebProps) {
   const ref = useRef<HTMLDivElement>(null);
   const demo = useBuilderDemo(ref);
@@ -278,23 +280,28 @@ export default function EmbedBuilderWeb({
       >
         <div
           role="img"
-          aria-label="GrapesJS Studio demo: an AI assistant fetches brand guidelines, builds a landing page, personalizes it for YourBrand, and a user edits the headline directly on the canvas."
+          aria-label={
+            isEmail
+              ? "GrapesJS Studio email builder demo: an AI assistant creates a branded welcome email, personalizes its content, and lets users edit it visually."
+              : "GrapesJS Studio demo: an AI assistant fetches brand guidelines, builds a landing page, personalizes it for YourBrand, and a user edits the headline directly on the canvas."
+          }
           className="absolute inset-0"
         >
           <div
             aria-hidden="true"
             className="absolute inset-0 select-none text-left font-[Arial,Helvetica,sans-serif] text-[0.7cqw] font-normal leading-normal text-[#a7a4b3] [&_svg]:shrink-0"
           >
-            <ApplicationShell />
+            <ApplicationShell isEmail={isEmail} />
             <div className="absolute bottom-[2.6%] left-[16.7%] right-[1.35%] top-[10.1%] grid grid-cols-[2.8%_19.7%_minmax(0,1fr)_16.4%] overflow-hidden shadow-[0_0_0.6cqw_#16131c22]">
               <EditorSidebar />
-              <DemoConversation demo={demo} />
+              <DemoConversation demo={demo} isEmail={isEmail} />
               <div className="flex min-w-0 flex-col overflow-hidden bg-[color:var(--editor-canvas)]">
                 <CanvasToolbar />
-                <BrandLandingPage demo={demo} />
+                <BrandLandingPage demo={demo} isEmail={isEmail} />
               </div>
               <StylesPanel
                 brand
+                isEmail={isEmail}
                 color="#f3eaf8"
                 selected={demo.step >= demoSteps.hover}
               />

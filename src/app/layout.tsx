@@ -5,6 +5,7 @@ import Script from "next/script";
 import cn from "classnames";
 import "./globals.css";
 import { DEFAULT_OG_IMAGE, SITE_URL, SITE_URL_OBJECT } from "@/lib/site";
+import MarketingAttributionLinks from "@/app/_components/MarketingAttributionLinks";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -72,6 +73,7 @@ export default function RootLayout({
         */}
       </head>
       <body suppressHydrationWarning className={cn(manrope.className)}>
+        <MarketingAttributionLinks />
         <div className="min-h-screen">{children}</div>
         <noscript>
           <iframe

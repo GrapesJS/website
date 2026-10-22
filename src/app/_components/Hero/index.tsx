@@ -6,6 +6,8 @@ interface HeroProps extends React.HTMLProps<HTMLElement> {
   title?: string;
   subTitle?: string;
   clsTitle?: string;
+  mainHeadingAsH1?: boolean;
+  withBanner?: boolean;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -14,6 +16,8 @@ const Hero: React.FC<HeroProps> = ({
   className,
   title,
   subTitle,
+  mainHeadingAsH1 = false,
+  withBanner = true,
   ...rest
 }) => (
   <>
@@ -23,24 +27,35 @@ const Hero: React.FC<HeroProps> = ({
         {!!title && (
           <div className={styles.specialHeadingContainer}>
             <div className="z-[1]">
-              <h1 className={styles.h1}>{title}</h1>
+              {mainHeadingAsH1 ? (
+                <p className={styles.h1}>{title}</p>
+              ) : (
+                <h1 className={styles.h1}>{title}</h1>
+              )}
               <hr className={styles.separator} />
             </div>
           </div>
         )}
-        {!!subTitle && <h2 className={cn(styles.h2)}>{subTitle}</h2>}
+        {!!subTitle &&
+          (mainHeadingAsH1 ? (
+            <h1 className={cn(styles.h2, clsTitle)}>{subTitle}</h1>
+          ) : (
+            <h2 className={cn(styles.h2, clsTitle)}>{subTitle}</h2>
+          ))}
 
         {children}
       </div>
-      <div className={styles.bannerContainer}>
-        <div className={styles.bannerFrame}>
-          <img
-            className={styles.bannerImage}
-            src="/assets/images/grapesjs-front-page-m.jpg"
-            alt="GrapesJS Webpage Demo"
-          />
+      {withBanner && (
+        <div className={styles.bannerContainer}>
+          <div className={styles.bannerFrame}>
+            <img
+              className={styles.bannerImage}
+              src="/assets/images/grapesjs-front-page-m.jpg"
+              alt="GrapesJS Webpage Demo"
+            />
+          </div>
         </div>
-      </div>
+      )}
     </section>
     <hr className={styles.shadowSeparator} />
   </>

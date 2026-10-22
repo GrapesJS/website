@@ -4,57 +4,13 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import SectionEyebrow from "../_components/SectionEyebrow";
 import WindowShell from "../_components/WindowShell";
 import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import SdkFeatures from "../_components/sdk/SdkFeatures";
+import SdkCustomerLogos from "../_components/sdk/SdkCustomerLogos";
 
-const clsFullWhite = "!brightness-0 !invert";
-const clsSmallLogo = "!h-[40px]";
 const clsSection =
   "flex w-full flex-col items-center gap-6 px-4 pb-6 pt-[54px] [&>*]:max-w-[1100px]";
-
-const customers = [
-  {
-    src: "/assets/images/external-logos/gainsight.webp",
-    alt: "Gainsight",
-    className: cn(clsFullWhite, clsSmallLogo),
-  },
-  {
-    src: "assets/images/external-logos/microsoft.webp",
-    alt: "Microsoft",
-    className: clsFullWhite,
-  },
-  {
-    src: "/assets/images/external-logos/bytedance.webp",
-    alt: "TikTok",
-    className: cn(clsFullWhite, clsSmallLogo),
-  },
-  {
-    src: "assets/images/external-logos/bbc.webp",
-    alt: "BBC",
-    className: clsFullWhite,
-  },
-  {
-    src: "assets/images/external-logos/servicenow.webp",
-    alt: "ServiceNow",
-    className: cn(clsFullWhite, "!h-[30px]"),
-  },
-  {
-    src: "assets/images/external-logos/braze.webp",
-    alt: "Braze",
-    className: clsFullWhite,
-  },
-  {
-    src: "assets/images/external-logos/phresia.webp",
-    alt: "Phresia",
-    className: clsFullWhite,
-  },
-  {
-    src: "assets/images/external-logos/france-gov.webp",
-    alt: "France Government",
-  },
-];
 
 export default function SDKPage() {
   return (
@@ -93,7 +49,11 @@ export default function SDKPage() {
           </p>
 
           <div className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>
+            <CTALink
+              href={urls.getStudioEditorUrl()}
+              data-ph-capture-attribute-placement="sdk-overview-hero"
+              data-ph-capture-attribute-cta="Create your Editor"
+            >
               Create your Editor
             </CTALink>
             {/* <CTALink
@@ -158,37 +118,7 @@ export default function SDKPage() {
 
         <hr className="relative mt-[120px] h-0 w-full overflow-visible border-0 bg-none before:pointer-events-none before:absolute before:top-0 before:z-0 before:h-[1000px] before:w-full before:-translate-y-1/2 before:bg-[linear-gradient(180deg,var(--transparentColor)_20%,var(--backgroundColor)_40%,var(--backgroundColor)_50%,var(--transparentColor)_80%)] before:bg-no-repeat before:content-[''] max-[640px]:mt-0 max-[640px]:before:bg-[linear-gradient(180deg,var(--transparentColor)_35%,var(--backgroundColor)_50%,var(--transparentColor)_80%)]" />
 
-        <section className={clsSection}>
-          <SectionEyebrow as="h2" className="z-[1]">
-            POWERING SOLUTIONS FOR
-          </SectionEyebrow>
-          <div className="relative w-full overflow-hidden [--logo-mask:linear-gradient(90deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-image:var(--logo-mask)] [mask-image:var(--logo-mask)]">
-            <div className="flex w-max animate-logo-marquee will-change-transform motion-reduce:animate-none">
-              {[0, 1].map((copyIndex) => (
-                <div
-                  key={copyIndex}
-                  className="flex shrink-0 items-center gap-12 px-6 max-[640px]:gap-9"
-                  aria-hidden={copyIndex === 1}
-                >
-                  {customers.map(({ src, alt, className }) => (
-                    <div
-                      key={`${copyIndex}-${src}`}
-                      className="flex min-w-[160px] items-center justify-center max-[640px]:min-w-[128px]"
-                    >
-                      <img
-                        className={cn("h-[54px] grayscale", className)}
-                        src={src}
-                        alt={alt}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <SdkCustomerLogos />
 
         <SdkFeatures />
 
