@@ -12,15 +12,19 @@ const config: Config = {
     extend: {
       animation: {
         "section-enter":
-          "section-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) both",
+          "section-enter 1000ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) both",
         "accordion-down": "accordion-down 250ms ease-out",
         "accordion-up": "accordion-up 200ms ease-out",
         "logo-marquee": "logo-marquee 40s linear infinite",
       },
       keyframes: {
         "section-enter": {
-          from: { opacity: "0", transform: "translate3d(0, 24px, 0)" },
-          to: { opacity: "1", transform: "none" },
+          from: {
+            opacity: "0",
+            transform: "translate3d(0, 50px, 0)",
+            filter: "blur(5px)",
+          },
+          to: { opacity: "1", transform: "none", filter: "blur(0)" },
         },
         "accordion-down": {
           from: { height: "0", opacity: "0" },

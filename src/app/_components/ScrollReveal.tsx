@@ -31,7 +31,7 @@ export default function ScrollReveal({ children }: { children: ReactNode }) {
           observer.unobserve(element);
         });
       },
-      { rootMargin: "0px 0px -48px 0px", threshold: 0 },
+      { rootMargin: "0px 0px -48px 0px", threshold: 0.2 },
     );
 
     // Content stays visible in server HTML and when JavaScript is unavailable.

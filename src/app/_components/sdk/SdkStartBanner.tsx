@@ -42,7 +42,7 @@ export default function SdkStartBanner({
           glowColorDarkVar="--activeHighlightColor"
           speedMin={0.1}
           speedMax={0.5}
-          speedScale={1}
+          speedScale={2}
         />
         <div aria-hidden className={theme.cards.topGlow} />
         <div className="mx-auto max-w-lg relative">
