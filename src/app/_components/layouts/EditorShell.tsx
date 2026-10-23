@@ -442,14 +442,16 @@ export function StylesPanel({
 }
 
 /** The same conversation header is used by the hero and feature demos. */
-export function ChatPanelHeader() {
+export function ChatPanelHeader({
+  title = "AI Assistant",
+}: { title?: string } = {}) {
   return (
     <div className="flex h-[calc(2.1*var(--editor-unit,1cqw))] shrink-0 items-center gap-[calc(0.45*var(--editor-unit,1cqw))] border-b-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-[calc(0.5*var(--editor-unit,1cqw))] text-[calc(0.72*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]">
       <Sparkles
         className="size-[calc(0.95*var(--editor-unit,1cqw))] fill-current"
         strokeWidth={1}
       />
-      <span className="flex-1">AI Assistant</span>
+      <span className="flex-1">{title}</span>
       <Trash2 className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
       <X className="ml-[calc(0.35*var(--editor-unit,1cqw))] size-[calc(0.95*var(--editor-unit,1cqw))]" />
     </div>

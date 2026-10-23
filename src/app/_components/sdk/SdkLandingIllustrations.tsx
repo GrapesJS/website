@@ -1,336 +1,367 @@
+"use client";
+
 import {
-  ArrowUpRight,
+  ArrowDown,
   Bot,
   Check,
   ChevronDown,
   Code2,
-  Layers3,
+  Image as ImageIcon,
+  LoaderCircle,
   LockKeyhole,
-  MessageSquareText,
-  MoreHorizontal,
-  Plus,
-  Send,
+  Server,
   Sparkles,
-  Workflow,
 } from "lucide-react";
+import { Fragment, type ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import {
+  ChatComposer,
+  ChatMessage,
+  ChatPanelHeader,
+  ChatToolCard,
+  editorShellText,
+  editorShellTheme,
+} from "../layouts/EditorShell";
+import { Illustration, type IllustrationState } from "./SdkIllustrations";
+import { theme } from "./theme";
 
-const frame = "overflow-hidden rounded-xl border border-white/10 bg-[#0c0a10]";
-function WindowFrame({
-  title,
+function AiIllustration({
+  label,
+  steps,
   children,
 }: {
-  title: string;
-  children: React.ReactNode;
+  label: string;
+  steps: string[];
+  children: (state: IllustrationState) => ReactNode;
 }) {
   return (
-    <div className={frame} role="img" aria-label={title}>
-      <div className="flex h-10 items-center gap-2 border-b border-white/[0.07] bg-[#141119] px-3">
-        <span className="size-2 rounded-full bg-white/15" />
-        <span className="size-2 rounded-full bg-white/15" />
-        <span className="size-2 rounded-full bg-white/15" />
-        <span className="ml-2 truncate text-[11px] text-white/50">{title}</span>
-        <MoreHorizontal className="ml-auto size-4 text-white/35" />
-      </div>
-      {children}
+    <Illustration label={label} steps={steps}>
+      {(state) => (
+        <div
+          className={cn(
+            editorShellTheme,
+            editorShellText,
+            theme.illustrations.pairedViewport,
+            "flex flex-col bg-[color:var(--editor-bg)] [--editor-unit:17px] [--editor-composer-height:82px]",
+          )}
+        >
+          {children({
+            ...state,
+            step: state.reduced ? steps.length - 1 : state.step,
+          })}
+        </div>
+      )}
+    </Illustration>
+  );
+}
+
+function PanelHeader({ title, caption }: { title: string; caption?: string }) {
+  return (
+    <div className={cn(theme.illustrations.panelHeader, "shrink-0 gap-2")}>
+      <Sparkles size={13} className="text-[#b494f4]" />
+      <span className="min-w-0 flex-1 font-semibold text-[#ded3e6]">
+        {title}
+      </span>
+      {caption && <span className="text-[9px] text-[#a99ab4]">{caption}</span>}
     </div>
   );
 }
 
-function Avatar({
-  label,
-  className = "",
-}: {
-  label: string;
-  className?: string;
-}) {
+function ToolSpinner({ running }: { running: boolean }) {
   return (
-    <span
-      className={`grid size-7 shrink-0 place-items-center rounded-full bg-[#80539b]/30 text-[10px] font-semibold text-[#edcff3] ${className}`}
-    >
-      {label}
-    </span>
+    <LoaderCircle
+      className="size-3 text-[#b597fa] motion-safe:animate-spin"
+      style={{ animationPlayState: running ? "running" : "paused" }}
+    />
   );
 }
 
 export function AiChatIllustration() {
   return (
-    <WindowFrame title="Page editor · AI assistant">
-      <div className="grid min-h-[300px] grid-cols-[1fr_0.95fr] max-[520px]:grid-cols-1">
-        <div className="relative flex items-center justify-center bg-[radial-gradient(ellipse_at_center,#35223e_0%,#17121c_60%,#100d14_100%)] p-5 max-[520px]:hidden">
-          <div className="w-full max-w-[290px] rounded-lg border border-white/10 bg-[#f8f6f8] p-4 text-[#26212a] shadow-[0_18px_50px_rgba(0,0,0,.4)]">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-[10px] font-bold tracking-wide">
-                NORTHSTAR
+    <AiIllustration
+      label="Customize the AI assistant's labels, suggestions, and input"
+      steps={["Your labels", "Your suggestions", "Your input"]}
+    >
+      {({ step }) => (
+        <>
+          <ChatPanelHeader
+            title={step > 0 ? "YourBrand Assistant" : "AI Assistant"}
+          />
+          <div className="flex shrink-0 gap-2 border-b border-[color:var(--editor-border)] px-3 py-2 text-[9px]">
+            {["Labels", "Suggestions", "Input"].map((label, index) => (
+              <span
+                key={label}
+                className={cn(
+                  "rounded-sm px-2 py-1 transition-colors duration-300 motion-reduce:transition-none",
+                  index === step
+                    ? "bg-[#8b5cf6]/20 text-[#d5bbf0]"
+                    : "text-[#a99ab4]",
+                )}
+              >
+                {label}
               </span>
-              <div className="flex gap-2 text-[8px] text-[#77717c]">
-                <span>Platform</span>
-                <span>Resources</span>
-                <span>Log in</span>
-              </div>
+            ))}
+          </div>
+          <div className="flex min-h-0 flex-1 flex-col justify-center px-4 py-4 sm:px-6">
+            <div className="mb-3 grid size-8 place-items-center rounded-lg bg-[#8b5cf6]/15 text-[#c5a8ec]">
+              <Sparkles size={17} />
             </div>
-            <div className="rounded-md bg-[#eee7f4] px-3 py-5">
-              <span className="rounded-full bg-white px-2 py-1 text-[7px] font-medium text-[#79558c]">
-                Product update
-              </span>
-              <p className="mt-3 max-w-[170px] text-[17px] font-semibold leading-[1.15]">
-                Build pages that move your team forward.
-              </p>
-              <p className="mt-2 max-w-[180px] text-[8px] leading-4 text-[#756b7a]">
-                Turn your ideas into a clear, polished experience.
-              </p>
-              <span className="mt-3 inline-flex rounded bg-[#86539a] px-2.5 py-1.5 text-[7px] font-semibold text-white">
-                Explore the platform
-              </span>
-            </div>
-            <div className="mt-3 flex gap-2">
-              <span className="h-9 flex-1 rounded bg-[#f0edf1]" />
-              <span className="h-9 flex-1 rounded bg-[#f0edf1]" />
+            <p className="text-base font-semibold text-[#eee4f5]">
+              {step > 0
+                ? "Let's build your next campaign."
+                : "What would you like to create?"}
+            </p>
+            <p className="mt-2 text-[11px] leading-5 text-[#b9a7c6]">
+              An assistant shaped around your product.
+            </p>
+            <div className="mt-4 grid gap-2">
+              {(step > 0
+                ? ["Start from our brand kit", "Update our campaign offer"]
+                : ["Create a hero section", "Add a contact form"]
+              ).map((suggestion) => (
+                <div
+                  key={suggestion}
+                  className="flex items-center gap-2 rounded-md border border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-3 py-2 text-[11px] text-[#d4c7df]"
+                >
+                  <Sparkles size={11} className="text-[#b494f4]" />
+                  {suggestion}
+                </div>
+              ))}
             </div>
           </div>
-          <span className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 text-[9px] text-white/50">
-            <Sparkles className="size-3 text-[#d8a9e1]" />
-            Live editor canvas
-          </span>
-        </div>
-        <div className="flex flex-col border-l border-white/[0.07] bg-[#141119] max-[520px]:border-l-0">
-          <div className="flex items-center gap-2 border-b border-white/[0.07] px-3 py-3">
-            <span className="grid size-6 place-items-center rounded-md bg-[#a35ea9]/20">
-              <Sparkles className="size-3.5 text-[#dca8e5]" />
-            </span>
-            <span className="text-[11px] font-semibold text-white/90">
-              AI assistant
-            </span>
-            <span className="ml-auto rounded-full border border-white/10 px-2 py-0.5 text-[8px] text-white/45">
-              Editor-aware
-            </span>
-          </div>
-          <div className="flex flex-1 flex-col gap-3 p-3">
-            <div className="flex justify-end">
-              <p className="max-w-[92%] rounded-xl rounded-tr-sm bg-[#624273] px-3 py-2 text-[10px] leading-4 text-white">
-                Make the headline shorter and add a clear call to action.
-              </p>
-            </div>
-            <div className="flex items-start gap-2">
-              <Avatar label="AI" />
-              <div className="rounded-xl rounded-tl-sm border border-white/[0.08] bg-[#1d1922] px-3 py-2 text-[10px] leading-4 text-white/75">
-                I tightened the headline and added a button that matches your
-                brand.
-              </div>
-            </div>
-            <div className="ml-9 flex items-center gap-2 rounded-md border border-emerald-300/20 bg-emerald-300/[0.06] px-2.5 py-2 text-[9px] text-emerald-100">
-              <Check className="size-3.5 text-emerald-300" />
-              Updated hero section{" "}
-              <span className="ml-auto text-white/40">Undo</span>
-            </div>
-          </div>
-          <div className="mx-3 mb-3 flex items-center gap-2 rounded-lg border border-white/10 bg-[#0d0b10] px-3 py-2 text-[9px] text-white/35">
-            <span className="flex-1">Describe an edit...</span>
-            <span className="grid size-6 place-items-center rounded-md bg-[#81518e] text-white">
-              <Send className="size-3" />
-            </span>
-          </div>
-        </div>
-      </div>
-    </WindowFrame>
+          <ChatComposer
+            draft={
+              step === 2 ? "Update the offer for our latest campaign." : ""
+            }
+          />
+        </>
+      )}
+    </AiIllustration>
   );
 }
 
+const modelTasks = [
+  {
+    label: "Chat assistant",
+    model: "Your chat model",
+    icon: Bot,
+    prompt: "Use our brand voice. Keep your answers clear and useful.",
+  },
+  {
+    label: "Code generation",
+    model: "Your code model",
+    icon: Code2,
+    prompt: "Prefer our approved components and accessible markup.",
+  },
+  {
+    label: "Image generation",
+    model: "Your image model",
+    icon: ImageIcon,
+    prompt: "Follow our brand palette and product photography style.",
+  },
+];
+
 export function AiModelsIllustration() {
   return (
-    <WindowFrame title="Workspace settings · AI models">
-      <div className="grid min-h-[300px] grid-cols-[0.72fr_1.28fr] max-[520px]:grid-cols-1">
-        <aside className="border-r border-white/[0.07] bg-[#141119] p-4 max-[520px]:hidden">
-          <p className="mb-3 text-[9px] font-semibold uppercase tracking-[.14em] text-white/40">
-            Workspace
-          </p>
-          {["General", "Members", "AI models", "Usage"].map((item) => (
-            <div
-              key={item}
-              className={`mb-1 rounded-md px-2.5 py-2 text-[10px] ${item === "AI models" ? "bg-[#9f5cae]/15 text-[#edc9f2]" : "text-white/45"}`}
-            >
-              {item}
-            </div>
-          ))}
-        </aside>
-        <div className="p-4 sm:p-5">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold text-white/90">
-                Available models
-              </p>
-              <p className="mt-1 text-[10px] text-white/45">
-                Select a model for each AI task.
-              </p>
-            </div>
-            <span className="inline-flex items-center gap-1 rounded-md bg-[#d6a1df] px-2.5 py-1.5 text-[9px] font-semibold text-[#221427]">
-              <Plus className="size-3" />
-              Add model
-            </span>
-          </div>
-          <div className="mt-5 space-y-2">
-            {[
-              {
-                label: "Chat assistant",
-                model: "Claude 3.7 Sonnet",
-                mark: "A",
-              },
-              { label: "Code generation", model: "GPT-4.1 mini", mark: "O" },
-              { label: "Image generation", model: "Studio default", mark: "✦" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="flex items-center gap-3 rounded-lg border border-white/[0.08] bg-white/[0.025] p-3"
-              >
-                <span className="grid size-7 place-items-center rounded-md bg-white/[0.07] text-[10px] font-semibold text-white/70">
-                  {item.mark}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[10px] text-white/45">{item.label}</p>
-                  <p className="mt-0.5 truncate text-[11px] font-medium text-white/85">
-                    {item.model}
-                  </p>
+    <AiIllustration
+      label="Choose models and instructions for each AI task"
+      steps={modelTasks.map((task) => task.label)}
+    >
+      {({ step }) => (
+        <>
+          <PanelHeader title="AI Settings" caption="Your workspace" />
+          <div className="flex min-h-0 flex-1 flex-col gap-3 p-4 sm:p-5">
+            <p className="text-[11px] text-[#b9a7c6]">
+              A model for every part of the workflow.
+            </p>
+            <div className="grid gap-2">
+              {modelTasks.map(({ label, model, icon: Icon }, index) => (
+                <div
+                  key={label}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg border p-3 transition-colors duration-300 motion-reduce:transition-none",
+                    step === index
+                      ? "border-[#a88af2]/60 bg-[#8b5cf6]/10"
+                      : "border-[color:var(--editor-border)] bg-[color:var(--editor-raised)]",
+                  )}
+                >
+                  <Icon size={17} className="text-[#c5a8ec]" />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[9px] text-[#a99ab4]">{label}</p>
+                    <p className="mt-1 text-xs font-medium text-[#e6dcec]">
+                      {model}
+                    </p>
+                  </div>
+                  <ChevronDown size={13} />
                 </div>
-                <ChevronDown className="size-3.5 text-white/40" />
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="rounded-lg border border-[color:var(--editor-border)] bg-[#17121e] p-3">
+              <p className="mb-2 text-[9px] font-semibold uppercase tracking-wider text-[#c5a8ec]">
+                Your instructions
+              </p>
+              <p className="text-[11px] leading-5 text-[#d1c1dc]">
+                {modelTasks[step].prompt}
+              </p>
+            </div>
+            <p className="mt-auto flex items-center gap-2 text-[9px] text-[#a99ab4]">
+              <LockKeyhole size={11} />
+              Provider credentials configured in AI Settings.
+            </p>
           </div>
-          <div className="mt-3 flex items-start gap-2 rounded-md border border-[#a273b2]/20 bg-[#9861a6]/[0.07] p-2.5 text-[9px] leading-4 text-white/55">
-            <LockKeyhole className="mt-0.5 size-3 shrink-0 text-[#d4a0df]" />
-            Provider credentials stay in your workspace. The editor receives
-            model IDs, not API keys.
-          </div>
-        </div>
-      </div>
-    </WindowFrame>
+        </>
+      )}
+    </AiIllustration>
   );
 }
 
 export function AiToolsIllustration() {
   return (
-    <WindowFrame title="AI workflow · Product tools">
-      <div className="grid min-h-[300px] grid-cols-[1fr_auto_1fr] items-center gap-3 bg-[radial-gradient(ellipse_at_center,rgba(114,70,132,.14),transparent_70%)] p-4 sm:gap-5 sm:p-6">
-        <div className="space-y-2">
-          <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold text-white/80">
-            <MessageSquareText className="size-3.5 text-[#d9a7e0]" />
-            AI request
-          </div>
-          <div className="rounded-lg border border-white/10 bg-[#17131b] p-3 text-[9px] leading-4 text-white/60">
-            “Find the customer's latest campaign and use its offer in this
-            banner.”
-          </div>
-          <div className="flex items-center gap-1.5 text-[8px] text-white/35">
-            <Sparkles className="size-3 text-[#d9a7e0]" />
-            Assistant decides which tool to use
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-1 text-[#d29ad9]">
-          <span className="h-12 w-px bg-gradient-to-b from-transparent via-[#a963b3] to-transparent" />
-          <ArrowUpRight className="size-4" />
-          <span className="text-[8px]">tool call</span>
-        </div>
-        <div className="space-y-2">
-          <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold text-white/80">
-            <Workflow className="size-3.5 text-[#d9a7e0]" />
-            Your product tools
-          </div>
-          {[
-            { icon: Layers3, title: "getCampaignContext", state: "Completed" },
-            { icon: Code2, title: "updateEditorBlock", state: "Ready" },
-          ].map(({ icon: Icon, title, state }) => (
-            <div
-              key={title}
-              className="flex items-center gap-2.5 rounded-lg border border-white/10 bg-[#17131b] p-3"
+    <AiIllustration
+      label="Connect product context and editor actions with custom tools"
+      steps={["Get product context", "Apply the result", "Ready to refine"]}
+    >
+      {({ step, running }) => (
+        <>
+          <ChatPanelHeader />
+          <div className="flex min-h-0 flex-1 flex-col gap-3 p-4 sm:p-5">
+            <ChatMessage user>
+              Use our latest campaign offer in this banner.
+            </ChatMessage>
+            <ChatToolCard
+              label="getCampaignContext"
+              done={step >= 1}
+              status={<ToolSpinner running={running} />}
             >
-              <span className="grid size-7 place-items-center rounded-md bg-[#9f5cae]/15 text-[#d9a7e0]">
-                <Icon className="size-3.5" />
-              </span>
-              <div className="min-w-0">
-                <p className="truncate font-mono text-[9px] text-white/80">
-                  {title}
+              <div
+                className={cn(
+                  "px-3 pb-3 text-[11px] leading-5 transition-opacity duration-300 motion-reduce:transition-none",
+                  step < 1 && "opacity-0",
+                )}
+              >
+                <p className="text-[#d4c7df]">Autumn collection · Save 20%</p>
+                <p className="mt-1 text-[9px] text-[#a99ab4]">
+                  Server tool · your application data
                 </p>
-                <p className="mt-1 text-[8px] text-white/35">{state}</p>
               </div>
-              <Check className="ml-auto size-3 text-emerald-300/75" />
+            </ChatToolCard>
+            <ChatToolCard
+              label="updateEditorBlock"
+              done={step >= 2}
+              status={<ToolSpinner running={running && step >= 1} />}
+            >
+              <div
+                className={cn(
+                  "px-3 pb-3 text-[11px] leading-5 transition-opacity duration-300 motion-reduce:transition-none",
+                  step < 2 && "opacity-0",
+                )}
+              >
+                <p className="text-[#d4c7df]">
+                  Banner updated with your campaign.
+                </p>
+                <p className="mt-1 text-[9px] text-[#a99ab4]">
+                  Client tool · your editor action
+                </p>
+              </div>
+            </ChatToolCard>
+            <div
+              className={cn(
+                "text-[11px] leading-5 text-[#d1c1dc] transition-opacity duration-300 motion-reduce:transition-none",
+                step < 2 && "opacity-0",
+              )}
+            >
+              <ChatMessage>
+                The offer is in place. You can keep refining it visually.
+              </ChatMessage>
             </div>
-          ))}
-          <div className="rounded-lg border border-dashed border-white/10 px-3 py-2 text-center text-[8px] text-white/35">
-            Connect app data · execute editor actions
+            <p className="mt-auto text-[9px] text-[#a99ab4]">
+              Custom functions connected through your AI backend.
+            </p>
           </div>
-        </div>
-      </div>
-    </WindowFrame>
+        </>
+      )}
+    </AiIllustration>
   );
 }
 
+const backendNodes = [
+  {
+    title: "Studio editor",
+    detail: "Messages and project context",
+    icon: Sparkles,
+  },
+  {
+    title: "Your backend",
+    detail: "Authentication, tools, and instructions",
+    icon: Server,
+  },
+  {
+    title: "Your model provider",
+    detail: "The models your team chooses",
+    icon: Bot,
+  },
+];
+
 export function AiBackendIllustration() {
   return (
-    <WindowFrame title="Your infrastructure · AI backend">
-      <div className="grid min-h-[300px] grid-cols-[1fr_0.9fr] gap-4 p-4 sm:gap-6 sm:p-6 max-[520px]:grid-cols-1">
-        <div className="flex flex-col justify-center">
-          <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold text-white/80">
-            <LockKeyhole className="size-3.5 text-[#d9a7e0]" />
-            Private AI route
-          </div>
-          <div className="rounded-lg border border-white/10 bg-[#101017] p-3 font-mono text-[9px] leading-5 text-white/55">
-            <p>
-              <span className="text-[#d29ad9]">POST</span> /api/ai/chat
-            </p>
-            <p className="mt-2 text-white/35">
-              // your API key stays server-side
-            </p>
-            <p>
-              <span className="text-[#d29ad9]">const</span> result ={" "}
-              <span className="text-emerald-200">createStreamResponse</span>(
-              {"{"}
-            </p>
-            <p className="pl-3">messages, projectContext,</p>
-            <p className="pl-3">model, tools, systemPrompt</p>
-            <p>{"}"});</p>
-          </div>
-          <div className="mt-3 flex items-center gap-2 text-[8px] text-white/40">
-            <Check className="size-3 text-emerald-300" />
-            Streaming response to the editor
-          </div>
-        </div>
-        <div className="flex flex-col justify-center gap-2">
-          {[
-            {
-              title: "Your app",
-              sub: "Auth · product data · policy",
-              icon: LockKeyhole,
-            },
-            {
-              title: "AI SDK backend",
-              sub: "Models · tools · prompt",
-              icon: Bot,
-            },
-            {
-              title: "Studio editor",
-              sub: "Chat UI · project context",
-              icon: Sparkles,
-            },
-          ].map(({ title, sub, icon: Icon }, index) => (
-            <div
-              key={title}
-              className="flex items-center gap-3 rounded-lg border border-white/10 bg-[#17131b] p-3"
-            >
-              <span className="grid size-8 place-items-center rounded-md bg-[#9f5cae]/15 text-[#d9a7e0]">
-                <Icon className="size-4" />
-              </span>
-              <div>
-                <p className="text-[10px] font-medium text-white/80">{title}</p>
-                <p className="mt-1 text-[8px] text-white/40">{sub}</p>
-              </div>
-              {index < 2 && (
-                <span className="ml-auto text-[10px] text-[#d9a7e0]">↓</span>
-              )}
+    <AiIllustration
+      label="Route editor requests through your own AI backend"
+      steps={[
+        "Editor context",
+        "Your endpoint",
+        "Your provider",
+        "Stream to the editor",
+      ]}
+    >
+      {({ step }) => (
+        <>
+          <PanelHeader title="Your AI endpoint" caption="POST /api/ai/chat" />
+          <div className="flex min-h-0 flex-1 flex-col gap-3 p-4 sm:p-5">
+            <div className="rounded-lg border border-[color:var(--editor-border)] bg-[#17121e] p-3 font-mono text-[10px] leading-5 text-[#c8b7d4]">
+              <span className="text-[#c5a8ec]">createStreamResponse</span>({"{"}
+              <br />
+              <span className="pl-3">messages, projectContext,</span>
+              <br />
+              <span className="pl-3">model, tools, systemPrompt</span>
+              <br />
+              {"}"});
             </div>
-          ))}
-          <span className="mt-1 text-center text-[8px] text-white/35">
-            Keep full control on Business plans
-          </span>
-        </div>
-      </div>
-    </WindowFrame>
+            <div className="grid gap-1">
+              {backendNodes.map(({ title, detail, icon: Icon }, index) => (
+                <Fragment key={title}>
+                  {index > 0 && (
+                    <ArrowDown size={12} className="mx-auto text-[#9d79c4]" />
+                  )}
+                  <div
+                    className={cn(
+                      "flex items-center gap-3 rounded-lg border px-3 py-2 transition-colors duration-300 motion-reduce:transition-none",
+                      (step === 3 ? index === 0 : index === step)
+                        ? "border-[#a88af2]/60 bg-[#8b5cf6]/10"
+                        : "border-[color:var(--editor-border)] bg-[color:var(--editor-raised)]",
+                    )}
+                  >
+                    <Icon size={16} className="text-[#c5a8ec]" />
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-medium text-[#e6dcec]">
+                        {title}
+                      </p>
+                      <p className="mt-0.5 text-[9px] text-[#a99ab4]">
+                        {detail}
+                      </p>
+                    </div>
+                  </div>
+                </Fragment>
+              ))}
+            </div>
+            <p className="mt-auto flex items-center gap-2 text-[10px] text-[#c5a8ec]">
+              <Check size={12} />
+              {step === 3
+                ? "Stream results back into the editor."
+                : "Your providers. Your tools. Your response flow."}
+            </p>
+          </div>
+        </>
+      )}
+    </AiIllustration>
   );
 }

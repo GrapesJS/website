@@ -26,6 +26,9 @@ import {
   ThemeIllustration,
 } from "./SdkIllustrations";
 import { theme } from "./theme";
+import IllustratedFeatureCard, {
+  sdkFeatureCardClass as cardClass,
+} from "./SdkFeatureCard";
 import {
   CustomBlocksIllustration,
   DataSourcesIllustration,
@@ -34,11 +37,6 @@ import {
 
 const docs = "https://app.grapesjs.com/docs-sdk";
 const linkClass = cn(theme.links.base, theme.colors.linkText);
-const cardClass = cn(
-  "overflow-hidden rounded-2xl",
-  theme.cards.border,
-  theme.cards.bg,
-);
 
 function DocsLink({
   href,
@@ -51,56 +49,6 @@ function DocsLink({
     <a href={`${docs}/${href}`} className={linkClass}>
       {children} <ArrowRight size={15} aria-hidden />
     </a>
-  );
-}
-
-function IllustratedFeatureCard({
-  label,
-  title,
-  description,
-  links,
-  children,
-  wide = false,
-}: {
-  label: string;
-  title: string;
-  description: string;
-  links: React.ReactNode;
-  children: React.ReactNode;
-  wide?: boolean;
-}) {
-  return (
-    <article
-      data-reveal
-      className={cn(cardClass, "flex flex-col", wide && "md:col-span-2")}
-    >
-      <div className="flex-1 p-6 md:p-8">
-        <p
-          className={cn("mb-3", theme.cards.eyebrow, theme.colors.eyebrowText)}
-        >
-          {label}
-        </p>
-        <h3
-          className={cn(
-            "text-2xl font-semibold leading-tight tracking-tight",
-            wide ? "md:text-[30px]" : "md:text-[28px]",
-            theme.colors.primaryText,
-          )}
-        >
-          {title}
-        </h3>
-        <p
-          className={cn(
-            "mb-5 mt-4 max-w-[760px] text-base leading-relaxed",
-            theme.colors.secondaryText,
-          )}
-        >
-          {description}
-        </p>
-        <div className="flex flex-wrap gap-x-6 gap-y-3">{links}</div>
-      </div>
-      <div className="px-3 pb-3 md:px-5 md:pb-5">{children}</div>
-    </article>
   );
 }
 
@@ -264,20 +212,23 @@ export function SdkCustomUiCard({
   );
 }
 
-export function SdkAiCard({ isEmail = false }: { isEmail?: boolean } = {}) {
+export function SdkAiCard({
+  isEmail = false,
+  wide = isEmail,
+}: { isEmail?: boolean; wide?: boolean } = {}) {
   return (
     <article
       data-reveal
       className={cn(
         cardClass,
         "flex flex-col",
-        isEmail && "md:col-span-2 md:grid md:grid-cols-[0.9fr_1fr]",
+        wide && "md:col-span-2 md:grid md:grid-cols-[0.9fr_1fr]",
       )}
     >
       <div
         className={cn(
           "flex-1 p-6 md:p-8",
-          isEmail && "flex flex-col justify-center",
+          wide && "flex flex-col justify-center",
         )}
       >
         <p
@@ -307,9 +258,7 @@ export function SdkAiCard({ isEmail = false }: { isEmail?: boolean } = {}) {
         </p>
         <DocsLink href="plugins/ai/overview">Explore AI integration</DocsLink>
       </div>
-      <div
-        className={cn("px-3 pb-3 md:px-5 md:pb-5", isEmail && "pt-3 md:pt-5")}
-      >
+      <div className={cn("px-3 pb-3 md:px-5 md:pb-5", wide && "pt-3 md:pt-5")}>
         <AiWorkflowIllustration isEmail={isEmail} />
       </div>
     </article>

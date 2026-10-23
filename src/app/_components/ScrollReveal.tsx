@@ -56,7 +56,9 @@ export default function ScrollReveal({ children }: { children: ReactNode }) {
       const target = event.target;
       if (!(target instanceof Element)) return;
       const element = target.closest<HTMLElement>("[data-reveal]");
-      if (element && root.contains(element)) complete(element);
+      if (element?.dataset.reveal === "pending" && root.contains(element)) {
+        complete(element);
+      }
     };
     const onMotionChange = () => {
       if (reducedMotion.matches) elements.forEach(complete);

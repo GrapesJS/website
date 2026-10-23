@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import { ArrowRight, Cloud, Server, SlidersHorizontal } from "lucide-react";
 import Footer from "@/app/_components/Footer";
+import ScrollReveal from "@/app/_components/ScrollReveal";
+import HeroWindowShell from "@/app/_components/WindowShell/HeroWindowShell";
+import EmbedBuilderWeb from "@/app/_components/layouts/EmbedBuilderWeb";
 import SdkCustomerLogos from "@/app/_components/sdk/SdkCustomerLogos";
 import SdkLandingFaq, {
   type SdkFaqItem,
@@ -7,22 +11,31 @@ import SdkLandingFaq, {
 import SdkLandingFeature from "@/app/_components/sdk/SdkLandingFeature";
 import SdkLandingHero from "@/app/_components/sdk/SdkLandingHero";
 import {
+  SdkAiCard,
+  SdkDeveloperFoundations,
+} from "@/app/_components/sdk/SdkFeatures";
+import { sdkFeatureCardClass } from "@/app/_components/sdk/SdkFeatureCard";
+import SdkStartBanner from "@/app/_components/sdk/SdkStartBanner";
+import {
   AiBackendIllustration,
   AiChatIllustration,
   AiModelsIllustration,
   AiToolsIllustration,
 } from "@/app/_components/sdk/SdkLandingIllustrations";
+import { theme } from "@/app/_components/sdk/theme";
+import { cn } from "@/lib/utils";
 import urls from "@/lib/urls";
 
-const pageTitle = "Embed an AI Visual Editor in Your SaaS | Studio SDK";
-const pageDescription =
-  "Add an AI assistant to an embeddable visual editor. Customize the chat UI, choose models and prompts, connect product tools, or run a custom backend.";
-
+const aiMetadata = {
+  title: "Embed an AI Visual Editor in Your SaaS | Studio SDK",
+  description:
+    "Give your users an AI assistant inside your visual editor. Customize the chat UI, choose models and prompts, and connect AI to your product's tools and data.",
+};
+const canonical = "/sdk/ai";
 export const metadata: Metadata = {
-  title: pageTitle,
-  description: pageDescription,
-  alternates: { canonical: "/sdk/ai" },
-  openGraph: { title: pageTitle, description: pageDescription, url: "/sdk/ai" },
+  ...aiMetadata,
+  alternates: { canonical },
+  openGraph: { ...aiMetadata, url: canonical },
 };
 
 const docs = "https://app.grapesjs.com/docs-sdk/plugins/ai";
@@ -56,147 +69,221 @@ const faqs: SdkFaqItem[] = [
 
 export default function SdkAiPage() {
   return (
-    <main className="min-h-screen bg-[var(--backgroundColor)] text-white">
-      <SdkLandingHero
-        eyebrow="STUDIO SDK · AI"
-        title="An AI editor your product can make its own"
-        description="Give customers an AI assistant inside the visual editor in your SaaS. Adapt the interface, choose how models run, and connect AI to the tools and data that make your product useful."
-        primaryHref={urls.getSdkLicensesUrl({
-          plan: "startup",
-          ref: "sdkAiHero",
-        })}
-        primaryLabel="Start with Studio SDK"
-        primaryPlacement="sdk-ai-hero"
-        secondaryHref={`${docs}/ai-chat`}
-        secondaryLabel="Read the AI Chat guide"
-      >
-        Supports web and email editors. Your application keeps control of users,
-        projects, and product workflows.
-      </SdkLandingHero>
+    <ScrollReveal>
+      <main className="min-h-screen bg-[var(--backgroundColor)] text-white font-normal">
+        <SdkLandingHero
+          title="Embed an AI visual editor in your product"
+          description={aiMetadata.description}
+          primaryHref={urls.getSdkLicensesUrl({
+            plan: "startup",
+            ref: "sdkAiHero",
+          })}
+          primaryLabel="Embed the Editor"
+          primaryPlacement="sdk-ai-hero"
+          secondaryHref={urls.getPricingUrl()}
+          secondaryLabel="Compare Plans"
+        />
 
-      <SdkCustomerLogos />
-
-      <div className="mx-auto max-w-6xl px-5 pb-5 pt-14 text-center sm:pb-10 sm:pt-20">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#d39cdd]">
-          BUILT TO FIT YOUR PRODUCT
-        </p>
-        <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-5xl">
-          Start with a ready-to-use chat. Shape everything around it.
-        </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/60 sm:text-lg">
-          AI Chat is an editor plugin with a customizable frontend and a choice
-          of hosted or self-managed AI infrastructure.
-        </p>
-      </div>
-
-      <SdkLandingFeature
-        eyebrow="CUSTOM UI"
-        title="Make AI feel native in your editor"
-        description="Place the AI Chat panel where it works for your users, customize its components and suggested prompts, and load or persist conversation history through your own application."
-        href={`${docs}/ai-chat#customization`}
-        linkLabel="Explore chat customization"
-      >
-        <AiChatIllustration />
-      </SdkLandingFeature>
-
-      <SdkLandingFeature
-        eyebrow="MODELS & PROMPTS"
-        title="Choose how each AI task behaves"
-        description="Select workspace models independently for chat, code generation, and image generation. Bring provider credentials through AI Settings, then tailor the assistant's instructions to your product and users."
-        href={`${docs}/ai-chat#custom-models-and-prompts`}
-        linkLabel="Configure models and prompts"
-        reverse
-      >
-        <AiModelsIllustration />
-      </SdkLandingFeature>
-
-      <SdkLandingFeature
-        eyebrow="CUSTOM TOOLS"
-        title="Connect AI to product data and actions"
-        description="Extend the assistant with functions in your backend or client-side tools that interact with the editor. This lets AI work with your domain data and carry out product-specific actions."
-        href={`${docs}/ai-backend#tools`}
-        linkLabel="Build custom AI tools"
-      >
-        <AiToolsIllustration />
-      </SdkLandingFeature>
-
-      <SdkLandingFeature
-        eyebrow="CUSTOM BACKEND"
-        title="Run AI on infrastructure you control"
-        description="Build a streaming endpoint with your preferred AI SDK and providers. Use your own models, tools, and system instructions while keeping application secrets on your server. A custom backend is available for deployed apps on Business; localhost development is supported."
-        href={`${docs}/ai-backend`}
-        linkLabel="Read the custom backend guide"
-        reverse
-      >
-        <AiBackendIllustration />
-      </SdkLandingFeature>
-
-      <section className="border-t border-white/[0.07] px-5 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
-          {[
-            {
-              title: "Hosted AI Chat",
-              body: "Startup and higher plans can use Studio's hosted Chat Platform API with rechargeable Studio AI credits.",
-            },
-            {
-              title: "Your own models",
-              body: "Connect provider keys through AI Settings and choose models per AI task. Calls using your provider keys are billed by that provider.",
-            },
-            {
-              title: "Your own backend",
-              body: "Develop locally, then deploy a custom AI backend on Business or Enterprise when you need full control.",
-            },
-          ].map((item) => (
-            <article
-              key={item.title}
-              className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"
-            >
-              <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-white/60">
-                {item.body}
-              </p>
-            </article>
-          ))}
+        <div className="mx-auto max-w-[1132px] p-5">
+          <HeroWindowShell data-reveal>
+            <EmbedBuilderWeb />
+          </HeroWindowShell>
         </div>
-      </section>
 
-      <SdkLandingFaq
-        title="Questions about AI in Studio SDK"
-        description="Understand the integration options, where your application stays in control, and which plan fits your deployment."
-        faqs={faqs}
-      />
+        <SdkCustomerLogos />
 
-      <section className="border-t border-white/[0.07] px-5 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl rounded-3xl border border-[#d39cdd]/20 bg-[radial-gradient(ellipse_at_top,rgba(151,58,168,.18),rgba(18,9,20,.5)_55%)] px-6 py-10 text-center sm:px-12 sm:py-14">
-          <h2 className="text-3xl font-semibold text-white sm:text-4xl">
-            Bring AI editing into your product
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/65">
-            Try the SDK editor, review the integration docs, and choose the plan
-            that supports your launch.
-          </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <a
-              href={urls.getStudioEditorUrl()}
-              className="rounded-full bg-[#d39cdd] px-6 py-3 text-sm font-semibold text-[#1b131b] transition hover:bg-[#e4b9eb]"
-              data-ph-capture-attribute-placement="sdk-ai-final-cta"
-              data-ph-capture-attribute-cta="Try the editor"
+        <section
+          id="features"
+          aria-labelledby="ai-features-heading"
+          className="relative z-[1] mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
+        >
+          <div
+            data-reveal
+            className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
+          >
+            <h2
+              id="ai-features-heading"
+              className={cn(
+                "text-3xl font-semibold leading-tight tracking-tight md:text-[46px]",
+                theme.colors.primaryText,
+              )}
             >
-              Try the editor
-            </a>
-            <a
-              href={urls.getPricingUrl()}
-              className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
-              data-ph-capture-attribute-placement="sdk-ai-final-cta"
-              data-ph-capture-attribute-cta="Compare SDK plans"
+              Add AI editing.
+              <br />
+              <span className={theme.colors.accentText}>
+                Keep control of the experience.
+              </span>
+            </h2>
+            <p
+              className={cn(
+                "mx-auto mt-6 max-w-3xl text-base leading-8 md:text-lg",
+                theme.colors.mutedText,
+              )}
             >
-              Compare SDK plans
-            </a>
+              Start with a visual editor and an AI assistant ready to adapt.
+              Give users a head start on pages and emails, then let them refine
+              every detail visually inside your product.
+            </p>
           </div>
-        </div>
-      </section>
+          <div className="grid gap-6 md:grid-cols-2">
+            <SdkAiCard wide />
 
-      <Footer />
-    </main>
+            <SdkLandingFeature
+              eyebrow="Custom chat UI"
+              title="Make the assistant feel like part of your product."
+              description="Place AI Chat in your editor layout, adapt its labels and suggested prompts, and shape the input and message components around your users."
+              href={`${docs}/ai-chat#customization`}
+              linkLabel="Explore chat customization"
+            >
+              <AiChatIllustration />
+            </SdkLandingFeature>
+
+            <SdkLandingFeature
+              eyebrow="Models & prompts"
+              title="Choose the right model for each task."
+              description="Configure workspace models for chat, code, and images. Bring your provider credentials through AI Settings and tailor the instructions while Studio handles the hosted backend."
+              href={`${docs}/ai-chat#custom-models-and-prompts`}
+              linkLabel="Configure models and prompts"
+            >
+              <AiModelsIllustration />
+            </SdkLandingFeature>
+
+            <SdkLandingFeature
+              eyebrow="Custom tools"
+              title="Let AI work with your product's data and actions."
+              description="Connect server-side functions and client-side tools through a custom backend. Give the assistant access to your domain data and actions that work with the editor."
+              href={`${docs}/ai-backend#tools`}
+              linkLabel="Build custom AI tools"
+            >
+              <AiToolsIllustration />
+            </SdkLandingFeature>
+
+            <SdkLandingFeature
+              eyebrow="Custom backend"
+              title="Run the AI workflow on your infrastructure."
+              description="Connect your own streaming endpoint, choose providers, and extend the assistant's tools and instructions. Use your application's authentication and services around the editor."
+              href={`${docs}/ai-backend`}
+              linkLabel="Explore custom backends"
+            >
+              <AiBackendIllustration />
+            </SdkLandingFeature>
+          </div>
+        </section>
+
+        <section
+          aria-labelledby="ai-deployment-heading"
+          className="mx-auto max-w-[1132px] px-4 py-16 md:py-20"
+        >
+          <div data-reveal className="mb-10 max-w-2xl">
+            <h2
+              id="ai-deployment-heading"
+              className={cn(
+                "text-3xl font-semibold leading-tight tracking-tight md:text-[38px]",
+                theme.colors.primaryText,
+              )}
+            >
+              Choose how your AI runs.
+            </h2>
+            <p
+              className={cn(
+                "mt-4 text-base leading-relaxed",
+                theme.colors.mutedText,
+              )}
+            >
+              Use Studio's hosted AI, bring your own models to the same backend,
+              or operate a custom endpoint when you need more control.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                icon: Cloud,
+                title: "Hosted AI Chat",
+                body: "Use the Chat Platform API and Studio's default models with rechargeable AI credits. Connect your token route and let Studio handle AI responses.",
+                href: `${docs}/ai-chat#chat-platform-api`,
+                link: "Connect hosted AI",
+              },
+              {
+                icon: SlidersHorizontal,
+                title: "Your own models",
+                body: "Keep the hosted backend and configure provider credentials in AI Settings. Calls to your selected models are billed by your provider.",
+                href: `${docs}/ai-chat#custom-models-and-prompts`,
+                link: "Bring your models",
+              },
+              {
+                icon: Server,
+                title: "Your own backend",
+                body: "Develop a custom endpoint on localhost, then deploy it with a Business plan. Choose your providers, tools, and response flow.",
+                href: `${docs}/ai-backend`,
+                link: "Build your backend",
+              },
+            ].map(({ icon: Icon, title, body, href, link }) => (
+              <article
+                data-reveal
+                key={title}
+                className={cn(sdkFeatureCardClass, "flex flex-col p-6 md:p-7")}
+              >
+                <Icon
+                  size={25}
+                  strokeWidth={1.5}
+                  className={cn("mb-5", theme.colors.icon)}
+                  aria-hidden
+                />
+                <h3
+                  className={cn(
+                    "text-xl font-semibold tracking-tight",
+                    theme.colors.primaryText,
+                  )}
+                >
+                  {title}
+                </h3>
+                <p
+                  className={cn(
+                    "mb-5 mt-3 flex-1 text-sm leading-7",
+                    theme.colors.mutedText,
+                  )}
+                >
+                  {body}
+                </p>
+                <a
+                  href={href}
+                  className={cn(theme.links.base, theme.colors.linkText)}
+                >
+                  {link} <ArrowRight size={15} aria-hidden />
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <SdkDeveloperFoundations />
+
+        <SdkLandingFaq
+          title="Questions about AI in Studio SDK"
+          description="Understand the integration options, where your application stays in control, and which plan fits your deployment."
+          faqs={faqs}
+        />
+
+        <SdkStartBanner
+          title={
+            <>
+              Bring AI into your editor.
+              <br />
+              Make it yours.
+            </>
+          }
+          description="Give users an AI assistant inside your product. Connect the models, tools, and workflows your team needs."
+          primaryLabel="Embed the Editor"
+          primaryHref={urls.getSdkLicensesUrl({
+            plan: "startup",
+            ref: "sdkAiFinalCta",
+          })}
+          secondaryLabel="Read the AI Docs"
+          secondaryHref={`${docs}/overview`}
+          placement="sdk-ai-final-cta"
+        />
+        <Footer />
+      </main>
+    </ScrollReveal>
   );
 }

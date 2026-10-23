@@ -33,7 +33,7 @@ const linkCategories: {
       },
       {
         id: "SdkEmail",
-        label: "Email builder",
+        label: "Email Builder",
         href: urls.getEmailBuilderUrl(),
       },
     ],
