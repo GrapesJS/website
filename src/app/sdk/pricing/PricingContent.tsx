@@ -275,6 +275,7 @@ function PlanCard({
   if (enterprise) {
     return (
       <article
+        data-reveal
         className={cn(
           "overflow-hidden rounded-[28px] border-2 shadow-[0_24px_80px_rgba(0,0,0,0.3)]",
           enterpriseBorderClass,
@@ -330,7 +331,7 @@ function PlanCard({
   }
 
   return (
-    <article className={cardClass}>
+    <article data-reveal className={cardClass}>
       <div>
         <div className="p-6 md:p-8">
           <PlanSummary
@@ -464,6 +465,7 @@ function ComparisonTable() {
             {comparisonRows.map((row, index) => (
               <tr
                 key={row.key}
+                data-reveal
                 className={
                   index % 2 === 0 ? "bg-white/[0.03]" : "bg-transparent"
                 }
@@ -504,7 +506,10 @@ export default function PricingContent() {
     <TooltipProvider delayDuration={120}>
       <div className="flex flex-col gap-12 md:gap-20">
         <section className="flex flex-col gap-7">
-          <section className="flex flex-col items-center gap-4 text-center">
+          <section
+            data-reveal
+            className="flex flex-col items-center gap-4 text-center"
+          >
             <BillingToggle
               selectedPeriod={selectedPeriod}
               onChange={setSelectedPeriod}
@@ -529,7 +534,7 @@ export default function PricingContent() {
         </section>
 
         <section className="flex flex-col gap-14">
-          <div className="text-center flex flex-col gap-4">
+          <div data-reveal className="text-center flex flex-col gap-4">
             <h2 className="text-3xl font-semibold text-white md:text-5xl">
               Compare plan details
             </h2>
@@ -542,7 +547,10 @@ export default function PricingContent() {
         </section>
 
         <section className="grid gap-8 pt-6 md:pt-12 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-start">
-          <div className="flex flex-col items-center gap-4 text-center lg:sticky lg:top-[140px] lg:items-start lg:text-left">
+          <div
+            data-reveal
+            className="flex flex-col items-center gap-4 text-center lg:sticky lg:top-[140px] lg:items-start lg:text-left"
+          >
             <h2 className="text-3xl font-semibold text-white md:text-5xl leading-snug">
               Frequently asked questions
             </h2>
@@ -552,7 +560,10 @@ export default function PricingContent() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-0">
+          <div
+            data-reveal
+            className="rounded-2xl border border-white/10 bg-white/[0.03] px-0"
+          >
             <Accordion type="single" collapsible className="w-full">
               {sdkPricingFaqs.map((faq) => (
                 <AccordionItem key={faq.value} value={faq.value}>
