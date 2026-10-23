@@ -9,6 +9,15 @@ import MarketingAttributionLinks from "@/app/_components/MarketingAttributionLin
 
 const manrope = Manrope({ subsets: ["latin"] });
 
+// Run before body content can paint, without depending on hydration or a script download.
+const SCROLL_REVEAL_INIT = `(() => {
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const root = document.documentElement;
+  root.setAttribute("data-reveal-enabled", "");
+  // Show server-rendered content if the application bundle fails to initialize.
+  window.setTimeout(() => root.removeAttribute("data-reveal-enabled"), 4000);
+})();`;
+
 const GTM_SNIPPET = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -50,6 +59,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script
+          id="scroll-reveal-init"
+          dangerouslySetInnerHTML={{ __html: SCROLL_REVEAL_INIT }}
+        />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://us.i.posthog.com" />
         <link rel="dns-prefetch" href="https://us-assets.i.posthog.com" />

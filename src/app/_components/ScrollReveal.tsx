@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 
 /** Mark section headings and cards with data-reveal; Tailwind handles the motion. */
 export default function ScrollReveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = ref.current;
     if (!root || !("IntersectionObserver" in window)) return;
 
@@ -34,7 +34,7 @@ export default function ScrollReveal({ children }: { children: ReactNode }) {
       { rootMargin: "0px 0px -48px 0px", threshold: 0.2 },
     );
 
-    // Content stays visible in server HTML and when JavaScript is unavailable.
+    // Initialize before paint on client navigation; the head script covers server HTML.
     elements.forEach((element) => {
       element.dataset.reveal = "pending";
       observer.observe(element);
@@ -83,6 +83,7 @@ export default function ScrollReveal({ children }: { children: ReactNode }) {
   return (
     <div
       ref={ref}
+      data-scroll-reveal
       className="contents motion-safe:[&_[data-reveal=pending]]:opacity-0 motion-safe:[&_[data-reveal=visible]]:animate-section-enter"
     >
       {children}
