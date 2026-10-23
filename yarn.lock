@@ -3001,6 +3001,13 @@ serve@^14.2.6:
     serve-handler "6.1.7"
     update-check "1.5.4"
 
+shaders@4.0.5:
+  version "4.0.5"
+  resolved "https://registry.npmjs.org/shaders/-/shaders-4.0.5.tgz#54e7594c1dabaaf6e44212bd0b2d3dc58548ef01"
+  integrity sha512-1muVyMI5NGkv/+/QpHD9wY2HfmxeWq3MBDT3ERFBTStCSzikSBravuTaGv3B1nz0rXccvv3C0xp3lmvfptu3Zg==
+  dependencies:
+    typegpu "0.12.3"
+
 sharp@^0.35.4:
   version "0.35.5"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.35.5.tgz#43fb539872ec5f53cc7162eb850dbf6514692fbf"
@@ -3245,6 +3252,11 @@ thenify-all@^1.0.0:
   dependencies:
     any-promise "^1.0.0"
 
+tinyest@~0.3.2:
+  version "0.3.4"
+  resolved "https://registry.npmjs.org/tinyest/-/tinyest-0.3.4.tgz#8b0c4760f2a083be8a0e05f29c1df2264b0f92a0"
+  integrity sha512-81EcMHTCQ2IPweOGk9SpMgjbenR9ZJRsAE84btEv0DhvVKwhe7qBy28hWgatoXa9ppWzmtpHiJ+e86SiaAtY6w==
+
 to-regex-range@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/to-regex-range/-/to-regex-range-5.0.1.tgz#1648c44aae7c8d988a326018ed72f5b4dd0392e4"
@@ -3277,10 +3289,29 @@ tslib@^2.8.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
 
+tsover-runtime@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/tsover-runtime/-/tsover-runtime-0.0.7.tgz#68fb44bc65daf47aa3652e6c595af2f9e3bd8f6b"
+  integrity sha512-FHHwMJzZbnP23+fU1PxXljy7j0RRRosL2r1/CRUNTqfW+l7m35JsUkM615x/cAzw4GqRdXPIl3axKMj9qzpZtQ==
+
 type-fest@^2.13.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
+
+typed-binary@^4.3.3:
+  version "4.3.4"
+  resolved "https://registry.npmjs.org/typed-binary/-/typed-binary-4.3.4.tgz#16cb02a42bb9b1c64be196a6afa4d285816974ae"
+  integrity sha512-ivy9nisfsBhugH6OrygtdYI28c28mo7AFeB85COUzGG6MmuViFQPz4ylmDHNjAI3P12EAxWhqtjLsdYWfCj6xQ==
+
+typegpu@0.12.3:
+  version "0.12.3"
+  resolved "https://registry.npmjs.org/typegpu/-/typegpu-0.12.3.tgz#83921068768e2f50e1b7fd7bc7aed8d26dc5a255"
+  integrity sha512-zYwQEhnPPwhq5vQKmollXRK1LCVjStOnL+2B0PiebqvAzYPr25rPNR4r3olLoow5sKKjyj3kzHKEcpD5SyDzGQ==
+  dependencies:
+    tinyest "~0.3.2"
+    tsover-runtime "^0.0.7"
+    typed-binary "^4.3.3"
 
 typescript@^5.1.0:
   version "5.9.3"

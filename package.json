@@ -37,6 +37,7 @@
     "rehype-highlight": "^7.0.2",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
+    "shaders": "4.0.5",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
   },
