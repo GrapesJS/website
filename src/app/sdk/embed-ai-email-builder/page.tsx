@@ -85,9 +85,6 @@ export default function EmbedAiEmailBuilderPage() {
         className="relative z-[1] mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
       >
         <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <SectionEyebrow className="mb-4">
-            BUILT FOR YOUR PRODUCT
-          </SectionEyebrow>
           <h2
             id="email-time-saving-heading"
             className={cn(
@@ -105,9 +102,9 @@ export default function EmbedAiEmailBuilderPage() {
               theme.colors.mutedText,
             )}
           >
-            Put an established email builder into your app, with the editor UI,
-            AI, and reusable building blocks ready to adapt. Spend your
-            engineering time on the product your customers choose you for.
+            Put an AI email builder into your app and reusable building blocks
+            ready to adapt. Spend your engineering time on the product your
+            customers choose you for.
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
