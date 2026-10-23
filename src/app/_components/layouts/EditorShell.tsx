@@ -23,11 +23,13 @@ import {
   Plus,
   Redo2,
   Save,
+  Smartphone,
   Sparkles,
   SquareDashed,
   SquarePlus,
   SwatchBook,
   Tag,
+  Tablet,
   Type,
   Trash2,
   X,
@@ -190,28 +192,48 @@ export function EditorSidebar({
 export function CanvasToolbar({
   rightContent,
   withDevice = true,
+  isEmail = false,
   className,
 }: {
   rightContent?: ReactNode;
   withDevice?: boolean;
+  isEmail?: boolean;
   className?: string;
 } = {}) {
   return (
     <div
       className={cn(
-        "relative flex h-[calc(2.1*var(--editor-unit,1cqw))] shrink-0 items-center justify-between border-b-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-[calc(0.45*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]",
+        "relative flex h-[calc(2.1*var(--editor-unit,1cqw))] shrink-0 items-center justify-between border-b-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] bg-[color:var(--editor-bg)] px-[calc(0.7*var(--editor-unit,1cqw))] text-[color:var(--editor-text)]",
         className,
       )}
     >
-      <div className="flex h-[calc(1.6*var(--editor-unit,1cqw))] items-center gap-[calc(0.4*var(--editor-unit,1cqw))] rounded-[calc(0.18*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] px-[calc(0.5*var(--editor-unit,1cqw))] text-[calc(0.75*var(--editor-unit,1cqw))]">
+      <div className="flex h-[calc(1.5*var(--editor-unit,1cqw))] items-center gap-[calc(0.4*var(--editor-unit,1cqw))] rounded-[calc(0.18*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] px-[calc(0.5*var(--editor-unit,1cqw))] text-[calc(0.75*var(--editor-unit,1cqw))]">
         <CodeXml className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
         <span>Code</span>
       </div>
       {withDevice && (
-        <div className="absolute left-1/2 flex h-[calc(1.5*var(--editor-unit,1cqw))] -translate-x-1/2 items-center gap-[calc(0.4*var(--editor-unit,1cqw))] rounded-[calc(0.2*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] px-[calc(0.5*var(--editor-unit,1cqw))]">
-          <Monitor className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
-          <span>Desktop</span>
-          <ChevronDown className="size-[calc(0.7*var(--editor-unit,1cqw))]" />
+        <div
+          aria-label="Device previews"
+          className="absolute left-1/2 flex -translate-x-1/2 items-center gap-[calc(0.1*var(--editor-unit,1cqw))] rounded-[calc(0.2*var(--editor-unit,1cqw))] border-[calc(0.05*var(--editor-unit,1cqw))] border-[color:var(--editor-border)] p-[calc(0.1*var(--editor-unit,1cqw))]"
+        >
+          {[
+            { label: "Desktop", icon: Monitor },
+            ...(!isEmail ? [{ label: "Tablet", icon: Tablet }] : []),
+            { label: "Mobile", icon: Smartphone },
+          ].map(({ label, icon: Icon }, index) => (
+            <span
+              key={label}
+              aria-label={label}
+              title={label}
+              className={cn(
+                "flex size-[calc(1.3*var(--editor-unit,1cqw))] items-center justify-center rounded-[calc(0.12*var(--editor-unit,1cqw))]",
+                index === 0 &&
+                  "bg-[color:var(--editor-raised)] text-[color:var(--editor-accent,#b494f4)]",
+              )}
+            >
+              <Icon className="size-[calc(0.85*var(--editor-unit,1cqw))]" />
+            </span>
+          ))}
         </div>
       )}
       <div className="flex items-center gap-[calc(0.75*var(--editor-unit,1cqw))]">

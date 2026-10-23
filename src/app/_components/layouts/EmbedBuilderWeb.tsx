@@ -296,11 +296,12 @@ export default function EmbedBuilderWeb({
               <EditorSidebar />
               <DemoConversation demo={demo} isEmail={isEmail} />
               <div className="flex min-w-0 flex-col overflow-hidden bg-[color:var(--editor-canvas)]">
-                <CanvasToolbar />
+                <CanvasToolbar isEmail={isEmail} />
                 <BrandLandingPage demo={demo} isEmail={isEmail} />
               </div>
               <StylesPanel
                 brand
+                withSelectors={false}
                 isEmail={isEmail}
                 color="#f3eaf8"
                 selected={demo.step >= demoSteps.hover}

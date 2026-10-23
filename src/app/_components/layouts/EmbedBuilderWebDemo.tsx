@@ -52,10 +52,10 @@ import {
 
 // A single clock keeps chat, page creation, copy changes, and the cursor in sync.
 const CUE_TIMES = [
-  0, 3.4, 4.5, 6.1, 7.1, 7.7, 8.4, 9.1, 9.8, 10.5, 11.2, 12.3, 15.45, 16.6,
-  17.3, 17.75, 18.2, 18.65, 19.2, 20.9, 22, 22.8, 23.4, 24.6, 26.6, 28,
+  0, 0.7, 1.8, 3.4, 4.4, 5, 5.7, 6.4, 7.1, 7.8, 8.5, 9.6, 12.75, 13.9, 14.6,
+  15.05, 15.5, 15.95, 16.5, 18.2, 19.3, 20.1, 20.7, 21.9, 23.9, 25.3,
 ];
-const DURATION = 32.6;
+const DURATION = 29.9;
 
 export const demoSteps = {
   promptSent: 1,
@@ -305,6 +305,7 @@ function DraftComposer({
   const { step, time } = demo;
   const [draft, setDraft] = useState("");
   const draftRef = useRef("");
+  const visibleDraft = step < demoSteps.promptSent ? brandPrompt : draft;
   const firstSend = CUE_TIMES[demoSteps.promptSent];
   const companyStart = CUE_TIMES[demoSteps.companyTyping];
   const companySend = CUE_TIMES[demoSteps.companyPrompt];
@@ -328,10 +329,7 @@ function DraftComposer({
 
   useMotionValueEvent(time, "change", (value) => {
     let next = "";
-    if (value >= 0.45 && value < firstSend) {
-      const count = Math.floor(((value - 0.45) / 2.65) * brandPrompt.length);
-      next = brandPrompt.slice(0, Math.min(brandPrompt.length, count));
-    } else if (value >= companyStart && value < companySend) {
+    if (value >= companyStart && value < companySend) {
       const count = Math.floor(
         ((value - companyStart) / 2.7) * companyPrompt.length,
       );
@@ -345,7 +343,7 @@ function DraftComposer({
 
   return (
     <ChatComposer
-      draft={draft}
+      draft={visibleDraft}
       context={
         step >= demoSteps.hover && (
           <div className="flex items-center gap-[0.5cqw]">
@@ -365,7 +363,7 @@ function DraftComposer({
       }
       sendControl={
         <motion.span style={{ scale: sendScale }}>
-          <ChatSendButton active={!!draft} />
+          <ChatSendButton active={!!visibleDraft} />
         </motion.span>
       }
     />

@@ -376,7 +376,7 @@ function LayoutPreview({
           </span>
         </div>
       ) : (
-        <CanvasToolbar />
+        <CanvasToolbar isEmail={isEmail} />
       )}
       <div className="flex min-h-0 flex-1">
         <AnimatePresence initial={false}>
