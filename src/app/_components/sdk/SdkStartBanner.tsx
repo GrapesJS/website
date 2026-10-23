@@ -13,7 +13,7 @@ export default function SdkStartBanner({
   placement = "sdk-overview-final-cta",
 }: {
   title?: React.ReactNode;
-  description?: string;
+  description?: React.ReactNode;
   primaryLabel?: string;
   primaryHref?: string;
   secondaryLabel?: string;

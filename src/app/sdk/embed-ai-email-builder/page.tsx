@@ -135,7 +135,12 @@ export default function EmbedAiEmailBuilderPage() {
             Make it yours.
           </>
         }
-        description="Give your users an AI email builder inside your product. Start with Studio SDK, shape the experience, and keep building from there."
+        description={
+          <>
+            Give your users an AI email builder inside your product. <br />
+            Focus on your product while we handle the email creation experience.
+          </>
+        }
         primaryLabel="Embed the Builder"
         primaryHref={urls.getSdkLicensesUrl({ ref: "emailFinalCta" })}
         secondaryHref={emailDocs}

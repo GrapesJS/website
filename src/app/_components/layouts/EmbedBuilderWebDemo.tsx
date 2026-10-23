@@ -409,13 +409,20 @@ function CopySwap({
   );
 }
 
-function EditableHeadline({ demo }: { demo: BuilderDemo }) {
+function EditableHeadline({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
   const { step, time, reducedMotion } = demo;
   const personalized = step >= demoSteps.headline;
   const selected = step >= demoSteps.select && step < demoSteps.typing;
   const editing = step >= demoSteps.typing && step < demoSteps.typed;
   const [typedText, setTypedText] = useState("");
-  const replacement = "bright ideas.";
+  const replacement = isEmail ? "great things." : "bright ideas.";
+  const personalizedEnding = isEmail ? "good things." : "great work.";
   useMotionValueEvent(time, "change", (value) => {
     if (
       value < CUE_TIMES[demoSteps.typing] ||
@@ -442,6 +449,7 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
     [selectAt, selectedAt],
     ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
   );
+  // Font-relative units keep the editing UI scaled to either canvas's headline.
   const cursorX = useTransform(
     time,
     [
@@ -453,12 +461,12 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
       typedAt + 0.5,
       completeAt,
     ],
-    ["28cqw", "18cqw", "0.15cqw", "0.15cqw", "10.8cqw", "11.5cqw", "15cqw"],
+    ["11.9em", "7.66em", "0.064em", "0.064em", "4.6em", "4.9em", "6.4em"],
   );
   const cursorY = useTransform(
     time,
     [cursorAt, cursorAt + 0.5, hoverAt, typedAt + 0.5, completeAt],
-    ["17cqw", "10cqw", "1.15cqw", "1.15cqw", "5cqw"],
+    ["7.23em", "4.25em", "0.49em", "0.49em", "2.13em"],
   );
   const cursorOpacity = useTransform(
     time,
@@ -470,25 +478,32 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
   );
 
   return (
-    <div className="relative mt-[0.8cqw] text-[2.35cqw] font-semibold leading-[1.08] tracking-[-0.12cqw]">
+    <div
+      className={cn(
+        "relative font-semibold",
+        isEmail
+          ? "leading-[1.12] tracking-tight"
+          : "mt-[0.8cqw] text-[2.35cqw] leading-[1.08] tracking-[-0.12cqw]",
+      )}
+    >
       {step >= demoSteps.hover && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="pointer-events-none absolute -inset-x-[0.25cqw] -inset-y-[0.3cqw] border-[0.06cqw] border-[#3998df]"
+          className="pointer-events-none absolute -inset-x-[0.106em] -inset-y-[0.128em] border-[0.026em] border-[#3998df]"
         >
-          <span className="absolute -left-[0.06cqw] -top-[1.05cqw] bg-[#3998df] px-[0.35cqw] py-[0.08cqw] text-[0.55cqw] font-normal leading-normal tracking-normal text-white">
+          <span className="absolute -left-[0.11em] -top-[1.91em] bg-[#3998df] px-[0.64em] py-[0.15em] text-[0.234em] font-normal leading-normal tracking-normal text-white">
             Heading
           </span>
         </motion.div>
       )}
       <CopySwap
         changed={personalized}
-        before="A better way"
-        after="Less busywork."
+        before={isEmail ? "A fresh start." : "A better way"}
+        after={isEmail ? "Welcome aboard." : "Less busywork."}
       />
       <br />
-      {personalized ? "More " : "to "}
+      {isEmail ? "Make " : personalized ? "More " : "to "}
       <span className="relative inline-block whitespace-nowrap text-[#c99be6]">
         <span>
           {step >= demoSteps.typed
@@ -496,36 +511,38 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
             : editing
               ? typedText
               : personalized
-                ? "great work."
-                : "build together."}
+                ? personalizedEnding
+                : isEmail
+                  ? "something new."
+                  : "build together."}
         </span>
         {selected && (
           <motion.span
             style={{ clipPath: selectionClip }}
             className="absolute inset-0 bg-[#3998df] text-white"
           >
-            great work.
+            {personalizedEnding}
           </motion.span>
         )}
         {editing && (
           <motion.span
             style={{ opacity: caretOpacity }}
-            className="absolute -right-[0.08cqw] top-[8%] h-[85%] w-[0.06cqw] bg-[#8351a4]"
+            className="absolute -right-[0.034em] top-[8%] h-[85%] w-[0.026em] bg-[#d8b4fe]"
           />
         )}
         {step >= demoSteps.select && step < demoSteps.typed && (
           <motion.span
             initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute -left-[0.1cqw] -top-[1.9cqw] flex h-[1.5cqw] items-center gap-[0.65cqw] rounded-[0.2cqw] border-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-[0.5cqw] tracking-normal text-white shadow-lg"
+            className="absolute -left-[0.043em] -top-[0.81em] flex h-[0.64em] items-center gap-[0.277em] rounded-[0.085em] border-[0.021em] border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-[0.213em] tracking-normal text-white shadow-lg"
           >
-            <Bold className="size-[0.7cqw]" />
-            <Italic className="size-[0.7cqw]" />
-            <Link className="size-[0.7cqw]" />
-            <span className="border-b-[0.12cqw] border-[#d8b4fe] text-[0.7cqw] font-medium leading-none">
+            <Bold className="size-[0.3em]" />
+            <Italic className="size-[0.3em]" />
+            <Link className="size-[0.3em]" />
+            <span className="border-b-[0.17em] border-[#d8b4fe] text-[0.3em] font-medium leading-none">
               A
             </span>
-            <ChevronDown className="size-[0.6cqw]" />
+            <ChevronDown className="size-[0.255em]" />
           </motion.span>
         )}
         {!reducedMotion && (
@@ -534,10 +551,10 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
             className="pointer-events-none absolute left-0 top-0 z-20 text-[#18191b] drop-shadow-[0_0.1cqw_0.1cqw_#0004]"
           >
             {step >= demoSteps.select && step < demoSteps.typed ? (
-              <TextCursor className="size-[1.3cqw]" />
+              <TextCursor className="size-[0.55em] text-white" />
             ) : (
               <MousePointer2
-                className="size-[1.25cqw] fill-white"
+                className="size-[0.53em] fill-white"
                 strokeWidth={1.4}
               />
             )}
@@ -654,10 +671,6 @@ export function BrandLandingPage({
   if (isEmail) {
     return (
       <div className="relative min-h-0 flex-1 overflow-hidden bg-[color:var(--editor-canvas)] p-[1cqw]">
-        <div className="mb-[0.7cqw] flex justify-between text-[0.55cqw] text-[#a7a4b3]">
-          <span>Welcome email</span>
-          <span>600 px · HTML / MJML</span>
-        </div>
         {step < demoSteps.navigation ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-[0.7cqw] text-[#a08caa]">
             <Sparkles className="size-[1.7cqw] text-[#c4acd1]" />
@@ -666,18 +679,53 @@ export function BrandLandingPage({
         ) : (
           <motion.div
             style={{ opacity: reducedMotion ? 1 : opacity }}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
             className="mx-auto max-w-[30cqw] shadow-xl"
           >
             <EmailTemplatePreview
               kind="welcome"
-              selected={step >= demoSteps.hover}
-              title={
-                step >= demoSteps.headline
-                  ? "Your next big idea starts here."
-                  : "Welcome to YourBrand."
-              }
+              title={<EditableHeadline demo={demo} isEmail />}
+              content={{
+                brand: (
+                  <CopySwap
+                    changed={step >= demoSteps.companyName}
+                    before="Your brand"
+                    after="YourBrand"
+                  />
+                ),
+                body: (
+                  <CopySwap
+                    changed={step >= demoSteps.description}
+                    before="A little inspiration, a few useful tools, and everything you need to get started."
+                    after="YourBrand brings your projects, feedback, and team together. Here’s to your next big idea."
+                  />
+                ),
+                cta: (
+                  <CopySwap
+                    changed={personalized}
+                    before="Make yourself at home"
+                    after="Get started with YourBrand"
+                  />
+                ),
+              }}
+              renderSection={(section, children) => {
+                const cues = {
+                  brand: demoSteps.navigation,
+                  heading: demoSteps.hero,
+                  body: demoSteps.proof,
+                  art: demoSteps.features,
+                  action: demoSteps.footer,
+                  footer: demoSteps.pageReady,
+                };
+                return (
+                  <Reveal
+                    section={`email-${section}`}
+                    show={step >= cues[section]}
+                    {...revealProps}
+                  >
+                    {children}
+                  </Reveal>
+                );
+              }}
             />
           </motion.div>
         )}
