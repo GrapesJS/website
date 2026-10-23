@@ -43,7 +43,6 @@ export default function SDKPage() {
             AI visual editor for SaaS
           </h1>
           <p
-            data-reveal
             className="!max-w-[900px] text-center text-xl font-normal leading-normal text-[color:var(--textColor)] max-[480px]:text-[1.2rem]"
           >
             Embeddable drag-and-drop editor for building emails, landing pages,
@@ -53,7 +52,6 @@ export default function SDKPage() {
           </p>
 
           <div
-            data-reveal
             className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]"
           >
             <CTALink
