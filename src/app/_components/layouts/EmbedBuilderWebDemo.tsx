@@ -671,16 +671,19 @@ export function BrandLandingPage({
   if (isEmail) {
     return (
       <div className="relative min-h-0 flex-1 overflow-hidden bg-[color:var(--editor-canvas)] p-[1cqw]">
-        {step < demoSteps.navigation ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-[0.7cqw] text-[#a08caa]">
-            <Sparkles className="size-[1.7cqw] text-[#c4acd1]" />
-            <span className="text-[0.8cqw]">Your next email starts here.</span>
-          </div>
-        ) : (
-          <motion.div
-            style={{ opacity: reducedMotion ? 1 : opacity }}
-            className="mx-auto max-w-[30cqw] shadow-xl"
-          >
+        <div className="relative mx-auto h-full max-w-[30cqw] overflow-hidden rounded-sm bg-[#17121e] shadow-xl">
+          {step < demoSteps.navigation && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-[0.7cqw] text-[#a08caa]">
+              <Sparkles className="size-[1.7cqw] text-[#c4acd1]" />
+              <span className="text-[0.8cqw]">
+                Your next email starts here.
+              </span>
+              <span className="text-[0.6cqw] text-[#bbacc4]">
+                Built around your brand.
+              </span>
+            </div>
+          )}
+          <motion.div style={{ opacity: reducedMotion ? 1 : opacity }}>
             <EmailTemplatePreview
               kind="welcome"
               title={<EditableHeadline demo={demo} isEmail />}
@@ -728,7 +731,7 @@ export function BrandLandingPage({
               }}
             />
           </motion.div>
-        )}
+        </div>
       </div>
     );
   }
