@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Footer from "@/app/_components/Footer";
 import ScrollReveal from "@/app/_components/ScrollReveal";
-import WindowShell from "@/app/_components/WindowShell";
+import HeroWindowShell from "@/app/_components/WindowShell/HeroWindowShell";
 import EmbedBuilderWeb from "@/app/_components/layouts/EmbedBuilderWeb";
 import SectionEyebrow from "@/app/_components/SectionEyebrow";
 import SdkCustomerLogos from "@/app/_components/sdk/SdkCustomerLogos";
@@ -74,9 +74,9 @@ export default function EmbedAiEmailBuilderPage() {
         />
 
         <div className="mx-auto max-w-[1132px] p-5">
-          <WindowShell data-reveal>
+          <HeroWindowShell data-reveal>
             <EmbedBuilderWeb isEmail />
-          </WindowShell>
+          </HeroWindowShell>
         </div>
 
         <SdkCustomerLogos />

@@ -4,7 +4,7 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import WindowShell from "../_components/WindowShell";
+import HeroWindowShell from "../_components/WindowShell/HeroWindowShell";
 import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import SdkFeatures from "../_components/sdk/SdkFeatures";
 import SdkCustomerLogos from "../_components/sdk/SdkCustomerLogos";
@@ -73,9 +73,9 @@ export default function SDKPage() {
 
           {/* <StarOnGH /> */}
 
-          <WindowShell data-reveal>
+          <HeroWindowShell data-reveal>
             <EmbedBuilderWeb />
-          </WindowShell>
+          </HeroWindowShell>
 
           {/* <Tabs
             tabs={[
