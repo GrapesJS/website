@@ -60,7 +60,7 @@ const faqs: SdkFaqItem[] = [
 
 export default function EmbedAiEmailBuilderPage() {
   return (
-    <main className="min-h-screen bg-[var(--backgroundColor)] text-white">
+    <main className="min-h-screen bg-[var(--backgroundColor)] text-white font-normal">
       <SdkLandingHero
         title="Embed AI email builder in your product"
         description={emailMetadata.description}
@@ -112,8 +112,8 @@ export default function EmbedAiEmailBuilderPage() {
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           <SdkAiCard isEmail />
-          <SdkCustomUiCard isEmail />
           <SdkContentCards isEmail />
+          <SdkCustomUiCard isEmail />
         </div>
       </section>
 
@@ -128,11 +128,16 @@ export default function EmbedAiEmailBuilderPage() {
       />
 
       <SdkStartBanner
-        title="Build your email editor. Make it yours."
+        title={
+          <>
+            Build your email editor.
+            <br />
+            Make it yours.
+          </>
+        }
         description="Give your users an AI email builder inside your product. Start with Studio SDK, shape the experience, and keep building from there."
         primaryLabel="Embed the Builder"
         primaryHref={urls.getSdkLicensesUrl({ ref: "emailFinalCta" })}
-        secondaryLabel="Read the email integration guide"
         secondaryHref={emailDocs}
         placement="sdk-email-final-cta"
       />

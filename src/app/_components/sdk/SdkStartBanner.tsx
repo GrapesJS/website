@@ -12,7 +12,7 @@ export default function SdkStartBanner({
   secondaryHref = urls.getGettingStartedDocsUrl(),
   placement = "sdk-overview-final-cta",
 }: {
-  title?: string;
+  title?: React.ReactNode;
   description?: string;
   primaryLabel?: string;
   primaryHref?: string;
@@ -21,10 +21,7 @@ export default function SdkStartBanner({
   placement?: string;
 }) {
   return (
-    <section
-      aria-label={title}
-      className="relative z-[1] mx-auto w-full max-w-[1132px] px-4 pb-20 pt-12 md:pb-28"
-    >
+    <section className="relative z-[1] mx-auto w-full max-w-[1132px] px-4 pb-20 pt-12 md:pb-28">
       <div
         className={cn(
           "relative isolate overflow-hidden rounded-2xl px-6 py-12 text-center md:py-16",
@@ -33,22 +30,24 @@ export default function SdkStartBanner({
         )}
       >
         <div aria-hidden className={theme.cards.topGlow} />
-        <h2
-          className={cn(
-            "text-3xl font-semibold leading-tight tracking-tight md:text-[40px]",
-            theme.colors.primaryText,
-          )}
-        >
-          {title}
-        </h2>
-        <p
-          className={cn(
-            "mx-auto mb-8 mt-4 max-w-lg text-base leading-relaxed",
-            theme.colors.ctaText,
-          )}
-        >
-          {description}
-        </p>
+        <div className="mx-auto max-w-lg">
+          <h2
+            className={cn(
+              "text-3xl font-semibold leading-tight tracking-tight md:text-[50px]",
+              theme.colors.primaryText,
+            )}
+          >
+            {title}
+          </h2>
+          <p
+            className={cn(
+              "mb-8 mt-4 max-w-lg text-base leading-relaxed md:text-lg",
+              theme.colors.ctaText,
+            )}
+          >
+            {description}
+          </p>
+        </div>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <CTALink
             href={primaryHref}
