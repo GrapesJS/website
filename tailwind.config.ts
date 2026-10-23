@@ -11,9 +11,19 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
+        "accordion-down": "accordion-down 250ms ease-out",
+        "accordion-up": "accordion-up 200ms ease-out",
         "logo-marquee": "logo-marquee 40s linear infinite",
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
+        },
         "logo-marquee": {
           from: { transform: "translate3d(0, 0, 0)" },
           to: { transform: "translate3d(-50%, 0, 0)" },
