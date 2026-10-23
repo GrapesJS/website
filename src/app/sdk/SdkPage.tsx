@@ -4,61 +4,18 @@ import Background from "../_components/Background";
 import CTALink from "../_components/CTALink";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import SectionEyebrow from "../_components/SectionEyebrow";
-import WindowShell from "../_components/WindowShell";
+import HeroWindowShell from "../_components/WindowShell/HeroWindowShell";
 import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import SdkFeatures from "../_components/sdk/SdkFeatures";
+import SdkCustomerLogos from "../_components/sdk/SdkCustomerLogos";
+import ScrollReveal from "../_components/ScrollReveal";
 
-const clsFullWhite = "!brightness-0 !invert";
-const clsSmallLogo = "!h-[40px]";
 const clsSection =
   "flex w-full flex-col items-center gap-6 px-4 pb-6 pt-[54px] [&>*]:max-w-[1100px]";
 
-const customers = [
-  {
-    src: "/assets/images/external-logos/gainsight.webp",
-    alt: "Gainsight",
-    className: cn(clsFullWhite, clsSmallLogo),
-  },
-  {
-    src: "assets/images/external-logos/microsoft.webp",
-    alt: "Microsoft",
-    className: clsFullWhite,
-  },
-  {
-    src: "/assets/images/external-logos/bytedance.webp",
-    alt: "TikTok",
-    className: cn(clsFullWhite, clsSmallLogo),
-  },
-  {
-    src: "assets/images/external-logos/bbc.webp",
-    alt: "BBC",
-    className: clsFullWhite,
-  },
-  {
-    src: "assets/images/external-logos/servicenow.webp",
-    alt: "ServiceNow",
-    className: cn(clsFullWhite, "!h-[30px]"),
-  },
-  {
-    src: "assets/images/external-logos/braze.webp",
-    alt: "Braze",
-    className: clsFullWhite,
-  },
-  {
-    src: "assets/images/external-logos/phresia.webp",
-    alt: "Phresia",
-    className: clsFullWhite,
-  },
-  {
-    src: "assets/images/external-logos/france-gov.webp",
-    alt: "France Government",
-  },
-];
-
 export default function SDKPage() {
   return (
-    <>
+    <ScrollReveal>
       <Background sticky />
       <main className="absolute flex w-full flex-col items-center [&_*]:scroll-mt-[136px] [&_*]:[scrollbar-color:#9e7ea3_#00000030] [&_*]:[scrollbar-width:thin]">
         <Header isHome />
@@ -85,15 +42,23 @@ export default function SDKPage() {
           <h1 className="text-center text-[4rem] font-bold leading-[72px] text-[color:var(--highEmphasisTextColor)] max-[640px]:text-[3rem] max-[640px]:leading-[normal] max-[480px]:text-[2rem]">
             AI visual editor for SaaS
           </h1>
-          <p className="!max-w-[900px] text-center text-xl font-normal leading-normal text-[color:var(--textColor)] max-[480px]:text-[1.2rem]">
+          <p
+            className="!max-w-[900px] text-center text-xl font-normal leading-normal text-[color:var(--textColor)] max-[480px]:text-[1.2rem]"
+          >
             Embeddable drag-and-drop editor for building emails, landing pages,
             websites, and more. <br />
             Give your users AI-powered content creation tools directly from your
             app.
           </p>
 
-          <div className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]">
-            <CTALink href={urls.getStudioEditorUrl()}>
+          <div
+            className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]"
+          >
+            <CTALink
+              href={urls.getStudioEditorUrl()}
+              data-ph-capture-attribute-placement="sdk-overview-hero"
+              data-ph-capture-attribute-cta="Create your Editor"
+            >
               Create your Editor
             </CTALink>
             {/* <CTALink
@@ -106,9 +71,9 @@ export default function SDKPage() {
 
           {/* <StarOnGH /> */}
 
-          <WindowShell>
+          <HeroWindowShell data-reveal>
             <EmbedBuilderWeb />
-          </WindowShell>
+          </HeroWindowShell>
 
           {/* <Tabs
             tabs={[
@@ -158,42 +123,12 @@ export default function SDKPage() {
 
         <hr className="relative mt-[120px] h-0 w-full overflow-visible border-0 bg-none before:pointer-events-none before:absolute before:top-0 before:z-0 before:h-[1000px] before:w-full before:-translate-y-1/2 before:bg-[linear-gradient(180deg,var(--transparentColor)_20%,var(--backgroundColor)_40%,var(--backgroundColor)_50%,var(--transparentColor)_80%)] before:bg-no-repeat before:content-[''] max-[640px]:mt-0 max-[640px]:before:bg-[linear-gradient(180deg,var(--transparentColor)_35%,var(--backgroundColor)_50%,var(--transparentColor)_80%)]" />
 
-        <section className={clsSection}>
-          <SectionEyebrow as="h2" className="z-[1]">
-            POWERING SOLUTIONS FOR
-          </SectionEyebrow>
-          <div className="relative w-full overflow-hidden [--logo-mask:linear-gradient(90deg,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-image:var(--logo-mask)] [mask-image:var(--logo-mask)]">
-            <div className="flex w-max animate-logo-marquee will-change-transform motion-reduce:animate-none">
-              {[0, 1].map((copyIndex) => (
-                <div
-                  key={copyIndex}
-                  className="flex shrink-0 items-center gap-12 px-6 max-[640px]:gap-9"
-                  aria-hidden={copyIndex === 1}
-                >
-                  {customers.map(({ src, alt, className }) => (
-                    <div
-                      key={`${copyIndex}-${src}`}
-                      className="flex min-w-[160px] items-center justify-center max-[640px]:min-w-[128px]"
-                    >
-                      <img
-                        className={cn("h-[54px] grayscale", className)}
-                        src={src}
-                        alt={alt}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <SdkCustomerLogos />
 
         <SdkFeatures />
 
         <Footer />
       </main>
-    </>
+    </ScrollReveal>
   );
 }

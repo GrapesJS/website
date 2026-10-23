@@ -91,19 +91,35 @@ export async function generateMetadata({
   }
 
   const title = `${post.title} | ${DEFAULT_TITLE} Blog`;
+  const description = post.excerpt?.trim() || post.title;
+  const postUrl = urls.getPathBlog(post.slug);
 
   return {
     title,
+    description,
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title,
+      description,
+      url: postUrl,
+      images: [post.ogImage.url],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
       images: [post.ogImage.url],
     },
   };
 }
 
 export async function generateStaticParams() {
-  const result: Awaited<PageBlogPostProps["params"]>[] = getAllPosts().map((post) => ({
-    slug: post.slug,
-  }));
+  const result: Awaited<PageBlogPostProps["params"]>[] = getAllPosts().map(
+    (post) => ({
+      slug: post.slug,
+    }),
+  );
   return result;
 }

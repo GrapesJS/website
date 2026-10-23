@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* The head script enables this before the first paint; without JS, content is visible. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-reveal-enabled] [data-scroll-reveal] [data-reveal="true"] {
+    opacity: 0;
+  }
+}
+
 body {
   --transparentColor: transparent;
   --activeBaseColor: #973aa8;

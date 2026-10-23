@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import urls from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import CTALink from "../CTALink";
+import SdkStartBanner from "./SdkStartBanner";
 import SectionEyebrow from "../SectionEyebrow";
 import {
   AiWorkflowIllustration,
@@ -26,6 +26,9 @@ import {
   ThemeIllustration,
 } from "./SdkIllustrations";
 import { theme } from "./theme";
+import IllustratedFeatureCard, {
+  sdkFeatureCardClass as cardClass,
+} from "./SdkFeatureCard";
 import {
   CustomBlocksIllustration,
   DataSourcesIllustration,
@@ -34,11 +37,6 @@ import {
 
 const docs = "https://app.grapesjs.com/docs-sdk";
 const linkClass = cn(theme.links.base, theme.colors.linkText);
-const cardClass = cn(
-  "overflow-hidden rounded-2xl",
-  theme.cards.border,
-  theme.cards.bg,
-);
 
 function DocsLink({
   href,
@@ -54,55 +52,6 @@ function DocsLink({
   );
 }
 
-function IllustratedFeatureCard({
-  label,
-  title,
-  description,
-  links,
-  children,
-  wide = false,
-}: {
-  label: string;
-  title: string;
-  description: string;
-  links: React.ReactNode;
-  children: React.ReactNode;
-  wide?: boolean;
-}) {
-  return (
-    <article
-      className={cn(cardClass, "flex flex-col", wide && "md:col-span-2")}
-    >
-      <div className="flex-1 p-6 md:p-8">
-        <p
-          className={cn("mb-3", theme.cards.eyebrow, theme.colors.eyebrowText)}
-        >
-          {label}
-        </p>
-        <h3
-          className={cn(
-            "text-2xl font-semibold leading-tight tracking-tight",
-            wide ? "md:text-[30px]" : "md:text-[28px]",
-            theme.colors.primaryText,
-          )}
-        >
-          {title}
-        </h3>
-        <p
-          className={cn(
-            "mb-5 mt-4 max-w-[760px] text-base leading-relaxed",
-            theme.colors.secondaryText,
-          )}
-        >
-          {description}
-        </p>
-        <div className="flex flex-wrap gap-x-6 gap-y-3">{links}</div>
-      </div>
-      <div className="px-3 pb-3 md:px-5 md:pb-5">{children}</div>
-    </article>
-  );
-}
-
 const features = [
   {
     icon: Blocks,
@@ -114,6 +63,13 @@ const features = [
   {
     icon: FileStack,
     title: "Multiple pages, SEO included",
+    emailAlternative: {
+      icon: Type,
+      title: "Fonts that fit your brand",
+      description:
+        "Configure system font stacks, bring brand typefaces, and connect a font provider. Choose fallbacks for email clients that don’t load web fonts.",
+      href: "configuration/fonts",
+    },
     description:
       "Manage pages in one project, with built-in settings for titles, SEO metadata, and social sharing tags.",
     href: "configuration/pages#settings",
@@ -164,8 +120,8 @@ const features = [
     icon: Layers,
     title: "Reuse the work that matters",
     description:
-      "Turn repeated elements into symbols and manage the structure of each page with the layers panel.",
-    href: "configuration/components",
+      "Turn repeated elements into symbols and manage the structure of your content with the layers panel.",
+    href: "configuration/components/overview",
   },
 ];
 
@@ -208,15 +164,324 @@ const plugins = [
   },
 ];
 
+export function SdkCustomUiCard({
+  isEmail = false,
+}: { isEmail?: boolean } = {}) {
+  return (
+    <article data-reveal className={`${cardClass} md:col-span-2`}>
+      <div className="flex flex-col gap-5 p-6 md:flex-row md:items-end md:justify-between md:p-9">
+        <div className="max-w-[680px]">
+          <p
+            className={cn(
+              "mb-3",
+              theme.cards.eyebrow,
+              theme.colors.eyebrowText,
+            )}
+          >
+            Fully customizable UI
+          </p>
+          <h3
+            className={cn(
+              "text-2xl font-semibold leading-tight tracking-tight md:text-[30px]",
+              theme.colors.primaryText,
+            )}
+          >
+            Start with our UI. Make it your own.
+          </h3>
+          <p
+            className={cn(
+              "mt-4 text-base leading-relaxed",
+              theme.colors.secondaryText,
+            )}
+          >
+            Arrange built-in panels, adjust the layout, and add your own
+            components. The editor runs inside your application, so it can work
+            alongside the UI you already have.
+          </p>
+        </div>
+        <div className="shrink-0 md:pb-1">
+          <DocsLink href="configuration/layout/overview">
+            Explore Layout Components
+          </DocsLink>
+        </div>
+      </div>
+      <div className="px-3 pb-3 md:px-5 md:pb-5">
+        <EditorCompositionIllustration isEmail={isEmail} />
+      </div>
+    </article>
+  );
+}
+
+export function SdkAiCard({
+  isEmail = false,
+  wide = isEmail,
+}: { isEmail?: boolean; wide?: boolean } = {}) {
+  return (
+    <article
+      data-reveal
+      className={cn(
+        cardClass,
+        "flex flex-col",
+        wide && "md:col-span-2 md:grid md:grid-cols-[0.9fr_1fr]",
+      )}
+    >
+      <div
+        className={cn(
+          "flex-1 p-6 md:p-8",
+          wide && "flex flex-col justify-center",
+        )}
+      >
+        <p
+          className={cn("mb-3", theme.cards.eyebrow, theme.colors.eyebrowText)}
+        >
+          Built-in AI assistant
+        </p>
+        <h3
+          className={cn(
+            "text-2xl font-semibold leading-tight tracking-tight md:text-[28px]",
+            theme.colors.primaryText,
+          )}
+        >
+          {isEmail
+            ? "From a prompt to an email, in one conversation."
+            : "AI that works inside your workflow."}
+        </h3>
+        <p
+          className={cn(
+            "mb-5 mt-4 text-base leading-relaxed",
+            theme.colors.secondaryText,
+          )}
+        >
+          {isEmail
+            ? "Let users draft welcome emails, write newsletter copy, and refine a design through conversation. Customize the assistant’s UI, prompts, and tools, then let users keep editing visually."
+            : "Let users create and edit content through conversation, then refine it visually. Customize the chat UI, instructions, and tools to connect AI to your product."}
+        </p>
+        <DocsLink href="plugins/ai/overview">Explore AI integration</DocsLink>
+      </div>
+      <div className={cn("px-3 pb-3 md:px-5 md:pb-5", wide && "pt-3 md:pt-5")}>
+        <AiWorkflowIllustration isEmail={isEmail} />
+      </div>
+    </article>
+  );
+}
+
+export function SdkContentCards({
+  isEmail = false,
+}: { isEmail?: boolean } = {}) {
+  return (
+    <>
+      <IllustratedFeatureCard
+        label="Custom blocks & components"
+        title="Give users building blocks made for your product."
+        description={
+          isEmail
+            ? "Offer reusable email headers, product cards, promotional sections, and footers. Combine built-in email blocks with your own components, then choose how each one behaves."
+            : "Combine built-in blocks with your own components, from product cards to branded sections. Choose what users can add and how each block behaves."
+        }
+        links={
+          <DocsLink href="configuration/blocks">Explore custom blocks</DocsLink>
+        }
+      >
+        <CustomBlocksIllustration isEmail={isEmail} />
+      </IllustratedFeatureCard>
+
+      <IllustratedFeatureCard
+        label="Global styles"
+        title="Start every project with your design system."
+        description={
+          isEmail
+            ? "Set shared colors, typography, and styles in your email templates. Let users update brand settings once and carry them through every part of their email."
+            : "Define shared colors, typography, and styles in your templates. Give users one place to manage their brand and update the elements that use it."
+        }
+        links={
+          <DocsLink href="configuration/global-styles">
+            Explore global styles
+          </DocsLink>
+        }
+      >
+        <GlobalStylesIllustration isEmail={isEmail} />
+      </IllustratedFeatureCard>
+
+      <IllustratedFeatureCard
+        wide
+        label="Data sources & template engines"
+        title="One template. A personal preview for every record."
+        description={
+          isEmail
+            ? "Connect merge tags, conditions, and collections to your product data. Preview an email for different recipients and configure import and export for your template engine."
+            : "Connect content to your application data, then preview different records on the canvas. Configure import and export for your template syntax to keep personalized newsletters editable."
+        }
+        links={
+          <DocsLink href="configuration/datasources/overview">
+            Explore data sources
+          </DocsLink>
+        }
+      >
+        <DataSourcesIllustration isEmail={isEmail} />
+      </IllustratedFeatureCard>
+    </>
+  );
+}
+
+export function SdkDetails({ isEmail = false }: { isEmail?: boolean } = {}) {
+  const detailFeatures = features.map((feature) =>
+    isEmail && feature.emailAlternative ? feature.emailAlternative : feature,
+  );
+  return (
+    <section
+      aria-labelledby="sdk-toolkit-heading"
+      className="mx-auto max-w-[1132px] px-4 py-16 md:py-20"
+    >
+      <div data-reveal className="mb-10 max-w-2xl">
+        <SectionEyebrow className="mb-4">
+          The details are built in
+        </SectionEyebrow>
+        <h2
+          id="sdk-toolkit-heading"
+          className={cn(
+            "text-3xl font-semibold leading-tight tracking-tight md:text-[38px]",
+            theme.colors.primaryText,
+          )}
+        >
+          {isEmail
+            ? "A complete toolkit for email creation."
+            : "A complete toolkit for content creation."}
+        </h2>
+        <p
+          className={cn(
+            "mt-4 text-base leading-relaxed",
+            theme.colors.mutedText,
+          )}
+        >
+          Start with the capabilities your users expect. Adapt them as your
+          product grows.
+        </p>
+      </div>
+      <div className="grid gap-x-9 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        {detailFeatures.map(({ icon: Icon, title, description, href }) => (
+          <a
+            data-reveal
+            key={title}
+            href={`${docs}/${href}`}
+            className={cn(
+              "group rounded-lg p-6",
+              theme.cards.border,
+              theme.cards.bg,
+              theme.cards.hover,
+            )}
+          >
+            <Icon
+              size={23}
+              strokeWidth={1.5}
+              className={cn("mb-4", theme.colors.icon)}
+              aria-hidden
+            />
+            <h3
+              className={cn(
+                "mb-2 flex items-center gap-2 text-base font-semibold",
+                theme.colors.headingText,
+              )}
+            >
+              {title}
+              <ArrowRight
+                size={14}
+                className={cn(
+                  "shrink-0 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 group-focus-visible:opacity-100",
+                  theme.colors.eyebrowText,
+                )}
+                aria-hidden
+              />
+            </h3>
+            <p className={cn("text-sm leading-[1.8]", theme.colors.subtleText)}>
+              {description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function SdkDeveloperFoundations() {
+  return (
+    <section
+      aria-label="Developer foundations"
+      className="mx-auto grid max-w-[1132px] gap-8 px-4 py-12 md:grid-cols-2 md:gap-14 md:py-16"
+    >
+      <div data-reveal className={cn(cardClass, "p-6 md:p-8")}>
+        <Braces
+          size={25}
+          strokeWidth={1.5}
+          className={cn("mb-4", theme.colors.icon)}
+          aria-hidden
+        />
+        <h2
+          className={cn(
+            "text-xl font-semibold tracking-tight",
+            theme.colors.primaryText,
+          )}
+        >
+          Fits the stack you already use.
+        </h2>
+        <p
+          className={cn(
+            "mb-4 mt-3 text-sm leading-[1.8]",
+            theme.colors.mutedText,
+          )}
+        >
+          Use the React integration or the JavaScript SDK with your framework of
+          choice. Connect the editor to your application through configuration,
+          events, and APIs.
+        </p>
+        <DocsLink href="examples/overview">
+          Explore integration examples
+        </DocsLink>
+      </div>
+      <div data-reveal className={cn(cardClass, "p-6 md:p-8")}>
+        <Github
+          size={25}
+          strokeWidth={1.5}
+          className={cn("mb-4", theme.colors.icon)}
+          aria-hidden
+        />
+        <h2
+          className={cn(
+            "text-xl font-semibold tracking-tight",
+            theme.colors.primaryText,
+          )}
+        >
+          An open-source core. A product-ready SDK.
+        </h2>
+        <p
+          className={cn(
+            "mb-4 mt-3 text-sm leading-[1.8]",
+            theme.colors.mutedText,
+          )}
+        >
+          Studio SDK builds on the open-source GrapesJS framework, adding a
+          polished editor UI, Studio plugins, and support from the team behind
+          the core.
+        </p>
+        <a href={urls.getGithubUrl()} className={linkClass}>
+          Explore GrapesJS on GitHub <ArrowRight size={15} aria-hidden />
+        </a>
+      </div>
+    </section>
+  );
+}
+
 export default function SdkFeatures() {
   return (
-    <div className="relative z-[1] w-full">
+    <div className="relative z-[1] w-full font-normal">
       <section
         id="features"
         aria-labelledby="sdk-features-heading"
         className="mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
       >
-        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+        <div
+          data-reveal
+          className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
+        >
           <SectionEyebrow className="mb-4">
             Built to become part of your product
           </SectionEyebrow>
@@ -242,87 +507,11 @@ export default function SdkFeatures() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <article className={`${cardClass} md:col-span-2`}>
-            <div className="flex flex-col gap-5 p-6 md:flex-row md:items-end md:justify-between md:p-9">
-              <div className="max-w-[680px]">
-                <p
-                  className={cn(
-                    "mb-3",
-                    theme.cards.eyebrow,
-                    theme.colors.eyebrowText,
-                  )}
-                >
-                  Fully customizable UI
-                </p>
-                <h3
-                  className={cn(
-                    "text-2xl font-semibold leading-tight tracking-tight md:text-[30px]",
-                    theme.colors.primaryText,
-                  )}
-                >
-                  Start with our UI. Make it your own.
-                </h3>
-                <p
-                  className={cn(
-                    "mt-4 text-base leading-relaxed",
-                    theme.colors.secondaryText,
-                  )}
-                >
-                  Arrange built-in panels, adjust the layout, and add your own
-                  components. The editor runs inside your application, so it can
-                  work alongside the UI you already have.
-                </p>
-              </div>
-              <div className="shrink-0 md:pb-1">
-                <DocsLink href="configuration/layout/overview">
-                  Explore Layout Components
-                </DocsLink>
-              </div>
-            </div>
-            <div className="px-3 pb-3 md:px-5 md:pb-5">
-              <EditorCompositionIllustration />
-            </div>
-          </article>
+          <SdkCustomUiCard />
 
-          <article className={`${cardClass} flex flex-col`}>
-            <div className="flex-1 p-6 md:p-8">
-              <p
-                className={cn(
-                  "mb-3",
-                  theme.cards.eyebrow,
-                  theme.colors.eyebrowText,
-                )}
-              >
-                Built-in AI assistant
-              </p>
-              <h3
-                className={cn(
-                  "text-2xl font-semibold leading-tight tracking-tight md:text-[28px]",
-                  theme.colors.primaryText,
-                )}
-              >
-                AI that works inside your workflow.
-              </h3>
-              <p
-                className={cn(
-                  "mb-5 mt-4 text-base leading-relaxed",
-                  theme.colors.secondaryText,
-                )}
-              >
-                Let users create and edit content through conversation, then
-                refine it visually. Customize the chat UI, instructions, and
-                tools to connect AI to your product.
-              </p>
-              <DocsLink href="plugins/ai/overview">
-                Explore AI integration
-              </DocsLink>
-            </div>
-            <div className="px-3 pb-3 md:px-5 md:pb-5">
-              <AiWorkflowIllustration />
-            </div>
-          </article>
+          <SdkAiCard />
 
-          <article className={`${cardClass} flex flex-col`}>
+          <article data-reveal className={`${cardClass} flex flex-col`}>
             <div className="flex-1 p-6 md:p-8">
               <p
                 className={cn(
@@ -360,7 +549,7 @@ export default function SdkFeatures() {
             </div>
           </article>
 
-          <article className={`${cardClass} md:col-span-2`}>
+          <article data-reveal className={`${cardClass} md:col-span-2`}>
             <div className="p-6 md:p-9">
               <p
                 className={cn(
@@ -459,47 +648,10 @@ export default function SdkFeatures() {
             </div>
           </article>
 
-          <IllustratedFeatureCard
-            label="Custom blocks & components"
-            title="Give users building blocks made for your product."
-            description="Combine built-in blocks with your own components, from product cards to branded sections. Choose what users can add and how each block behaves."
-            links={
-              <DocsLink href="configuration/blocks">
-                Explore custom blocks
-              </DocsLink>
-            }
-          >
-            <CustomBlocksIllustration />
-          </IllustratedFeatureCard>
-
-          <IllustratedFeatureCard
-            label="Global styles"
-            title="Start every project with your design system."
-            description="Define shared colors, typography, and styles in your templates. Give users one place to manage their brand and update the elements that use it."
-            links={
-              <DocsLink href="configuration/global-styles">
-                Explore global styles
-              </DocsLink>
-            }
-          >
-            <GlobalStylesIllustration />
-          </IllustratedFeatureCard>
-
-          <IllustratedFeatureCard
-            wide
-            label="Data sources & template engines"
-            title="One template. A personal preview for every record."
-            description="Connect content to your application data, then preview different records on the canvas. Configure import and export for your template syntax to keep personalized newsletters editable."
-            links={
-              <DocsLink href="configuration/datasources/overview">
-                Explore data sources
-              </DocsLink>
-            }
-          >
-            <DataSourcesIllustration />
-          </IllustratedFeatureCard>
+          <SdkContentCards />
 
           <article
+            data-reveal
             className={`${cardClass} grid md:col-span-2 md:grid-cols-[1fr_1.05fr]`}
           >
             <div className="flex flex-col justify-center p-6 md:p-9">
@@ -541,82 +693,16 @@ export default function SdkFeatures() {
         </div>
       </section>
 
-      <section
-        aria-labelledby="sdk-toolkit-heading"
-        className="mx-auto max-w-[1132px] px-4 py-16 md:py-20"
-      >
-        <div className="mb-10 max-w-2xl">
-          <SectionEyebrow className="mb-4">
-            The details are built in
-          </SectionEyebrow>
-          <h2
-            id="sdk-toolkit-heading"
-            className={cn(
-              "text-3xl font-semibold leading-tight tracking-tight md:text-[38px]",
-              theme.colors.primaryText,
-            )}
-          >
-            A complete toolkit for content creation.
-          </h2>
-          <p
-            className={cn(
-              "mt-4 text-base leading-relaxed",
-              theme.colors.mutedText,
-            )}
-          >
-            Start with the capabilities your users expect. Adapt them as your
-            product grows.
-          </p>
-        </div>
-        <div className="grid gap-x-9 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map(({ icon: Icon, title, description, href }) => (
-            <a
-              key={title}
-              href={`${docs}/${href}`}
-              className={cn(
-                "group rounded-lg p-6",
-                theme.cards.border,
-                theme.cards.bg,
-                theme.cards.hover,
-              )}
-            >
-              <Icon
-                size={23}
-                strokeWidth={1.5}
-                className={cn("mb-4", theme.colors.icon)}
-                aria-hidden
-              />
-              <h3
-                className={cn(
-                  "mb-2 flex items-center gap-2 text-base font-semibold",
-                  theme.colors.headingText,
-                )}
-              >
-                {title}
-                <ArrowRight
-                  size={14}
-                  className={cn(
-                    "shrink-0 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 group-focus-visible:opacity-100",
-                    theme.colors.eyebrowText,
-                  )}
-                  aria-hidden
-                />
-              </h3>
-              <p
-                className={cn("text-sm leading-[1.8]", theme.colors.subtleText)}
-              >
-                {description}
-              </p>
-            </a>
-          ))}
-        </div>
-      </section>
+      <SdkDetails />
 
       <section
         aria-labelledby="sdk-plugins-heading"
         className="mx-auto max-w-[1132px] px-4 py-12 md:py-20"
       >
-        <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div
+          data-reveal
+          className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end"
+        >
           <div className="max-w-xl">
             <SectionEyebrow className="mb-4">
               Keep building on top
@@ -645,6 +731,7 @@ export default function SdkFeatures() {
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
           {plugins.map(({ icon: Icon, title, detail, href }) => (
             <a
+              data-reveal
               key={title}
               href={`${docs}/plugins/${href}`}
               className={cn(
@@ -690,110 +777,9 @@ export default function SdkFeatures() {
         </div>
       </section>
 
-      <section
-        aria-label="Developer foundations"
-        className="mx-auto grid max-w-[1132px] gap-8 px-4 py-12 md:grid-cols-2 md:gap-14 md:py-16"
-      >
-        <div className={cn(cardClass, "p-6 md:p-8")}>
-          <Braces
-            size={25}
-            strokeWidth={1.5}
-            className={cn("mb-4", theme.colors.icon)}
-            aria-hidden
-          />
-          <h2
-            className={cn(
-              "text-xl font-semibold tracking-tight",
-              theme.colors.primaryText,
-            )}
-          >
-            Fits the stack you already use.
-          </h2>
-          <p
-            className={cn(
-              "mb-4 mt-3 text-sm leading-[1.8]",
-              theme.colors.mutedText,
-            )}
-          >
-            Use the React integration or the JavaScript SDK with your framework
-            of choice. Connect the editor to your application through
-            configuration, events, and APIs.
-          </p>
-          <DocsLink href="examples/overview">
-            Explore integration examples
-          </DocsLink>
-        </div>
-        <div className={cn(cardClass, "p-6 md:p-8")}>
-          <Github
-            size={25}
-            strokeWidth={1.5}
-            className={cn("mb-4", theme.colors.icon)}
-            aria-hidden
-          />
-          <h2
-            className={cn(
-              "text-xl font-semibold tracking-tight",
-              theme.colors.primaryText,
-            )}
-          >
-            An open-source core. A product-ready SDK.
-          </h2>
-          <p
-            className={cn(
-              "mb-4 mt-3 text-sm leading-[1.8]",
-              theme.colors.mutedText,
-            )}
-          >
-            Studio SDK builds on the open-source GrapesJS framework, adding a
-            polished editor UI, Studio plugins, and support from the team behind
-            the core.
-          </p>
-          <a href={urls.getGithubUrl()} className={linkClass}>
-            Explore GrapesJS on GitHub <ArrowRight size={15} aria-hidden />
-          </a>
-        </div>
-      </section>
+      <SdkDeveloperFoundations />
 
-      <section
-        aria-labelledby="sdk-start-heading"
-        className="mx-auto max-w-[1132px] px-4 pb-20 pt-12 md:pb-28"
-      >
-        <div
-          className={cn(
-            "relative isolate overflow-hidden rounded-2xl px-6 py-12 text-center md:py-16",
-            theme.cards.border,
-            theme.cards.bg,
-          )}
-        >
-          <div aria-hidden className={theme.cards.topGlow} />
-          <h2
-            id="sdk-start-heading"
-            className={cn(
-              "text-3xl font-semibold leading-tight tracking-tight md:text-[40px]",
-              theme.colors.primaryText,
-            )}
-          >
-            Build your first editor. Make it yours.
-          </h2>
-          <p
-            className={cn(
-              "mx-auto mb-8 mt-4 max-w-lg text-base leading-relaxed",
-              theme.colors.ctaText,
-            )}
-          >
-            Try Studio SDK in your app and explore the experience you can give
-            your users. Start on the free plan.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <CTALink href={urls.getSdkLicensesUrl({ ref: "homepageFeatures" })}>
-              Get started for free
-            </CTALink>
-            <CTALink href={urls.getGettingStartedDocsUrl()} variant="tertiary">
-              Read the Docs
-            </CTALink>
-          </div>
-        </div>
-      </section>
+      <SdkStartBanner />
     </div>
   );
 }

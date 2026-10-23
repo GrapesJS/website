@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blogApi";
 import { SITE_URL } from "@/lib/site";
+import urls from "@/lib/urls";
 
 export const dynamic = "force-static";
 
@@ -29,10 +30,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/sdk/email`,
+      url: `${SITE_URL}${urls.getEmailBuilderUrl()}`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/sdk/ai`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/sdk/pricing`,

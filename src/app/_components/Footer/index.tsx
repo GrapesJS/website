@@ -26,6 +26,16 @@ const linkCategories: {
         label: "Pricing",
         href: urls.getPricingUrl(),
       },
+      {
+        id: "SdkAi",
+        label: "AI for Studio SDK",
+        href: "/sdk/ai",
+      },
+      {
+        id: "SdkEmail",
+        label: "Email Builder",
+        href: urls.getEmailBuilderUrl(),
+      },
     ],
   },
   {
@@ -134,6 +144,8 @@ const Footer: React.FC<FooterProps> = ({ className, ...rest }) => {
                       className={styles.link}
                       href={link.href}
                       target={link.target}
+                      data-ph-capture-attribute-placement="footer"
+                      data-ph-capture-attribute-link={link.label}
                     >
                       {link.label}
                     </a>

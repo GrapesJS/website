@@ -71,6 +71,8 @@ export default function MobileMenu({ isHome, links }: MobileMenuProps) {
               <a
                 key={href}
                 href={href}
+                data-ph-capture-attribute-placement="header-mobile"
+                data-ph-capture-attribute-link={content}
                 target={target}
                 rel={target === "_blank" ? "noopener noreferrer" : undefined}
                 onClick={() => setOpen(false)}

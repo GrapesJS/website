@@ -4,6 +4,22 @@ import { MoreStories } from "@/app/_components/MoreStories.tsx";
 import { getAllPosts } from "@/lib/blogApi";
 import Footer from "../_components/Footer";
 import Hero from "../_components/Hero";
+import type { Metadata } from "next";
+
+const blogTitle = "GrapesJS Blog: Product Updates and Guides";
+const blogDescription =
+  "Product updates, implementation guides, and ideas for building visual editors with GrapesJS and Studio SDK.";
+
+export const metadata: Metadata = {
+  title: blogTitle,
+  description: blogDescription,
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: blogTitle,
+    description: blogDescription,
+    url: "/blog",
+  },
+};
 
 export default function PageBlogPosts() {
   const allPosts = getAllPosts();

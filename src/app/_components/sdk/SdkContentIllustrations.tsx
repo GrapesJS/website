@@ -76,9 +76,11 @@ function PanelHeader({ children }: { children: ReactNode }) {
 function ProductBlock({
   thumbnail = false,
   selected = false,
+  isEmail = false,
 }: {
   thumbnail?: boolean;
   selected?: boolean;
+  isEmail?: boolean;
 }) {
   return (
     <div
@@ -89,7 +91,7 @@ function ProductBlock({
     >
       {selected && (
         <span className="absolute -left-0.5 -top-4 rounded-t-sm bg-[#8b5cf6] px-1 py-0.5 text-[7px] text-white">
-          Product card
+          {isEmail ? "Email product card" : "Product card"}
         </span>
       )}
       <div className="flex aspect-square w-[28%] shrink-0 items-center justify-center rounded-sm bg-[#a37bc5]/15">
@@ -108,7 +110,7 @@ function ProductBlock({
             </div>
             <div className="mt-1 text-[8px] text-[#c9afd8]">$129</div>
             <div className="mt-2 inline-block rounded-sm bg-[#8b5cf6] px-2 py-1 text-[7px] text-white">
-              Shop now
+              {isEmail ? "Shop the collection" : "Shop now"}
             </div>
           </>
         )}
@@ -117,7 +119,11 @@ function ProductBlock({
   );
 }
 
-function BlocksFrame({ step, reduced }: IllustrationState) {
+function BlocksFrame({
+  step,
+  reduced,
+  isEmail = false,
+}: IllustrationState & { isEmail?: boolean }) {
   return (
     <FeatureEditor
       activeIndex={0}
@@ -170,8 +176,10 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
                   : "border-[color:var(--editor-border)]",
               )}
             >
-              <ProductBlock thumbnail />
-              <div className="mt-1 text-center text-[8px]">Product card</div>
+              <ProductBlock thumbnail isEmail={isEmail} />
+              <div className="mt-1 text-center text-[8px]">
+                {isEmail ? "Email product card" : "Product card"}
+              </div>
             </div>
             <div className="rounded-sm border border-[color:var(--editor-border)] p-1">
               <div className="flex h-8 items-center justify-between rounded-sm bg-[#673a8d] px-2">
@@ -189,9 +197,9 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
                 YourBrand<span className="text-[#b99bea]">.</span>
               </div>
               <div className="mb-3 mt-7 text-[clamp(15px,4cqw,23px)] font-semibold leading-tight tracking-tight">
-                Your next
+                {isEmail ? "Your weekly" : "Your next"}
                 <br />
-                favorite.
+                {isEmail ? "favorites." : "favorite."}
               </div>
               <div className="mb-7 space-y-1">
                 <div className="h-1 w-full rounded bg-[#705b7e]/60" />
@@ -207,7 +215,7 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
                   )}
                 >
                   <span className="text-[8px] text-[#a38db4]">
-                    Drop a block here
+                    {isEmail ? "Drop an email block here" : "Drop a block here"}
                   </span>
                 </div>
               ) : (
@@ -216,8 +224,13 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: reduced ? 0 : 0.3 }}
                 >
-                  <ProductBlock selected />
+                  <ProductBlock selected isEmail={isEmail} />
                 </motion.div>
+              )}
+              {isEmail && (
+                <div className="mt-5 border-t border-white/10 pt-2 text-center text-[7px] text-[#a38db4]">
+                  Manage preferences · Unsubscribe
+                </div>
               )}
             </div>
           </div>
@@ -236,7 +249,7 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
               times: [0, 0.15, 0.85, 1],
             }}
           >
-            <ProductBlock thumbnail />
+            <ProductBlock thumbnail isEmail={isEmail} />
             <MousePointer2
               size={16}
               className="absolute -bottom-3 -right-2 fill-[#e9d5ff] text-[#24172f]"
@@ -250,20 +263,27 @@ function BlocksFrame({ step, reduced }: IllustrationState) {
 
 export function CustomBlocksIllustration({
   withControls = false,
+  isEmail = false,
 }: IllustrationProps = {}) {
   return (
     <Illustration
-      label="Build with your own blocks and components"
+      label={
+        isEmail
+          ? "Build emails with your own blocks and components"
+          : "Build with your own blocks and components"
+      }
       steps={[
         "Offer built-in and custom blocks",
-        "Drag a custom component onto the page",
+        isEmail
+          ? "Drag a custom component into the email"
+          : "Drag a custom component onto the page",
         "Keep editing on the canvas",
       ]}
       stepDurations={[2600, 1600, 3200]}
       withControls={withControls}
       className="[container-type:inline-size]"
     >
-      {(state) => <BlocksFrame {...state} />}
+      {(state) => <BlocksFrame {...state} isEmail={isEmail} />}
     </Illustration>
   );
 }
@@ -322,7 +342,10 @@ function StyleValue({
   );
 }
 
-function GlobalStylesFrame({ step }: IllustrationState) {
+function GlobalStylesFrame({
+  step,
+  isEmail = false,
+}: IllustrationState & { isEmail?: boolean }) {
   const brand = brandStyles[step];
   return (
     <FeatureEditor
@@ -395,14 +418,16 @@ function GlobalStylesFrame({ step }: IllustrationState) {
                 Your brand.
                 <br />
                 <span className="text-[color:var(--brand-accent)] transition-colors duration-500 motion-reduce:transition-none">
-                  Every detail.
+                  {isEmail ? "Every email." : "Every detail."}
                 </span>
               </div>
               <p className="mt-3 text-[length:var(--brand-font-size)] leading-relaxed text-[#b6a9c1] transition-[font-size] duration-500 motion-reduce:transition-none">
-                A shared style for everything you create.
+                {isEmail
+                  ? "One brand, from the email header to the footer."
+                  : "A shared style for everything you create."}
               </p>
               <div className="mt-4 inline-block rounded-sm bg-[color:var(--brand-primary)] px-2 py-1.5 text-[7px] text-white transition-colors duration-500 motion-reduce:transition-none">
-                Start creating
+                {isEmail ? "Read the newsletter" : "Start creating"}
               </div>
               <div className="mt-7 grid grid-cols-2 gap-2">
                 {["Discover", "Create"].map((label) => (
@@ -428,19 +453,24 @@ function GlobalStylesFrame({ step }: IllustrationState) {
 
 export function GlobalStylesIllustration({
   withControls = false,
+  isEmail = false,
 }: IllustrationProps = {}) {
   return (
     <Illustration
       label="Create projects with a shared brand design system"
       steps={[
         "Start with shared brand styles",
-        "Update shared brand colors across the page",
-        "Adjust the shared font size across the page",
+        isEmail
+          ? "Update shared brand colors across the email"
+          : "Update shared brand colors across the page",
+        isEmail
+          ? "Adjust the shared font size across the email"
+          : "Adjust the shared font size across the page",
       ]}
       withControls={withControls}
       className="[container-type:inline-size]"
     >
-      {(state) => <GlobalStylesFrame {...state} />}
+      {(state) => <GlobalStylesFrame {...state} isEmail={isEmail} />}
     </Illustration>
   );
 }
@@ -504,7 +534,12 @@ const customerOffers = [
   },
 ];
 
-function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
+function DataSourcesFrame({
+  step,
+  reduced,
+  selectStep,
+  isEmail = false,
+}: IllustrationState & { isEmail?: boolean }) {
   const record = customerOffers[Math.max(0, step - 1)];
   const ProductIcon = step === 0 ? Package : record.icon;
   return (
@@ -599,6 +634,17 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
               "flex min-h-[360px] flex-col sm:min-h-0",
             )}
           >
+            {isEmail && (
+              <div className="mb-2 flex items-center justify-between gap-3 text-[8px] text-[#b8a6c6]">
+                <span>
+                  Subject:{" "}
+                  {step === 0
+                    ? "An offer for {{ customer.firstName }}"
+                    : `An offer for ${record.firstName}`}
+                </span>
+                <span className="shrink-0">HTML · MJML</span>
+              </div>
+            )}
             <div className="mx-auto flex w-full max-w-[410px] flex-1 flex-col rounded-sm bg-[#17121e] px-4 py-4 text-[#eee4f5] sm:px-6">
               <div className="flex items-center justify-between border-b border-white/10 pb-3 text-[9px]">
                 <span className="font-bold">
@@ -649,6 +695,11 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
                 <div className="mt-4 rounded-sm bg-[#8b5cf6] px-3 py-2 text-center text-[9px] font-semibold text-white">
                   Explore your offer
                 </div>
+                {isEmail && (
+                  <div className="mt-3 border-t border-white/10 pt-2 text-center text-[7px] text-[#a195af]">
+                    YourBrand · Manage preferences · Unsubscribe
+                  </div>
+                )}
               </motion.div>
             </div>
             <div className="pt-2 text-center text-[8px] text-[#a195af]">
@@ -665,6 +716,7 @@ function DataSourcesFrame({ step, reduced, selectStep }: IllustrationState) {
 
 export function DataSourcesIllustration({
   withControls = false,
+  isEmail = false,
 }: IllustrationProps = {}) {
   return (
     <Illustration
@@ -680,7 +732,7 @@ export function DataSourcesIllustration({
       withControls={withControls}
       className="[container-type:inline-size]"
     >
-      {(state) => <DataSourcesFrame {...state} />}
+      {(state) => <DataSourcesFrame {...state} isEmail={isEmail} />}
     </Illustration>
   );
 }

@@ -10,6 +10,8 @@ import {
 } from "./EditorShell";
 
 import { cn } from "@/lib/utils";
+import EmailTemplatePreview from "./EmailTemplatePreview";
+import { getEditorDemoCopy } from "./editorDemoContent";
 import {
   ArrowRight,
   Bold,
@@ -50,14 +52,10 @@ import {
 
 // A single clock keeps chat, page creation, copy changes, and the cursor in sync.
 const CUE_TIMES = [
-  0, 3.4, 4.5, 6.1, 7.1, 7.7, 8.4, 9.1, 9.8, 10.5, 11.2, 12.3, 15.45, 16.6,
-  17.3, 17.75, 18.2, 18.65, 19.2, 20.9, 22, 22.8, 23.4, 24.6, 26.6, 28,
+  0, 0.7, 1.8, 3.4, 4.4, 5, 5.7, 6.4, 7.1, 7.8, 8.5, 9.6, 12.75, 13.9, 14.6,
+  15.05, 15.5, 15.95, 16.5, 18.2, 19.3, 20.1, 20.7, 21.9, 23.9, 25.3,
 ];
-const DURATION = 32.6;
-const BRAND_PROMPT =
-  "Create a landing page following our company’s brand design system.";
-const COMPANY_PROMPT =
-  "Fill it with content for YourBrand, a collaborative workspace for creative teams.";
+const DURATION = 29.9;
 
 export const demoSteps = {
   promptSent: 1,
@@ -228,7 +226,14 @@ function ToolCall({
   );
 }
 
-export function DemoConversation({ demo }: { demo: BuilderDemo }) {
+export function DemoConversation({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
+  const copy = getEditorDemoCopy(isEmail);
   const { step, time, reducedMotion } = demo;
   const opacity = useTransform(
     time,
@@ -243,13 +248,11 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
         className="min-h-0 flex-1 space-y-[0.65cqw] overflow-hidden px-[0.5cqw] py-[0.5cqw] leading-[1.45]"
       >
         {step >= demoSteps.promptSent && (
-          <ChatEntry user>{BRAND_PROMPT}</ChatEntry>
+          <ChatEntry user>{copy.prompt}</ChatEntry>
         )}
         {step >= demoSteps.fetchBrand && (
           <>
-            <ChatEntry>
-              I’ll fetch your brand guidelines, then build a page to match.
-            </ChatEntry>
+            <ChatEntry>{copy.reply}</ChatEntry>
             <ToolCall
               label="Fetch brand design system"
               done={step >= demoSteps.brandReady}
@@ -261,16 +264,14 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
         )}
         {step >= demoSteps.createPage && (
           <ToolCall
-            label="Create landing page"
+            label={copy.createTool}
             done={step >= demoSteps.pageReady}
             demo={demo}
           />
         )}
-        {step >= demoSteps.pageReady && (
-          <ChatEntry>Your page is ready. Let’s make it yours.</ChatEntry>
-        )}
+        {step >= demoSteps.pageReady && <ChatEntry>{copy.complete}</ChatEntry>}
         {step >= demoSteps.companyPrompt && (
-          <ChatEntry user>{COMPANY_PROMPT}</ChatEntry>
+          <ChatEntry user>{copy.companyPrompt}</ChatEntry>
         )}
         {step >= demoSteps.updateCopy && (
           <>
@@ -278,27 +279,33 @@ export function DemoConversation({ demo }: { demo: BuilderDemo }) {
               I’ll tailor the copy to YourBrand’s product and audience.
             </ChatEntry>
             <ToolCall
-              label="Update page copy"
+              label={copy.updateTool}
               done={step >= demoSteps.copyReady}
               demo={demo}
             />
           </>
         )}
         {step >= demoSteps.copyReady && (
-          <ChatEntry>
-            Done. You can edit any text directly on the page.
-          </ChatEntry>
+          <ChatEntry>{copy.visualEdit}</ChatEntry>
         )}
       </motion.div>
-      <DraftComposer demo={demo} />
+      <DraftComposer demo={demo} isEmail={isEmail} />
     </div>
   );
 }
 
-function DraftComposer({ demo }: { demo: BuilderDemo }) {
+function DraftComposer({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
+  const { prompt: brandPrompt, companyPrompt } = getEditorDemoCopy(isEmail);
   const { step, time } = demo;
   const [draft, setDraft] = useState("");
   const draftRef = useRef("");
+  const visibleDraft = step < demoSteps.promptSent ? brandPrompt : draft;
   const firstSend = CUE_TIMES[demoSteps.promptSent];
   const companyStart = CUE_TIMES[demoSteps.companyTyping];
   const companySend = CUE_TIMES[demoSteps.companyPrompt];
@@ -322,14 +329,11 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
 
   useMotionValueEvent(time, "change", (value) => {
     let next = "";
-    if (value >= 0.45 && value < firstSend) {
-      const count = Math.floor(((value - 0.45) / 2.65) * BRAND_PROMPT.length);
-      next = BRAND_PROMPT.slice(0, Math.min(BRAND_PROMPT.length, count));
-    } else if (value >= companyStart && value < companySend) {
+    if (value >= companyStart && value < companySend) {
       const count = Math.floor(
-        ((value - companyStart) / 2.7) * COMPANY_PROMPT.length,
+        ((value - companyStart) / 2.7) * companyPrompt.length,
       );
-      next = COMPANY_PROMPT.slice(0, Math.min(COMPANY_PROMPT.length, count));
+      next = companyPrompt.slice(0, Math.min(companyPrompt.length, count));
     }
     if (next !== draftRef.current) {
       draftRef.current = next;
@@ -339,7 +343,7 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
 
   return (
     <ChatComposer
-      draft={draft}
+      draft={visibleDraft}
       context={
         step >= demoSteps.hover && (
           <div className="flex items-center gap-[0.5cqw]">
@@ -359,7 +363,7 @@ function DraftComposer({ demo }: { demo: BuilderDemo }) {
       }
       sendControl={
         <motion.span style={{ scale: sendScale }}>
-          <ChatSendButton active={!!draft} />
+          <ChatSendButton active={!!visibleDraft} />
         </motion.span>
       }
     />
@@ -403,13 +407,20 @@ function CopySwap({
   );
 }
 
-function EditableHeadline({ demo }: { demo: BuilderDemo }) {
+function EditableHeadline({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
   const { step, time, reducedMotion } = demo;
   const personalized = step >= demoSteps.headline;
   const selected = step >= demoSteps.select && step < demoSteps.typing;
   const editing = step >= demoSteps.typing && step < demoSteps.typed;
   const [typedText, setTypedText] = useState("");
-  const replacement = "bright ideas.";
+  const replacement = isEmail ? "great things." : "bright ideas.";
+  const personalizedEnding = isEmail ? "good things." : "great work.";
   useMotionValueEvent(time, "change", (value) => {
     if (
       value < CUE_TIMES[demoSteps.typing] ||
@@ -436,6 +447,7 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
     [selectAt, selectedAt],
     ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
   );
+  // Font-relative units keep the editing UI scaled to either canvas's headline.
   const cursorX = useTransform(
     time,
     [
@@ -447,12 +459,12 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
       typedAt + 0.5,
       completeAt,
     ],
-    ["28cqw", "18cqw", "0.15cqw", "0.15cqw", "10.8cqw", "11.5cqw", "15cqw"],
+    ["11.9em", "7.66em", "0.064em", "0.064em", "4.6em", "4.9em", "6.4em"],
   );
   const cursorY = useTransform(
     time,
     [cursorAt, cursorAt + 0.5, hoverAt, typedAt + 0.5, completeAt],
-    ["17cqw", "10cqw", "1.15cqw", "1.15cqw", "5cqw"],
+    ["7.23em", "4.25em", "0.49em", "0.49em", "2.13em"],
   );
   const cursorOpacity = useTransform(
     time,
@@ -464,25 +476,32 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
   );
 
   return (
-    <div className="relative mt-[0.8cqw] text-[2.35cqw] font-semibold leading-[1.08] tracking-[-0.12cqw]">
+    <div
+      className={cn(
+        "relative font-semibold",
+        isEmail
+          ? "leading-[1.12] tracking-tight"
+          : "mt-[0.8cqw] text-[2.35cqw] leading-[1.08] tracking-[-0.12cqw]",
+      )}
+    >
       {step >= demoSteps.hover && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="pointer-events-none absolute -inset-x-[0.25cqw] -inset-y-[0.3cqw] border-[0.06cqw] border-[#3998df]"
+          className="pointer-events-none absolute -inset-x-[0.106em] -inset-y-[0.128em] border-[0.026em] border-[#3998df]"
         >
-          <span className="absolute -left-[0.06cqw] -top-[1.05cqw] bg-[#3998df] px-[0.35cqw] py-[0.08cqw] text-[0.55cqw] font-normal leading-normal tracking-normal text-white">
+          <span className="absolute -left-[0.11em] -top-[1.91em] bg-[#3998df] px-[0.64em] py-[0.15em] text-[0.234em] font-normal leading-normal tracking-normal text-white">
             Heading
           </span>
         </motion.div>
       )}
       <CopySwap
         changed={personalized}
-        before="A better way"
-        after="Less busywork."
+        before={isEmail ? "A fresh start." : "A better way"}
+        after={isEmail ? "Welcome aboard." : "Less busywork."}
       />
       <br />
-      {personalized ? "More " : "to "}
+      {isEmail ? "Make " : personalized ? "More " : "to "}
       <span className="relative inline-block whitespace-nowrap text-[#c99be6]">
         <span>
           {step >= demoSteps.typed
@@ -490,36 +509,38 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
             : editing
               ? typedText
               : personalized
-                ? "great work."
-                : "build together."}
+                ? personalizedEnding
+                : isEmail
+                  ? "something new."
+                  : "build together."}
         </span>
         {selected && (
           <motion.span
             style={{ clipPath: selectionClip }}
             className="absolute inset-0 bg-[#3998df] text-white"
           >
-            great work.
+            {personalizedEnding}
           </motion.span>
         )}
         {editing && (
           <motion.span
             style={{ opacity: caretOpacity }}
-            className="absolute -right-[0.08cqw] top-[8%] h-[85%] w-[0.06cqw] bg-[#8351a4]"
+            className="absolute -right-[0.034em] top-[8%] h-[85%] w-[0.026em] bg-[#d8b4fe]"
           />
         )}
         {step >= demoSteps.select && step < demoSteps.typed && (
           <motion.span
             initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute -left-[0.1cqw] -top-[1.9cqw] flex h-[1.5cqw] items-center gap-[0.65cqw] rounded-[0.2cqw] border-[0.05cqw] border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-[0.5cqw] tracking-normal text-white shadow-lg"
+            className="absolute -left-[0.043em] -top-[0.81em] flex h-[0.64em] items-center gap-[0.277em] rounded-[0.085em] border-[0.021em] border-[color:var(--editor-border)] bg-[color:var(--editor-raised)] px-[0.213em] tracking-normal text-white shadow-lg"
           >
-            <Bold className="size-[0.7cqw]" />
-            <Italic className="size-[0.7cqw]" />
-            <Link className="size-[0.7cqw]" />
-            <span className="border-b-[0.12cqw] border-[#d8b4fe] text-[0.7cqw] font-medium leading-none">
+            <Bold className="size-[0.3em]" />
+            <Italic className="size-[0.3em]" />
+            <Link className="size-[0.3em]" />
+            <span className="border-b-[0.17em] border-[#d8b4fe] text-[0.3em] font-medium leading-none">
               A
             </span>
-            <ChevronDown className="size-[0.6cqw]" />
+            <ChevronDown className="size-[0.255em]" />
           </motion.span>
         )}
         {!reducedMotion && (
@@ -528,10 +549,10 @@ function EditableHeadline({ demo }: { demo: BuilderDemo }) {
             className="pointer-events-none absolute left-0 top-0 z-20 text-[#18191b] drop-shadow-[0_0.1cqw_0.1cqw_#0004]"
           >
             {step >= demoSteps.select && step < demoSteps.typed ? (
-              <TextCursor className="size-[1.3cqw]" />
+              <TextCursor className="size-[0.55em] text-white" />
             ) : (
               <MousePointer2
-                className="size-[1.25cqw] fill-white"
+                className="size-[0.53em] fill-white"
                 strokeWidth={1.4}
               />
             )}
@@ -619,7 +640,13 @@ function WorkspacePreview() {
   );
 }
 
-export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
+export function BrandLandingPage({
+  demo,
+  isEmail = false,
+}: {
+  demo: BuilderDemo;
+  isEmail?: boolean;
+}) {
   const { step, time, reducedMotion } = demo;
   const opacity = useTransform(
     time,
@@ -639,6 +666,73 @@ export function BrandLandingPage({ demo }: { demo: BuilderDemo }) {
         ["Work together", "Bring your people closer."],
         ["Grow your vision", "Build something that matters."],
       ];
+  if (isEmail) {
+    return (
+      <div className="relative min-h-0 flex-1 overflow-hidden bg-[color:var(--editor-canvas)] p-[1cqw]">
+        <div className="relative mx-auto h-full max-w-[30cqw] overflow-hidden rounded-sm bg-[#17121e] shadow-xl">
+          {step < demoSteps.navigation && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-[0.7cqw] text-[#a08caa]">
+              <Sparkles className="size-[1.7cqw] text-[#c4acd1]" />
+              <span className="text-[0.8cqw]">
+                Your next email starts here.
+              </span>
+              <span className="text-[0.6cqw] text-[#bbacc4]">
+                Built around your brand.
+              </span>
+            </div>
+          )}
+          <motion.div style={{ opacity: reducedMotion ? 1 : opacity }}>
+            <EmailTemplatePreview
+              kind="welcome"
+              title={<EditableHeadline demo={demo} isEmail />}
+              content={{
+                brand: (
+                  <CopySwap
+                    changed={step >= demoSteps.companyName}
+                    before="Your brand"
+                    after="YourBrand"
+                  />
+                ),
+                body: (
+                  <CopySwap
+                    changed={step >= demoSteps.description}
+                    before="A little inspiration, a few useful tools, and everything you need to get started."
+                    after="YourBrand brings your projects, feedback, and team together. Here’s to your next big idea."
+                  />
+                ),
+                cta: (
+                  <CopySwap
+                    changed={personalized}
+                    before="Make yourself at home"
+                    after="Get started with YourBrand"
+                  />
+                ),
+              }}
+              renderSection={(section, children) => {
+                const cues = {
+                  brand: demoSteps.navigation,
+                  heading: demoSteps.hero,
+                  body: demoSteps.proof,
+                  art: demoSteps.features,
+                  action: demoSteps.footer,
+                  footer: demoSteps.pageReady,
+                };
+                return (
+                  <Reveal
+                    section={`email-${section}`}
+                    show={step >= cues[section]}
+                    {...revealProps}
+                  >
+                    {children}
+                  </Reveal>
+                );
+              }}
+            />
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="relative m-[0.65cqw] min-h-0 flex-1 overflow-hidden rounded-[0.2cqw] bg-[#17121e] text-[#f3eaf8]">
       {step < demoSteps.navigation && (
