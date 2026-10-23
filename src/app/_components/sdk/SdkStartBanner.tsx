@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import urls from "@/lib/urls";
 import CTALink from "../CTALink";
 import { theme } from "./theme";
+import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 
 export default function SdkStartBanner({
   title = "Build your first editor. Make it yours.",
@@ -29,8 +30,21 @@ export default function SdkStartBanner({
           theme.cards.bg,
         )}
       >
+        <DottedGlowBackground
+          className="pointer-events-none [mask-image:radial-gradient(ellipse_at_top,black_0%,transparent_80%)] opacity-75"
+          opacity={1}
+          gap={10}
+          radius={1.6}
+          colorLightVar="--activeBaseColor"
+          glowColorLightVar="--activeHighlightColor"
+          colorDarkVar="--activeBaseColor"
+          glowColorDarkVar="--activeHighlightColor"
+          speedMin={0.1}
+          speedMax={0.5}
+          speedScale={1}
+        />
         <div aria-hidden className={theme.cards.topGlow} />
-        <div className="mx-auto max-w-lg">
+        <div className="mx-auto max-w-lg relative">
           <h2
             className={cn(
               "text-3xl font-semibold leading-tight tracking-tight md:text-[50px]",
