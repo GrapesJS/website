@@ -173,7 +173,7 @@ const features = [
     title: "Reuse the work that matters",
     description:
       "Turn repeated elements into symbols and manage the structure of your content with the layers panel.",
-    href: "configuration/components",
+    href: "configuration/components/overview",
   },
 ];
 
