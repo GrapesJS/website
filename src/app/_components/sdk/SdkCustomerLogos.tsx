@@ -46,7 +46,10 @@ const customers = [
 
 export default function SdkCustomerLogos() {
   return (
-    <section className="flex w-full flex-col items-center gap-6 px-4 pb-8 pt-14">
+    <section
+      data-reveal
+      className="flex w-full flex-col items-center gap-6 px-4 pb-8 pt-14"
+    >
       <SectionEyebrow as="h2" className="z-[1]">
         POWERING SOLUTIONS FOR
       </SectionEyebrow>

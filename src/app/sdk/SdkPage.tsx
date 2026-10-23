@@ -8,13 +8,14 @@ import WindowShell from "../_components/WindowShell";
 import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import SdkFeatures from "../_components/sdk/SdkFeatures";
 import SdkCustomerLogos from "../_components/sdk/SdkCustomerLogos";
+import ScrollReveal from "../_components/ScrollReveal";
 
 const clsSection =
   "flex w-full flex-col items-center gap-6 px-4 pb-6 pt-[54px] [&>*]:max-w-[1100px]";
 
 export default function SDKPage() {
   return (
-    <>
+    <ScrollReveal>
       <Background sticky />
       <main className="absolute flex w-full flex-col items-center [&_*]:scroll-mt-[136px] [&_*]:[scrollbar-color:#9e7ea3_#00000030] [&_*]:[scrollbar-width:thin]">
         <Header isHome />
@@ -41,14 +42,20 @@ export default function SDKPage() {
           <h1 className="text-center text-[4rem] font-bold leading-[72px] text-[color:var(--highEmphasisTextColor)] max-[640px]:text-[3rem] max-[640px]:leading-[normal] max-[480px]:text-[2rem]">
             AI visual editor for SaaS
           </h1>
-          <p className="!max-w-[900px] text-center text-xl font-normal leading-normal text-[color:var(--textColor)] max-[480px]:text-[1.2rem]">
+          <p
+            data-reveal
+            className="!max-w-[900px] text-center text-xl font-normal leading-normal text-[color:var(--textColor)] max-[480px]:text-[1.2rem]"
+          >
             Embeddable drag-and-drop editor for building emails, landing pages,
             websites, and more. <br />
             Give your users AI-powered content creation tools directly from your
             app.
           </p>
 
-          <div className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]">
+          <div
+            data-reveal
+            className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]"
+          >
             <CTALink
               href={urls.getStudioEditorUrl()}
               data-ph-capture-attribute-placement="sdk-overview-hero"
@@ -66,7 +73,7 @@ export default function SDKPage() {
 
           {/* <StarOnGH /> */}
 
-          <WindowShell>
+          <WindowShell data-reveal>
             <EmbedBuilderWeb />
           </WindowShell>
 
@@ -124,6 +131,6 @@ export default function SDKPage() {
 
         <Footer />
       </main>
-    </>
+    </ScrollReveal>
   );
 }

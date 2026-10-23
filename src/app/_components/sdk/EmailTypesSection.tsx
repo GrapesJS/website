@@ -61,7 +61,7 @@ export default function EmailTypesSection() {
       aria-labelledby="email-types-heading"
       className="relative z-[1] mx-auto max-w-[1132px] px-4 py-16 md:py-20"
     >
-      <div className="mx-auto mb-10 max-w-3xl text-center">
+      <div data-reveal className="mx-auto mb-10 max-w-3xl text-center">
         <SectionEyebrow className="mb-4">
           ONE EMAIL EDITOR, EVERY OCCASION
         </SectionEyebrow>
@@ -87,6 +87,7 @@ export default function EmailTypesSection() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {emailTypes.map(({ kind, title, description, accent }) => (
           <article
+            data-reveal
             key={kind}
             className={cn(
               "overflow-hidden rounded-2xl",

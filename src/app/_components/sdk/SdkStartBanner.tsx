@@ -24,6 +24,7 @@ export default function SdkStartBanner({
   return (
     <section className="relative z-[1] mx-auto w-full max-w-[1132px] px-4 pb-20 pt-12 md:pb-28">
       <div
+        data-reveal
         className={cn(
           "relative isolate overflow-hidden rounded-2xl px-6 py-12 text-center md:py-16",
           theme.cards.border,

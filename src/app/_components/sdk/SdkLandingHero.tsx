@@ -39,6 +39,7 @@ export default function SdkLandingHero({
     >
       <div className="mx-auto max-w-2xl px-5 text-center">
         <p
+          data-reveal
           className={cn(
             "mx-auto mt-5 max-w-3xl text-lg sm:text-xl sm:leading-8",
             theme.colors.secondaryText,
@@ -46,7 +47,7 @@ export default function SdkLandingHero({
         >
           {description}
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
+        <div data-reveal className="mt-10 flex flex-wrap justify-center gap-3">
           <CTALink
             href={primaryHref}
             data-ph-capture-attribute-placement={primaryPlacement}

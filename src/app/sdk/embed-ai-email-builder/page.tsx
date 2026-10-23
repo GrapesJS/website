@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Footer from "@/app/_components/Footer";
+import ScrollReveal from "@/app/_components/ScrollReveal";
 import WindowShell from "@/app/_components/WindowShell";
 import EmbedBuilderWeb from "@/app/_components/layouts/EmbedBuilderWeb";
 import SectionEyebrow from "@/app/_components/SectionEyebrow";
@@ -60,90 +61,96 @@ const faqs: SdkFaqItem[] = [
 
 export default function EmbedAiEmailBuilderPage() {
   return (
-    <main className="min-h-screen bg-[var(--backgroundColor)] text-white font-normal">
-      <SdkLandingHero
-        title="Embed AI email builder in your product"
-        description={emailMetadata.description}
-        primaryHref={urls.getSdkLicensesUrl({ ref: "emailHeroCta" })}
-        primaryLabel="Embed the Builder"
-        primaryPlacement="sdk-email-hero"
-        secondaryHref={urls.getPricingUrl()}
-        secondaryLabel="Compare Plans"
-      />
+    <ScrollReveal>
+      <main className="min-h-screen bg-[var(--backgroundColor)] text-white font-normal">
+        <SdkLandingHero
+          title="Embed AI email builder in your product"
+          description={emailMetadata.description}
+          primaryHref={urls.getSdkLicensesUrl({ ref: "emailHeroCta" })}
+          primaryLabel="Embed the Builder"
+          primaryPlacement="sdk-email-hero"
+          secondaryHref={urls.getPricingUrl()}
+          secondaryLabel="Compare Plans"
+        />
 
-      <div className="mx-auto max-w-[1132px] p-5">
-        <WindowShell>
-          <EmbedBuilderWeb isEmail />
-        </WindowShell>
-      </div>
-
-      <SdkCustomerLogos />
-
-      <section
-        id="features"
-        aria-labelledby="email-features-heading"
-        className="relative z-[1] mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
-      >
-        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
-          <h2
-            id="email-time-saving-heading"
-            className={cn(
-              "text-3xl font-semibold leading-tight tracking-tight md:text-[46px]",
-              theme.colors.primaryText,
-            )}
-          >
-            Skip years of editor development.
-            <br />
-            <span className={theme.colors.accentText}>Launch in hours.</span>
-          </h2>
-          <p
-            className={cn(
-              "mx-auto mt-6 max-w-3xl text-base leading-8 md:text-lg",
-              theme.colors.mutedText,
-            )}
-          >
-            Put an AI email builder into your app and reusable building blocks
-            ready to adapt. Spend your engineering time on the product your
-            customers choose you for.
-          </p>
+        <div className="mx-auto max-w-[1132px] p-5">
+          <WindowShell data-reveal>
+            <EmbedBuilderWeb isEmail />
+          </WindowShell>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          <SdkAiCard isEmail />
-          <SdkContentCards isEmail />
-          <SdkCustomUiCard isEmail />
-        </div>
-      </section>
 
-      <EmailTypesSection />
-      <SdkDetails isEmail />
-      <SdkDeveloperFoundations />
+        <SdkCustomerLogos />
 
-      <SdkLandingFaq
-        title="Questions about the email editor"
-        description="See how the embedded editor fits beside your existing product, marketing operations, and delivery stack."
-        faqs={faqs}
-      />
+        <section
+          id="features"
+          aria-labelledby="email-features-heading"
+          className="relative z-[1] mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
+        >
+          <div
+            data-reveal
+            className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
+          >
+            <h2
+              id="email-time-saving-heading"
+              className={cn(
+                "text-3xl font-semibold leading-tight tracking-tight md:text-[46px]",
+                theme.colors.primaryText,
+              )}
+            >
+              Skip years of editor development.
+              <br />
+              <span className={theme.colors.accentText}>Launch in hours.</span>
+            </h2>
+            <p
+              className={cn(
+                "mx-auto mt-6 max-w-3xl text-base leading-8 md:text-lg",
+                theme.colors.mutedText,
+              )}
+            >
+              Put an AI email builder into your app and reusable building blocks
+              ready to adapt. Spend your engineering time on the product your
+              customers choose you for.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <SdkAiCard isEmail />
+            <SdkContentCards isEmail />
+            <SdkCustomUiCard isEmail />
+          </div>
+        </section>
 
-      <SdkStartBanner
-        title={
-          <>
-            Build your email editor.
-            <br />
-            Make it yours.
-          </>
-        }
-        description={
-          <>
-            Give your users an AI email builder inside your product. <br />
-            Focus on your product while we handle the email creation experience.
-          </>
-        }
-        primaryLabel="Embed the Builder"
-        primaryHref={urls.getSdkLicensesUrl({ ref: "emailFinalCta" })}
-        secondaryHref={emailDocs}
-        placement="sdk-email-final-cta"
-      />
-      <Footer />
-    </main>
+        <EmailTypesSection />
+        <SdkDetails isEmail />
+        <SdkDeveloperFoundations />
+
+        <SdkLandingFaq
+          title="Questions about the email editor"
+          description="See how the embedded editor fits beside your existing product, marketing operations, and delivery stack."
+          faqs={faqs}
+        />
+
+        <SdkStartBanner
+          title={
+            <>
+              Build your email editor.
+              <br />
+              Make it yours.
+            </>
+          }
+          description={
+            <>
+              Give your users an AI email builder inside your product. <br />
+              Focus on your product while we handle the email creation
+              experience.
+            </>
+          }
+          primaryLabel="Embed the Builder"
+          primaryHref={urls.getSdkLicensesUrl({ ref: "emailFinalCta" })}
+          secondaryHref={emailDocs}
+          placement="sdk-email-final-cta"
+        />
+        <Footer />
+      </main>
+    </ScrollReveal>
   );
 }

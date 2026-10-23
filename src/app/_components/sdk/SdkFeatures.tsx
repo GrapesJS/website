@@ -71,6 +71,7 @@ function IllustratedFeatureCard({
 }) {
   return (
     <article
+      data-reveal
       className={cn(cardClass, "flex flex-col", wide && "md:col-span-2")}
     >
       <div className="flex-1 p-6 md:p-8">
@@ -219,7 +220,7 @@ export function SdkCustomUiCard({
   isEmail = false,
 }: { isEmail?: boolean } = {}) {
   return (
-    <article className={`${cardClass} md:col-span-2`}>
+    <article data-reveal className={`${cardClass} md:col-span-2`}>
       <div className="flex flex-col gap-5 p-6 md:flex-row md:items-end md:justify-between md:p-9">
         <div className="max-w-[680px]">
           <p
@@ -266,6 +267,7 @@ export function SdkCustomUiCard({
 export function SdkAiCard({ isEmail = false }: { isEmail?: boolean } = {}) {
   return (
     <article
+      data-reveal
       className={cn(
         cardClass,
         "flex flex-col",
@@ -381,7 +383,7 @@ export function SdkDetails({ isEmail = false }: { isEmail?: boolean } = {}) {
       aria-labelledby="sdk-toolkit-heading"
       className="mx-auto max-w-[1132px] px-4 py-16 md:py-20"
     >
-      <div className="mb-10 max-w-2xl">
+      <div data-reveal className="mb-10 max-w-2xl">
         <SectionEyebrow className="mb-4">
           The details are built in
         </SectionEyebrow>
@@ -409,6 +411,7 @@ export function SdkDetails({ isEmail = false }: { isEmail?: boolean } = {}) {
       <div className="grid gap-x-9 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {detailFeatures.map(({ icon: Icon, title, description, href }) => (
           <a
+            data-reveal
             key={title}
             href={`${docs}/${href}`}
             className={cn(
@@ -456,7 +459,7 @@ export function SdkDeveloperFoundations() {
       aria-label="Developer foundations"
       className="mx-auto grid max-w-[1132px] gap-8 px-4 py-12 md:grid-cols-2 md:gap-14 md:py-16"
     >
-      <div className={cn(cardClass, "p-6 md:p-8")}>
+      <div data-reveal className={cn(cardClass, "p-6 md:p-8")}>
         <Braces
           size={25}
           strokeWidth={1.5}
@@ -485,7 +488,7 @@ export function SdkDeveloperFoundations() {
           Explore integration examples
         </DocsLink>
       </div>
-      <div className={cn(cardClass, "p-6 md:p-8")}>
+      <div data-reveal className={cn(cardClass, "p-6 md:p-8")}>
         <Github
           size={25}
           strokeWidth={1.5}
@@ -526,7 +529,10 @@ export default function SdkFeatures() {
         aria-labelledby="sdk-features-heading"
         className="mx-auto max-w-[1132px] px-4 pb-16 pt-16 md:pt-24"
       >
-        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+        <div
+          data-reveal
+          className="mx-auto mb-12 max-w-3xl text-center md:mb-16"
+        >
           <SectionEyebrow className="mb-4">
             Built to become part of your product
           </SectionEyebrow>
@@ -556,7 +562,7 @@ export default function SdkFeatures() {
 
           <SdkAiCard />
 
-          <article className={`${cardClass} flex flex-col`}>
+          <article data-reveal className={`${cardClass} flex flex-col`}>
             <div className="flex-1 p-6 md:p-8">
               <p
                 className={cn(
@@ -594,7 +600,7 @@ export default function SdkFeatures() {
             </div>
           </article>
 
-          <article className={`${cardClass} md:col-span-2`}>
+          <article data-reveal className={`${cardClass} md:col-span-2`}>
             <div className="p-6 md:p-9">
               <p
                 className={cn(
@@ -696,6 +702,7 @@ export default function SdkFeatures() {
           <SdkContentCards />
 
           <article
+            data-reveal
             className={`${cardClass} grid md:col-span-2 md:grid-cols-[1fr_1.05fr]`}
           >
             <div className="flex flex-col justify-center p-6 md:p-9">
@@ -743,7 +750,10 @@ export default function SdkFeatures() {
         aria-labelledby="sdk-plugins-heading"
         className="mx-auto max-w-[1132px] px-4 py-12 md:py-20"
       >
-        <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div
+          data-reveal
+          className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end"
+        >
           <div className="max-w-xl">
             <SectionEyebrow className="mb-4">
               Keep building on top
@@ -772,6 +782,7 @@ export default function SdkFeatures() {
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
           {plugins.map(({ icon: Icon, title, detail, href }) => (
             <a
+              data-reveal
               key={title}
               href={`${docs}/plugins/${href}`}
               className={cn(

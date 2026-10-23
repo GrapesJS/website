@@ -11,17 +11,26 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
+        "section-enter":
+          "section-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) both",
         "accordion-down": "accordion-down 250ms ease-out",
         "accordion-up": "accordion-up 200ms ease-out",
         "logo-marquee": "logo-marquee 40s linear infinite",
       },
       keyframes: {
+        "section-enter": {
+          from: { opacity: "0", transform: "translate3d(0, 24px, 0)" },
+          to: { opacity: "1", transform: "none" },
+        },
         "accordion-down": {
           from: { height: "0", opacity: "0" },
           to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          from: {
+            height: "var(--radix-accordion-content-height)",
+            opacity: "1",
+          },
           to: { height: "0", opacity: "0" },
         },
         "logo-marquee": {
