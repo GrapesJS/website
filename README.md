@@ -37,3 +37,11 @@ yarn start
 
 `next start` does not support `output: 'export'`; both preview commands serve
 `out/` with the locally installed `serve` package.
+
+# LLM content index
+
+[`public/llms.txt`](public/llms.txt) is the curated Markdown overview served at
+`https://grapesjs.com/llms.txt`. Keep its product descriptions and canonical links
+up to date when products, documentation URLs, or public pages change. The shared
+layout links to it with `rel="describedby"`; the static export copies it to
+`out/llms.txt` automatically.

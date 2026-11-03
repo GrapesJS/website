@@ -65,6 +65,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="describedby" href="/llms.txt" type="text/plain" />
         <script
           id="scroll-reveal-init"
           dangerouslySetInnerHTML={{ __html: SCROLL_REVEAL_INIT }}
