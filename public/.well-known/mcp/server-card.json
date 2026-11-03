@@ -1,0 +1,11 @@
+{
+  "name": "GrapesJS Studio MCP App",
+  "description": "Create and edit websites and emails in your GrapesJS Studio workspace from an AI assistant.",
+  "url": "https://app.grapesjs.com/api/mcp",
+  "transport": "streamable-http",
+  "documentationUrl": "https://app.grapesjs.com/docs-sdk/mcp-app-setup",
+  "authentication": {
+    "type": "oauth2",
+    "authorization_server": "https://app.grapesjs.com/api/oauth"
+  }
+}

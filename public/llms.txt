@@ -1,0 +1,54 @@
+# GrapesJS
+
+> GrapesJS is an open-source JavaScript framework for building visual editors. GrapesJS Studio SDK builds on that framework to provide an embeddable, white-label editor for websites, landing pages, emails, and documents, with AI-assisted content creation.
+
+Use Studio SDK to embed a ready-made editor in your application. Use the open-source GrapesJS framework to build and customize your own editor. Grapes Studio is the standalone AI website and email builder for users creating content directly.
+
+Studio SDK documentation is hosted at app.grapesjs.com/docs-sdk. Open-source framework documentation is hosted at grapesjs.com/docs. These products have different APIs and licensing; consult the documentation for the product you are using. Refer to the relevant pricing page for current plans and limits.
+
+For backend automation, the Studio Platform API uses https://api.grapesjs.com/v1 and bearer API keys created in the Platform API dashboard. Keep API keys on your backend. The Studio MCP app connects at https://app.grapesjs.com/api/mcp using Streamable HTTP and OAuth sign-in with workspace consent. MCP OAuth tokens and the Platform API's short-lived AI Chat access tokens are separate authentication flows.
+
+## Products
+
+- [Studio SDK overview](https://grapesjs.com/): Embeddable visual editor with customizable UI, reusable components, project storage integrations, and content export.
+- [Embeddable AI email builder](https://grapesjs.com/sdk/embed-ai-email-builder): Integrate visual email design, MJML, responsive HTML export, and AI assistance into your product.
+- [AI for Studio SDK](https://grapesjs.com/sdk/ai): Add an AI assistant to an embedded editor, with configurable models, prompts, tools, and backends.
+- [Studio SDK pricing](https://grapesjs.com/sdk/pricing): Plans, licensing, features, and usage limits for embedding Studio SDK.
+- [Grapes Studio AI](https://grapesjs.com/ai): Standalone AI website and email creation with visual editing and HTML export.
+- [Grapes Studio pricing](https://grapesjs.com/pricing): Plans for the standalone builder.
+
+## Studio SDK documentation
+
+- [Getting started](https://app.grapesjs.com/docs-sdk/overview/getting-started): Install and embed Studio SDK using React or JavaScript.
+- [Web projects](https://app.grapesjs.com/docs-sdk/project-types/web): Build website and landing page editing experiences.
+- [Email projects](https://app.grapesjs.com/docs-sdk/project-types/email): Configure email editing and export.
+- [Document projects](https://app.grapesjs.com/docs-sdk/project-types/document): Build editors for printable documents and layouts.
+- [Plugins](https://app.grapesjs.com/docs-sdk/plugins/overview): Extend the editor with Studio plugins and integrations.
+- [AI integration](https://app.grapesjs.com/docs-sdk/plugins/ai/overview): Configure AI capabilities for Studio SDK.
+- [Agent Skills](https://github.com/GrapesJS/skills-studio-sdk): Documentation and integration patterns for AI coding agents working with Studio SDK.
+
+## APIs and AI assistants
+
+- [Service catalog](https://grapesjs.com/.well-known/api-catalog.json): Machine-readable links to the Platform API, its canonical OpenAPI specification, and the Studio MCP app.
+- [Platform API documentation](https://app.grapesjs.com/docs-sdk/api): Automate Studio workspace resources from your backend using bearer API keys.
+- [Platform API OpenAPI specification](https://app.grapesjs.com/docs-sdk/platform-api/openapi.yaml): Canonical machine-readable REST API operations, schemas, and authentication requirements.
+- [Platform API dashboard](https://app.grapesjs.com/dashboard/platform-api): Sign in to create and manage API keys.
+- [MCP app setup](https://app.grapesjs.com/docs-sdk/mcp-app-setup): Connect supported AI assistants to Studio through OAuth to create and edit websites and emails.
+- [MCP connection metadata](https://grapesjs.com/.well-known/mcp/server-card.json): Studio MCP endpoint, transport, setup documentation, and OAuth authorization server.
+- [MCP OAuth resource metadata](https://app.grapesjs.com/api/mcp/.well-known/oauth-protected-resource): The MCP resource identifier, authorization server, and supported scopes.
+- [MCP OAuth authorization metadata](https://app.grapesjs.com/api/mcp/.well-known/oauth-authorization-server): Authorization, token, and client registration endpoints for the MCP app.
+
+## Open-source GrapesJS framework
+
+- [Introduction and quick start](https://grapesjs.com/docs/): Framework concepts, installation, and a minimal editor setup.
+- [Getting started tutorial](https://grapesjs.com/docs/getting-started.html): Build and customize an editor step by step.
+- [Components](https://grapesjs.com/docs/modules/Components.html): Define component types, models, views, and editable content.
+- [Editor API](https://grapesjs.com/docs/api/editor.html): Core editor methods, configuration, and events.
+- [Source code](https://github.com/GrapesJS/grapesjs): Framework source, license, releases, and issue tracking.
+
+## Optional
+
+- [Blog](https://grapesjs.com/blog): Product announcements, tutorials, and integration examples.
+- [Careers](https://grapesjs.com/careers): Open roles at Grapes Studio.
+- [Terms](https://app.grapesjs.com/terms): Terms governing the use of Grapes Studio services.
+- [Privacy](https://app.grapesjs.com/privacy): Privacy policy for Grapes Studio services.

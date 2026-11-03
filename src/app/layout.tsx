@@ -65,6 +65,17 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="describedby" href="/llms.txt" type="text/plain" />
+        <link
+          rel="api-catalog"
+          href="/.well-known/api-catalog.json"
+          type="application/json"
+        />
+        <link
+          rel="service-desc"
+          href="https://app.grapesjs.com/docs-sdk/platform-api/openapi.yaml"
+          type="text/yaml"
+        />
         <script
           id="scroll-reveal-init"
           dangerouslySetInnerHTML={{ __html: SCROLL_REVEAL_INIT }}
