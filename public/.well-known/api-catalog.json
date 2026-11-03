@@ -1,0 +1,55 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://grapesjs.com/.well-known/api-catalog.json",
+      "item": [
+        {
+          "href": "https://api.grapesjs.com/v1",
+          "title": "GrapesJS Studio Platform API"
+        },
+        {
+          "href": "https://app.grapesjs.com/api/mcp",
+          "title": "GrapesJS Studio MCP App"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.grapesjs.com/v1",
+      "service-desc": [
+        {
+          "href": "https://app.grapesjs.com/docs-sdk/platform-api/openapi.yaml",
+          "type": "text/yaml"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://app.grapesjs.com/docs-sdk/api",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://app.grapesjs.com/api/mcp",
+      "service-doc": [
+        {
+          "href": "https://app.grapesjs.com/docs-sdk/mcp-app-setup",
+          "type": "text/html"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://grapesjs.com/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        },
+        {
+          "href": "https://app.grapesjs.com/api/mcp/.well-known/oauth-protected-resource",
+          "type": "application/json"
+        },
+        {
+          "href": "https://app.grapesjs.com/api/mcp/.well-known/oauth-authorization-server",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}
