@@ -19,6 +19,7 @@ For backend automation, the Studio Platform API uses https://api.grapesjs.com/v1
 
 ## Studio SDK documentation
 
+- [Set up Studio SDK with a coding agent](https://grapesjs.com/setup-studio-sdk.txt): Guided integration workflow, official skills installation, and context-aware questions about editor type and placement.
 - [Getting started](https://app.grapesjs.com/docs-sdk/overview/getting-started): Install and embed Studio SDK using React or JavaScript.
 - [Web projects](https://app.grapesjs.com/docs-sdk/project-types/web): Build website and landing page editing experiences.
 - [Email projects](https://app.grapesjs.com/docs-sdk/project-types/email): Configure email editing and export.

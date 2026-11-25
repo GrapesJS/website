@@ -1,0 +1,66 @@
+# Set up GrapesJS Studio SDK
+
+You are helping the user embed GrapesJS Studio SDK in their application. Read the conversation and inspect the project before making changes, then follow the steps below.
+
+## What is Studio SDK?
+
+GrapesJS Studio SDK is a customizable, white-label visual editor that you embed in your own application. It gives your users drag-and-drop editing for websites and landing pages, emails and newsletters, or documents. It builds on the open-source GrapesJS framework and includes a ready-made editor UI, plugins, storage integrations, content export, and optional AI assistance.
+
+Use the @grapesjs/studio-sdk package for this integration. Studio SDK has its own APIs and licensing. The standalone Grapes Studio app, the Studio Platform API, and the Studio MCP app serve different workflows; they are not required to embed the SDK.
+
+## 1. Understand the integration
+
+First inspect the existing app, framework, package manager, routes, components, and any current editor integration. Use the user's instructions and project context to answer the following questions. Ask only about details you cannot infer; do not repeat questions the user has already answered.
+
+If the user only provided the setup prompt with no other context, ask these two questions together before choosing an editor type or adding a new screen:
+
+- What should your users create: emails/newsletters, websites/landing pages, or documents?
+- Where should the visual editor live in your app: an existing page or workflow, or a new editor page?
+
+If there is no application or repository to inspect, also ask which framework or stack to use. When the editor type and location are already clear, proceed with the integration.
+
+Reuse the app's existing navigation, styling, data model, and persistence patterns. Clarify storage, asset uploads, or export requirements when they affect the requested integration. For a first local prototype with no existing backend, use the SDK's default browser-local project storage and explain that production persistence still needs to be configured.
+
+## 2. Install and read the Studio SDK skills
+
+From the user's project directory, install the official agent skills if they are not already available:
+
+    npx skills add grapesjs/skills-studio-sdk
+
+Use project-local installation for the coding agent in use. Read the installed grapesjs-studio-sdk SKILL.md and the relevant guides for the chosen project type, framework setup, project storage, and assets before implementing. These skills provide SDK-specific APIs and working integration patterns.
+
+If skill installation is unavailable in your environment, read the skill directly and follow its linked guides:
+
+https://github.com/GrapesJS/skills-studio-sdk/blob/main/skills/grapesjs-studio-sdk/SKILL.md
+
+Use the official documentation below to resolve missing details. Do not invent configuration options or plugin APIs.
+
+## 3. Embed the editor
+
+- Install @grapesjs/studio-sdk with the app's existing package manager.
+- For React, use StudioEditor from @grapesjs/studio-sdk/react. For other frameworks or vanilla JavaScript, use createStudioEditor from @grapesjs/studio-sdk. Import @grapesjs/studio-sdk/style.
+- Mount the editor in the agreed location with a container that has an explicit height. Initialize it in the browser; follow the framework's client-only loading pattern when server-side rendering is involved. Clean up the editor when its host is unmounted.
+- Choose project.type based on the user's use case: 'web' for websites and landing pages, 'email' for MJML email/newsletter editing, or 'document' for documents. Use a small, relevant starter project from the matching guide.
+- Preserve any existing editor content and integrations. For persistence, save and reload the SDK's project JSON; exported HTML/CSS is an output format and does not preserve the full editable project.
+- Connect project storage and asset uploads to the existing backend when required. Follow the skills and documentation for the supported callbacks and data shapes.
+- Add plugins and AI assistance when requested or required by the use case. Get a basic working editor in place first.
+- Localhost development works without a production license. Before running on a public domain, follow the license guide to create and enable a valid license for that domain. Do not block a local prototype on account creation.
+
+## 4. Verify and hand off
+
+Run the app's relevant checks and open the editor if browser testing is available. Verify that it renders at the intended location, loads the correct project type, and supports editing. When persistence or export is part of the integration, verify saving/reloading or exporting too.
+
+Tell the user where to open the editor, what was implemented, and any concrete remaining setup such as production licensing, backend storage, asset uploads, or optional AI configuration. State any checks you could not run.
+
+## Official references
+
+- Agent skills: https://github.com/GrapesJS/skills-studio-sdk
+- Getting started: https://app.grapesjs.com/docs-sdk/overview/getting-started
+- Web projects: https://app.grapesjs.com/docs-sdk/project-types/web
+- Email projects: https://app.grapesjs.com/docs-sdk/project-types/email
+- Document projects: https://app.grapesjs.com/docs-sdk/project-types/document
+- Project storage and export: https://app.grapesjs.com/docs-sdk/configuration/projects
+- Asset management: https://app.grapesjs.com/docs-sdk/configuration/assets/overview
+- Plugins: https://app.grapesjs.com/docs-sdk/plugins/overview
+- AI integration: https://app.grapesjs.com/docs-sdk/plugins/ai/overview
+- Licenses: https://app.grapesjs.com/docs-sdk/overview/licenses

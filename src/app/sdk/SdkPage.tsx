@@ -9,6 +9,7 @@ import EmbedBuilderWeb from "../_components/layouts/EmbedBuilderWeb";
 import SdkFeatures from "../_components/sdk/SdkFeatures";
 import SdkCustomerLogos from "../_components/sdk/SdkCustomerLogos";
 import ScrollReveal from "../_components/ScrollReveal";
+import SdkAgentSetup from "../_components/sdk/SdkAgentSetup";
 
 const clsSection =
   "flex w-full flex-col items-center gap-6 px-4 pb-6 pt-[54px] [&>*]:max-w-[1100px]";
@@ -52,7 +53,7 @@ export default function SDKPage() {
           </p>
 
           <div
-            className="flex flex-row flex-wrap items-center justify-center gap-4 py-[50px]"
+            className="flex flex-row flex-wrap items-center justify-center gap-4 pb-3 pt-8"
           >
             <CTALink
               href={urls.getStudioEditorUrl()}
@@ -68,6 +69,8 @@ export default function SDKPage() {
               Get a License
             </CTALink> */}
           </div>
+
+          <SdkAgentSetup />
 
           {/* <StarOnGH /> */}
 
