@@ -215,7 +215,12 @@ export function SdkCustomUiCard({
 export function SdkAiCard({
   isEmail = false,
   wide = isEmail,
-}: { isEmail?: boolean; wide?: boolean } = {}) {
+  href = `${docs}/plugins/ai/overview`,
+}: {
+  isEmail?: boolean;
+  wide?: boolean;
+  href?: string;
+} = {}) {
   return (
     <article
       data-reveal
@@ -256,7 +261,9 @@ export function SdkAiCard({
             ? "Let users draft welcome emails, write newsletter copy, and refine a design through conversation. Customize the assistant’s UI, prompts, and tools, then let users keep editing visually."
             : "Let users create and edit content through conversation, then refine it visually. Customize the chat UI, instructions, and tools to connect AI to your product."}
         </p>
-        <DocsLink href="plugins/ai/overview">Explore AI integration</DocsLink>
+        <a href={href} className={linkClass}>
+          Explore AI integration <ArrowRight size={15} aria-hidden />
+        </a>
       </div>
       <div className={cn("px-3 pb-3 md:px-5 md:pb-5", wide && "pt-3 md:pt-5")}>
         <AiWorkflowIllustration isEmail={isEmail} />
@@ -509,7 +516,7 @@ export default function SdkFeatures() {
         <div className="grid gap-6 md:grid-cols-2">
           <SdkCustomUiCard />
 
-          <SdkAiCard />
+          <SdkAiCard href="/sdk/ai" />
 
           <article data-reveal className={`${cardClass} flex flex-col`}>
             <div className="flex-1 p-6 md:p-8">
