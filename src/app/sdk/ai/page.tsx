@@ -74,14 +74,11 @@ export default function SdkAiPage() {
         <SdkLandingHero
           title="Embed an AI visual editor in your product"
           description={aiMetadata.description}
-          primaryHref={urls.getSdkLicensesUrl({
-            plan: "startup",
-            ref: "sdkAiHero",
-          })}
-          primaryLabel="Embed the Editor"
+          primaryHref={urls.getStudioEditorUrl()}
+          primaryLabel="Try the AI editor"
           primaryPlacement="sdk-ai-hero"
-          secondaryHref={urls.getPricingUrl()}
-          secondaryLabel="Compare Plans"
+          secondaryHref={`${docs}/overview`}
+          secondaryLabel="Read the AI docs"
         />
 
         <div className="mx-auto max-w-[1132px] p-5">
