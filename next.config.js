@@ -4,6 +4,9 @@ const withMDX = require('@next/mdx')();
 const config = {
     output: 'export',
     reactStrictMode: true,
+    experimental: {
+        agentUpgrade: 'security',
+    },
     images: {
         unoptimized: true,
     },
