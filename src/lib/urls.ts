@@ -15,12 +15,13 @@ const getRef = ({ ref, plan }: UrlProps = {}) =>
   ].join("&");
 
 const urls = {
-  getGettingStartedDocsUrl: () =>
-    `${APP_URL}/docs-sdk/overview/getting-started?ref=docsHeader`,
+  getGettingStartedDocsUrl: (ref = "docsHeader") =>
+    `${APP_URL}/docs-sdk/overview/getting-started?ref=${encodeURIComponent(ref)}`,
   getChatGptAppUrl: () =>
     "https://chatgpt.com/plugins/plugin_asdk_app_69dd38930d64819196c02d0f9db061b5",
   getGrapesJsDocs: () => `${SITE_URL}/docs/`,
-  getStudioEditorUrl: () => `${APP_URL}/playground?ref=tryEditor`,
+  getStudioEditorUrl: (ref = "tryEditor") =>
+    `${APP_URL}/playground?ref=${encodeURIComponent(ref)}`,
   getSignInUrl: (props: UrlProps) =>
     `${APP_URL}/signin?${getRef(props)}&signupintent=sdk`,
   getSdkLicensesUrl: (props: UrlProps) =>
