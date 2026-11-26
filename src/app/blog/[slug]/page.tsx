@@ -5,6 +5,7 @@ import DateFormatter from "@/app/_components/date-formatter";
 import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
 import PostReadTime from "@/app/_components/postReadTime";
+import SdkStartBanner from "@/app/_components/sdk/SdkStartBanner";
 import { getAllPosts, getPostBySlug } from "@/lib/blogApi";
 import { DEFAULT_TITLE } from "@/lib/constants";
 import urls from "@/lib/urls";
@@ -67,13 +68,20 @@ export default async function PageBlogPost({ params }: PageBlogPostProps) {
           </div>
           <hr className={styles.shadowSeparator} />
           <Container>
-            <div className="mb-32">
+            <div className="mb-12">
               <div className={cn(styles.postContent, "max-w-2xl mx-auto")}>
                 <ContainerMDX source={post.content} />
               </div>
             </div>
           </Container>
         </article>
+        <SdkStartBanner
+          primaryLabel="Create Your Editor"
+          primaryHref={urls.getStudioEditorUrl("blogEnd")}
+          secondaryLabel="Read the Docs"
+          secondaryHref={urls.getGettingStartedDocsUrl("blogEnd")}
+          placement="blog-post-final-cta"
+        />
         <Footer />
       </main>
     </>

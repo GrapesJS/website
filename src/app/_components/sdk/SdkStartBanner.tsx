@@ -45,7 +45,7 @@ export default function SdkStartBanner({
           speedScale={2}
         />
         <div aria-hidden className={theme.cards.topGlow} />
-        <div className="mx-auto max-w-lg relative">
+        <div className="mx-auto max-w-xl relative">
           <h2
             className={cn(
               "text-3xl font-semibold leading-tight tracking-tight md:text-[50px]",
@@ -56,7 +56,7 @@ export default function SdkStartBanner({
           </h2>
           <p
             className={cn(
-              "mb-8 mt-4 max-w-lg text-base leading-relaxed md:text-lg",
+              "mb-8 mt-4 text-base leading-relaxed md:text-lg",
               theme.colors.ctaText,
             )}
           >
